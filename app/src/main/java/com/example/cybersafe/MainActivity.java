@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("ُtest");
 //shahad
+        //CyberSafe
         myRef.setValue("Lenaah");
     }
 }
