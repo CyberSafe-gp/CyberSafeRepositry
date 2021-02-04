@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="0dp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/arrowIncomP"
+        android:layout_width="49dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:contentDescription="@string/left_arrow"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/homeIncomP"
+        android:layout_width="49dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:contentDescription="@string/home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/Home"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/incoming_reports"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="21dp" />
+
+    <ImageView
+        android:id="@+id/Rectangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:contentDescription="TODO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/Rectangle" />
+
+    <TextView
+        android:id="@+id/ChildName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Child Name:"
+        app:layout_constraintStart_toStartOf="@+id/Rectangle"
+        app:layout_constraintTop_toTopOf="@+id/Rectangle" />
+
+    <TextView
+        android:id="@+id/WriteChildName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="17dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/Rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/ChildName" />
+
+    <TextView
+        android:id="@+id/Application"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Application:"
+        app:layout_constraintStart_toStartOf="@+id/Rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/WriteChildName" />
+
+    <TextView
+        android:id="@+id/WriteApplication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="17dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/Rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/Application" />
+
+    <TextView
+        android:id="@+id/BullyComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="132dp"
+        android:text="Bully Comment:"
+        app:layout_constraintStart_toStartOf="@+id/Rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/WriteChildAccount" />
+
+    <ImageView
+        android:id="@+id/BullyCommentRectangle"
+        android:layout_width="266dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/Rectangle"
+        app:layout_constraintHorizontal_bias="0.243"
+        app:layout_constraintStart_toStartOf="@+id/Rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/BullyComment"
+        app:srcCompat="@drawable/Rectangle2" />
+
+    <TextView
+        android:id="@+id/BullyCommentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="15dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/BullyCommentRectangle"
+        app:layout_constraintTop_toTopOf="@+id/BullyCommentRectangle" />
+
+
+    <TextView
+        android:id="@+id/ChildAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:text="Child Account:"
+        app:layout_constraintEnd_toEndOf="@+id/Rectangle"
+        app:layout_constraintTop_toTopOf="@+id/Rectangle" />
+
+    <TextView
+        android:id="@+id/WriteChildAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="135dp"
+        android:layout_marginRight="140dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="@+id/Rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/ChildAccount" />
+
+    <TextView
+        android:id="@+id/BullyAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:text="Bully Account:"
+        app:layout_constraintEnd_toEndOf="@+id/Rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/WriteChildAccount" />
+
+    <TextView
+        android:id="@+id/WriteBullyAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="135dp"
+        android:layout_marginRight="140dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="@+id/Rectangle"
+        app:layout_constraintTop_toBottomOf="@+id/BullyAccount" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
