@@ -13,13 +13,13 @@ public class MainActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("gp");
+        DatabaseReference myRef = database.getReference("CS");
 //shahad
         //CyberSafe
         //luulu
         //hello
         //444
         //99
-        myRef.setValue("Sara");
+        myRef.setValue("GP");
     }
 }
