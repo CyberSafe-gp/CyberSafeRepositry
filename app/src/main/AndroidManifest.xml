@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cybersafe" >
+    package="com.example.cybersafe">
 
     <application
         android:allowBackup="true"
@@ -8,16 +8,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CyberSafe" >
-        <activity android:name=".MainActivity2" />
-        <activity android:name=".View_reported_bullying_list" />
-        <activity android:name=".flag_bully_comment" />
+        android:theme="@style/Theme.CyberSafe">
+        <activity android:name=".ParentRegister2"></activity>
+        <activity android:name=".Adddetectionkeyword2" />
+        <activity android:name=".Adddetectionkeyword" />
+        <activity android:name=".Gethelp" />
+        <activity android:name=".Bullycomments2" />
+        <activity android:name=".Bullycomments" />
+        <activity android:name=".SchoolManagerRegister" />
         <activity android:name=".Report_info" />
         <activity android:name=".Incoming_reports_P" />
-        <activity android:name=".ParentHome"/>
-        <activity android:name=".ParentLogin"/>
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
