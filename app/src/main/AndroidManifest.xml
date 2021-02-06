@@ -18,6 +18,9 @@
         <activity android:name=".SchoolManagerRegister" />
         <activity android:name=".Report_info" />
         <activity android:name=".Incoming_reports_P" />
+        <activity android:name=".EditSchool"></activity>
+        <activity android:name=".SchoolHome" />
+        <activity android:name=".ChildHome" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

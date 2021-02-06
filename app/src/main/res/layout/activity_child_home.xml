@@ -4,40 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ParentHome">
+    tools:context=".ChildHome">
 
     <Button
-        android:id="@+id/button14"
+        android:id="@+id/button12"
         android:layout_width="158dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="180dp"
-        android:text="edit"
+        android:layout_marginBottom="144dp"
+        android:text="edit profile"
         android:textColor="@color/blue"
         app:backgroundTint="@android:color/holo_orange_dark"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
-        app:layout_constraintVertical_bias="0.593" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="158dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="180dp"
-        android:text="log-out"
-        android:textColor="@color/blue"
-        app:backgroundTint="@android:color/holo_orange_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
+        app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar3"
         app:layout_constraintVertical_bias="0.593" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+        android:id="@+id/toolbar4"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_centerInParent="true"
@@ -46,8 +32,23 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
     <ImageView
-        android:id="@+id/arrowIncomP2"
+        android:id="@+id/arrowIncomP3"
         android:layout_width="49dp"
         android:layout_height="60dp"
         android:layout_marginStart="4dp"
@@ -59,7 +60,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/homeIncomP2"
+        android:id="@+id/homeIncomP3"
         android:layout_width="49dp"
         android:layout_height="60dp"
         android:layout_marginEnd="16dp"
@@ -70,55 +71,72 @@
         app:srcCompat="@drawable/Home"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Children"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.134"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.088" />
-
     <Button
-        android:id="@+id/button3"
-        android:layout_width="345dp"
-        android:layout_height="50dp"
-        android:text="Add a new child"
+        android:id="@+id/button8"
+        android:layout_width="371dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="496dp"
+        android:text="Bully comments"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:layout_constraintVertical_bias="0.413" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="345dp"
-        android:layout_height="50dp"
-        android:text="Add detection keyword"
+        android:id="@+id/button17"
+        android:layout_width="371dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="412dp"
+        android:text="Incoming reports"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.523" />
+        app:layout_constraintVertical_bias="0.413" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Parent Home"
-        android:textColor="@color/white"
+    <Button
+        android:id="@+id/button19"
+        android:layout_width="371dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="248dp"
+        android:text="Flag bully comment manually"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="21dp" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="371dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="332dp"
+        android:text="View reported bullying list"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="158dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="144dp"
+        android:text="delete child"
+        android:textColor="@color/blue"
+        app:backgroundTint="@android:color/holo_red_dark"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+        app:layout_constraintVertical_bias="0.593" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
