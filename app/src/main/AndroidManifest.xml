@@ -14,7 +14,10 @@
         <activity android:name=".flag_bully_comment" />
         <activity android:name=".Report_info" />
         <activity android:name=".Incoming_reports_P" />
-        <activity android:name=".MainActivity" >
+        <activity android:name=".ParentHome"/>
+        <activity android:name=".ParentLogin"/>
+        <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
