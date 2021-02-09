@@ -64,7 +64,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Detection Keyword"
+        android:text="@string/add_detection_keyword"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,18 +81,19 @@
         android:fontFamily="serif"
         android:foregroundGravity="center_vertical"
         android:gravity="center_vertical"
-        android:text="Keyword List"
+        android:text="@string/keyword_list"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#04406E"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:backgroundTint="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="RtlCompat" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

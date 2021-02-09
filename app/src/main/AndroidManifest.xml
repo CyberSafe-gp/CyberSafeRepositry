@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cybersafe">
 
     <application
@@ -9,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CyberSafe">
-        <activity android:name=".ParentRegister2"></activity>
+        <activity android:name=".Edit_Child_Profile"></activity>
+        <activity android:name=".ParentRegister2" />
         <activity android:name=".Adddetectionkeyword2" />
         <activity android:name=".Adddetectionkeyword" />
         <activity android:name=".Gethelp" />
@@ -21,7 +23,63 @@
         <activity android:name=".EditSchool"></activity>
         <activity android:name=".SchoolHome" />
         <activity android:name=".ChildHome" />
-        <activity android:name=".MainActivity">
+        <?xml version="1.0" encoding="utf-8"?>
+        <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            package="com.example.cybersafe" >
+
+        <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.CyberSafe"
+            tools:ignore="WrongManifestParent">
+            <activity android:name=".MainActivity2" />
+            <activity android:name=".View_reported_bullying_list" />
+            <activity android:name=".flag_bully_comment" />
+            <activity android:name=".ParentHome"/>
+            <activity android:name=".ParentLogin"/>
+            <?xml version="1.0" encoding="utf-8"?>
+            <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+                package="com.example.cybersafe">
+
+                <application
+                    android:allowBackup="true"
+                    android:icon="@mipmap/ic_launcher"
+                    android:label="@string/app_name"
+                    android:roundIcon="@mipmap/ic_launcher_round"
+                    android:supportsRtl="true"
+                    android:theme="@style/Theme.CyberSafe"
+                    tools:ignore="WrongManifestParent">
+                    <activity android:name=".Edit_Parent_Profile" />
+                    <activity android:name=".Add_NewChild" />
+                    <activity android:name=".Add_Detection_Keyword2" />
+                    <activity android:name=".Add_Detection_Keyword" />
+                    <activity android:name=".Login_Register" />
+                    <activity android:name=".MainActivity">
+                        <intent-filter>
+                            <action android:name="android.intent.action.MAIN" />
+
+                            <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
+                    </activity>
+                </application>
+
+            </manifest>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </application>
+    </application>
+
+</manifest>
+
+<activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,3 +89,5 @@
     </application>
 
 </manifest>
+
+
