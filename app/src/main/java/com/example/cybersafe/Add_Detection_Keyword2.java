@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.cybersafe.R;
+
 public class Add_Detection_Keyword2 extends AppCompatActivity {
 
     @Override

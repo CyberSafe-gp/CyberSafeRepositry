@@ -34,7 +34,7 @@
         android:contentDescription="@string/home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/Home"
+        app:srcCompat="@drawable/home"
         tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/textView"
@@ -60,7 +60,7 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/Rectangle" />
+        app:srcCompat="@drawable/rectangle" />
 
 
     <TextView
@@ -127,7 +127,7 @@
         app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toStartOf="@+id/Rectangle"
         app:layout_constraintTop_toBottomOf="@+id/BullyComment"
-        app:srcCompat="@drawable/Rectangle2" />
+        app:srcCompat="@drawable/rectangle2" />
 
     <TextView
         android:id="@+id/BullyCommentText"

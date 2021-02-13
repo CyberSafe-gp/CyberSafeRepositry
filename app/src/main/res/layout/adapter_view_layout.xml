@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="100"
+    >
+
+
+    <TextView
+        android:id="@+id/commentET"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:paddingLeft="9dp"
+        android:paddingTop="8dp"
+        android:textColor="#2da79b"
+        android:textSize="16dp"
+
+        android:textStyle="bold">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="370dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="-170dp"
+        android:layout_marginTop="70dp"
+        android:layout_weight="0.5"
+        android:textColor="#4ec1ea"
+
+        android:textSize="14dp"
+        android:textStyle="normal">
+
+    </TextView>
+
+
+</LinearLayout>
+

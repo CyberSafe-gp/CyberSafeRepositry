@@ -39,7 +39,7 @@
         android:contentDescription="@string/home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/Home"
+        app:srcCompat="@drawable/home"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/Rectangle4" />
+        app:srcCompat="@drawable/rectangle4" />
 
     <TextView
         android:id="@+id/ReportedBullying"
@@ -94,7 +94,7 @@
         android:layout_marginTop="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:srcCompat="@drawable/Rectangle5" />
+        app:srcCompat="@drawable/rectangle5" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -107,7 +107,7 @@
         app:layout_constraintHorizontal_bias="0.697"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:srcCompat="@drawable/Rectangle6" />
+        app:srcCompat="@drawable/rectangle6" />
 
     <TextView
         android:id="@+id/WriteStatus"
