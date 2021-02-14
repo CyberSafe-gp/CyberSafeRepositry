@@ -20,6 +20,6 @@ public class MainActivity  extends AppCompatActivity {
         //hello
         //444
         //99
-        myRef.setValue("GP");
+        myRef.setValue("luluu");
     }
 }
