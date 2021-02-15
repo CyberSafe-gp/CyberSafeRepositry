@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CyberSafe">
-        <activity android:name=".Edit_Child_Profile"></activity>
+        <activity android:name=".test1"></activity>
+        <activity android:name=".Edit_Child_Profile" />
         <activity android:name=".ParentRegister2" />
         <activity android:name=".Adddetectionkeyword2" />
         <activity android:name=".Adddetectionkeyword" />
@@ -20,22 +21,35 @@
         <activity android:name=".SchoolManagerRegister" />
         <activity android:name=".Report_info" />
         <activity android:name=".Incoming_reports_P" />
-        <activity android:name=".EditSchool"/>
-        <activity android:name=".resetpassword">
+        <activity
+            android:name=".EditSchool"
+            android:parentActivityName=".SchoolHome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".SchoolHome" />
+        <activity android:name=".resetpassword"></activity>
+        <activity
+            android:name=".SchoolHome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ChildHome" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".View_reported_bullying_list" />
-        <activity android:name=".ParentHome"/>
-        <activity android:name=".ParentLogin"/>
+        <activity android:name=".ParentHome" />
+        <activity android:name=".ParentLogin" />
         <activity android:name=".Edit_Parent_Profile" />
         <activity android:name=".Add_NewChild" />
         <activity android:name=".Add_Detection_Keyword2" />
         <activity android:name=".Add_Detection_Keyword" />
         <activity android:name=".Login_Register" />
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,5 +59,3 @@
     </application>
 
 </manifest>
-
-

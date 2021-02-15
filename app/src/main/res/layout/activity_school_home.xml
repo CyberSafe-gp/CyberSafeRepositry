@@ -7,7 +7,7 @@
     tools:context=".SchoolHome">
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/btn1"
         android:layout_width="158dp"
         android:layout_height="49dp"
         android:layout_marginBottom="244dp"
@@ -92,7 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="21dp" />
+        tools:layout_editor_absoluteY="26dp" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -107,14 +107,15 @@
         app:srcCompat="@drawable/rectangle3" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="260dp"
-        android:layout_height="129dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="444dp"
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar5" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
