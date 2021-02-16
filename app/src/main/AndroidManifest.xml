@@ -10,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CyberSafe">
-        <activity android:name=".test1"></activity>
         <activity android:name=".Edit_Child_Profile" />
         <activity android:name=".ParentRegister2" />
         <activity android:name=".Adddetectionkeyword2" />
@@ -20,12 +19,12 @@
         <activity android:name=".Bullycomments" />
         <activity android:name=".SchoolManagerRegister" />
         <activity android:name=".Report_info" />
-        <activity android:name=".Incoming_reports_P" />
+        <activity android:name=".IncomingReportsMain" />
         <activity
             android:name=".EditSchool"
             android:parentActivityName=".SchoolHome">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -34,7 +33,7 @@
         <activity
             android:name=".SchoolHome">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

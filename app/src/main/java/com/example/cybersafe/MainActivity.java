@@ -12,15 +12,13 @@ public class MainActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_school_home);
+        setContentView(R.layout.activity_main);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("CS");
-//shahad
-        //CyberSafe
-        //luulu
-        //hello
-        //444
-        //99
-        myRef.setValue("luuuluu");
+        DatabaseReference myRef = database.getReference("test");
+        myRef.setValue("lenaah");
+
+
+
+
     }
 }
