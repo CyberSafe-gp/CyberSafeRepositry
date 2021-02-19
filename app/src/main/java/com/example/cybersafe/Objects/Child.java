@@ -15,7 +15,7 @@ public class Child {
 
 
 
-    public Child() {
+    public Child(String id, String rTTwi9dfa9W425lPa2A6MiU93yz1, String s, String s1, String s2, String s3, String s4, String id1) {
     }
 
     public Child(String child_id, String parent_id, String school_id, String firstName, String lastName, String date_of_birth, String city, String gender, String school, String grade) {

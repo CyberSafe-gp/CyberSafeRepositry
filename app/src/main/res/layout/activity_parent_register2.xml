@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
-                    android:text="Age"
+                    android:text="Date of Birth"
                     android:textColor="#04406E"
                     android:textSize="20dp" />
 
@@ -127,7 +127,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="150dp"
+                    android:layout_marginLeft="126dp"
                     android:layout_marginTop="15dp"
                     android:text="Gender"
                     android:textColor="#04406E"

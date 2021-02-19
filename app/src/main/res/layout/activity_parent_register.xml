@@ -81,7 +81,7 @@
         <EditText
             android:id="@+id/firstname"
             android:layout_width="327dp"
-            android:layout_height="32dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
 
         <TextView
@@ -96,7 +96,7 @@
         <EditText
             android:id="@+id/lastname"
             android:layout_width="327dp"
-            android:layout_height="32dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
 
         <TextView
@@ -111,7 +111,7 @@
         <EditText
             android:id="@+id/email"
             android:layout_width="327dp"
-            android:layout_height="32dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
 
         <TextView
@@ -126,7 +126,7 @@
         <EditText
             android:id="@+id/password"
             android:layout_width="327dp"
-            android:layout_height="32dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="20dp"
             android:inputType="textPassword" />
 
@@ -153,7 +153,7 @@ to monitor:"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="30dp"
             android:text="Next"
             android:textSize="20dp"
             android:textColor="@color/blue"

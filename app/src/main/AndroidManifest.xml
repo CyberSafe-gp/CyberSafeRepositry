@@ -16,9 +16,10 @@
         <activity android:name=".Adddetectionkeyword" />
         <activity android:name=".Gethelp" />
         <activity android:name=".Bullycomments2" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".Bullycomments" />
         <activity android:name=".SchoolManagerRegister" />
-        <activity android:name=".Report_info" />
+        <activity android:name=".Repot_info" />
         <activity android:name=".IncomingReportsMain" />
         <activity
             android:name=".EditSchool"
@@ -48,7 +49,7 @@
         <activity android:name=".Add_Detection_Keyword2" />
         <activity android:name=".Add_Detection_Keyword" />
         <activity android:name=".Login_Register" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ParentRegister">//MainActivity
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -3,17 +3,17 @@ package com.example.cybersafe.Objects;
 public class Parent {
     private String firstName;
     private String lastName;
-    private String password;
+    //private String password;
     private String email;
     private String parent_id;
 
     public Parent() {
     }
 
-    public Parent(String firstName, String lastName, String password, String email, String parent_id) {
+    public Parent(String firstName, String lastName, String email, String parent_id) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
+        //this.password = password;
         this.email = email;
         this.parent_id = parent_id;
     }
@@ -34,13 +34,13 @@ public class Parent {
         this.lastName = lastName;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    //public String getPassword() {
+      //  return password;
+   // }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+   // public void setPassword(String password) {
+    //    this.password = password;
+    //}
 
     public String getEmail() {
         return email;
