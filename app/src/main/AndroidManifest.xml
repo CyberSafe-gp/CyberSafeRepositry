@@ -16,11 +16,18 @@
         <activity android:name=".Adddetectionkeyword" />
         <activity android:name=".Gethelp" />
         <activity android:name=".Bullycomments2" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" >
+        <intent-filter>
+          <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <activity android:name=".Bullycomments" />
         <activity android:name=".SchoolManagerRegister" />
-        <activity android:name=".Repot_info" />
-        <activity android:name=".IncomingReportsMain" />
+        <activity android:name=".Forgetpassword"/>
+
         <activity
             android:name=".EditSchool"
             android:parentActivityName=".SchoolHome">
@@ -51,7 +58,7 @@
         <activity android:name=".Login_Register" />
         <activity android:name=".ParentRegister">//MainActivity
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
