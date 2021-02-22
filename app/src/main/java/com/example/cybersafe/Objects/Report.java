@@ -3,7 +3,8 @@ package com.example.cybersafe.Objects;
 public class Report {
 
     private String report_id;
-    private String parent_id;
+    private String sender_id;
+    private String receiver_id;
     private String comment_id;
     private String status;
 
@@ -11,9 +12,10 @@ public class Report {
     public Report() {
     }
 
-    public Report(String report_id, String parent_id, String comment_id, String status){
+    public Report(String report_id, String sender_id, String receiver_id, String comment_id, String status) {
         this.report_id = report_id;
-        this.parent_id = parent_id;
+        this.sender_id = sender_id;
+        this.receiver_id = receiver_id;
         this.comment_id = comment_id;
         this.status = status;
     }
@@ -26,17 +28,21 @@ public class Report {
         this.report_id = report_id;
     }
 
-
-
-    public String getParent_id() {
-        return parent_id;
+    public String getSender_id() {
+        return sender_id;
     }
 
-    public void setParent_id(String parent_id) {
-        this.parent_id = parent_id;
+    public void setSender_id(String sender_id) {
+        this.sender_id = sender_id;
     }
 
+    public String getReceiver_id() {
+        return receiver_id;
+    }
 
+    public void setReceiver_id(String receiver_id) {
+        this.receiver_id = receiver_id;
+    }
 
     public String getComment_id() {
         return comment_id;
@@ -46,8 +52,6 @@ public class Report {
         this.comment_id = comment_id;
     }
 
-
-
     public String getStatus() {
         return status;
     }
@@ -55,5 +59,4 @@ public class Report {
     public void setStatus(String status) {
         this.status = status;
     }
-
 }
