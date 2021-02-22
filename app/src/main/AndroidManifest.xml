@@ -19,8 +19,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Bullycomments" />
         <activity android:name=".SchoolManagerRegister" />
-        <activity android:name=".Repot_info" />
-        <activity android:name=".IncomingReportsMain" />
+ <activity android:name=".Forgetpassword"/>
         <activity
             android:name=".EditSchool"
             android:parentActivityName=".SchoolHome">
