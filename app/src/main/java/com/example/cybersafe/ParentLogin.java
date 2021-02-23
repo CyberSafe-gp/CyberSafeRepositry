@@ -1,15 +1,18 @@
 package com.example.cybersafe;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -17,29 +20,35 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.onesignal.OSNotificationAction;
-import com.onesignal.OSNotificationOpenResult;
-import com.onesignal.OneSignal;
 
 public class ParentLogin extends AppCompatActivity implements onesignal.NotificationOpenedHandler {
 
-    private Button login;
-    private FirebaseAuth mAuth;
+    private Button log;
+    private FirebaseAuth Auth;
     private EditText editTextEmail;
     private EditText editTextPassword;
     public static String LoggedIn_User_Email;
+    private TextView forgetPass;
+    private TextView visitor;
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_login);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("");
-        mAuth = FirebaseAuth.getInstance();
-        login = (Button) findViewById(R.id.button9);
+        DatabaseReference Ref = database.getReference("");
+        Auth = FirebaseAuth.getInstance();
+        forgetPass  = (TextView) findViewById(R.id.textView13;
+        log = (Button) findViewById(R.id.button9);
         editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById(R.id.editTextTextPassword;
-        login.setOnClickListener(new View.OnClickListener() {
+        forgetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ParentLogin.this,Forgetpassword.class));
+            }
+        });
+        log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 login();
@@ -78,22 +87,18 @@ public class ParentLogin extends AppCompatActivity implements onesignal.Notifica
             return;
         }
 
-        mAuth.signInWithEmailAndPassword(Email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        Auth.signInWithEmailAndPassword(Email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    String user = getIntent().getStringExtra("User");
+            @Override
+                if(task.isSuccessful())
 
-                        if (!(user.equals(null))&&user.equals("Parent")) {
-                            startActivity(new Intent(ParentLogin.this, ParentHome.class));
-                        } else {
-                            startActivity(new Intent(ParentLogin.this, SchoolHome.class));
-                        }
-                    }
-
-        else{
+                        startActivity(new Intent(ParentLogin.this,ParentHome.class));
+                else
                     Toast.makeText(ParentLogin.this, "failed to login", Toast.LENGTH_LONG).show();
                 }
-            }});
+        });
     }
+
+
 }
