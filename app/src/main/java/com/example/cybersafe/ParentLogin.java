@@ -29,7 +29,7 @@ public class ParentLogin extends AppCompatActivity implements onesignal.Notifica
     private EditText editTextPassword;
     public static String LoggedIn_User_Email;
     private TextView forgetPass;
-    private TextView visitor;
+
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
