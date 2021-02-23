@@ -10,15 +10,15 @@ public class Child {
     private String date_of_birth;
     private String city;
     private String gender;
-    private String school;
     private String grade;
 
 
 
-    public Child(String id, String rTTwi9dfa9W425lPa2A6MiU93yz1, String s, String s1, String s2, String s3, String s4, String id1) {
+    public Child(){
+
     }
 
-    public Child(String child_id, String parent_id, String school_id, String firstName, String lastName, String date_of_birth, String city, String gender, String school, String grade) {
+    public Child(String child_id, String parent_id, String school_id, String firstName, String lastName, String date_of_birth, String city, String gender, String grade) {
         this.child_id = child_id;
         this.parent_id = parent_id;
         this.school_id = school_id;
@@ -27,9 +27,7 @@ public class Child {
         this.date_of_birth = date_of_birth;
         this.city = city;
         this.gender = gender;
-        this.school = school;
         this.grade = grade;
-
     }
 
     public String getChild_id() {
@@ -40,8 +38,6 @@ public class Child {
         this.child_id = child_id;
     }
 
-
-
     public String getParent_id() {
         return parent_id;
     }
@@ -49,8 +45,6 @@ public class Child {
     public void setParent_id(String parent_id) {
         this.parent_id = parent_id;
     }
-
-
 
     public String getSchool_id() {
         return school_id;
@@ -60,8 +54,6 @@ public class Child {
         this.school_id = school_id;
     }
 
-
-
     public String getFirstName() {
         return firstName;
     }
@@ -69,8 +61,6 @@ public class Child {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
-
 
     public String getLastName() {
         return lastName;
@@ -80,8 +70,6 @@ public class Child {
         this.lastName = lastName;
     }
 
-
-
     public String getDate_of_birth() {
         return date_of_birth;
     }
@@ -89,7 +77,6 @@ public class Child {
     public void setDate_of_birth(String date_of_birth) {
         this.date_of_birth = date_of_birth;
     }
-
 
     public String getCity() {
         return city;
@@ -99,7 +86,6 @@ public class Child {
         this.city = city;
     }
 
-
     public String getGender() {
         return gender;
     }
@@ -108,17 +94,6 @@ public class Child {
         this.gender = gender;
     }
 
-
-
-    public String getSchool() {
-        return school;
-    }
-
-    public void setSchool(String school) {
-        this.school = school;
-    }
-
-
     public String getGrade() {
         return grade;
     }
@@ -126,6 +101,4 @@ public class Child {
     public void setGrade(String grade) {
         this.grade = grade;
     }
-
-
 }

@@ -3,10 +3,10 @@ package com.example.cybersafe.Objects;
 public class Comment {
 
     private String comment_id;
-    private String SMAccountCredentials_email;
+    private String SMAccountCredentials_id;
     private String sender;
     private String body;
-    private String flag;
+    private Boolean flag;
     private String timestamp;
     private String timeRetrieved;
 
@@ -15,15 +15,14 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String comment_id, String SMAccountCredentials_email, String sender, String body, String flag, String timestamp, String timeRetrieved) {
+    public Comment(String comment_id, String SMAccountCredentials_id, String sender, String body, Boolean flag, String timestamp, String timeRetrieved) {
         this.comment_id = comment_id;
-        this.SMAccountCredentials_email = SMAccountCredentials_email;
+        this.SMAccountCredentials_id = SMAccountCredentials_id;
         this.sender = sender;
         this.body = body;
         this.flag = flag;
         this.timestamp = timestamp;
         this.timeRetrieved = timeRetrieved;
-
     }
 
     public String getComment_id() {
@@ -34,17 +33,13 @@ public class Comment {
         this.comment_id = comment_id;
     }
 
-
-
-    public String getSMAccountCredentials_email() {
-        return SMAccountCredentials_email;
+    public String getSMAccountCredentials_id() {
+        return SMAccountCredentials_id;
     }
 
-    public void setSMAccountCredentials_email(String SMAccountCredentials_email) {
-        this.SMAccountCredentials_email = SMAccountCredentials_email;
+    public void setSMAccountCredentials_id(String SMAccountCredentials_id) {
+        this.SMAccountCredentials_id = SMAccountCredentials_id;
     }
-
-
 
     public String getSender() {
         return sender;
@@ -66,11 +61,11 @@ public class Comment {
 
 
 
-    public String getFlag() {
+    public Boolean getFlag() {
         return flag;
     }
 
-    public void setFlag(String flag) {
+    public void setFlag(Boolean flag) {
         this.flag = flag;
     }
 

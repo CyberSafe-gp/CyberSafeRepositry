@@ -1,38 +1,32 @@
 package com.example.cybersafe.Objects;
 
 public class Keyword {
-    private String arabicKeyword;
-    private String englishKeyword;
+    private String keyword;
+    private String language;
 
 
 
     public Keyword() {
     }
 
-    public Keyword(String arabicKeyword, String englishKeyword){
-        this.arabicKeyword = arabicKeyword;
-        this.englishKeyword = englishKeyword;
-
+    public Keyword(String keyword, String language) {
+        this.keyword = keyword;
+        this.language = language;
     }
 
-    public String getArabicKeyword() {
-        return arabicKeyword;
+    public String getKeyword() {
+        return keyword;
     }
 
-    public void setArabicKeyword(String arabicKeyword) {
-        this.arabicKeyword = arabicKeyword;
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
-
-
-    public String getEnglishKeyword() {
-        return englishKeyword;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setEnglishKeyword(String englishKeyword) {
-        this.englishKeyword = englishKeyword;
+    public void setLanguage(String language) {
+        this.language = language;
     }
-
-
-
 }

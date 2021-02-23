@@ -1,23 +1,31 @@
 package com.example.cybersafe.Objects;
 
 public class SMAccountCredentials {
+    private String id;
     private String child_id;
     private String socialMediaPlatform;
     private String password;
-    private String email;
+    private String account;
 
 
     public SMAccountCredentials() {
     }
 
-    public SMAccountCredentials(String child_id, String socialMediaPlatform, String password, String email) {
+    public SMAccountCredentials(String id, String child_id, String socialMediaPlatform, String password, String account) {
+        this.id = id;
         this.child_id = child_id;
         this.socialMediaPlatform = socialMediaPlatform;
         this.password = password;
-        this.email = email;
-
+        this.account = account;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getChild_id() {
         return child_id;
@@ -27,8 +35,6 @@ public class SMAccountCredentials {
         this.child_id = child_id;
     }
 
-
-
     public String getSocialMediaPlatform() {
         return socialMediaPlatform;
     }
@@ -36,8 +42,6 @@ public class SMAccountCredentials {
     public void setSocialMediaPlatform(String socialMediaPlatform) {
         this.socialMediaPlatform = socialMediaPlatform;
     }
-
-
 
     public String getPassword() {
         return password;
@@ -47,15 +51,11 @@ public class SMAccountCredentials {
         this.password = password;
     }
 
-
-
-    public String getEmail() {
-        return email;
+    public String getAccount() {
+        return account;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAccount(String account) {
+        this.account = account;
     }
-
-
 }
