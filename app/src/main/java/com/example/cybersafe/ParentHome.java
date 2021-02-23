@@ -119,19 +119,14 @@ public class ParentHome extends AppCompatActivity {
         childrenRef = FirebaseDatabase.getInstance().getReference().child("Children");
         childRef = FirebaseDatabase.getInstance().getReference().child("Children");
         childRef.keepSynced(true);
-
+        //click child
         adapter = new ParentHomeAdapter(this, childrenList, new OnItemClickListener() {
             @Override
             public void OnItemClick(View v, int pos) {
-                System.out.println("OnItemClick");
 
                 Child lr = childrenList.get(pos);
                 String Child_id = lr.getChild_id();
-                System.out.println("Child_id"+Child_id);
-
-
                 Intent in = new Intent(ParentHome.this, ChildHome.class);
-
                 in.putExtra("Child_id", Child_id);
                 startActivity(in);
             }
@@ -140,7 +135,7 @@ public class ParentHome extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerPH);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        System.out.println("adapter");
+
 
 
         userID="rTTwi9dfa9W425lPa2A6MiU93yz1";// بدال هذا قيت اوث عشان الاي دي حقت البارنت
@@ -185,7 +180,6 @@ public class ParentHome extends AppCompatActivity {
                         break;
                     } else {
                         textView.setText("no existing children");
-
                     }
                 }
 
