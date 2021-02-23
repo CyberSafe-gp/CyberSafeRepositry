@@ -27,7 +27,7 @@
         <activity android:name=".Bullycomments2" />
         <activity android:name=".MainActivity" >
         <intent-filter>
-           <action android:name="android.intent.action.MAIN" />
+<!--         <action android:name="android.intent.action.MAIN" />-->
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
@@ -36,7 +36,7 @@
         <activity android:name=".SchoolManagerRegister" />
         <activity android:name=".FlagMain">
             <intent-filter>
-<!--               <action android:name="android.intent.action.MAIN" />-->
+               <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -71,7 +71,13 @@
             </intent-filter>
         </activity>
 <!--        <activity android:name=".View_reported_bullying_list" />-->
-        <activity android:name=".ParentHome" />
+        <activity android:name=".ParentHome" >
+            <intent-filter>
+<!--               <action android:name="android.intent.action.MAIN" />-->
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ParentLogin" >
         <intent-filter>
 <!--         <action android:name="android.intent.action.MAIN" />-->
@@ -86,7 +92,7 @@
         <activity android:name=".Login_Register" />
         <activity android:name=".ParentRegister">
             <intent-filter>
-<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--              <action android:name="android.intent.action.MAIN" />-->
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

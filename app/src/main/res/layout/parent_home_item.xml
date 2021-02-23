@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
+        android:id="@+id/reportRe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp"
-        android:background="@drawable/rectangle5"
-        android:id="@+id/writeChildPRe">
+        android:layout_margin="5dp"
+        android:background="@drawable/rectangle11"
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/writeChildP"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:padding="5dp"
-            android:text="TextView"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/WriteRepNo"
-/>
+            android:padding="20dp"
+            android:text="TextView" />
 
     </LinearLayout>
 

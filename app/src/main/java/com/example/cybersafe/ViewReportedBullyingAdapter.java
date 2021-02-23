@@ -67,6 +67,8 @@ public class ViewReportedBullyingAdapter extends RecyclerView.Adapter<ViewReport
         String stat = reportsList.get(position).getStatus();
         // مو اكيد
         holder.WriteRepNo.setText("Report("+(position+1)+")");
+
+        // اخليها اخضر واحمر
         holder.WriteStatus.setText(stat);
 
     }

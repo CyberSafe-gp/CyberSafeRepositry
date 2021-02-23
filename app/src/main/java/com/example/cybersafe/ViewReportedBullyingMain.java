@@ -141,7 +141,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
                         textView.setText("");
                         break;
                     } else {
-                        textView.setText("no existing comments");
+                        textView.setText("no reported comment");
 
                     }
                 }

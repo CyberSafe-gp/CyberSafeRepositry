@@ -179,7 +179,7 @@ public class IncomingReportsMain extends AppCompatActivity {
                         textView.setText("");
                         break;
                     } else {
-                        textView.setText("no existing comments");
+                        textView.setText("no incoming report");
 
                     }
                 }
