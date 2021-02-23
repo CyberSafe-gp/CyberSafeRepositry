@@ -20,8 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.onesignal.OneSignal;
 
-public class ParentLogin extends AppCompatActivity implements onesignal.NotificationOpenedHandler {
+public class ParentLogin extends AppCompatActivity {
 
     private Button log;
     private FirebaseAuth Auth;
@@ -36,12 +37,12 @@ public class ParentLogin extends AppCompatActivity implements onesignal.Notifica
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_login);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference Ref = database.getReference("");
+        DatabaseReference Ref = database.getReference("SchoolManagers");
         Auth = FirebaseAuth.getInstance();
-        forgetPass  = (TextView) findViewById(R.id.textView13;
+        forgetPass  = (TextView) findViewById(R.id.textView13);
         log = (Button) findViewById(R.id.button9);
         editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
-        editTextPassword = (EditText) findViewById(R.id.editTextTextPassword;
+        editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
         forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,9 +91,8 @@ public class ParentLogin extends AppCompatActivity implements onesignal.Notifica
         Auth.signInWithEmailAndPassword(Email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-            @Override
-                if(task.isSuccessful())
 
+                if(task.isSuccessful())
                         startActivity(new Intent(ParentLogin.this,ParentHome.class));
                 else
                     Toast.makeText(ParentLogin.this, "failed to login", Toast.LENGTH_LONG).show();

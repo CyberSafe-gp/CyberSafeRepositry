@@ -19,7 +19,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/arrowFlag"
+        android:id="@+id/arrowIncomP"
         android:layout_width="49dp"
         android:layout_height="60dp"
         android:layout_marginStart="4dp"
@@ -31,7 +31,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/homeFlag"
+        android:id="@+id/homeIncomP"
         android:layout_width="49dp"
         android:layout_height="60dp"
         android:layout_marginEnd="16dp"
@@ -46,33 +46,25 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Flag bully comments manually "
+        android:text="@string/incoming_reports"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="21dp" />
 
-    <!--<ListView
-        android:id="@+id/FlagList"
-        android:layout_width="match_parent"
-        android:layout_height="670dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp" />-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewFlag"
+        android:id="@+id/recyclerViewIncoming"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="72dp"
         android:padding="5dp"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/noComments"
+        android:id="@+id/noReport"
         android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -82,7 +74,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/recyclerViewFlag"
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewIncoming"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.452"
         tools:ignore="MissingConstraints" />
