@@ -24,6 +24,9 @@ public class SchoolHome extends AppCompatActivity {
     public Button btn13;
     String userID;
     String sID;
+    TextView SN;
+    TextView SID;
+
 //
     //make instance of DatabaseReference for the data base so we get access and read data:)
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +35,13 @@ public class SchoolHome extends AppCompatActivity {
         setContentView(R.layout.activity_school_home);
 
         btn11 =  findViewById(R.id.btn1);
+        //edit
         btn12 = findViewById(R.id.button7);
+        //incoming reports
         btn13= findViewById(R.id.button10);
-        TextView SN=(TextView)findViewById(R.id.textView24);
-        TextView SID=(TextView)findViewById(R.id.textView16);
+        // log-out
+        SN=(TextView)findViewById(R.id.textView24);
+        SID=(TextView)findViewById(R.id.textView16);
 
         fauth=FirebaseAuth.getInstance();
         userID=fauth.getCurrentUser().getUid();
@@ -84,8 +90,35 @@ public class SchoolHome extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btn12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                startActivities();
+            }
 
+            private void startActivities() {
+
+                Intent intent = new Intent(SchoolHome.this, IncomingReportsMain.class);
+                intent.putExtra("IntentName", "hi");
+                startActivity(intent);
+            }
+        });
+        //log-out
+        //btn13.setOnClickListener(new View.OnClickListener() {
+            //@Override
+           // public void onClick(View v) {
+
+                //startActivities();
+            //}
+
+            //private void startActivities() {
+
+                //Intent intent = new Intent(SchoolHome.this, .class);
+                //intent.putExtra("IntentName", "hi");
+                //startActivity(intent);
+            //}
+       // });
 
 
 
