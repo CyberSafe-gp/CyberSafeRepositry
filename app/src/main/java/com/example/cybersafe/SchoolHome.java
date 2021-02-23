@@ -24,7 +24,7 @@ public class SchoolHome extends AppCompatActivity {
     public Button btn13;
     String userID;
     String sID;
-
+//
     //make instance of DatabaseReference for the data base so we get access and read data:)
     protected void onCreate(Bundle savedInstanceState) {
 
