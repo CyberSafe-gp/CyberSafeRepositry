@@ -13,6 +13,11 @@ public class Child {
     private String grade;
 
 
+
+    public Child(){
+
+    }
+
     public Child(String child_id, String parent_id, String school_id, String firstName, String lastName, String date_of_birth, String city, String gender, String grade) {
         this.child_id = child_id;
         this.parent_id = parent_id;
