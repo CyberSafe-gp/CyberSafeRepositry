@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Child;
-import com.example.cybersafe.Objects.Parent;
-import com.example.cybersafe.Objects.Report;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,14 +26,15 @@ public class ParentHome extends AppCompatActivity {
     private ArrayList<Child> childrenList = new ArrayList();
     private ParentHomeAdapter adapter;
     DatabaseReference childRef, childrenRef;
-    private String userID;
+    private String userID,User;
     public Button btn1,btn2,btn3,btn4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
          super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_home);
-
+        User=getIntent().getStringExtra("User");
 
         //buttons
         btn1= findViewById(R.id.button3);
@@ -57,7 +56,7 @@ public class ParentHome extends AppCompatActivity {
             private void startActivities() {
 
                 Intent intent = new Intent(ParentHome.this,Add_NewChild.class);
-                intent.putExtra("IntentName", "hi");
+
                 startActivity(intent);
             }
         });
@@ -71,7 +70,7 @@ public class ParentHome extends AppCompatActivity {
             private void startActivities() {
 
                 Intent intent = new Intent(ParentHome.this,Add_Detection_Keyword.class);
-                intent.putExtra("IntentName", "hi");
+
                 startActivity(intent);
             }
         });
@@ -90,7 +89,7 @@ public class ParentHome extends AppCompatActivity {
             private void startActivities() {
 
                 Intent intent = new Intent(ParentHome.this, EditSchool.class);
-                intent.putExtra("IntentName", "hi");
+                //intent.putExtra("IntentName", "hi");
                 startActivity(intent);
             }
         });
@@ -113,6 +112,7 @@ public class ParentHome extends AppCompatActivity {
 
 
 
+
         //adapter
         textView = (TextView) findViewById(R.id.noChild);
 
@@ -127,7 +127,9 @@ public class ParentHome extends AppCompatActivity {
                 Child lr = childrenList.get(pos);
                 String Child_id = lr.getChild_id();
                 Intent in = new Intent(ParentHome.this, ChildHome.class);
-                in.putExtra("Child_id", Child_id);
+                in.putExtra("Child_id",Child_id);
+                in.putExtra("User",User);
+
                 startActivity(in);
             }
         });
