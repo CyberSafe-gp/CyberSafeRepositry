@@ -1,6 +1,7 @@
 package com.example.cybersafe;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,9 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+//import android.widget.Toolbar;
+//import android.support.v7.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,11 +50,14 @@ public class FlagMain extends AppCompatActivity {
     //private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Comment");// لازم اغير الباث
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flag_bully_comment);
-        System.out.println("H0");
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+//        myToolbar.setTitle("AbhiAndroid");
+//        setSupportActionBar(myToolbar);
 
         /*Intent iin= getIntent();
         Bundle bun = iin.getExtras();*/

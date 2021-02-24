@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
     FirebaseUser user;
     String userEmail;
     View view;
+
 
     //for the main to click
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -109,7 +111,8 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
         final Boolean flag = commentsList.get(position).getFlag();
         final String sender = commentsList.get(position).getSender();
         final String body = commentsList.get(position).getBody();
-        // مو اكيد
+
+
         holder.BullyComment.setText(commentsList.get(position).getBody());
         holder.BullyName.setText(commentsList.get(position).getSender());
 
@@ -120,18 +123,23 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
         holder.BullyComment.setVisibility(View.INVISIBLE);
         holder.flag.setVisibility(View.INVISIBLE);*/
 
+
+
         // if the user click the flag
+
         holder.flag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("            public void onClick(View v) {");
+                System.out.println(v);
                 commentsRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot ch : snapshot.getChildren()) {
                             Comment findComment =  ch.getValue(Comment.class);
-                            final String comID = findComment.getComment_id();
-                            if(comID.equals(id)){
-
+                             String comID = findComment.getComment_id();
+                            Boolean comFlag = findComment.getFlag();
+                            if(comID.equals(id) & comFlag.equals(false)){
                                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                                 // Setting Alert Dialog Title
                                 alertDialogBuilder.setTitle("Flag Comment");
@@ -159,10 +167,8 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
                                             @Override
                                             public void onClick(DialogInterface arg0, int arg1) {
                                                 // يوديه لريبورت
-                                                Intent intent =new Intent(context ,Report_info.class);
-
-
-                                                context.startActivity(intent);
+//                                                Intent intent =new Intent(context ,Report_info.class);
+//                                                context.startActivity(intent);
                                             }
                                         });
                                         // no need for report

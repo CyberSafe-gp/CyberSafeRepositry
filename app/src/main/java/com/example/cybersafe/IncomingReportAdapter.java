@@ -25,6 +25,7 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
     private DatabaseReference reportsRef, userRef, SMAccountCredentialsRef;
     View view;
 
+
     public IncomingReportAdapter(Context context, List<Report> reportsList) {
         this.context = context;
         this.reportsList = reportsList;
@@ -70,7 +71,7 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
 
 
         // مو اكيد
-        holder.writeReport.setText("Report("+(position+1)+")");
+        holder.WriteRepNo.setText("Report("+(position+1)+")");
         //holder.BullyName.setText(commentsList.get(position).getSender());
 
         //if(commentsList.get(position).getSMAccountCredentials_email().trim().equals(userEmail))////////////////
@@ -83,12 +84,13 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
     }
 
     public class ReportHolder extends RecyclerView.ViewHolder{
-        TextView writeReport;
+        TextView WriteRepNo,WriteStatus;
 
 
         public ReportHolder(@NonNull View itemView) {
             super(itemView);
-            writeReport = (TextView) itemView.findViewById(R.id.writeReport);
+            WriteRepNo = (TextView) itemView.findViewById(R.id.WriteRepNo);
+
 
         }
     }
