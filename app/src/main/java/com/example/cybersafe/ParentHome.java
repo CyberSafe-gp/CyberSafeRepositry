@@ -26,7 +26,7 @@ public class ParentHome extends AppCompatActivity {
     private ArrayList<Child> childrenList = new ArrayList();
     private ParentHomeAdapter adapter;
     DatabaseReference childRef, childrenRef;
-    private String userID,User;
+    private String userID,userType;
     public Button btn1,btn2,btn3,btn4;
 
     @Override
@@ -34,7 +34,7 @@ public class ParentHome extends AppCompatActivity {
 
          super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_home);
-        User=getIntent().getStringExtra("User");
+        userType=getIntent().getStringExtra("userType");
 
         //buttons
         btn1= findViewById(R.id.button3);
@@ -128,7 +128,7 @@ public class ParentHome extends AppCompatActivity {
                 String Child_id = lr.getChild_id();
                 Intent in = new Intent(ParentHome.this, ChildHome.class);
                 in.putExtra("Child_id",Child_id);
-                in.putExtra("User",User);
+                in.putExtra("userType",userType);
 
                 startActivity(in);
             }

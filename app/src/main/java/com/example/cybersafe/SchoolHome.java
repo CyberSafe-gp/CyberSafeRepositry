@@ -30,7 +30,7 @@ public class SchoolHome extends AppCompatActivity {
     public Button btn13;
     DatabaseReference schoolManagerRef, schoolRef;
     String userID;
-    String firstName, lastName, schoolID, schoolName,User;
+    String firstName, lastName, schoolID, schoolName,userType;
     TextView SN;
     TextView SID;
 
@@ -40,7 +40,7 @@ public class SchoolHome extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_home);
-        User=getIntent().getStringExtra("User");
+        userType=getIntent().getStringExtra("userType");
 
         btn11 =  findViewById(R.id.btn1);
         //edit
@@ -144,7 +144,7 @@ public class SchoolHome extends AppCompatActivity {
             private void startActivities() {
 
                 Intent intent = new Intent(SchoolHome.this, IncomingReportsMain.class);
-                intent.putExtra("User", User);
+                intent.putExtra("userType",userType);
                 startActivity(intent);
             }
         });
