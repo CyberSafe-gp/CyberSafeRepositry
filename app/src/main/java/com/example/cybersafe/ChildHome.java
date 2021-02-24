@@ -17,7 +17,7 @@ public class ChildHome extends AppCompatActivity {
      public Button btn5;
      public Button btn6;
     private FirebaseAuth fauth;
-    String ChildID,userType;
+    String ChildID,userType1;
    // Bundle bundle;
 
     @Override
@@ -25,7 +25,7 @@ public class ChildHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_home);
         ChildID = getIntent().getStringExtra("Child_id");
-        userType=getIntent().getStringExtra("userType");
+        userType1=getIntent().getStringExtra("userType");
         //bundle=getIntent().getStringExtras();
         //if(bundle.getString("Child_id")!=null)
         //{ChildID=bundle.getString("Child_id");
@@ -71,7 +71,7 @@ public class ChildHome extends AppCompatActivity {
                 Intent intent = new Intent(ChildHome.this,IncomingReportsMain.class);
 
                 intent.putExtra("childId",ChildID);
-                intent.putExtra("userType",userType);
+                intent.putExtra("userType",userType1);
                 startActivity(intent);
             }
         });
