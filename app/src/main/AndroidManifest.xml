@@ -27,7 +27,7 @@
         <activity android:name=".Bullycomments2" />
         <activity android:name=".MainActivity" >
         <intent-filter>
-<!--         <action android:name="android.intent.action.MAIN" />-->
+    <!--<action android:name="android.intent.action.MAIN" />-->
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
@@ -55,7 +55,7 @@
         <activity android:name=".resetpassword"></activity>
         <activity android:name=".SchoolHome">
             <intent-filter>
-               <action android:name="android.intent.action.MAIN" />
+              <!-- <action android:name="android.intent.action.MAIN" />-->
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -84,7 +84,14 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".Edit_Parent_Profile" />
+        <activity android:name=".Edit_Parent_Profile" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+    </activity>
         <activity android:name=".Add_NewChild" />
         <activity android:name=".Add_Detection_Keyword2" />
         <activity android:name=".Add_Detection_Keyword" />
@@ -97,6 +104,7 @@
             </intent-filter>
 
         </activity>
+
     </application>
 
 </manifest>

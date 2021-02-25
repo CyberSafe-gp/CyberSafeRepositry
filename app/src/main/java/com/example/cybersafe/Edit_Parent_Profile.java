@@ -5,7 +5,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,15 +33,12 @@ public class Edit_Parent_Profile extends AppCompatActivity {
     private FirebaseUser Cuser;
     private static final String TAG = Edit_Parent_Profile.class.getSimpleName();
     private Button btEdit;
-    private FirebaseAuth firebaseAuth;
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Parents");
 
     private EditText editTextfName;
     private EditText editTextlName;
     private EditText editTextEmail;
-    public TextView  FnamefromDB,LnamefromDB, emailfromDB;
     String userEmail,Fname,lName;
-
 
 
     @Override
@@ -92,7 +88,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
             private void updateInfo() {
 
 
-                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
+                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Parent").child(userId);
 
                 final String fname = editTextfName.getText().toString().trim();
                 final String lastname = editTextlName.getText().toString().trim();
@@ -100,13 +96,13 @@ public class Edit_Parent_Profile extends AppCompatActivity {
 
 
                 if (fname.isEmpty()) {
-                    editTextfName.setError("User name is required");
+                    editTextfName.setError("first name is required");
                     editTextfName.requestFocus();
 
                     return;
                 }
-                if (fname.isEmpty()) {
-                    editTextlName.setError("Field cant be empty");
+                if (lastname.isEmpty()) {
+                    editTextlName.setError("last name name is required");
                     editTextlName.requestFocus();
                     return;
                 }
