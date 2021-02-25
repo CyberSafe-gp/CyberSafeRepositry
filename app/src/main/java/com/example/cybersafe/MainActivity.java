@@ -31,6 +31,11 @@ public class MainActivity  extends AppCompatActivity {
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .setValue(USER);
 
+        String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        SchoolManager USER = new SchoolManager(id,School.getid(),"noura","khaled","Password","noura@hotmail.com");
+        FirebaseDatabase.getInstance().getReference("SchoolManagers")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(USER);
 
 
 

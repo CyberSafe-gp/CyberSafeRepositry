@@ -55,7 +55,7 @@
         <EditText
             android:id="@+id/firstname"
             android:layout_width="327dp"
-            android:layout_height="32dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
 
         <TextView
@@ -70,7 +70,7 @@
         <EditText
             android:id="@+id/lastname"
             android:layout_width="327dp"
-            android:layout_height="32dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
 
         <TextView
@@ -82,11 +82,13 @@
             android:textColor="#04406E"
             android:textSize="25dp" />
 
-        <EditText
-            android:id="@+id/schoolname"
+        <Spinner
+            android:id="@+id/spinnerschoolname"
             android:layout_width="327dp"
-            android:layout_height="32dp"
-            android:layout_marginLeft="20dp" />
+            android:layout_height="55dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="250dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,7 +101,7 @@
         <EditText
             android:id="@+id/email"
             android:layout_width="327dp"
-            android:layout_height="32dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
         <TextView
             android:layout_width="wrap_content"
@@ -113,7 +115,7 @@
         <EditText
             android:id="@+id/password"
             android:layout_width="327dp"
-            android:layout_height="32dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="20dp"
             android:inputType="textPassword" />
         <Button
