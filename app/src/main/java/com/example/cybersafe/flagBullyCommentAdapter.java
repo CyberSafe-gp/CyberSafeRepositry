@@ -150,7 +150,7 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
                                 alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface arg0, int arg1) {
-                                        // اذا رص يس وش يصير
+                                        //update the flag to true (bully)
                                         commentsRef.child(comID).child("flag").setValue(true);
                                         //findViewById(R.id.myCoordinatorLayout)
                                         //feedback for flagging

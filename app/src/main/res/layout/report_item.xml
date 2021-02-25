@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="10dp"
-        android:background="@drawable/rectangle5"
+        android:background="@color/blue"
         android:id="@+id/writeChildPRe">
 
         <TextView

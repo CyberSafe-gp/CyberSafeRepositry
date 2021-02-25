@@ -4,16 +4,26 @@ public class School {
 
     private String school_id;
     private String schoolName;
-    private String email;
+    private String city;
+
 
 
     public School() {
     }
 
-    public School(String school_id, String schoolName, String email) {
+    public School(String school_id, String schoolName, String city) {
         this.school_id = school_id;
         this.schoolName = schoolName;
-        this.email = email;
+        this.city = city;
+
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getSchool_id() {
@@ -32,11 +42,5 @@ public class School {
         this.schoolName = schoolName;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
