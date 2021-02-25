@@ -1,6 +1,6 @@
 package com.example.cybersafe.Objects;
 
-public class Report {
+public class Report implements Comparable< Report > {
 
     private String report_id;
     private String sender_id;
@@ -58,5 +58,10 @@ public class Report {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public int compareTo(Report o) {
+        return this.getStatus().compareTo(o.getStatus());
     }
 }

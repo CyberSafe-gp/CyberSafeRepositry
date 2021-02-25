@@ -1,10 +1,14 @@
 package com.example.cybersafe;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,9 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Comment;
 import com.example.cybersafe.Objects.Report;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.Collections;
 import java.util.List;
 
 public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAdapter.ReportHolder> {
@@ -58,23 +66,51 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
         return holder;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ReportHolder holder, int position) {
 
         //userRef = FirebaseDatabase.getInstance().getReference().child("Users");// مدري وش احط
         reportsRef = FirebaseDatabase.getInstance().getReference().child("Reports");
-        SMAccountCredentialsRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
+
+        Collections.sort(reportsList, Collections.reverseOrder());
 
         final String comment_id = reportsList.get(position).getComment_id();
         final String report_id = reportsList.get(position).getReport_id();
-        final String user_id = reportsList.get(position).getReceiver_id(); //        final String user_id = reportsList.get(position).getUser_id();
+         String status = reportsList.get(position).getStatus(); //        final String user_id = reportsList.get(position).getUser_id();
 
 
         // مو اكيد
-        holder.WriteRepNo.setText("Report("+(position+1)+")");
-        //holder.BullyName.setText(commentsList.get(position).getSender());
 
-        //if(commentsList.get(position).getSMAccountCredentials_email().trim().equals(userEmail))////////////////
+
+
+
+        reportsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                holder.WriteRepNo.setText("Report("+(position+1)+")");
+
+                if (status.equals("Confirm"))
+                    holder.button.setBackgroundColor(Color.LTGRAY);
+                else
+                    holder.button.setBackgroundColor(Color.parseColor("#263965"));
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
 
     }
 
@@ -84,12 +120,14 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
     }
 
     public class ReportHolder extends RecyclerView.ViewHolder{
-        TextView WriteRepNo,WriteStatus;
+        TextView WriteRepNo;
+        LinearLayout button ;
 
 
         public ReportHolder(@NonNull View itemView) {
             super(itemView);
             WriteRepNo = (TextView) itemView.findViewById(R.id.WriteRepNo);
+            button = (LinearLayout) itemView.findViewById(R.id.writeChildPRe);
 
 
         }

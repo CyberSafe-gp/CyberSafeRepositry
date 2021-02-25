@@ -19,7 +19,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Comment;
+import com.example.cybersafe.Objects.SMAccountCredentials;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,23 +33,17 @@ import java.util.ArrayList;
 
 
 public class FlagMain extends AppCompatActivity {
-    //private EditText editText, etd;
-    //private ImageView flag;
-    //private RecyclerView.Adapter mAdapter;
-    //private RecyclerView.LayoutManager mLayoutManager;
-    //private LinearLayoutManager linearLayoutManager;
-
 
     RecyclerView recyclerView;
     ArrayList<Comment> commentList = new ArrayList();
     flagBullyCommentAdapter adapter;
-    DatabaseReference commentRef, commentsRef, usersRef;
+    DatabaseReference commentRef, commentsRef, SMAccountCredentialRef;
     //OnItemClickListener listener;
-    String childAccount, childId;
+    String childAccount, childId,SMAccountCredentialID;
     private TextView textView;
+    String childID;
 
 
-    //private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Comment");// لازم اغير الباث
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -55,86 +51,90 @@ public class FlagMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flag_bully_comment);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+  //      Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
 //        myToolbar.setTitle("AbhiAndroid");
 //        setSupportActionBar(myToolbar);
 
-        /*Intent iin= getIntent();
-        Bundle bun = iin.getExtras();*/
-
-/*        if(bun!=null)
-        {
-            childAccount =(String) bun.get("childAccount");
-            childId =(String) bun.get("childId");
-        }*/
-
-
-        //childAccount = "Lenaah";
-        //childId="1";
-
-        //https://medium.com/android-grid/how-to-use-firebaserecycleradpater-with-latest-firebase-dependencies-in-android-aff7a33adb8b
-/*        editText = findViewById(R.id.et);
-        etd = findViewById(R.id.etd);
-        button = findViewById(R.id.btn);*/
+        Intent in= getIntent();
+        childID = getIntent().getStringExtra("Child_id");
+        //childID="-MTz33wOa3jPoFQlixeP";
 
         textView = (TextView) findViewById(R.id.noComments);
-
+        SMAccountCredentialRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
         commentsRef = FirebaseDatabase.getInstance().getReference().child("Comments");
         commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
         commentRef.keepSynced(true);
-        //System.out.println("H2");
-        //usersRef = FirebaseDatabase.getInstance().getReference().child("users");
-
- /*       adapter = new flagBullyCommentAdapter(this, commentList, new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(int posistion) {
-
-            }
-        });*/
-
 
 
         recyclerView = findViewById(R.id.recyclerViewFlag);
         adapter = new flagBullyCommentAdapter(this, commentList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        //System.out.println("H3");
-/*        adapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(int posistion) {
-                String list = commentList.get(posistion).get;
-                Intent in = new Intent(FlagMain.this, previewnote.class); // previewnote==report
 
-            }
-
-        });*/
-        // add the comment
-        commentRef.addValueEventListener(new ValueEventListener() {
+        //Get the SMAccountCredential ID for the Child to get the comments
+        SMAccountCredentialRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                System.out.println("snapshot");
-                if (snapshot.exists()) {
-                    System.out.println("exists");
-                    commentList.clear();
-                    //commentList.clear();
-                    //commentList.addAll(newList);
-                    //adapter.notifyDataSetChanged();
 
                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-                        Comment com = messageSnapshot.getValue(Comment.class);
-                        System.out.println("H");
+                        SMAccountCredentials smAccountCredentials = messageSnapshot.getValue(SMAccountCredentials.class);
                         //The comment not bully and same as the child email
-                        if (com.getFlag().equals(false) && com.getSMAccountCredentials_id().equals("-MTz69mBYxgQdUwUjR2b"))
-                            commentList.add(com);
-                        System.out.println("H1");
-                    }
-                    adapter.notifyDataSetChanged();
-                } else {
-                    Log.d("===", "No Data Was Found");
+                        if (smAccountCredentials.getChild_id().equals(childID)){
+                            SMAccountCredentialID=smAccountCredentials.getId();
 
-                }
-                adapter.notifyDataSetChanged();
+                            //Now we get the comments with flag = false (not bully)
+                            commentRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    System.out.println("onDataChange");
+                                    if (snapshot.exists()) {
+                                        commentList.clear();
+
+                                        for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                            Comment com = messageSnapshot.getValue(Comment.class);
+                                            //The comment not bully and same as the child's SMAccountCredential ID add it to the comment list
+                                            if (com.getFlag().equals(false) && com.getSMAccountCredentials_id().equals(SMAccountCredentialID)){
+                                                commentList.add(com);
+
+                                            }
+                                        }
+                                        adapter.notifyDataSetChanged();
+                                    } else {
+                                        Log.d("===", "No Data Was Found");
+
+                                    }
+                                    adapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                            //If no comment found print no existing comments
+                            commentsRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshotrf) {
+                                    for (DataSnapshot childrf : snapshotrf.getChildren()) {
+                                        Comment findCom = childrf.getValue(Comment.class);
+                                        //String acu = findCom.getSMAccountCredentials_Account();
+                                        if (findCom.getFlag().equals(false) && findCom.getSMAccountCredentials_id().equals(SMAccountCredentialID)) {
+                                            textView.setText("");
+                                            break;
+                                        } else {
+                                            textView.setText("no existing comments");
+
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                        }
+                    }
             }
 
             @Override
@@ -142,45 +142,8 @@ public class FlagMain extends AppCompatActivity {
 
             }
         });
-        System.out.println("H4");
 
 
-        commentsRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshotrf) {
-                for (DataSnapshot childrf : snapshotrf.getChildren()) {
-                    Comment findCom = childrf.getValue(Comment.class);
-                    //String acu = findCom.getSMAccountCredentials_Account();
-                    if (findCom.getFlag().equals(false) &&findCom.getSMAccountCredentials_id().equals("-MTz69mBYxgQdUwUjR2b")) {
-                        textView.setText("");
-                        break;
-                    } else {
-                        textView.setText("no existing comments");
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-// M
-/*
-        commentsRef = FirebaseDatabase.getInstance().getReference().child("Notes");
-        commentRef = FirebaseDatabase.getInstance().getReference().child("Notes");
-        commentRef.keepSynced(true);
-        usersRef = FirebaseDatabase.getInstance().getReference().child("users");
-
-        commentAdapter = new flagBullyCommentAdapter(this, commentList, new CustomItemClickListener() {
-*/
-
-
-       // }
-
-            //
     }
 }
 

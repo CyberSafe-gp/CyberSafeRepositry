@@ -183,6 +183,7 @@
                     android:textColor="#04406E"
                     android:textSize="20dp" />
 
+
                 <Spinner
                     android:id="@+id/School"
                     android:layout_width="150dp"

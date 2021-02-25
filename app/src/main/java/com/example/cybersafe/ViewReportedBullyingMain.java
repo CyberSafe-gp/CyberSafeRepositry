@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.cybersafe.Objects.Report;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,25 +34,26 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
     private ViewReportedBullyingAdapter adapter;
     DatabaseReference reportRef, reportsRef;
     private String userID;
-
-//getExtra
-//String childAccount, childId; noReported
-
+// هل احط سورت للريبورت ؟
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_reported_bullying_list);
 
-//        Intent iin= getIntent();
-//        Bundle bun = iin.getExtras();
-//
-//        if(bun!=null)
-//        {
-//            childAccount =(String) bun.get("childAccount");
-//            childId =(String) bun.get("childId");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
 
-     //   }
+            userID = user.getUid();
+        } else {
+
+            Intent in = new Intent(ViewReportedBullyingMain.this, ParentLogin.class);
+            startActivity(in);
+        }
+
+       // userID="rTTwi9dfa9W425lPa2A6MiU93yz1";
+
+
         textView = (TextView) findViewById(R.id.noReported);
 
         reportsRef = FirebaseDatabase.getInstance().getReference().child("Reports");
@@ -60,18 +63,13 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
         adapter = new ViewReportedBullyingAdapter(this, reportList, new OnItemClickListener() {
             @Override
             public void OnItemClick(View v, int pos) {
-                System.out.println("OnItemClick");
-
                 Report lr = reportList.get(pos);
                 String com_id = lr.getComment_id();
-                System.out.println("com_id"+com_id);
                 String rep_id = lr.getReport_id();
                 String sender_id = lr.getSender_id();
                 String receiver_id = lr.getReceiver_id();
-                System.out.println("receiver_id"+receiver_id);
-
-
                 String sta = lr.getStatus();
+
 
                 Intent in = new Intent(ViewReportedBullyingMain.this, Report_info.class);
 
@@ -88,19 +86,11 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        userID = "";
-        userID="rTTwi9dfa9W425lPa2A6MiU93yz1";
+        /*userID = "";
+        userID="rTTwi9dfa9W425lPa2A6MiU93yz1";*/
 
-               /*
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getIdToken() instead.
-            userID = user.getUid();
-        } else {
-            // No user is signed in
-        }*/
+
+
 
 
         reportRef.addValueEventListener(new ValueEventListener() {
@@ -111,8 +101,8 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
 
                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                         Report rep = messageSnapshot.getValue(Report.class);
-                        //The sent report
-                        if (rep.getSender_id().equals(userID)){ //if (rep.getUser_id().equals(userID))
+                        //If this parent who send the report add this report to the list
+                        if (rep.getSender_id().equals(userID)){
                             reportList.add(rep);
                         }
                     }
@@ -136,7 +126,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot childrf : snapshot.getChildren()) {
                     Report findRep = childrf.getValue(Report.class);
-                    String user_id = findRep.getSender_id(); //String user_id = findRep.getUser_id();
+                    String user_id = findRep.getSender_id();
                     if (user_id.equals(userID)) {
                         textView.setText("");
                         break;
@@ -153,40 +143,6 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-//for toolbar
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
-
-//toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//    @Override
-//    public boolean onMenuItemClick(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.home:
-//                Intent intent = new Intent(ViewReportedBullyingMain.this, ChildHome.class);
-//
-//                startActivity(intent);
-//                return true;
-//
-//            case R.id.back:
-//                Intent intent1 = new Intent(ViewReportedBullyingMain.this, ChildHome.class);
-//                startActivity(intent1);
-//                return true;
-//
-//            default:
-//                // If we got here, the user's action was not recognized.
-//                // Invoke the superclass to handle it.
-//                return super.onOptionsItemSelected(item);
-//
-//        }
-//    }
-//});
-
-
 
 
     }
