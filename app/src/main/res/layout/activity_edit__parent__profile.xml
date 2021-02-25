@@ -7,7 +7,7 @@
     tools:context=".Edit_Parent_Profile">
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/editButton"
         android:layout_width="246dp"
         android:layout_height="94dp"
         android:layout_marginStart="82dp"
@@ -27,7 +27,7 @@
         app:strokeColor="#FFFFFF" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/changePass"
         android:layout_width="207dp"
         android:layout_height="57dp"
         android:layout_marginStart="102dp"
@@ -89,7 +89,7 @@
         tools:layout_editor_absoluteY="21dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/firstNameB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -107,7 +107,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/EditEmailAddressB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -159,7 +159,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/lastNameB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"

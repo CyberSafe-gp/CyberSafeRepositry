@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/logo" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/schoolButton"
         android:layout_width="226dp"
         android:layout_height="78dp"
         android:layout_marginStart="92dp"
@@ -39,7 +39,7 @@
         app:strokeColor="#FFFFFF" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/parentButton"
         android:layout_width="226dp"
         android:layout_height="78dp"
         android:layout_marginStart="92dp"
