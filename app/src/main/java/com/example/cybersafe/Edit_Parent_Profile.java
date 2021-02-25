@@ -5,12 +5,12 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cybersafe.Objects.Parent;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,12 +51,15 @@ public class Edit_Parent_Profile extends AppCompatActivity {
         btEdit=(Button)findViewById(R.id.editButton);
 
         Cuser = FirebaseAuth.getInstance().getCurrentUser();
+        System.out.println("############################################");
+        System.out.println(Cuser.getEmail());
+
         g.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     com.example.cybersafe.Objects.Parent us = postSnapshot.getValue(Parent.class);
-                    if (us.getEmail().equals(Cuser.getEmail())) {
+                    if (us.getParent_id().equals(Cuser.getUid())) {
                         userEmail = us.getEmail();
                         userId = us.getParent_id();
                         Fname=us.getFirstName();
@@ -81,14 +84,14 @@ public class Edit_Parent_Profile extends AppCompatActivity {
             @Override
 
             public void onClick(View view) {
-                updateInfo();
+                updateInfo(view);
             }
         });
     }
-            private void updateInfo() {
+            private void updateInfo(View view) {
 
 
-                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Parent").child(userId);
+                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Parents").child(userId);
 
                 final String fname = editTextfName.getText().toString().trim();
                 final String lastname = editTextlName.getText().toString().trim();
@@ -136,7 +139,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
 
                 Parent p = new Parent(fname, lastname, email, userId);
                 userRef.setValue(p);
-                Toast.makeText(this,"Information has been updated successfully", Toast.LENGTH_LONG).show();
+                Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(30000).show();
 
 
             }
