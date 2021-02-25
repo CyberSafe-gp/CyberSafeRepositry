@@ -23,13 +23,18 @@ public class Add_NewChild extends AppCompatActivity implements AdapterView.OnIte
     TextView Submit;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__new_child);
+
+        mAuth = FirebaseAuth.getInstance();
+        firstName = (EditText) findViewById((R.id.firstname));
+        lastName = (EditText) findViewById((R.id.lastname));
+
+
+
+
     }
 
     @Override
