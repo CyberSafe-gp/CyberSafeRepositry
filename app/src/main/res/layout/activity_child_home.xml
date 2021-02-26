@@ -40,12 +40,10 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/arrowIncomP3"
@@ -72,53 +70,29 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button8"
-        android:layout_width="371dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="496dp"
-        android:text="Bully comments"
-        app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.413" />
-
-    <Button
-        android:id="@+id/button17"
-        android:layout_width="371dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="412dp"
-        android:text="Incoming reports"
-        app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.413" />
-
-    <Button
-        android:id="@+id/button19"
-        android:layout_width="371dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="248dp"
+        android:id="@+id/button16"
+        android:layout_width="377dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="296dp"
         android:text="Flag bully comment manually"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:layout_constraintVertical_bias="0.413" />
 
     <Button
-        android:id="@+id/button18"
-        android:layout_width="371dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="332dp"
-        android:text="View reported bullying list"
+        android:id="@+id/button8"
+        android:layout_width="377dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="416dp"
+        android:text="bully comments"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:layout_constraintVertical_bias="0.413" />

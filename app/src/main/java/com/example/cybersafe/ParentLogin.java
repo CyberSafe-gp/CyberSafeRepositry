@@ -30,12 +30,14 @@ public class ParentLogin extends AppCompatActivity {
     private EditText editTextPassword;
     public static String LoggedIn_User_Email;
     private TextView forgetPass;
+    public String userType;
 
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_login);
+        userType=getIntent().getStringExtra("userType");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference("SchoolManagers");
         Auth = FirebaseAuth.getInstance();
@@ -43,6 +45,7 @@ public class ParentLogin extends AppCompatActivity {
         log = (Button) findViewById(R.id.button9);
         editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
+
         forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +96,17 @@ public class ParentLogin extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful())
-                        startActivity(new Intent(ParentLogin.this,ParentHome.class));
+                    /*if (userType.equals("Parent")){
+                   intent.putExtra("userType",userType);
+                   startActivity(new Intent(ParentLogin.this,ParentHome.class));
+                     */
+                /*else
+                intent.putExtra("userType",userType);
+                startActivity(new Intent(ParentLogin.this,SchoolHome.class));
+                 */
+                    startActivity(new Intent(ParentLogin.this,ParentHome.class));
+
+
                 else
                     Toast.makeText(ParentLogin.this, "failed to login", Toast.LENGTH_LONG).show();
                 }

@@ -27,8 +27,7 @@ public class ParentHome extends AppCompatActivity {
     private ParentHomeAdapter adapter;
     DatabaseReference childRef, childrenRef;
     private String userID,userType1;
-    public Button btn1,btn2,btn3,btn4;
-
+    public Button btn1,btn2,btn3,btn4,btn5,btn6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -45,54 +44,39 @@ public class ParentHome extends AppCompatActivity {
         //edit
         btn4=findViewById(R.id.button5);
         //log-out
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivities();
-            }
-
-            private void startActivities() {
-
-                Intent intent = new Intent(ParentHome.this,Add_NewChild.class);
-
-                startActivity(intent);
-            }
+        btn5=findViewById(R.id.incomingrep);
+        //incoming rep
+        btn6=findViewById(R.id.Viewrep);
+        // view report
+        btn1.setOnClickListener(v -> {
+            Intent intent = new Intent(ParentHome.this,Add_NewChild.class);
+            startActivity(intent);
         });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                startActivities();
-            }
 
-            private void startActivities() {
 
-                Intent intent = new Intent(ParentHome.this,Add_Detection_Keyword.class);
+        btn2.setOnClickListener(v -> {
+            Intent intent = new Intent(ParentHome.this,Add_Detection_Keyword.class);
 
-                startActivity(intent);
-            }
+            startActivity(intent);
         });
 
 
 
 
 
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                startActivities();
-            }
 
-            private void startActivities() {
+
+        btn3.setOnClickListener(v -> {
+
 
                 Intent intent = new Intent(ParentHome.this, EditSchool.class);
                 //intent.putExtra("IntentName", "hi");
                 startActivity(intent);
-            }
-        });
+            });
+
+
         //log-out
         //btn4.setOnClickListener(new View.OnClickListener() {
         //@Override
@@ -108,10 +92,19 @@ public class ParentHome extends AppCompatActivity {
         //startActivity(intent);
         //}
         // });
+        btn5.setOnClickListener(v -> {
+
+            Intent intent = new Intent(ParentHome.this,IncomingReportsMain.class);
+            //intent.putExtra("IntentName", "hi");
+            startActivity(intent);
+        });
+        btn6.setOnClickListener(v -> {
 
 
-
-
+            Intent intent = new Intent(ParentHome.this, ViewReportedBullyingMain.class);
+            //intent.putExtra("IntentName", "hi");
+            startActivity(intent);
+        });
 
         //adapter
         textView = (TextView) findViewById(R.id.noChild);
@@ -196,4 +189,5 @@ public class ParentHome extends AppCompatActivity {
 
 
     }
+
 }

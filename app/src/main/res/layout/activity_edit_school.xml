@@ -7,11 +7,11 @@
     tools:context=".EditSchool">
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/editb"
         android:layout_width="295dp"
         android:layout_height="81dp"
         android:layout_marginBottom="88dp"
-        android:text="Edit profile"
+        android:text="Edit"
         android:textColor="@color/blue"
         app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,8 +80,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="-174dp"
-        tools:layout_editor_absoluteY="-328dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-70dp">
 
         <TextView
             android:id="@+id/textView6"
@@ -113,22 +113,6 @@
             android:id="@+id/lastname2"
             android:layout_width="358dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:text="School name"
-            android:textColor="#04406E"
-            android:textSize="25dp" />
-
-        <EditText
-            android:id="@+id/schoolname2"
-            android:layout_width="361dp"
-            android:layout_height="32dp"
             android:layout_marginLeft="20dp" />
 
         <TextView
