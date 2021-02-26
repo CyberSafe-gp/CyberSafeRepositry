@@ -86,13 +86,19 @@
         </activity>
         <activity android:name=".Edit_Parent_Profile" >
         <intent-filter>
+           <!-- <action android:name="android.intent.action.MAIN" />-->
+
+           <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+    </activity>
+        <activity android:name=".Add_NewChild" >
+        <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-
-    </activity>
-        <activity android:name=".Add_NewChild" />
+        </activity>
         <activity android:name=".Add_Detection_Keyword2" />
         <activity android:name=".Add_Detection_Keyword" />
         <activity android:name=".Login_Register" />

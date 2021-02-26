@@ -58,4 +58,18 @@ public class SMAccountCredentials {
     public void setAccount(String account) {
         this.account = account;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

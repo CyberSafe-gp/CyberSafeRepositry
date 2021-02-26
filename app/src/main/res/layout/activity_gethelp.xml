@@ -51,15 +51,21 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="16dp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="392dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/rectangle" />
+    <TextView
+        android:id="@+id/link"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/link"
+        android:layout_marginTop="130dp"
+        android:textSize="25dp"
+        android:textColor="#E68A2D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"/>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
