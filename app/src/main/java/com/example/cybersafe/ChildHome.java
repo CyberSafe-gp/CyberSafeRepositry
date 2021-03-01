@@ -75,7 +75,7 @@ public class ChildHome extends AppCompatActivity {
 
         btn4.setOnClickListener(v -> {
             Intent intent = new Intent(ChildHome.this,FlagMain.class);
-            intent.putExtra("childId",ChildID);
+            intent.putExtra("Child_id",ChildID);
             startActivity(intent);
 
         });
@@ -83,7 +83,7 @@ public class ChildHome extends AppCompatActivity {
 
         btn5.setOnClickListener(v -> {
             Intent intent = new Intent(ChildHome.this,Edit_Child_Profile.class);
-            intent.putExtra("childId",ChildID);
+            intent.putExtra("Child_id",ChildID);
             startActivity(intent);
 
         });
