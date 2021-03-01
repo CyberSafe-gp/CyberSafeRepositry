@@ -23,6 +23,7 @@
     <string name="email">Email:</string>
     <string name="keyword_list">Keyword List</string>
     <string name="add_detection_keyword">Add Detection Keyword</string>
+    <string name="words_separated_by_commas">Words,separated by commas..</string>
     <string-array name="Children">
         <item>1</item>
         <item>2</item>
