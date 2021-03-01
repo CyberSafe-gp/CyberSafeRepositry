@@ -10,14 +10,14 @@
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="339dp"
         android:layout_height="91dp"
+        android:id="@+id/keyword"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="239dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:layout_marginBottom="401dp"
-        android:hint="Words,separated by commas.."
-        android:text="Words,separated by commas.."
+        android:hint="@string/words_separated_by_commas"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/adD"
         android:layout_width="246dp"
         android:layout_height="94dp"
         android:layout_marginStart="82dp"

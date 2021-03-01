@@ -7,7 +7,7 @@
     tools:context=".Add_Detection_Keyword">
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/addDetectionK"
         android:layout_width="246dp"
         android:layout_height="94dp"
         android:layout_marginStart="82dp"
