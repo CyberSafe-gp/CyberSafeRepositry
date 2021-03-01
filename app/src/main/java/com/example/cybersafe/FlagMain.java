@@ -86,7 +86,6 @@ public class FlagMain extends AppCompatActivity {
                             commentRef.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    System.out.println("onDataChange");
                                     if (snapshot.exists()) {
                                         commentList.clear();
 

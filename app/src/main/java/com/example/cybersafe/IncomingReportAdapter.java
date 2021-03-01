@@ -70,9 +70,8 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
     @Override
     public void onBindViewHolder(@NonNull ReportHolder holder, int position) {
 
-        //userRef = FirebaseDatabase.getInstance().getReference().child("Users");// مدري وش احط
         reportsRef = FirebaseDatabase.getInstance().getReference().child("Reports");
-
+        //sort status
         Collections.sort(reportsList, Collections.reverseOrder());
 
         final String comment_id = reportsList.get(position).getComment_id();
@@ -92,6 +91,7 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
 
                 holder.WriteRepNo.setText("Report("+(position+1)+")");
 
+                //Colour the status if Confirm gray, Not confirm blue
                 if (status.equals("Confirm"))
                     holder.button.setBackgroundColor(Color.LTGRAY);
                 else

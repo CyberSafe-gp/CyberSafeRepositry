@@ -33,7 +33,7 @@ public class IncomingReportsMain extends AppCompatActivity {
     DatabaseReference reportRef, reportsRef, usersRef;
     private TextView textView;
     private RecyclerView recyclerView;
-    private ArrayList<Report> reportList = new ArrayList();;
+    private ArrayList<Report> reportList = new ArrayList();
     private IncomingReportAdapter adapter;
     private FirebaseUser user;
     private String userID, userType;
