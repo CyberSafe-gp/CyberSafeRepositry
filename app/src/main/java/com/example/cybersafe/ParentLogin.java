@@ -7,7 +7,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,12 +23,12 @@ import com.onesignal.OneSignal;
 
 public class ParentLogin extends AppCompatActivity {
 
-    private Button log;
+    private Button log,forgetPass;
     private FirebaseAuth Auth;
     private EditText editTextEmail;
     private EditText editTextPassword;
     public static String LoggedIn_User_Email;
-    private TextView forgetPass;
+   // private TextView forgetPass;
     public String userType;
 
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -41,17 +40,20 @@ public class ParentLogin extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference("SchoolManagers");
         Auth = FirebaseAuth.getInstance();
-        forgetPass  = (TextView) findViewById(R.id.textView13);
+       // forgetPass  = (TextView) findViewById(R.id.textView13);
         log = (Button) findViewById(R.id.button9);
         editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
-
+        forgetPass  = (Button) findViewById(R.id.buttonForget);
         forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 startActivity(new Intent(ParentLogin.this,Forgetpassword.class));
             }
-        });
+
+        } );
+
+
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

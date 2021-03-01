@@ -1,5 +1,6 @@
 package com.example.cybersafe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -20,17 +21,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class EditSchool extends AppCompatActivity {
-    private String userId;
 
-
-    private FirebaseUser Cuser;
-
-    private Button btEdit;
+    private String userId,userEmail,Fname,lName,Sid,pass;
+    private FirebaseUser SchoolUser;
+    private Button btEdit,btreset;
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Parents");
-
     private EditText editTextfName,editTextlName,editTextEmail;
 
-    String userEmail,Fname,lName,Sid,pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +36,29 @@ public class EditSchool extends AppCompatActivity {
 
             editTextfName = findViewById(R.id.firstname2);
             editTextlName = findViewById(R.id.lastname2);
-        editTextEmail = findViewById(R.id.email2);
+            editTextEmail = findViewById(R.id.email2);
+            btreset=(Button)findViewById(R.id.button21);
             btEdit=(Button)findViewById(R.id.editb);
 
-            Cuser = FirebaseAuth.getInstance().getCurrentUser();
+
+
+         btreset.setOnClickListener(v -> {
+            Intent intent = new Intent(EditSchool.this,resetpassword.class);
+            startActivity(intent);
+        });
+
+         //
+
+         SchoolUser = FirebaseAuth.getInstance().getCurrentUser();
             System.out.println("############################################");
-            System.out.println(Cuser.getEmail());
+            System.out.println(SchoolUser.getEmail());
 
             g.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         com.example.cybersafe.Objects.SchoolManager us = postSnapshot.getValue(SchoolManager.class);
-                        if (us.getSchoolManager_id().equals(Cuser.getUid())) {
+                        if (us.getSchoolManager_id().equals(SchoolUser.getUid())) {
                             userEmail = us.getEmail();
                             userId = us.getSchoolManager_id();
                             Fname=us.getFirstName();
@@ -76,16 +83,17 @@ public class EditSchool extends AppCompatActivity {
 
             btEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
-
-                public void onClick(View view) {
-                    updateInfo(view);
+                public void onClick(View v) {
+                    updateInfo(v);
                 }
-            });
+            } );
+
         }
+
+        //
         private void updateInfo(View view) {
 
-
-            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("SchoolManagers").child(userId);
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("SchoolManagers").child(userId);
 
             final String fname = editTextfName.getText().toString().trim();
             final String lastname = editTextlName.getText().toString().trim();
