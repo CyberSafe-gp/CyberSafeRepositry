@@ -42,7 +42,6 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
     private void addDetectionKeywords() {
 
         String keyWords = keywords.getText().toString().trim();
-
         if (keyWords.isEmpty()) {
             keywords.setError("Field can not be empty");
             keywords.requestFocus();
@@ -50,16 +49,24 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
         }
 
         String[] KEYWORDS = keyWords.split(",");
-        Pattern p = Pattern.compile("[a-zA-Z0-9]");
+
+       // Pattern p = Pattern.compile("[a-z]+|[A-Z]+|[0-9]+|\\s+");
+        Pattern p = Pattern.compile("^[\\s\\w\\d\\?><;,\\{\\}\\[\\]\\-_\\+=!@\\#\\$%^&\\*\\|\\']*$");
+
         int len = KEYWORDS.length;
+
 
 
         for (int i = 0; i < len; i++) {
             Matcher m = p.matcher(KEYWORDS[i]);
+
             if (m.matches()) {
+
                 String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Keyword k= new Keyword(KEYWORDS[i], "English",id);
-                FirebaseDatabase.getInstance().getReference("Keywords").child(mDbRef.push().getKey()).setValue(k);
+                String keyId=mDbRef.push().getKey();
+                FirebaseDatabase.getInstance().getReference("Keywords").child(keyId).setValue(k);
+
             }
             }
 
