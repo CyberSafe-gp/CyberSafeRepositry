@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class EditSchool extends AppCompatActivity {
 
-    private String userId,userEmail,Fname,lName,Sid,pass;
+    private String userId,userEmail,Fname,lName,Sid,pass,userType1;
     private FirebaseUser SchoolUser;
     private Button btEdit,btreset;
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Parents");
@@ -39,11 +39,12 @@ public class EditSchool extends AppCompatActivity {
             editTextEmail = findViewById(R.id.email2);
             btreset=(Button)findViewById(R.id.button21);
             btEdit=(Button)findViewById(R.id.editb);
-
+        userType1=getIntent().getStringExtra("userType");
 
 
          btreset.setOnClickListener(v -> {
             Intent intent = new Intent(EditSchool.this,resetpassword.class);
+             intent.putExtra("userType",userType1);
             startActivity(intent);
         });
 

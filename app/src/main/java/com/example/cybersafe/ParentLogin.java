@@ -29,14 +29,14 @@ public class ParentLogin extends AppCompatActivity {
     private EditText editTextPassword;
     public static String LoggedIn_User_Email;
    // private TextView forgetPass;
-    public String userType;
+    public String userTypee;
 
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_login);
-        userType=getIntent().getStringExtra("userType");
+        userTypee=getIntent().getStringExtra("userType");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference("SchoolManagers");
         Auth = FirebaseAuth.getInstance();
@@ -45,13 +45,13 @@ public class ParentLogin extends AppCompatActivity {
         editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
         forgetPass  = (Button) findViewById(R.id.buttonForget);
-        forgetPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ParentLogin.this,Forgetpassword.class));
-            }
+        forgetPass.setOnClickListener(v -> {
+            Intent intent =new Intent(ParentLogin.this,Forgetpassword.class);
+            intent.putExtra("userType",userTypee);
+            startActivity(intent);
 
-        } );
+        });
+
 
 
         log.setOnClickListener(new View.OnClickListener() {
@@ -98,13 +98,16 @@ public class ParentLogin extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful())
-                    /*if (userType.equals("Parent")){
-                   intent.putExtra("userType",userType);
-                   startActivity(new Intent(ParentLogin.this,ParentHome.class));
-                     */
+                    /*if (userTypee.equals("Parent")){
+                        Intent intent = new Intent(ParentLogin.this,ParentHome.class);
+                         intent.putExtra("userType",userTypee);
+                   startActivity(intent);
+
                 /*else
-                intent.putExtra("userType",userType);
-                startActivity(new Intent(ParentLogin.this,SchoolHome.class));
+                Intent intent = new Intent(ParentLogin.this,SchoolHome.class)
+
+               ntent.putExtra("userType",userTypee);
+                startActivity(inent);
                  */
                     startActivity(new Intent(ParentLogin.this,ParentHome.class));
 

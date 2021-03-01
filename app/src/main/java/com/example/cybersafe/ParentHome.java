@@ -72,7 +72,7 @@ public class ParentHome extends AppCompatActivity {
 
 
                 Intent intent = new Intent(ParentHome.this, EditSchool.class);
-                //intent.putExtra("IntentName", "hi");
+            intent.putExtra("userType",userType1);
                 startActivity(intent);
             });
 
@@ -95,14 +95,14 @@ public class ParentHome extends AppCompatActivity {
         btn5.setOnClickListener(v -> {
 
             Intent intent = new Intent(ParentHome.this,IncomingReportsMain.class);
-            //intent.putExtra("IntentName", "hi");
+            intent.putExtra("userType",userType1);
             startActivity(intent);
         });
         btn6.setOnClickListener(v -> {
 
 
             Intent intent = new Intent(ParentHome.this, ViewReportedBullyingMain.class);
-            //intent.putExtra("IntentName", "hi");
+            intent.putExtra("userType",userType1);
             startActivity(intent);
         });
 
