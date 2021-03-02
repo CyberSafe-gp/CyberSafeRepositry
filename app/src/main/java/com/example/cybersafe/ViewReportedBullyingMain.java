@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cybersafe.Objects.Report;
@@ -33,7 +34,8 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
     private ArrayList<Report> reportList = new ArrayList();;
     private ViewReportedBullyingAdapter adapter;
     DatabaseReference reportRef, reportsRef;
-    private String userID;
+    private String userID, userType;
+    ImageView back, home;
 // هل احط سورت للريبورت ؟
 
     @Override
@@ -45,6 +47,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
         if (user != null) {
 
             userID = user.getUid();
+            userType = getIntent().getStringExtra("userType");
         } else {
 
             Intent in = new Intent(ViewReportedBullyingMain.this, ParentLogin.class);
@@ -52,6 +55,32 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
         }
 
        // userID="rTTwi9dfa9W425lPa2A6MiU93yz1";
+
+        //Toolbar
+        back = (ImageView) findViewById(R.id.arrowVR);
+        home = (ImageView) findViewById(R.id.homeVR);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                /*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
+                mIntent.putExtra("Child_id", childID);
+                startActivity(mIntent);*/
+
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+               /* Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
+                mIntent.putExtra("Child_id", childID);
+                startActivity(mIntent);*/
+
+            }
+        });
 
 
         textView = (TextView) findViewById(R.id.noReported);
@@ -78,6 +107,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
                 in.putExtra("sender_id", sender_id);
                 in.putExtra("receiver_id", receiver_id);
                 in.putExtra("Status", sta);
+                in.putExtra("userType", userType);
                 startActivity(in);
             }
         });

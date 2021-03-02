@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cybersafe.Objects.Child;
@@ -20,11 +22,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Report_info extends AppCompatActivity {
-    String Comment_id, Report_id, sender_id, Status,receiver_id,childID;
+    String Comment_id, Report_id, sender_id, Status,receiver_id, childID, userType;
     DatabaseReference commentRef, SMARef, childRef;
     String childAccount, childName, application, commentText, bullyAccount,SMAccountCredentials_id;
-
-
+    ImageView back, home;
 
 
     @Override
@@ -49,6 +50,35 @@ public class Report_info extends AppCompatActivity {
         sender_id =getIntent().getStringExtra("sender_id");
         receiver_id =getIntent().getStringExtra("receiver_id");
         Status =getIntent().getStringExtra("Status");
+        userType =getIntent().getStringExtra("userType");
+
+        //Toolbar
+        back = (ImageView) findViewById(R.id.arrowFlag);
+        home = (ImageView) findViewById(R.id.homeFlag);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                /*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
+                mIntent.putExtra("Child_id", childID);
+                startActivity(mIntent);*/
+
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent mIntent = new Intent(Report_info.this, ChildHome.class);
+                mIntent.putExtra("userType", userType);
+                startActivity(mIntent);
+
+            }
+        });
+
+
 
         //System.out.println("Report receiver_id"+receiver_id);
 
@@ -162,6 +192,18 @@ public class Report_info extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent mIntent = new Intent(Report_info.this, ChildHome.class);
+                mIntent.putExtra("userType", userType);
+                mIntent.putExtra("Child_id", childID);
+                startActivity(mIntent);
 
             }
         });

@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -37,6 +38,7 @@ public class IncomingReportsMain extends AppCompatActivity {
     private IncomingReportAdapter adapter;
     private FirebaseUser user;
     private String userID, userType;
+    ImageView back, home;
 
 
 
@@ -61,10 +63,35 @@ public class IncomingReportsMain extends AppCompatActivity {
         /*userID = "-MTz4FV6I8eik51jwoJ1";
         userType = "SchoolManager";*/
 
+        //Toolbar
+        back = (ImageView) findViewById(R.id.arrowIncomP);
+        home = (ImageView) findViewById(R.id.homeIncomP);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                /*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
+                mIntent.putExtra("Child_id", childID);
+                startActivity(mIntent);*/
+
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+               /* Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
+                mIntent.putExtra("Child_id", childID);
+                startActivity(mIntent);*/
+
+            }
+        });
+
 
 
         textView = (TextView) findViewById(R.id.noReport);
-        System.out.println("textView "+textView);
 
         reportsRef = FirebaseDatabase.getInstance().getReference().child("Reports");
         reportRef = FirebaseDatabase.getInstance().getReference().child("Reports");
@@ -109,6 +136,7 @@ public class IncomingReportsMain extends AppCompatActivity {
                             in.putExtra("sender_id", sender_id);
                             in.putExtra("receiver_id", receiver_id);
                             in.putExtra("Status", sta);
+                            in.putExtra("userType", userType);
                             startActivity(in);
 
 
@@ -119,7 +147,6 @@ public class IncomingReportsMain extends AppCompatActivity {
 
                 } else {
                     //userType = Parent
-                    System.out.println("###############");
 
                     String com_id = lr.getComment_id();
                     String rep_id = lr.getReport_id();
@@ -134,6 +161,7 @@ public class IncomingReportsMain extends AppCompatActivity {
                     in.putExtra("sender_id", sender_id);
                     in.putExtra("receiver_id", receiver_id);
                     in.putExtra("Status", sta);
+                    in.putExtra("userType", userType);
                     startActivity(in);
                 }
 

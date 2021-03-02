@@ -37,7 +37,7 @@ public class Add_Detection_Keyword extends AppCompatActivity {
    /*     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             userID = user.getUid();
-            System.out.println("userID "+userID);
+
         } else {
             System.out.println("userID out");
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها

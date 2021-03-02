@@ -42,6 +42,7 @@ public class FlagMain extends AppCompatActivity {
     String childAccount, childId,SMAccountCredentialID;
     private TextView textView;
     String childID;
+    ImageView back, home;
 
 
 
@@ -55,9 +56,38 @@ public class FlagMain extends AppCompatActivity {
 //        myToolbar.setTitle("AbhiAndroid");
 //        setSupportActionBar(myToolbar);
 
-        Intent in= getIntent();
+
+
+        Intent in = getIntent();
         childID = getIntent().getStringExtra("Child_id");
         //childID="-MTz33wOa3jPoFQlixeP";
+
+        //Toolbar
+        back = (ImageView) findViewById(R.id.arrowFlag);
+        home = (ImageView) findViewById(R.id.homeFlag);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                /*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
+                mIntent.putExtra("Child_id", childID);
+                startActivity(mIntent);*/
+
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+               /* Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
+                mIntent.putExtra("Child_id", childID);
+                startActivity(mIntent);*/
+
+            }
+        });
+
 
         textView = (TextView) findViewById(R.id.noComments);
         SMAccountCredentialRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
