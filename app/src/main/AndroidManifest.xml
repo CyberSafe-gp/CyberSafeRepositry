@@ -11,51 +11,55 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CyberSafe">
         <activity android:name=".Edit_Child_Profile" />
-
         <activity android:name=".ParentRegister2" />
-        <activity android:name=".IncomingReportsMain">
+        <activity android:name=".Add_NewChild">
             <intent-filter>
-<!--                <action android:name="android.intent.action.MAIN" />-->
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Report_info"/>
+        <activity android:name=".Report_info" />
         <activity android:name=".Adddetectionkeyword2" />
         <activity android:name=".Adddetectionkeyword" />
         <activity android:name=".Gethelp" />
         <activity android:name=".Bullycomments2" />
-        <activity android:name=".MainActivity" >
-        <intent-filter>
-    <!--<action android:name="android.intent.action.MAIN" />-->
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-        <activity android:name=".Bullycomments" />
-        <activity android:name=".SchoolManagerRegister" />
-        <activity android:name=".FlagMain">
+        <activity android:name=".MainActivity">
             <intent-filter>
-<!--               <action android:name="android.intent.action.MAIN" />-->
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
- <activity android:name=".Forgetpassword"/>
+        <activity android:name=".Bullycomments" />
+        <activity android:name=".IncomingReportsMain">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FlagMain">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Forgetpassword" />
         <activity
             android:name=".EditSchool"
             android:parentActivityName=".SchoolHome">
             <intent-filter>
-<!--                <action android:name="android.intent.action.MAIN" />-->
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".resetpassword"></activity>
+        <activity android:name=".resetpassword" />
         <activity android:name=".SchoolHome">
             <intent-filter>
-              <!-- <action android:name="android.intent.action.MAIN" />-->
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -64,53 +68,57 @@
         <activity android:name=".MainActivity2" />
         <activity android:name=".ViewReportedBullyingMain">
             <intent-filter>
-<!--                <action android:name="android.intent.action.MAIN" />-->
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-<!--        <activity android:name=".View_reported_bullying_list" />-->
-        <activity android:name=".ParentHome" >
+        </activity> <!-- <activity android:name=".View_reported_bullying_list" /> -->
+        <activity android:name=".ParentHome">
             <intent-filter>
-<!--              <action android:name="android.intent.action.MAIN" />-->
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParentLogin" >
-        <intent-filter>
-<!--         <action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".ParentLogin">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".Edit_Parent_Profile" >
-        <intent-filter>
-           <!-- <action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".Edit_Parent_Profile">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-           <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-    </activity>
-        <activity android:name=".Add_NewChild" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".Add_Detection_Keyword2" />
-        <activity android:name=".Add_Detection_Keyword" />
+
+        <activity android:name=".SchoolManagerRegister">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Add_Detection_Keyword2"></activity>
+        <activity android:name=".Add_Detection_Keyword">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Login_Register" />
         <activity android:name=".ParentRegister">
             <intent-filter>
-<!--              <action android:name="android.intent.action.MAIN" />-->
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>

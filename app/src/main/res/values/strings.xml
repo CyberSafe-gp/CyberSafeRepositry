@@ -34,6 +34,11 @@
         <item>7</item>
         <item>8</item>
     </string-array>
+
+    <string-array name="application">
+        <item>TikTok</item>
+    </string-array>
+
     <string name="link">
     <a href="https://support.tiktok.com/en/using-tiktok/followers-and-following/blocking-the-users">How to block users on TikTok</a>
         </string>

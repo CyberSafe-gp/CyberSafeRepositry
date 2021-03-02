@@ -123,7 +123,7 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="40dp"
             android:text="Submit"
             android:textSize="20dp"
             android:textColor="@color/blue"
