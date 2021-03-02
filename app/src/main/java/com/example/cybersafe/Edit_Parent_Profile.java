@@ -1,5 +1,6 @@
 package com.example.cybersafe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -32,7 +33,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
 
     private FirebaseUser Cuser;
     private static final String TAG = Edit_Parent_Profile.class.getSimpleName();
-    private Button btEdit;
+    private Button btEdit , changeP;
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Parents");
 
     private EditText editTextfName;
@@ -49,6 +50,14 @@ public class Edit_Parent_Profile extends AppCompatActivity {
         editTextlName = findViewById(R.id.lastNameB);
         editTextEmail = findViewById(R.id.EditEmailAddressB);
         btEdit=(Button)findViewById(R.id.editButton);
+        changeP=(Button)findViewById(R.id.changePass);
+
+
+        //changePass-button
+        changeP.setOnClickListener(v -> {
+            Intent intentt = new Intent(Edit_Parent_Profile.this,resetpassword.class);
+            startActivity(intentt);
+        });
 
         Cuser = FirebaseAuth.getInstance().getCurrentUser();
         System.out.println("############################################");

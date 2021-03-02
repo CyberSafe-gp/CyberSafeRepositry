@@ -1,4 +1,5 @@
 package com.example.cybersafe;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Child;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,12 +30,19 @@ public class ParentHome extends AppCompatActivity {
     DatabaseReference childRef, childrenRef;
     private String userID,userType1;
     public Button btn1,btn2,btn3,btn4,btn5,btn6;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
          super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_home);
         userType1=getIntent().getStringExtra("userType");
+
+
+
+
 
         //buttons
         btn1= findViewById(R.id.button3);
@@ -48,6 +57,13 @@ public class ParentHome extends AppCompatActivity {
         //incoming rep
         btn6=findViewById(R.id.Viewrep);
         // view report
+
+
+
+
+
+
+
         btn1.setOnClickListener(v -> {
             Intent intent = new Intent(ParentHome.this,Add_NewChild.class);
             startActivity(intent);
@@ -62,12 +78,6 @@ public class ParentHome extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
         btn3.setOnClickListener(v -> {
 
 
@@ -78,26 +88,31 @@ public class ParentHome extends AppCompatActivity {
 
 
         //log-out
-        //btn4.setOnClickListener(new View.OnClickListener() {
-        //@Override
-        // public void onClick(View v) {
+        btn4.setOnClickListener(new View.OnClickListener() {
+       @Override
+        public void onClick(View v) {
 
-        //startActivities();
-        //}
+      startActivities();
+       }
 
-        //private void startActivities() {
+        private void startActivities() {
+            FirebaseAuth.getInstance().signOut();
+            finish();
+            Intent intent = new Intent(ParentHome.this,Interface.class);
+           // intent.putExtra("userType", "Parent");
+            startActivity(intent);
+       }
+        });
 
-        //Intent intent = new Intent(SchoolHome.this, .class);
-        //intent.putExtra("IntentName", "hi");
-        //startActivity(intent);
-        //}
-        // });
+
+
         btn5.setOnClickListener(v -> {
 
             Intent intent = new Intent(ParentHome.this,IncomingReportsMain.class);
             intent.putExtra("userType",userType1);
             startActivity(intent);
         });
+
         btn6.setOnClickListener(v -> {
 
 
@@ -185,6 +200,7 @@ public class ParentHome extends AppCompatActivity {
 
             }
         });
+
 
 
 
