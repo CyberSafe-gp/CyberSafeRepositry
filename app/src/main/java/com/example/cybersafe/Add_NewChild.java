@@ -55,7 +55,6 @@ public class Add_NewChild extends AppCompatActivity {
     private EditText password;
     private FirebaseUser user;
     private Button add ;
-    final Child Childobj=new Child();
     final SMAccountCredentials SMAobj=new SMAccountCredentials();
 //    public Add_NewChild() {}
 //current user id
@@ -65,10 +64,12 @@ public class Add_NewChild extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__new_child);
         initDatePicker();
+        System.out.print("onCreate 00000");
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             parentid = user.getUid().trim();
         } else {
+            System.out.println("onCreate no usserrr");
             // No user is signed in
         }
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
@@ -79,6 +80,8 @@ public class Add_NewChild extends AppCompatActivity {
         password = (EditText) findViewById((R.id.password));
         date_picker = findViewById(R.id.date_picker);
         date_picker.setText(getTodaysDate());
+        System.out.println("onCreate 1111");
+
        // grade dropdown menu
         gradeSpinner = (Spinner)findViewById(R.id.Grade);
         Grade = new String[] {"1", "2","3", "4","5", "6","7", "8","9"};
@@ -86,6 +89,7 @@ public class Add_NewChild extends AppCompatActivity {
         ArrayAdapter<String> GradeAdapter = new ArrayAdapter<String>(Add_NewChild.this, android.R.layout.simple_spinner_item, Grade);
         GradeAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         gradeSpinner.setAdapter(GradeAdapter);
+        System.out.println("onCreate 2222");
 
         //Get the user input for the gender
         gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -145,6 +149,8 @@ public class Add_NewChild extends AppCompatActivity {
             }
         });
 
+        System.out.println("onCreate 3333");
+
 //        //Gender dropdown menu
         genderSpinner = (Spinner)findViewById(R.id.gender);
         gender = new String[] {"Male", "Female"};
@@ -152,6 +158,7 @@ public class Add_NewChild extends AppCompatActivity {
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(Add_NewChild.this, android.R.layout.simple_spinner_item, gender);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         genderSpinner.setAdapter(genderAdapter);
+        System.out.println("onCreate 4444");
 
         //Get the user input for the gender
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -182,6 +189,7 @@ public class Add_NewChild extends AppCompatActivity {
 
             }
         });
+        System.out.println("onCreate 5555");
 
         //City dropdown menu
         citySpinner = (Spinner)findViewById(R.id.City);
@@ -190,6 +198,7 @@ public class Add_NewChild extends AppCompatActivity {
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(Add_NewChild.this, android.R.layout.simple_spinner_item, city);
         cityAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         citySpinner.setAdapter(cityAdapter);
+        System.out.println("onCreate 66666");
 //        //Log.i("AAA","spinner0");
 //
         schoolRef = FirebaseDatabase.getInstance().getReference().child("Schools");
@@ -276,15 +285,18 @@ public class Add_NewChild extends AppCompatActivity {
 
             }
         });
+        System.out.println("onCreate 77777");
 
 
 //   // from here for social media credentials
 //        username = (EditText) findViewById((R.id.username));
 //        password = (EditText) findViewById((R.id.password));
+        System.out.println("onCreate 8888");
         Applications = findViewById(R.id.Applications);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.application, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Applications.setAdapter(adapter);
+        System.out.println("onCreate 99999");
         Applications.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -296,15 +308,17 @@ public class Add_NewChild extends AppCompatActivity {
 
             }
        });
+        System.out.println("onCreate 1010101");
 
              add = (Button) findViewById(R.id.add1);
+        System.out.println("onCreate 11111111111");
              add.setOnClickListener(new View.OnClickListener() {
 
 //                    final String username1= username.getText().toString().trim();
 //                    final String password2= password.getText().toString().trim();
             @Override
             public void onClick(View v) {
-            System.out.print("jj");
+            System.out.println("add onClick");
             savechild();
             }
         });
@@ -312,86 +326,108 @@ public class Add_NewChild extends AppCompatActivity {
     }
 
     private void savechild() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(firstnameCH.getText().toString().isEmpty()){
-//            firstnameCH.setError("First name is required");
-//            firstnameCH.requestFocus();
-//            return;
-//        }
-//        if(lastnameCH.getText().toString().isEmpty()){
-//            lastnameCH.setError("Last name is required");
-//            lastnameCH.requestFocus();
-//            return;
-//        }
+        //FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        System.out.println("add savechild");
+
+        // check First name not empty
+        if(firstnameCH.getText().toString().isEmpty()){
+            firstnameCH.setError("First name is required");
+            firstnameCH.requestFocus();
+            return;
+        }
+
+        // check Last name not empty
+        if(lastnameCH.getText().toString().isEmpty()){
+            lastnameCH.setError("Last name is required");
+            lastnameCH.requestFocus();
+            return;
+       }
 //
 //
-//// check it is not select
-//        if (date_picker.equals("") || userGender.equals("") || userCity.equals("") || userGrade.equals("") || userschool.equals("") ) {
-//            Toast.makeText(Add_NewChild.this, "can't be added , please select date, gender,grade,city and school ", Toast.LENGTH_LONG).show();
-//        }
-//        // else if (currentUser != null) {
+        // check it is not select
+        if (date_picker.equals("") || userGender.equals("") || userCity.equals("") || userGrade.equals("") || userschool.equals("") ) {
+            Toast.makeText(Add_NewChild.this, "can't be added , please select date, gender,grade,city and school ", Toast.LENGTH_LONG).show();
+        }
+        // else if (currentUser != null) {
 
 
         //}
+        String id2 = ChildRef.push().getKey();
+        String firstName=firstnameCH.getText().toString();
+        String lastName=lastnameCH.getText().toString();
+        System.out.println("add 111");
 
-//        String id2 = ChildRef.push().getKey();
-//        Childobj.setDate_of_birth(date );
-//        Childobj.setGender(userGender);
-//        Childobj.setCity(userCity);
-//        Childobj.setGrade(userGrade);
-//        Childobj.setSchool_id(school_id);
-//        Childobj.setParent_id(parentid);
-//        Childobj.setFirstName(firstnameCH.getText().toString());
-//        Childobj.setLastName(lastnameCH.getText().toString());
-//        Childobj.setChild_id(id2);
-//        ChildRef.child(id2).setValue(Childobj).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if (task.isSuccessful()) {
-//                    Toast.makeText(Add_NewChild.this, "note added successfully", Toast.LENGTH_LONG).show();
-//                    //             startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
-////                    Intent intent = new Intent();
-////                    setResult(RESULT_OK, intent);
-////                    finish();
-//                } else {
-//                    Toast.makeText(Add_NewChild.this, "note doesn't added", Toast.LENGTH_LONG).show();
-//                }
-//
-//            }
-//        });
+         Child Childobj=new Child(id2, parentid, school_id, firstName,lastName, date, userCity,userGender,userGrade );
 
+        System.out.println("add 222");
 
-      //social
+       /* Childobj.setDate_of_birth(date );
+        Childobj.setGender(userGender);
+        Childobj.setCity(userCity);
+        Childobj.setGrade(userGrade);
+        Childobj.setSchool_id(school_id);
+        Childobj.setParent_id(parentid);
+        Childobj.setFirstName(firstnameCH.getText().toString());
+        Childobj.setLastName(lastnameCH.getText().toString());
+        Childobj.setChild_id(id2);*/
 
-        String id = SMARef.push().getKey();
-        SMAobj.setId(id);
-        SMAobj.setAccount(username.getText().toString());
-        SMAobj.setPassword(password.getText().toString());
-        SMAobj.setSocialMediaPlatform(apps);
-        SMAobj.setChild_id("");
-        SMARef.child(id).setValue(SMAobj).addOnCompleteListener(new OnCompleteListener<Void>() {
+        //Add child to database
+        ChildRef.child(id2).setValue(Childobj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                System.out.println("onComplete 111");
                 if (task.isSuccessful()) {
-                    Toast.makeText(Add_NewChild.this, "note added successfully", Toast.LENGTH_LONG).show();
-                    //             startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
-                    Intent intent = new Intent();
+                    System.out.println("onComplete 222");
+
+                    //social
+                    String id = SMARef.push().getKey();
+                    String usernameD =username.getText().toString();
+                    String passwordD =password.getText().toString();
+                    System.out.println("onComplete 333");
+
+                    SMAccountCredentials SMAobj=new SMAccountCredentials(id,id2,apps,passwordD,usernameD);
+                    System.out.println("onComplete 444");
+
+                    /*SMAobj.setId(id);
+                    SMAobj.setAccount(username.getText().toString());
+                    SMAobj.setPassword(password.getText().toString());
+                    SMAobj.setSocialMediaPlatform(apps);
+                    SMAobj.setChild_id("");*/
+
+                    SMARef.child(id).setValue(SMAobj).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(Add_NewChild.this, "SMAccountCredentials added successfully", Toast.LENGTH_LONG).show();
+                                //             startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
+                            /*    Intent intent = new Intent();
+                                setResult(RESULT_OK, intent);
+                                finish();*/
+                            } else {
+                                Toast.makeText(Add_NewChild.this, "SMAccountCredentials doesn't added", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+                    });
+
+                    Toast.makeText(Add_NewChild.this, "Child added successfully", Toast.LENGTH_LONG).show();
+                    // startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
+                    /*Intent intent = new Intent();
                     setResult(RESULT_OK, intent);
-                    finish();
+                    finish();*/
                 } else {
-                    Toast.makeText(Add_NewChild.this, "note doesn't added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Add_NewChild.this, "Child doesn't added", Toast.LENGTH_LONG).show();
                 }
 
             }
         });
-
-
+        System.out.println("add 333");
 
     }
 
-
-
     private String getTodaysDate() {
+
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
