@@ -2,6 +2,7 @@ package com.example.cybersafe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cybersafe.Objects.School;
 import com.example.cybersafe.Objects.SchoolManager;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,6 +46,24 @@ public class SchoolHome extends AppCompatActivity {
         // log-out
         SN=(TextView)findViewById(R.id.textView24);
         SID=(TextView)findViewById(R.id.textView16);
+
+
+        //log-out
+        btn13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivities();
+            }
+
+            private void startActivities() {
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent intent = new Intent(SchoolHome.this,Interface.class);
+                // intent.putExtra("userType", "Parent");
+                startActivity(intent);
+            }
+        });
 
 
 
