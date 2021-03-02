@@ -10,7 +10,7 @@ public class Child {
     private String date_of_birth;
     private String city;
     private String gender;
-    private String grade;
+    private int grade;
 
 
 
@@ -18,7 +18,7 @@ public class Child {
 
     }
 
-    public Child(String child_id, String parent_id, String school_id, String firstName, String lastName, String date_of_birth, String city, String gender, String grade) {
+    public Child(String child_id, String parent_id, String school_id, String firstName, String lastName, String date_of_birth, String city, String gender, int grade) {
         this.child_id = child_id;
         this.parent_id = parent_id;
         this.school_id = school_id;
@@ -94,11 +94,11 @@ public class Child {
         this.gender = gender;
     }
 
-    public String getGrade() {
+    public int getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(int grade) {
         this.grade = grade;
     }
 }

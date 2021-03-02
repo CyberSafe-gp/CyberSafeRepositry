@@ -1,11 +1,14 @@
 package com.example.cybersafe;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cybersafe.Objects.Child;
@@ -22,6 +26,7 @@ import com.example.cybersafe.Objects.Comment;
 import com.example.cybersafe.Objects.Report;
 import com.example.cybersafe.Objects.SMAccountCredentials;
 import com.example.cybersafe.Objects.School;
+import com.example.cybersafe.Objects.SchoolManager;
 import com.example.cybersafe.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +38,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -41,7 +48,7 @@ public class Add_NewChild extends AppCompatActivity {
 
 
 
-    DatabaseReference schoolRef , ChildRef , SMARef;
+    DatabaseReference schoolRef , ChildRef , SMARef,schoolManagerRef;
     private Spinner genderSpinner, citySpinner,schoolSpinner,gradeSpinner,Applications;
     private String gender[],city[],Grade[];
     private String userCity, userGender,userGrade,userschool,parentid,school_id,date ;
@@ -52,9 +59,12 @@ public class Add_NewChild extends AppCompatActivity {
     //start for social media
     private EditText firstnameCH,lastnameCH;
     private EditText username;
-    private EditText password;
+    private EditText password ;
     private FirebaseUser user;
     private Button add ;
+    TextView setSchoolManager;
+    LocalDate birthDate;
+    boolean find=false;
     final SMAccountCredentials SMAobj=new SMAccountCredentials();
 //    public Add_NewChild() {}
 //current user id
@@ -75,12 +85,14 @@ public class Add_NewChild extends AppCompatActivity {
         }
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
         ChildRef = FirebaseDatabase.getInstance().getReference().child("Children");
+        schoolManagerRef= FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
         firstnameCH = (EditText) findViewById((R.id.firstnameCH));
         lastnameCH = (EditText) findViewById((R.id.lastnameCH));
         username = (EditText) findViewById((R.id.username));
         password = (EditText) findViewById((R.id.password));
+        setSchoolManager = (TextView) findViewById((R.id.setSchoolManager));
         date_picker = findViewById(R.id.date_picker);
-        date_picker.setText(getTodaysDate());
+        date_picker.setText(makeDateString(0,0,0));
 
 
        // grade dropdown menu
@@ -291,8 +303,42 @@ public class Add_NewChild extends AppCompatActivity {
                                         School chapterObj = postSnapshot.getValue(School.class);
 
                                         String x = chapterObj.getSchoolName();
-                                        if (x.equalsIgnoreCase(userschool))
+                                        if (x.equalsIgnoreCase(userschool)) {
                                             school_id = chapterObj.getSchool_id();
+
+                                            //Check if the school manager register
+                                            schoolManagerRef.addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                                        SchoolManager findSM = postSnapshot.getValue(SchoolManager.class);
+
+                                                        String findschoolid = findSM.getSchool_id();
+                                                        if (school_id.equalsIgnoreCase(findschoolid)) {
+                                                            find = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                    if (find == true) {
+                                                        setSchoolManager.setTextColor(Color.GREEN);
+                                                        setSchoolManager.setText("School Manager is registered");
+                                                    }else{
+                                                        setSchoolManager.setTextColor(Color.RED);
+                                                        setSchoolManager.setText("School Manager is not registered");
+                                                    }
+
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                            break;
+                                        }
+
+
                                     }
                                     schooladapter.notifyDataSetChanged();
                                 }
@@ -351,6 +397,7 @@ public class Add_NewChild extends AppCompatActivity {
 
 //                    final String username1= username.getText().toString().trim();
 //                    final String password2= password.getText().toString().trim();
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
@@ -360,6 +407,7 @@ public class Add_NewChild extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void savechild() {
         //FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -380,32 +428,105 @@ public class Add_NewChild extends AppCompatActivity {
        }
 //
 //
-        // check data
-        if (date_picker.equals("")) {
+
+        // check data of birth is not empty
+        if (date == null) {
             Toast.makeText(Add_NewChild.this, "Please select Date of birth", Toast.LENGTH_LONG).show();
             return;
         }
-
+        // check gender is not empty
         if (userGender.equals("Select") ) {
-            Toast.makeText(Add_NewChild.this, "Please select Gender", Toast.LENGTH_LONG).show();
+            Toast.makeText(Add_NewChild.this, "Please select gender", Toast.LENGTH_LONG).show();
             return;
         }
 
+        // check city is not empty
         if (userCity.equals("Select") ) {
-            Toast.makeText(Add_NewChild.this, "Please select City", Toast.LENGTH_LONG).show();
+            Toast.makeText(Add_NewChild.this, "Please select city", Toast.LENGTH_LONG).show();
             return;
         }
-
+        // check grade is not empty
         if ( userGrade.equals("Select")) {
-            Toast.makeText(Add_NewChild.this, "Please select Grade", Toast.LENGTH_LONG).show();
+            Toast.makeText(Add_NewChild.this, "Please select grade", Toast.LENGTH_LONG).show();
+            return;
+        }
+        // check school is not empty
+        if (userschool.equals("Select")) {
+            Toast.makeText(Add_NewChild.this, "Please select school", Toast.LENGTH_LONG).show();
             return;
         }
 
-        if (userschool.equals("Select")) {
-            Toast.makeText(Add_NewChild.this, "Please select School", Toast.LENGTH_LONG).show();
-            return;
+        // Check the age of the child between 6 and 14
+        int actual = calculateAge(birthDate, getTodaysDate());
+        if(6<= actual && actual <= 14){
+            int grade = Integer.parseInt(userGrade);
+            //Check the age and the grade match
+            switch (actual){
+                case 6:
+                    if( !(grade == 1 || grade == 2)){
+                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    break;
+                case 7:
+                    if( !(grade == 1 || grade == 2 || grade == 3)){
+                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    break;
+                case 8:
+                    if( !(grade == 2 || grade == 3 || grade == 4)){
+                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    break;
+                case 9:
+                    if( !(grade == 3 || grade == 4 || grade == 5)){
+                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    break;
+                case 10:
+                    if( !(grade == 4 || grade == 5 || grade == 6)){
+                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    break;
+                case 11:
+                    if( !(grade == 5 || grade == 6 || grade == 7)){
+                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    break;
+                case 12:
+                    if( !(grade == 6 || grade == 7 || grade == 8)){
+                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    break;
+                case 13:
+                    if( !(grade == 7 || grade == 8 || grade == 9)){
+                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    break;
+                case 14:
+                    if( !(grade == 8 || grade == 9 || grade == 10)){
+                        Toast.makeText(Add_NewChild.this, "Please l", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    break;
+
+            }
+
+        }else {
+            Toast.makeText(Add_NewChild.this, "The child you add his/her age must be between 6 - 14", Toast.LENGTH_LONG).show();
+
         }
-        // else if (currentUser != null) {
+
+
+
+
 
 
         //}
@@ -413,7 +534,7 @@ public class Add_NewChild extends AppCompatActivity {
         String firstName=firstnameCH.getText().toString();
         String lastName=lastnameCH.getText().toString();
 
-         Child Childobj=new Child(id2, parentid, school_id, firstName,lastName, date, userCity,userGender,userGrade );
+         Child Childobj=new Child(id2, parentid, school_id, firstName,lastName, date, userCity,userGender,Integer.parseInt(userGrade) );
 
 
 
@@ -479,14 +600,16 @@ public class Add_NewChild extends AppCompatActivity {
 
     }
 
-    private String getTodaysDate() {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private LocalDate getTodaysDate() {
 
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         month = month + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(0, 0, 0);
+
+        return LocalDate.of(year, month, month);
     }
 
     private String makeDateString(int day, int month, int year) {
@@ -533,11 +656,13 @@ public class Add_NewChild extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
 
         {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day)
             {
                 month = month + 1;
                 date = makeDateString(day, month, year);
+                birthDate = LocalDate.of(year, month, day);
                 date_picker.setText(date);
             }
         };
@@ -554,6 +679,15 @@ public class Add_NewChild extends AppCompatActivity {
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public int calculateAge(LocalDate birthDate, LocalDate currentDate) {
+        if ((birthDate != null) && (currentDate != null)) {
+            return Period.between(birthDate, currentDate).getYears();
+        } else {
+            return 0;
+        }
     }
 
 
