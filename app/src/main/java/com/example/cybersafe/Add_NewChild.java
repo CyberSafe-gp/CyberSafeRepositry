@@ -58,18 +58,19 @@ public class Add_NewChild extends AppCompatActivity {
     final SMAccountCredentials SMAobj=new SMAccountCredentials();
 //    public Add_NewChild() {}
 //current user id
+    // فالديت للعمر والقريد
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__new_child);
         initDatePicker();
-        System.out.print("onCreate 00000");
+
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             parentid = user.getUid().trim();
         } else {
-            System.out.println("onCreate no usserrr");
+
             // No user is signed in
         }
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
@@ -80,16 +81,16 @@ public class Add_NewChild extends AppCompatActivity {
         password = (EditText) findViewById((R.id.password));
         date_picker = findViewById(R.id.date_picker);
         date_picker.setText(getTodaysDate());
-        System.out.println("onCreate 1111");
+
 
        // grade dropdown menu
         gradeSpinner = (Spinner)findViewById(R.id.Grade);
-        Grade = new String[] {"1", "2","3", "4","5", "6","7", "8","9"};
+        Grade = new String[] {"Select","1", "2","3", "4","5", "6","7", "8","9"};
 
         ArrayAdapter<String> GradeAdapter = new ArrayAdapter<String>(Add_NewChild.this, android.R.layout.simple_spinner_item, Grade);
         GradeAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         gradeSpinner.setAdapter(GradeAdapter);
-        System.out.println("onCreate 2222");
+
 
         //Get the user input for the gender
         gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -103,42 +104,49 @@ public class Add_NewChild extends AppCompatActivity {
 
                 switch (loc)
                 {
+
                     case 0:
+                        userGrade="Select";
+
+                        break;
+                    case 1:
                         userGrade="1";
                         break;
 
-                    case 1:
+                    case 2:
                         userGrade="2";
 
                         break;
-                    case 2:
+                    case 3:
                         userGrade="3";
 
                         break;
-                    case 3:
+                    case 4:
                         userGrade="4";
 
                         break;
-                    case 4:
+                    case 5:
                         userGrade="5";
 
                         break;
-                    case 5:
+                    case 6:
                         userGrade="6";
 
                         break;
-                    case 6:
+                    case 7:
                         userGrade="7";
 
                         break;
-                    case 7:
+                    case 8:
                         userGrade="8";
 
                         break;
-                    case 8:
+                    case 9:
                         userGrade="9";
 
                         break;
+
+
 
                 }
             }
@@ -153,7 +161,7 @@ public class Add_NewChild extends AppCompatActivity {
 
 //        //Gender dropdown menu
         genderSpinner = (Spinner)findViewById(R.id.gender);
-        gender = new String[] {"Male", "Female"};
+        gender = new String[] {"Select","Male", "Female"};
 
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(Add_NewChild.this, android.R.layout.simple_spinner_item, gender);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -172,14 +180,20 @@ public class Add_NewChild extends AppCompatActivity {
 
                 switch (loc)
                 {
+
                     case 0:
-                        userGender="Male";
+                        userGender="Select";
                         break;
 
                     case 1:
+                        userGender="Male";
+                        break;
+
+                    case 2:
                         userGender="Female";
 
                         break;
+
 
                 }
             }
@@ -189,16 +203,15 @@ public class Add_NewChild extends AppCompatActivity {
 
             }
         });
-        System.out.println("onCreate 5555");
+
 
         //City dropdown menu
         citySpinner = (Spinner)findViewById(R.id.City);
-        city = new String[] {"Riyadh", "Jeddah", "Dammam"};
+        city = new String[] {"Select","Riyadh", "Jeddah", "Dammam"};
 
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(Add_NewChild.this, android.R.layout.simple_spinner_item, city);
         cityAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         citySpinner.setAdapter(cityAdapter);
-        System.out.println("onCreate 66666");
 //        //Log.i("AAA","spinner0");
 //
         schoolRef = FirebaseDatabase.getInstance().getReference().child("Schools");
@@ -213,71 +226,93 @@ public class Add_NewChild extends AppCompatActivity {
 
                 switch (loc) {
                     case 0:
-                        userCity = "Riyadh";
+                        userCity = "Select";
                         break;
 
                     case 1:
+                        userCity = "Riyadh";
+                        break;
+
+                    case 2:
                         userCity = "Jeddah";
 
                         break;
-                    case 2:
+                    case 3:
                         userCity = "Dammam";
                         break;
                 }
-                //School dropdown menu
+
+                //Set school dropdown menu
                 schoolSpinner= (Spinner)findViewById(R.id.School);
                 ArrayList<String> schoolList = new ArrayList<>();
+                if(userCity.equals("Select")) {
+                    schoolList.add("Select city first");
+                }
                 final ArrayAdapter schooladapter = new ArrayAdapter<String>( Add_NewChild.this, android.R.layout.simple_spinner_item, schoolList);
                 schoolSpinner.setAdapter(schooladapter);
-////////////
-                schoolRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            schoolList.clear();
-                            schoolList.add("select");
-                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                                School findSchool = postSnapshot.getValue(School.class);
-                                 if (findSchool.getCity().equals(userCity))
-                                schoolList.add(findSchool.getSchoolName());
-                            }
-                            schooladapter.notifyDataSetChanged();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
-                schoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        userschool = parent.getItemAtPosition(position).toString();
-                        schoolRef.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
 
 
+
+                    schoolRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                            if (dataSnapshot.exists()) {
+                                //Check if user select city
+                                if(!userCity.equals("Select")){
+                                schoolList.clear();
+                                schoolList.add("Select");
                                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                                    School chapterObj = postSnapshot.getValue(School.class);
-
-                                    String x = chapterObj.getSchoolName();
-                                    if (x.equalsIgnoreCase(userschool))
-                                        school_id = chapterObj.getSchool_id();
-                                }
+                                    School findSchool = postSnapshot.getValue(School.class);
+                                    if (findSchool.getCity().equals(userCity))
+                                        schoolList.add(findSchool.getSchoolName());
+                                }}
                                 schooladapter.notifyDataSetChanged();
                             }
+                        }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
 
-                            }
+                    //Get the user select for School
+                    schoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            userschool = parent.getItemAtPosition(position).toString();
+                            schoolRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        });
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
 
-                    }         });
+                                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                        School chapterObj = postSnapshot.getValue(School.class);
+
+                                        String x = chapterObj.getSchoolName();
+                                        if (x.equalsIgnoreCase(userschool))
+                                            school_id = chapterObj.getSchool_id();
+                                    }
+                                    schooladapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+
+                            });
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg1)
@@ -285,18 +320,18 @@ public class Add_NewChild extends AppCompatActivity {
 
             }
         });
-        System.out.println("onCreate 77777");
+
 
 
 //   // from here for social media credentials
 //        username = (EditText) findViewById((R.id.username));
 //        password = (EditText) findViewById((R.id.password));
-        System.out.println("onCreate 8888");
+
         Applications = findViewById(R.id.Applications);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.application, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Applications.setAdapter(adapter);
-        System.out.println("onCreate 99999");
+
         Applications.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -308,17 +343,17 @@ public class Add_NewChild extends AppCompatActivity {
 
             }
        });
-        System.out.println("onCreate 1010101");
+
 
              add = (Button) findViewById(R.id.add1);
-        System.out.println("onCreate 11111111111");
+
              add.setOnClickListener(new View.OnClickListener() {
 
 //                    final String username1= username.getText().toString().trim();
 //                    final String password2= password.getText().toString().trim();
             @Override
             public void onClick(View v) {
-            System.out.println("add onClick");
+
             savechild();
             }
         });
@@ -345,9 +380,30 @@ public class Add_NewChild extends AppCompatActivity {
        }
 //
 //
-        // check it is not select
-        if (date_picker.equals("") || userGender.equals("") || userCity.equals("") || userGrade.equals("") || userschool.equals("") ) {
-            Toast.makeText(Add_NewChild.this, "can't be added , please select date, gender,grade,city and school ", Toast.LENGTH_LONG).show();
+        // check data
+        if (date_picker.equals("")) {
+            Toast.makeText(Add_NewChild.this, "Please select Date of birth", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (userGender.equals("Select") ) {
+            Toast.makeText(Add_NewChild.this, "Please select Gender", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (userCity.equals("Select") ) {
+            Toast.makeText(Add_NewChild.this, "Please select City", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if ( userGrade.equals("Select")) {
+            Toast.makeText(Add_NewChild.this, "Please select Grade", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (userschool.equals("Select")) {
+            Toast.makeText(Add_NewChild.this, "Please select School", Toast.LENGTH_LONG).show();
+            return;
         }
         // else if (currentUser != null) {
 
@@ -356,11 +412,10 @@ public class Add_NewChild extends AppCompatActivity {
         String id2 = ChildRef.push().getKey();
         String firstName=firstnameCH.getText().toString();
         String lastName=lastnameCH.getText().toString();
-        System.out.println("add 111");
 
          Child Childobj=new Child(id2, parentid, school_id, firstName,lastName, date, userCity,userGender,userGrade );
 
-        System.out.println("add 222");
+
 
        /* Childobj.setDate_of_birth(date );
         Childobj.setGender(userGender);
@@ -376,18 +431,16 @@ public class Add_NewChild extends AppCompatActivity {
         ChildRef.child(id2).setValue(Childobj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                System.out.println("onComplete 111");
+
                 if (task.isSuccessful()) {
-                    System.out.println("onComplete 222");
 
                     //social
                     String id = SMARef.push().getKey();
                     String usernameD =username.getText().toString();
                     String passwordD =password.getText().toString();
-                    System.out.println("onComplete 333");
 
                     SMAccountCredentials SMAobj=new SMAccountCredentials(id,id2,apps,passwordD,usernameD);
-                    System.out.println("onComplete 444");
+
 
                     /*SMAobj.setId(id);
                     SMAobj.setAccount(username.getText().toString());
@@ -422,7 +475,7 @@ public class Add_NewChild extends AppCompatActivity {
 
             }
         });
-        System.out.println("add 333");
+
 
     }
 
@@ -433,10 +486,13 @@ public class Add_NewChild extends AppCompatActivity {
         int month = cal.get(Calendar.MONTH);
         month = month + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
+        return makeDateString(0, 0, 0);
     }
 
     private String makeDateString(int day, int month, int year) {
+        if (day == 0 && month == 0 && year == 0 )
+        return getMonthFormat(0) + "" + "" ;
+
         return getMonthFormat(month) + " " + day + " " + year;
 
     }
@@ -466,6 +522,8 @@ public class Add_NewChild extends AppCompatActivity {
             return "NOV";
         if(month == 12)
             return "DEC";
+        if(month == 0)
+            return "";
 
         //default should never happen
         return "JAN";
@@ -492,6 +550,7 @@ public class Add_NewChild extends AppCompatActivity {
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
     }
+
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
