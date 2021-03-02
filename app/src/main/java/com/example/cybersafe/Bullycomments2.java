@@ -1,10 +1,8 @@
 package com.example.cybersafe;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.example.cybersafe.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Bullycomments2 extends AppCompatActivity {
 

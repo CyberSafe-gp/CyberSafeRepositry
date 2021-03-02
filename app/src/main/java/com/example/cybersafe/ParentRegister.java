@@ -46,6 +46,8 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Children, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter);
+
+        /////mmmmmm
         Next = findViewById(R.id.Next);
         Next.setOnClickListener((View.OnClickListener) this);
 
@@ -129,7 +131,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
                                                        public void onComplete(@NonNull Task<Void> task) {
                                                            if (task.isSuccessful()) {
                                                                Toast.makeText(ParentRegister.this, "Parent registered Successfully ", Toast.LENGTH_LONG).show();
-                                                               startActivity(new Intent(ParentRegister.this, ParentRegister2.class));
+                                                               startActivity(new Intent(ParentRegister.this, ParentHome.class));
 
                                                            }
                                                            else {
