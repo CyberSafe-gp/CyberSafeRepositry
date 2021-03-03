@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAdapter.ReportHolder> {
-// لازم اتاكد انه سكول مانجر عشان سالفة التاكيد
+    // يمكن نغير كلام الريبورت
     private Context context;
     private List<Report> reportsList;
     private OnItemClickListener listener;
@@ -74,21 +74,13 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
         //sort status
         Collections.sort(reportsList, Collections.reverseOrder());
 
-        final String comment_id = reportsList.get(position).getComment_id();
-        final String report_id = reportsList.get(position).getReport_id();
-         String status = reportsList.get(position).getStatus(); //        final String user_id = reportsList.get(position).getUser_id();
-
-
-        // مو اكيد
-
-
-
+        String status = reportsList.get(position).getStatus();
 
         reportsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-
+                // set the text for the item يمكن يتغير
                 holder.WriteRepNo.setText("Report("+(position+1)+")");
 
                 //Colour the status if Confirm gray, Not confirm blue
@@ -106,10 +98,6 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
 
             }
         });
-
-
-
-
 
 
     }

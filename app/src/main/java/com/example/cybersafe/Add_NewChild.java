@@ -70,6 +70,7 @@ public class Add_NewChild extends AppCompatActivity {
 //    public Add_NewChild() {}
 //current user id
     // فالديت للعمر والقريد
+    //genderSpinner.setPrompt("Pick One");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,6 +200,7 @@ public class Add_NewChild extends AppCompatActivity {
         genderAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         genderSpinner.setAdapter(genderAdapter);
         System.out.println("onCreate 4444");
+
 
         //Get the user input for the gender
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()

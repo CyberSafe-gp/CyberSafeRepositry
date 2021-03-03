@@ -2,6 +2,7 @@ package com.example.cybersafe;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -48,7 +49,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
     private Spinner genderSpinner, citySpinner,schoolSpinner,gradeSpinner,Applications;
     private String gender[],city[],Grade[];
 
-    private String userCity, userGender,userGrade,userschool,parentid,school_id,date ;
+    private String userCity, userGender,userGrade,userschool,parentid,school_id,date, schoolName ;
     private String apps;
     private Button date_picker;
     private DatePickerDialog datePickerDialog;
@@ -66,11 +67,12 @@ public class Edit_Child_Profile extends AppCompatActivity {
     //shahad
     private EditText firstnameCH,lastnameCH;
     private Button add ;
-    private String userIdC,userIdP,userIdS,Fname,lName,DOB,Cityy,Genderr;
+    private String userIdC,userIdP,userIdS,Fname,lName,DOB,Cityy,Genderr,childID;
     private String DOB1;
     private  int Gradee;
     private FirebaseUser Cuser;
     private static final String TAG = Edit_Child_Profile.class.getSimpleName();
+    String usernameD,passwordD, SMAId;
 
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Children");
 
@@ -88,6 +90,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             parentid = user.getUid().trim();
+            childID = getIntent().getStringExtra("Child_id");
         } else {
 
             // No user is signed in
@@ -119,21 +122,27 @@ public class Edit_Child_Profile extends AppCompatActivity {
         firstnameCH = (EditText) findViewById((R.id.firstnameCH1));
         lastnameCH = (EditText) findViewById((R.id.lastnameCH1));
 
-        username = (EditText) findViewById((R.id.username));
-        password = (EditText) findViewById((R.id.password));
+        username = (EditText) findViewById((R.id.username1));
+        password = (EditText) findViewById((R.id.password1));
         setSchoolManager = (TextView) findViewById((R.id.setSchoolManager));
-        date_picker = findViewById(R.id.date_picker);
-        date_picker.setText(makeDateString(0,0,0));
+        date_picker = findViewById(R.id.date_picker1);
+
+
+        
 
 
         Cuser = FirebaseAuth.getInstance().getCurrentUser();
         g.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     com.example.cybersafe.Objects.Child us = postSnapshot.getValue(Child.class);
-                    if (us.getChild_id().equals(Cuser.getUid())) {
-                        userIdC = us.getChild_id();
+
+                    if (us.getChild_id().equals(childID)) {
+                        //userIdC = us.getChild_id();
+
                         userIdP = us.getParent_id();
                         userIdS = us.getSchool_id();
                         Fname=us.getFirstName();
@@ -146,10 +155,304 @@ public class Edit_Child_Profile extends AppCompatActivity {
                         lastnameCH .setText(lName);
 
 
+
+                       String[] ddatte = DOB.split(" ");
+
+                        date_picker.setText(makeDateString(getMonthFormat(ddatte[0]),Integer.parseInt(ddatte[1]),Integer.parseInt(ddatte[2])));
+
+                        gradeSpinner = (Spinner)findViewById(R.id.Grade1);
+                        Grade = new String[] {"1", "2","3", "4","5", "6","7", "8","9"};
+
+                        // grade dropdown menu
+                        ArrayAdapter<String> GradeAdapter = new ArrayAdapter<String>(Edit_Child_Profile.this, android.R.layout.simple_spinner_item, Grade);
+                        GradeAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                        gradeSpinner.setAdapter(GradeAdapter);
+
+                        //Set child grade
+                        for (int i = 0; i < Grade.length; i++) {
+                            String x = Gradee+"";
+                            if (Grade[i].equals(x)) {
+                                gradeSpinner.setSelection(i);
+                            }
+                        }
+
+                        //Get the user input for the gender
+                        gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                        {
+                            @Override
+                            public void onItemSelected(AdapterView<?> arg0, View view1, int pos, long id)
+                            {
+
+                                int loc;
+                                loc = pos;
+
+                                switch (loc)
+                                {
+
+                                    case 0:
+                                        userGrade="1";
+                                        break;
+                                    case 1:
+                                        userGrade="2";
+                                        break;
+
+                                    case 2:
+                                        userGrade="3";
+                                        break;
+
+                                    case 3:
+                                        userGrade="4";
+                                        break;
+
+                                    case 4:
+                                        userGrade="5";
+                                        break;
+                                    case 5:
+                                        userGrade="6";
+
+                                        break;
+                                    case 6:
+                                        userGrade="7";
+                                        break;
+
+                                    case 7:
+                                        userGrade="8";
+                                        break;
+
+                                    case 8:
+                                        userGrade="9";
+                                        break;
+                                }
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> arg1)
+                            {
+
+                            }
+                        });
+
+                        //        //Gender dropdown menu
+                        genderSpinner = (Spinner)findViewById(R.id.gender1);
+                        gender = new String[] {"Male", "Female"};
+
+                        ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(Edit_Child_Profile.this, android.R.layout.simple_spinner_item, gender);
+                        genderAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                        genderSpinner.setAdapter(genderAdapter);
+                        genderSpinner.setPrompt(Genderr);
+
+                        //Set child gender
+                        for (int i = 0; i < gender.length; i++) {
+                            if (gender[i].equals(Genderr)) {
+                                genderSpinner.setSelection(i);
+                            }
+                        }
+
+                        //Get the user input for the gender
+                        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                        {
+                            @Override
+                            public void onItemSelected(AdapterView<?> arg0, View view1, int pos, long id)
+                            {
+                                Log.i("AAA","OnItemSelected");
+                                int loc;
+                                loc = pos;
+
+                                switch (loc)
+                                {
+
+                                    case 0:
+                                        userGender="Male";
+                                        break;
+
+                                    case 1:
+                                        userGender="Female";
+                                        break;
+
+
+                                }
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> arg1)
+                            {
+
+                            }
+                        });
+
+
+                        //City dropdown menu
+                        citySpinner = (Spinner)findViewById(R.id.City1);
+                        city = new String[] {"Select","Riyadh", "Jeddah", "Dammam"};
+
+                        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(Edit_Child_Profile.this, android.R.layout.simple_spinner_item, city);
+                        cityAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                        citySpinner.setAdapter(cityAdapter);
+//        //Log.i("AAA","spinner0");
+
+                        //Set child city
+                        for (int i = 0; i < city.length; i++) {
+                            if (city[i].equals(Cityy)) {
+                                citySpinner.setSelection(i);
+                            }
+                        }
+
+                        schoolRef = FirebaseDatabase.getInstance().getReference().child("Schools");
+
+                        //Get the user input for the city and set the School dropdown menu
+                        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                        {
+                            @Override
+                            public void onItemSelected(AdapterView<?> arg0, View view1, int pos, long id) {
+                                int loc;
+                                loc = pos;
+
+                                switch (loc) {
+                                    case 0:
+                                        userCity = "Select";
+                                        break;
+
+                                    case 1:
+                                        userCity = "Riyadh";
+                                        break;
+
+                                    case 2:
+                                        userCity = "Jeddah";
+
+                                        break;
+                                    case 3:
+                                        userCity = "Dammam";
+                                        break;
+                                }
+
+                                //Set school dropdown menu
+                                schoolSpinner= (Spinner)findViewById(R.id.School1);
+                                ArrayList<String> schoolList = new ArrayList<>();
+                                /*if(userCity.equals("Select")) {
+                                    schoolList.add("Select city first");
+                                }*/
+                                final ArrayAdapter schooladapter = new ArrayAdapter<String>( Edit_Child_Profile.this, android.R.layout.simple_spinner_item, schoolList);
+                                schoolSpinner.setAdapter(schooladapter);
+
+
+
+                                schoolRef.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                                        if (dataSnapshot.exists()) {
+                                            //Check if user select city
+
+                                                schoolList.clear();
+                                                //schoolList.add("Select");
+                                                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                                    School findSchool = postSnapshot.getValue(School.class);
+                                                    if (findSchool.getCity().equals(userCity))
+                                                        schoolList.add(findSchool.getSchoolName());
+                                                    if(findSchool.getSchool_id().equals(userIdS))
+                                                        schoolName=findSchool.getSchoolName();
+
+                                                }
+                                            schooladapter.notifyDataSetChanged();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+                                    }
+                                });
+
+                                //Set child School
+                                for (int i = 0; i < schoolList.size(); i++) {
+                                    if (schoolList.get(i).equals(schoolName)) {
+                                        citySpinner.setSelection(i);
+                                    }
+                                }
+
+
+                                //Get the user select for School
+                                schoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                        userschool = parent.getItemAtPosition(position).toString();
+                                        schoolRef.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                                                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                                    School chapterObj = postSnapshot.getValue(School.class);
+
+                                                    String x = chapterObj.getSchoolName();
+                                                    if (x.equalsIgnoreCase(userschool)) {
+                                                        school_id = chapterObj.getSchool_id();
+
+                                                        //Check if the school manager register
+                                                        schoolManagerRef.addValueEventListener(new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                                                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                                                    SchoolManager findSM = postSnapshot.getValue(SchoolManager.class);
+
+                                                                    String findschoolid = findSM.getSchool_id();
+                                                                    if (school_id.equalsIgnoreCase(findschoolid)) {
+                                                                        find = true;
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                if (find == true) {
+                                                                    setSchoolManager.setTextColor(Color.GREEN);
+                                                                    setSchoolManager.setText("School Manager is registered");
+                                                                }else{
+                                                                    setSchoolManager.setTextColor(Color.RED);
+                                                                    setSchoolManager.setText("School Manager is not registered");
+                                                                }
+
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                            }
+                                                        });
+                                                        break;
+                                                    }
+
+
+                                                }
+                                                schooladapter.notifyDataSetChanged();
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> parent) {
+
+                                    }
+                                });
+
+
+
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> arg1)
+                            {
+
+                            }
+                        });
+
+
+
+
                     }
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -160,15 +463,26 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
 
         // grade dropdown menu
-        gradeSpinner = (Spinner)findViewById(R.id.Grade1);
-        Grade = new String[] {"Select","1", "2","3", "4","5", "6","7", "8","9"};
+/*        gradeSpinner = (Spinner)findViewById(R.id.Grade1);
+        Grade = new String[] {"1", "2","3", "4","5", "6","7", "8","9"};
 
         ArrayAdapter<String> GradeAdapter = new ArrayAdapter<String>(Edit_Child_Profile.this, android.R.layout.simple_spinner_item, Grade);
         GradeAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         gradeSpinner.setAdapter(GradeAdapter);
 
+        for (int i = 0; i < Grade.length; i++) {
+            System.out.println("citySpinnerddddddddd(i)");
+            System.out.println("xxxxxx "+ Gradee);
+            String x = Gradee+"";
+            System.out.println(Gradee+"  citySpinnerddddddddd(i)  " +Grade[i]);
+            if (Grade[i].equals(x)) {
+                gradeSpinner.setSelection(i);
+                System.out.println("citySpinner.setSelection(i)");
+            }
+        }*/
 
         //Get the user input for the gender
+/*
         gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
@@ -182,48 +496,38 @@ public class Edit_Child_Profile extends AppCompatActivity {
                 {
 
                     case 0:
-                        userGrade="Select";
-
+                        userGrade="1";
                         break;
                     case 1:
-                        userGrade="1";
+                        userGrade="2";
                         break;
 
                     case 2:
-                        userGrade="2";
-
-                        break;
-                    case 3:
                         userGrade="3";
-
                         break;
-                    case 4:
-                        userGrade="4";
 
+                    case 3:
+                        userGrade="4";
+                        break;
+
+                    case 4:
+                        userGrade="5";
                         break;
                     case 5:
-                        userGrade="5";
-
-                        break;
-                    case 6:
                         userGrade="6";
 
                         break;
-                    case 7:
+                    case 6:
                         userGrade="7";
-
                         break;
-                    case 8:
+
+                    case 7:
                         userGrade="8";
-
                         break;
-                    case 9:
+
+                    case 8:
                         userGrade="9";
-
                         break;
-
-
-
                 }
             }
             @Override
@@ -232,205 +536,14 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
             }
         });
-
-        System.out.println("onCreate 3333");
-
-//        //Gender dropdown menu
-        genderSpinner = (Spinner)findViewById(R.id.gender1);
-        gender = new String[] {"Select","Male", "Female"};
-
-        ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(Edit_Child_Profile.this, android.R.layout.simple_spinner_item, gender);
-        genderAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        genderSpinner.setAdapter(genderAdapter);
-        System.out.println("onCreate 4444");
-
-        //Get the user input for the gender
-        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View view1, int pos, long id)
-            {
-                Log.i("AAA","OnItemSelected");
-                int loc;
-                loc = pos;
-
-                switch (loc)
-                {
-
-                    case 0:
-                        userGender="Select";
-                        break;
-
-                    case 1:
-                        userGender="Male";
-                        break;
-
-                    case 2:
-                        userGender="Female";
-
-                        break;
-
-
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> arg1)
-            {
-
-            }
-        });
+*/
 
 
 
-        //City dropdown menu
-        citySpinner = (Spinner)findViewById(R.id.City1);
-        city = new String[] {"Select","Riyadh", "Jeddah", "Dammam"};
-
-        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(Edit_Child_Profile.this, android.R.layout.simple_spinner_item, city);
-        cityAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        citySpinner.setAdapter(cityAdapter);
-//        //Log.i("AAA","spinner0");
-//
-        schoolRef = FirebaseDatabase.getInstance().getReference().child("Schools");
-
-        //Get the user input for the city and set the School dropdown menu
-        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View view1, int pos, long id) {
-                int loc;
-                loc = pos;
-
-                switch (loc) {
-                    case 0:
-                        userCity = "Select";
-                        break;
-
-                    case 1:
-                        userCity = "Riyadh";
-                        break;
-
-                    case 2:
-                        userCity = "Jeddah";
-
-                        break;
-                    case 3:
-                        userCity = "Dammam";
-                        break;
-                }
-
-                //Set school dropdown menu
-                schoolSpinner= (Spinner)findViewById(R.id.School1);
-                ArrayList<String> schoolList = new ArrayList<>();
-                if(userCity.equals("Select")) {
-                    schoolList.add("Select city first");
-                }
-                final ArrayAdapter schooladapter = new ArrayAdapter<String>( Edit_Child_Profile.this, android.R.layout.simple_spinner_item, schoolList);
-                schoolSpinner.setAdapter(schooladapter);
 
 
 
-                schoolRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-
-                        if (dataSnapshot.exists()) {
-                            //Check if user select city
-                            if(!userCity.equals("Select")){
-                                schoolList.clear();
-                                schoolList.add("Select");
-                                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                                    School findSchool = postSnapshot.getValue(School.class);
-                                    if (findSchool.getCity().equals(userCity))
-                                        schoolList.add(findSchool.getSchoolName());
-                                }}
-                            schooladapter.notifyDataSetChanged();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
-
-                //Get the user select for School
-                schoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        userschool = parent.getItemAtPosition(position).toString();
-                        schoolRef.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                                    School chapterObj = postSnapshot.getValue(School.class);
-
-                                    String x = chapterObj.getSchoolName();
-                                    if (x.equalsIgnoreCase(userschool)) {
-                                        school_id = chapterObj.getSchool_id();
-
-                                        //Check if the school manager register
-                                        schoolManagerRef.addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                                                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                                                    SchoolManager findSM = postSnapshot.getValue(SchoolManager.class);
-
-                                                    String findschoolid = findSM.getSchool_id();
-                                                    if (school_id.equalsIgnoreCase(findschoolid)) {
-                                                        find = true;
-                                                        break;
-                                                    }
-                                                }
-                                                if (find == true) {
-                                                    setSchoolManager.setTextColor(Color.GREEN);
-                                                    setSchoolManager.setText("School Manager is registered");
-                                                }else{
-                                                    setSchoolManager.setTextColor(Color.RED);
-                                                    setSchoolManager.setText("School Manager is not registered");
-                                                }
-
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                            }
-                                        });
-                                        break;
-                                    }
-
-
-                                }
-                                schooladapter.notifyDataSetChanged();
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-
-                        });
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-
-
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> arg1)
-            {
-
-            }
-        });
 
 
 
@@ -438,6 +551,8 @@ public class Edit_Child_Profile extends AppCompatActivity {
 //        username = (EditText) findViewById((R.id.username));
 //        password = (EditText) findViewById((R.id.password));
 
+
+        //Social media account credentials
         Applications = findViewById(R.id.Applications1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.application, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -451,6 +566,29 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        SMARef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    SMAccountCredentials smAccountCredentials = postSnapshot.getValue(SMAccountCredentials.class);
+                    if (smAccountCredentials.getChild_id().equals(childID)) {
+                        usernameD =smAccountCredentials.getAccount();
+                        passwordD=smAccountCredentials.getPassword();
+                        SMAId=smAccountCredentials.getId();
+                        username.setText(usernameD);
+                        password.setText(passwordD);
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
@@ -473,7 +611,8 @@ public class Edit_Child_Profile extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void savechild() {
         //FirebaseUser currentUser = mAuth.getCurrentUser();
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Children").child(userIdC);
+        System.out.println("childID "+childID);
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Children").child(childID);
 
         System.out.println("add savechild");
 
@@ -494,7 +633,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
 //
 
         // check data of birth is not empty
-        if (date == null) {
+        if (DOB == null) {
             Toast.makeText(Edit_Child_Profile.this, "Please select Date of birth", Toast.LENGTH_LONG).show();
             return;
         }
@@ -520,7 +659,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
             return;
         }
 
-        // Check the age of the child between 6 and 14
+/*        // Check the age of the child between 6 and 14
         int actual = calculateAge(birthDate, getTodaysDate());
         if(6<= actual && actual <= 14){
             int grade = Integer.parseInt(userGrade);
@@ -586,21 +725,35 @@ public class Edit_Child_Profile extends AppCompatActivity {
         }else {
             Toast.makeText(Edit_Child_Profile.this, "The child you add his/her age must be between 6 - 14", Toast.LENGTH_LONG).show();
 
-        }
-
-
+        }*/
 
 
 
 
         //}
-        String id2 ="-MUprA7SZGs-j-Blpc5i";
-     //   String id2 = ChildRef.push().getKey();
+        //String id2 ="-MUprA7SZGs-j-Blpc5i";
+        //String id2 = ChildRef.push().getKey();
+
+        //Edit
         String firstName=firstnameCH.getText().toString().trim();
         String lastName=lastnameCH.getText().toString().trim();
 
-        Child Childobj=new Child(id2, parentid, school_id, firstName,lastName, date, userCity,userGender,Integer.parseInt(userGrade) );
-        userRef.setValue(Childobj);
+        /*userIdP = us.getParent_id();
+        userIdS = us.getSchool_id();
+        Fname=us.getFirstName();
+        lName = us.getLastName();
+        DOB=us.getDate_of_birth();
+        Cityy=us.getCity();
+        Genderr=us.getGender();
+        Gradee=us.getGrade();
+        firstnameCH.setText(Fname);
+        lastnameCH .setText(lName);*/
+
+
+
+
+        Child Childobj=new Child(childID, userIdP, userIdS, firstName,lastName, DOB, userCity,userGender,Integer.parseInt(userGrade) );
+        //userRef.setValue(Childobj);
 
 
 
@@ -615,48 +768,27 @@ public class Edit_Child_Profile extends AppCompatActivity {
         Childobj.setLastName(lastnameCH.getText().toString());
         Childobj.setChild_id(id2);*/
 
-        //Add child to database
-        ChildRef.child(id2).setValue(Childobj).addOnCompleteListener(new OnCompleteListener<Void>() {
+        //Edit child to database
+        userRef.setValue(Childobj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()) {
 
-                    //social
-                    String id = SMARef.push().getKey();
-                    String usernameD =username.getText().toString();
-                    String passwordD =password.getText().toString();
+                    usernameD =username.getText().toString();
+                    passwordD =password.getText().toString();
+                    SMAccountCredentials SMAobj=new SMAccountCredentials(SMAId,childID,apps,passwordD,usernameD);
 
-                    SMAccountCredentials SMAobj=new SMAccountCredentials(id,id2,apps,passwordD,usernameD);
+                    SMARef.child(SMAId).setValue(SMAobj);
 
-
-                    /*SMAobj.setId(id);
-                    SMAobj.setAccount(username.getText().toString());
-                    SMAobj.setPassword(password.getText().toString());
-                    SMAobj.setSocialMediaPlatform(apps);
-                    SMAobj.setChild_id("");*/
-
-                    SMARef.child(id).setValue(SMAobj).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(Edit_Child_Profile.this, "SMAccountCredentials added successfully", Toast.LENGTH_LONG).show();
-
-                            } else {
-                                Toast.makeText(Edit_Child_Profile.this, "SMAccountCredentials doesn't added", Toast.LENGTH_LONG).show();
-                            }
-
-                        }
-                    });
-
-                    Toast.makeText(Edit_Child_Profile.this, "Child added successfully", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Edit_Child_Profile.this, "Child updated successfully", Toast.LENGTH_LONG).show();
                     // startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
                     /*Intent intent = new Intent();
                     setResult(RESULT_OK, intent);
                     */
                     finish();
                 } else {
-                    Toast.makeText(Edit_Child_Profile.this, "Child doesn't added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Edit_Child_Profile.this, "Child doesn't updated", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -717,6 +849,38 @@ public class Edit_Child_Profile extends AppCompatActivity {
         return "JAN";
     }
 
+    private int getMonthFormat(String month) {
+        if(month.equals("JAN"))
+            return  1 ;
+        if(month.equals("FEB"))
+            return 2;
+        if(month.equals("MAR"))
+            return 3;
+        if(month.equals("APR"))
+            return 4;
+        if(month.equals("MAY"))
+            return 5;
+        if(month.equals("JUN"))
+            return 6;
+        if(month.equals("JUL"))
+            return 7;
+        if(month.equals("AUG"))
+            return 8;
+        if(month.equals("SEP"))
+            return 9;
+        if(month.equals("OCT"))
+            return 10;
+        if(month.equals("NOV"))
+            return 11;
+        if(month.equals("DEC"))
+            return 12;
+        if(month.equals(""))
+            return 0;
+
+        //default should never happen
+        return 1;
+    }
+
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
 
@@ -726,11 +890,12 @@ public class Edit_Child_Profile extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day)
             {
                 month = month + 1;
-                date = makeDateString(day, month, year);
+                DOB = makeDateString(day, month, year);
                 birthDate = LocalDate.of(year, month, day);
-                date_picker.setText(date);
+                date_picker.setText(DOB);
             }
         };
+
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);

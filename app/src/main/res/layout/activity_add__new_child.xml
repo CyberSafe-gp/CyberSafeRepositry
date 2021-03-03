@@ -325,7 +325,7 @@
                 android:layout_width="327dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:inputType="numberPassword"/>
+                android:inputType="textPassword"/>
 
             <Button
                 android:id="@+id/add1"

@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cybersafe.Objects.Report;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,30 +32,32 @@ import java.util.ArrayList;
 public class ViewReportedBullyingMain extends AppCompatActivity {
     private TextView textView;
     private RecyclerView recyclerView;
-    private ArrayList<Report> reportList = new ArrayList();;
+    private ArrayList<Report> reportList = new ArrayList();
     private ViewReportedBullyingAdapter adapter;
     DatabaseReference reportRef, reportsRef;
     private String userID, userType;
     ImageView back, home;
-// هل احط سورت للريبورت ؟
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_reported_bullying_list);
 
+
+        //To get the user id and type if user exist
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
 
             userID = user.getUid();
             userType = getIntent().getStringExtra("userType");
         } else {
-
+            // if user not log in go to parent login page
             Intent in = new Intent(ViewReportedBullyingMain.this, ParentLogin.class);
+            Toast.makeText(ViewReportedBullyingMain.this, "You have to login first", Toast.LENGTH_LONG).show();
             startActivity(in);
         }
 
-       // userID="rTTwi9dfa9W425lPa2A6MiU93yz1";
 
         //Toolbar
         back = (ImageView) findViewById(R.id.arrowVR);
@@ -64,21 +67,12 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                /*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
-                mIntent.putExtra("Child_id", childID);
-                startActivity(mIntent);*/
-
             }
         });
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-               /* Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
-                mIntent.putExtra("Child_id", childID);
-                startActivity(mIntent);*/
-
             }
         });
 
@@ -92,6 +86,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
         adapter = new ViewReportedBullyingAdapter(this, reportList, new OnItemClickListener() {
             @Override
             public void OnItemClick(View v, int pos) {
+                //Get the information of what report the user click
                 Report lr = reportList.get(pos);
                 String com_id = lr.getComment_id();
                 String rep_id = lr.getReport_id();
@@ -100,6 +95,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
                 String sta = lr.getStatus();
 
 
+                //Send to Report info page with the information of the report
                 Intent in = new Intent(ViewReportedBullyingMain.this, Report_info.class);
 
                 in.putExtra("Comment_id", com_id);
@@ -112,17 +108,13 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
             }
         });
 
+        //Set the adapter
         recyclerView = findViewById(R.id.recyclerReported);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        /*userID = "";
-        userID="rTTwi9dfa9W425lPa2A6MiU93yz1";*/
 
-
-
-
-
+        //Get the Reported list for the current user
         reportRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -132,9 +124,9 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                         Report rep = messageSnapshot.getValue(Report.class);
                         //If this parent who send the report add this report to the list
-                        if (rep.getSender_id().equals(userID)){
+                        if (rep.getSender_id().equals(userID))
                             reportList.add(rep);
-                        }
+
                     }
                     adapter.notifyDataSetChanged();
                 } else {
@@ -151,6 +143,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
 
 
 
+        //To write if their no report
         reportsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

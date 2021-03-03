@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
+// يمكن نغير كلام الريبورت واغير الوان الستاتوس
 public class ViewReportedBullyingAdapter extends RecyclerView.Adapter<ViewReportedBullyingAdapter.ReportHolder> {
     private Context context;
     private List<Report> reportsList;
@@ -59,13 +60,9 @@ public class ViewReportedBullyingAdapter extends RecyclerView.Adapter<ViewReport
     public void onBindViewHolder(@NonNull ReportHolder holder, int position) {
         reportsRef = FirebaseDatabase.getInstance().getReference().child("Reports");
 
-
-/*        final String comment_id = reportsList.get(position).getComment_id();
-        final String report_id = reportsList.get(position).getReport_id();
-        final String user_id = reportsList.get(position).getReceiver_id();*/ //        final String user_id = reportsList.get(position).getUser_id();
-
         String stat = reportsList.get(position).getStatus();
-        // مو اكيد
+
+        // set the text for the item يمكن يتغير
         holder.WriteRepNo.setText("Report("+(position+1)+")");
 
         // اخليها اخضر واحمر

@@ -29,9 +29,7 @@
         <activity android:name=".FlagMain"/>
         <activity android:name=".Forgetpassword"/>
         <activity android:name=".Gethelp" />
-
         <activity android:name=".IncomingReportsMain"/>
-
         //Main
         <activity android:name=".Interface">
             <intent-filter>

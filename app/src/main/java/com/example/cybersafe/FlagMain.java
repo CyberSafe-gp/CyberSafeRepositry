@@ -90,7 +90,7 @@ public class FlagMain extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.recyclerViewFlag);
-        adapter = new flagBullyCommentAdapter(this, commentList);
+        adapter = new flagBullyCommentAdapter(this, commentList, childID);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 

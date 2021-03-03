@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cybersafe.Objects.Comment;
 import com.example.cybersafe.Objects.Report;
@@ -41,28 +42,23 @@ public class IncomingReportsMain extends AppCompatActivity {
     ImageView back, home;
 
 
-
-    //getExtra
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incoming_reports);
 
+        //To get the user id and type if user exist
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-
             userID = user.getUid();
             userType = getIntent().getStringExtra("userType");
             System.out.println("userType "+userType);
         } else {
-            // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
+            // if user not log in go to Interface page
             Intent in = new Intent(IncomingReportsMain.this, ParentLogin.class);
+            Toast.makeText(IncomingReportsMain.this, "You have to login first", Toast.LENGTH_LONG).show();
             startActivity(in);
         }
-        //For test
-        /*userID = "-MTz4FV6I8eik51jwoJ1";
-        userType = "SchoolManager";*/
 
         //Toolbar
         back = (ImageView) findViewById(R.id.arrowIncomP);
@@ -72,8 +68,6 @@ public class IncomingReportsMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-
-
             }
         });
 
@@ -81,8 +75,6 @@ public class IncomingReportsMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-
-
             }
         });
 
@@ -100,6 +92,7 @@ public class IncomingReportsMain extends AppCompatActivity {
             public void OnItemClick(View v, int pos) {
                 Report lr = reportList.get(pos);
                 String status = lr.getStatus();
+                //If the user type is School manager and the status of the report not confirm he should confirm the receiving first
                 if(userType.equals("Schoolmanager") && status.equals("Not confirm")){
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(IncomingReportsMain.this);
                     // Setting Alert Dialog Title
@@ -110,14 +103,14 @@ public class IncomingReportsMain extends AppCompatActivity {
                     alertDialogBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
-                            // school manager and confirm
+                            //confirm
                             reportInfo(lr);
                         }
                     });
-                    // not confirm
+                    //not confirm
                     alertDialogBuilder.setNegativeButton("Cancel", null).show();
 
-                } else {
+                } else { //Parent or School manager and confirm
                         reportInfo(lr);
                 }
             }
@@ -128,8 +121,7 @@ public class IncomingReportsMain extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-
-
+        //To get the list of the incoming report
         reportRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -158,6 +150,7 @@ public class IncomingReportsMain extends AppCompatActivity {
 
 
 
+        //To write if their no report
         reportsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -184,6 +177,7 @@ public class IncomingReportsMain extends AppCompatActivity {
 
     }
 
+    //For sending the information of the report to the report info
     public void reportInfo(Report report){
         String status = report.getStatus();
         String report_id = report.getReport_id();
