@@ -1,64 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Add_NewChild">
+        //here
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:background="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/arrowIncomP"
+            android:layout_width="49dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:contentDescription="@string/left_arrow"
+            app:layout_constraintStart_toStartOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/abc_vector_test"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit child "
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="21dp" />
+        <ImageView
+            android:id="@+id/homeIncomP5"
+            android:layout_width="49dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:contentDescription="@string/home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/home"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="407dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="20dp"
+            android:background="#D5D3D5"
+            android:fontFamily="serif"
+            android:foregroundGravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="Child Information"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#04406E"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            tools:ignore="RtlCompat" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".Edit_Child_Profile">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_centerInParent="true"
-                android:background="@color/blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <ImageView
-                android:id="@+id/arrowIncomP"
-                android:layout_width="49dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:contentDescription="@string/left_arrow"
-                app:layout_constraintStart_toStartOf="@+id/toolbar"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/abc_vector_test"
-                tools:ignore="MissingConstraints" />
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="4dp"
+            tools:layout_editor_absoluteY="0dp">
 
             <TextView
-                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Profile"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteY="21dp" />
-            <ImageView
-                android:id="@+id/homeIncomP5"
-                android:layout_width="49dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:contentDescription="@string/home"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/home"
-                tools:ignore="MissingConstraints" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="150dp"
+                android:text="First name"
+                android:textColor="#04406E"
+                android:textSize="20dp" />
 
+            <EditText
+                android:id="@+id/firstnameCH1"
+                android:layout_width="327dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Last name"
+                android:textColor="#04406E"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/lastnameCH1"
+                android:layout_width="327dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:text="DateOfBirth"
+                        android:textColor="#04406E"
+                        android:textSize="20dp" />
+
+                    <Button
+                        android:id="@+id/date_picker1"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="JAN/01/2020"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        style="?android:spinnerStyle"
+                        android:onClick="openDatePicker"
+                        />
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="238dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="110dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Gender"
+                        android:textColor="#04406E"
+                        android:textSize="20dp" />
+
+                    <Spinner
+                        android:id="@+id/gender1"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="90dp"
+                        android:layout_marginTop="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="183dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="1dp"
+                        android:text="City"
+                        android:textColor="#04406E"
+                        android:textSize="20dp" />
+
+                    <Spinner
+                        android:id="@+id/City1"
+                        android:layout_width="154dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="206dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="14dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Grade"
+                        android:textColor="#04406E"
+                        android:textSize="20dp" />
+
+                    <Spinner
+                        android:id="@+id/Grade1"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="85dp"
+                        android:layout_marginTop="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="15dp"
+                    android:text="School"
+                    android:textColor="#04406E"
+                    android:textSize="20dp" />
+
+                <Spinner
+                    android:id="@+id/School1"
+                    android:layout_width="375dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView5"
                 android:layout_width="407dp"
                 android:layout_height="37dp"
                 android:layout_marginTop="20dp"
@@ -66,221 +259,76 @@
                 android:fontFamily="serif"
                 android:foregroundGravity="center_vertical"
                 android:gravity="center_vertical"
-                android:text="Child Information"
+                android:text="Social media account credentials"
                 android:textAlignment="center"
-                android:textAllCaps="false"
                 android:textColor="#04406E"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 tools:ignore="RtlCompat" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="4dp"
-                tools:layout_editor_absoluteY="0dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Application"
+                android:textColor="#04406E"
+                android:textSize="20dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="150dp"
-                    android:text="First name"
-                    android:textColor="#04406E"
-                    android:textSize="20dp" />
+            <Spinner
+                android:id="@+id/Applications1"
+                android:layout_width="350dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp" />
 
-                <EditText
-                    android:id="@+id/firstnameCH"
-                    android:layout_width="327dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Username"
+                android:textColor="#04406E"
+                android:textSize="20dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Last name"
-                    android:textColor="#04406E"
-                    android:textSize="20dp" />
+            <EditText
+                android:id="@+id/username1"
+                android:layout_width="327dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="20dp" />
 
-                <EditText
-                    android:id="@+id/lastnameCH"
-                    android:layout_width="327dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Password"
+                android:textColor="#04406E"
+                android:textSize="20dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="95dp"
-                    android:orientation="horizontal">
+            <EditText
+                android:id="@+id/password1"
+                android:layout_width="327dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="20dp"
+                android:inputType="numberPassword"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginTop="15dp"
-                        android:text="DOB"
-                        android:textColor="#04406E"
-                        android:textSize="20dp" />
+            <Button
+                android:id="@+id/add11"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="45dp"
+                android:text="Submit"
+                android:textSize="20dp"
+                android:textColor="@color/blue"
+                app:backgroundTint="@android:color/holo_orange_dark"
+                android:fontFamily="sans-serif-medium"/>
 
-                    <Spinner
-                        android:id="@+id/editTextDate"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="-60dp"
-                        android:layout_marginTop="55dp" />
+        </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="150dp"
-                        android:layout_marginTop="15dp"
-                        android:text="Gender"
-                        android:textColor="#04406E"
-                        android:textSize="20dp" />
-
-                    <Spinner
-                        android:id="@+id/gender"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="-90dp"
-                        android:layout_marginTop="55dp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="City"
-                    android:textColor="#04406E"
-                    android:textSize="20dp" />
-
-                <Spinner
-                    android:id="@+id/City"
-                    android:layout_width="350dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="95dp"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginTop="15dp"
-                        android:text="School"
-                        android:textColor="#04406E"
-                        android:textSize="20dp" />
-
-                    <Spinner
-                        android:id="@+id/School"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="-70dp"
-                        android:layout_marginTop="55dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="80dp"
-                        android:layout_marginTop="15dp"
-                        android:text="Grade"
-                        android:textColor="#04406E"
-                        android:textSize="20dp" />
-
-                    <Spinner
-                        android:id="@+id/Grade"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="-80dp"
-                        android:layout_marginTop="55dp" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="407dp"
-                    android:layout_height="37dp"
-                    android:layout_marginTop="20dp"
-                    android:background="#D5D3D5"
-                    android:fontFamily="serif"
-                    android:foregroundGravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:text="Social media account credentials"
-                    android:textAlignment="center"
-                    android:textColor="#04406E"
-                    android:textSize="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                    tools:ignore="RtlCompat" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Application"
-                    android:textColor="#04406E"
-                    android:textSize="20dp" />
-
-                <Spinner
-                    android:id="@+id/Applications"
-                    android:layout_width="350dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Username"
-                    android:textColor="#04406E"
-                    android:textSize="20dp" />
-
-                <EditText
-                    android:id="@+id/username"
-                    android:layout_width="327dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="20dp" />
-
-                <Button
-                    android:id="@+id/button12"
-                    android:layout_width="208dp"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="100dp"
-                    android:layout_marginRight="120dp"
-                    android:text="Change Password"
-                    app:backgroundTint="@android:color/darker_gray" />
-
-                <Button
-                    android:id="@+id/add"
-                    android:layout_width="150dp"
-                    android:layout_height="51dp"
-                    android:layout_marginLeft="130dp"
-                    android:layout_marginTop="50dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Submit"
-                    android:textColor="@color/blue"
-                    android:textSize="20dp"
-                    app:backgroundTint="@android:color/holo_orange_dark" />
-
-
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

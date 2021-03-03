@@ -281,6 +281,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
         });
 
 
+
         //City dropdown menu
         citySpinner = (Spinner)findViewById(R.id.City1);
         city = new String[] {"Select","Riyadh", "Jeddah", "Dammam"};
