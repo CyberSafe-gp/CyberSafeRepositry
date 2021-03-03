@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -37,21 +38,33 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_register);
+
+        //Toolbar
+        ImageView back = (ImageView) findViewById(R.id.arrowIncomP);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
+
         mAuth = FirebaseAuth.getInstance();
         firstname = (EditText) findViewById((R.id.firstname));
         lastname = (EditText) findViewById((R.id.lastname));
         email = (EditText) findViewById((R.id.email));
         password = (EditText) findViewById((R.id.password));
-        spinner1 = findViewById(R.id.spinner1);
+       /* spinner1 = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Children, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(adapter);
+        spinner1.setAdapter(adapter);*/
 
         /////mmmmmm
         Next = findViewById(R.id.Next);
         Next.setOnClickListener((View.OnClickListener) this);
 
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 number = parent.getItemAtPosition(position).toString();
@@ -61,7 +74,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
     }
     public void onClick(View v){
@@ -77,7 +90,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
         final String lastname1= lastname.getText().toString().trim();
         final String email1= email.getText().toString().trim();
         final String password1= password.getText().toString().trim();
-        final String number1= number.trim();
+        //final String number1= number.trim();
         
         System.out.print(firstname1);
 
@@ -131,7 +144,9 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
                                                        public void onComplete(@NonNull Task<Void> task) {
                                                            if (task.isSuccessful()) {
                                                                Toast.makeText(ParentRegister.this, "Parent registered Successfully ", Toast.LENGTH_LONG).show();
-                                                               startActivity(new Intent(ParentRegister.this, ParentHome.class));
+                                                               Intent intent=new Intent(ParentRegister.this,ParentHome.class);
+                                                               intent.putExtra("userType","Parent");
+                                                               startActivity(intent);
 
                                                            }
                                                            else {

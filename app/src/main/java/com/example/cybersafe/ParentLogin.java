@@ -7,6 +7,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,18 @@ public class ParentLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_login);
+
+
+        //Toolbar
+        ImageView back = (ImageView) findViewById(R.id.arrowIncomP5);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
         userTypee=getIntent().getStringExtra("userType");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference("SchoolManagers");
@@ -97,21 +110,22 @@ public class ParentLogin extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if(task.isSuccessful())
-                    /*if (userTypee.equals("Parent")){
-                        Intent intent = new Intent(ParentLogin.this,ParentHome.class);
-                         intent.putExtra("userType",userTypee);
-                   startActivity(intent);
+                if(task.isSuccessful()) {
+                    if (userTypee.equals("Parent")) {
+                        Intent intent = new Intent(ParentLogin.this, ParentHome.class);
+                        intent.putExtra("userType", userTypee);
+                        startActivity(intent);
+                    } else{
+                        Intent intent = new Intent(ParentLogin.this, SchoolHome.class);
 
-                /*else
-                Intent intent = new Intent(ParentLogin.this,SchoolHome.class)
-
-               ntent.putExtra("userType",userTypee);
-                startActivity(inent);
-                 */
-                    startActivity(new Intent(ParentLogin.this,ParentHome.class));
+                        intent.putExtra("userType", userTypee);
+                        startActivity(intent);
+                }
 
 
+
+
+                }
                 else
                     Toast.makeText(ParentLogin.this, "failed to login", Toast.LENGTH_LONG).show();
                 }

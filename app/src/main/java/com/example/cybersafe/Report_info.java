@@ -33,17 +33,6 @@ public class Report_info extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_info);
 
-/*        Intent iin= getIntent();
-        Bundle bun = iin.getExtras();
-
-        if(bun!=null)
-        {
-            Comment_id =(String) bun.get("Comment_id");
-            Report_id =(String) bun.get("Report_id");
-            sender_id =(String) bun.get("sender_id");
-            receiver_id =(String) bun.get("receiver_id");
-            Status =(String) bun.get("Status");
-        }*/
 
         Comment_id =getIntent().getStringExtra("Comment_id");
         Report_id =getIntent().getStringExtra("Report_id");
@@ -53,8 +42,8 @@ public class Report_info extends AppCompatActivity {
         userType =getIntent().getStringExtra("userType");
 
         //Toolbar
-        back = (ImageView) findViewById(R.id.arrowFlag);
-        home = (ImageView) findViewById(R.id.homeFlag);
+        back = (ImageView) findViewById(R.id.arrowIncomP);
+        home = (ImageView) findViewById(R.id.homeIncomP);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,15 +67,6 @@ public class Report_info extends AppCompatActivity {
             }
         });
 
-
-
-        //System.out.println("Report receiver_id"+receiver_id);
-
-       /* intent.putExtra("Comment_id",childId);
-        intent.putExtra("Report_id",childId);
-        intent.putExtra("sender_id",childId);
-        intent.putExtra("receiver_id",childId);
-        intent.putExtra("Status",childId);*/
 
         // get the comment to retrieve the info
         commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
@@ -149,6 +129,7 @@ public class Report_info extends AppCompatActivity {
                         application = sma.getSocialMediaPlatform();
                         childAccount=sma.getAccount();
                         childID= sma.getChild_id();
+                        System.out.println("childID "+childID);
 
                         //Write the platform and child account
                         TextView WriteApplication = (TextView)findViewById(R.id.WriteApplication);
@@ -157,36 +138,50 @@ public class Report_info extends AppCompatActivity {
                         TextView WriteChildAccount = (TextView)findViewById(R.id.WriteChildAccount);
                         WriteChildAccount.setText(childAccount);
 
-                    break;}
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                        // get the smAccountCredentials to retrieve the info
+                        childRef = FirebaseDatabase.getInstance().getReference().child("Children");
+                        childRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
+                                for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                    Child ch = messageSnapshot.getValue(Child.class);
+                                    //The comment not bully and same as the child email
+                                    System.out.println("ch.getChild_id() "+ch.getChild_id());
+                                    if (ch.getChild_id().equals(childID)){
+                                        childName = ch.getFirstName() +" "+ ch.getLastName();
+                                        System.out.println("childName "+childName);
+                                        System.out.println("ch.getFirstName() "+ch.getFirstName());
+                                        System.out.println("ch.getLastName() "+ch.getLastName());
+                                        TextView WriteChildName = (TextView)findViewById(R.id.WriteChildName);
+                                        WriteChildName.setText(childName);
 
+                                        break;}
+                                }
+                            }
 
-        // get the smAccountCredentials to retrieve the info
-        childRef = FirebaseDatabase.getInstance().getReference().child("Children");
-        childRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
+                            }
+                        });
 
-                for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-                    Child ch = messageSnapshot.getValue(Child.class);
-                    //The comment not bully and same as the child email
-                    if (ch.getChild_id().equals(childID)){
-                        childName = ch.getFirstName() +" "+ ch.getLastName();
-                        TextView WriteChildName = (TextView)findViewById(R.id.WriteChildName);
-                        WriteChildName.setText(childName);
+                        home.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                Intent mIntent = new Intent(Report_info.this, ChildHome.class);
+                                mIntent.putExtra("userType", userType);
+                                mIntent.putExtra("Child_id", childID);
+                                startActivity(mIntent);
+
+                            }
+                        });
+
 
                         break;}
+
                 }
             }
 
@@ -196,17 +191,8 @@ public class Report_info extends AppCompatActivity {
             }
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent mIntent = new Intent(Report_info.this, ChildHome.class);
-                mIntent.putExtra("userType", userType);
-                mIntent.putExtra("Child_id", childID);
-                startActivity(mIntent);
 
-            }
-        });
 
 
 

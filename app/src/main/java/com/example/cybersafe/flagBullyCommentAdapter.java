@@ -63,18 +63,7 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
         this.listener = listener;
 
     }
-/*    //!!!!
-    public void setContext(Context context) {
-        this.context = context;
-    }
-    //!!!!
-    public void setCommentsList(List<Comment> commentsList) {
-        this.commentsList = commentsList;
-    }
-    //!!!!
-    public void setListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }*/
+
 
 
     @NonNull
@@ -82,16 +71,6 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
     public flagBullyCommentAdapter.CommentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.flag_item, parent, false);
         CommentHolder holder = new CommentHolder(view);
-
-        //final flagBullyComment.CommentHolder holder = new flagBullyComment.CommentHolder(item);
-        // هل اشيله ؟؟؟
-
-     /*   view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.OnItemClick(view, holder.getAdapterPosition());
-            }
-        });*/
 
         return holder;
     }
@@ -116,12 +95,6 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
         holder.BullyComment.setText(commentsList.get(position).getBody());
         holder.BullyName.setText(commentsList.get(position).getSender());
 
-        //if(commentsList.get(position).getSMAccountCredentials_email().trim().equals(userEmail))////////////////
-
-        // مدري
-        /*holder.BullyName.setVisibility(View.INVISIBLE);
-        holder.BullyComment.setVisibility(View.INVISIBLE);
-        holder.flag.setVisibility(View.INVISIBLE);*/
 
 
 
@@ -189,12 +162,7 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
             }
         });
 
-/*        user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            userEmail = user.getEmail().trim();
-        } else {
-            // No user is signed in
-        }*/
+
 
 
     }

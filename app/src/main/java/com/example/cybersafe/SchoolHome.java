@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cybersafe.Objects.School;
 import com.example.cybersafe.Objects.SchoolManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +37,19 @@ public class SchoolHome extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_home);
-        userType1=getIntent().getStringExtra("userType");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            userID = user.getUid();
+            userType1=getIntent().getStringExtra("userType");
+
+        } else {
+            System.out.println("userID out");
+            // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
+            Intent in = new Intent(SchoolHome.this, ParentLogin.class);
+            startActivity(in);
+        }
+
+
 
         btn11 =  findViewById(R.id.btn1);
         //edit
@@ -69,7 +82,7 @@ public class SchoolHome extends AppCompatActivity {
 
         /*fauth=FirebaseAuth.getInstance();
         userID=fauth.getCurrentUser().getUid();*/
-        userID="-MTz4FV6I8eik51jwoJ1";
+        //userID="-MTz4FV6I8eik51jwoJ1";
 
         schoolManagerRef = FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
         schoolManagerRef.addValueEventListener(new ValueEventListener() {

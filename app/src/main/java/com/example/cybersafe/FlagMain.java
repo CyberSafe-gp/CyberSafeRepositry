@@ -70,10 +70,6 @@ public class FlagMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                /*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
-                mIntent.putExtra("Child_id", childID);
-                startActivity(mIntent);*/
-
             }
         });
 
@@ -81,9 +77,6 @@ public class FlagMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-               /* Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
-                mIntent.putExtra("Child_id", childID);
-                startActivity(mIntent);*/
 
             }
         });

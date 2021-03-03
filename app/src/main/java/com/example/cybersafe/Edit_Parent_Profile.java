@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +47,26 @@ public class Edit_Parent_Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit__parent__profile);
+
+        //Toolbar
+        ImageView back = (ImageView) findViewById(R.id.arrowIncomP6);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
+        ImageView home = (ImageView) findViewById(R.id.homeIncomP5);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
         editTextfName = findViewById(R.id.firstNameB);
         editTextlName = findViewById(R.id.lastNameB);
         editTextEmail = findViewById(R.id.EditEmailAddressB);

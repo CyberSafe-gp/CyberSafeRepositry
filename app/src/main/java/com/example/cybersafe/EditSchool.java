@@ -25,7 +25,8 @@ public class EditSchool extends AppCompatActivity {
     private String userId,userEmail,Fname,lName,Sid,pass,userType1;
     private FirebaseUser SchoolUser;
     private Button btEdit,btreset;
-    private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Parents");
+    String userID;
+    private DatabaseReference SMRef =  FirebaseDatabase.getInstance().getReference("SchoolManagers");
     private EditText editTextfName,editTextlName,editTextEmail;
 
 
@@ -33,6 +34,16 @@ public class EditSchool extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_school);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null)
+            userID = user.getUid();
+         else {
+            System.out.println("userID out");
+            // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
+            Intent in = new Intent(EditSchool.this, ParentLogin.class);
+            startActivity(in);
+        }
 
             editTextfName = findViewById(R.id.firstname2);
             editTextlName = findViewById(R.id.lastname2);
@@ -50,16 +61,15 @@ public class EditSchool extends AppCompatActivity {
 
          //
 
-         SchoolUser = FirebaseAuth.getInstance().getCurrentUser();
-            System.out.println("############################################");
-            System.out.println(SchoolUser.getEmail());
 
-            g.addValueEventListener(new ValueEventListener() {
+        SMRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        com.example.cybersafe.Objects.SchoolManager us = postSnapshot.getValue(SchoolManager.class);
-                        if (us.getSchoolManager_id().equals(SchoolUser.getUid())) {
+                        SchoolManager us = postSnapshot.getValue(SchoolManager.class);
+                        System.out.println("us.getSchoolManager_id() "+us.getSchoolManager_id());
+                        System.out.println("us.userID() "+userID);
+                        if (us.getSchoolManager_id().equals(userID)) {
                             userEmail = us.getEmail();
                             userId = us.getSchoolManager_id();
                             Fname=us.getFirstName();

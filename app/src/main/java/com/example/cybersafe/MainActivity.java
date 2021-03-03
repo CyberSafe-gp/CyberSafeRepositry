@@ -25,13 +25,13 @@ public class MainActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interface);
 
-        mAuth.createUserWithEmailAndPassword("ses@gmail.com", "password").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword("latifa@gmail.com", "password").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser userID = mAuth.getCurrentUser();
-                            Parent user = new Parent("shahad","ali","ses@gmail.com",userID.getUid());
+                            Parent user = new Parent("Latifa","Mohammad","latifa@gmail.com",userID.getUid());
                             mDbRef.child(userID.getUid()).setValue(user);
                             Log.d(TAG, "createUserWithEmail:success");
 

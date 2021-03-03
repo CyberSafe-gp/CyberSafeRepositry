@@ -10,13 +10,13 @@
         android:id="@+id/button14"
         android:layout_width="158dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="116dp"
+        android:layout_marginBottom="80dp"
         android:text="edit"
         android:textColor="@color/blue"
         app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintHorizontal_bias="0.905"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button4"
         app:layout_constraintVertical_bias="1.0" />
@@ -25,7 +25,7 @@
         android:id="@+id/button5"
         android:layout_width="158dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="116dp"
+        android:layout_marginBottom="80dp"
         android:text="log-out"
         android:textColor="@color/blue"
         app:backgroundTint="@android:color/holo_orange_dark"
@@ -46,29 +46,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/arrowIncomP2"
-        android:layout_width="49dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:contentDescription="@string/left_arrow"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/homeIncomP2"
-        android:layout_width="49dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:contentDescription="@string/home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/home"
-        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -83,12 +60,12 @@
         app:layout_constraintHorizontal_bias="0.134"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="0.041" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerPH"
-        android:layout_width="373dp"
-        android:layout_height="119dp"
+        android:layout_width="360dp"
+        android:layout_height="252dp"
         android:layout_marginTop="4dp"
         android:padding="5dp"
         android:scrollbars="vertical"
@@ -115,9 +92,9 @@
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="341dp"
+        android:layout_width="360dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="176dp"
+        android:layout_marginBottom="140dp"
         android:text="Add detection keyword"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -127,9 +104,9 @@
 
     <Button
         android:id="@+id/Viewrep"
-        android:layout_width="341dp"
+        android:layout_width="360dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="292dp"
+        android:layout_marginBottom="240dp"
         android:text="View reported bullying list"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -138,9 +115,9 @@
 
     <Button
         android:id="@+id/incomingrep"
-        android:layout_width="341dp"
+        android:layout_width="360dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="348dp"
+        android:layout_marginBottom="290dp"
         android:text="Incoming reports"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -150,9 +127,9 @@
 
     <Button
         android:id="@+id/button23"
-        android:layout_width="341dp"
+        android:layout_width="360dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="236dp"
+        android:layout_marginBottom="190dp"
         android:text="Add a new child"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"

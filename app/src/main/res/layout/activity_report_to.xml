@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Bullycomments2">
+    tools:context=".BullyCommentsAdapter">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="17dp"
         android:text=""
         app:layout_constraintStart_toStartOf="@+id/Rectangle"
         app:layout_constraintTop_toBottomOf="@+id/Application" />
@@ -156,11 +156,11 @@
         android:id="@+id/WriteChildAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="204dp"
+        android:layout_marginLeft="204dp"
         android:layout_marginTop="17dp"
-        android:layout_marginEnd="135dp"
-        android:layout_marginRight="140dp"
         android:text=""
-        app:layout_constraintEnd_toEndOf="@+id/Rectangle"
+        app:layout_constraintStart_toStartOf="@+id/Rectangle"
         app:layout_constraintTop_toBottomOf="@+id/ChildAccount" />
 
     <TextView
@@ -174,18 +174,17 @@
         app:layout_constraintEnd_toEndOf="@+id/Rectangle"
         app:layout_constraintTop_toBottomOf="@+id/WriteChildAccount" />
 
+
     <TextView
         android:id="@+id/WriteBullyAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="204dp"
+        android:layout_marginLeft="204dp"
         android:layout_marginTop="17dp"
-        android:layout_marginEnd="135dp"
-        android:layout_marginRight="140dp"
         android:text=""
-        app:layout_constraintEnd_toEndOf="@+id/Rectangle"
+        app:layout_constraintStart_toStartOf="@+id/Rectangle"
         app:layout_constraintTop_toBottomOf="@+id/BullyAccount" />
-
-
 
     <Button
         android:id="@+id/button2"

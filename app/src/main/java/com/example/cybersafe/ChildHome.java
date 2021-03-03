@@ -5,14 +5,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cybersafe.Objects.SMAccountCredentials;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ChildHome extends AppCompatActivity {
      public Button btn1,btn4,btn5,btn6;
@@ -39,6 +46,17 @@ public class ChildHome extends AppCompatActivity {
             startActivity(in);
         }
 
+        //Toolbar
+        ImageView back = (ImageView) findViewById(R.id.arrowIncomP3);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
+
 
 
 
@@ -64,9 +82,9 @@ public class ChildHome extends AppCompatActivity {
         //delete
 
         btn1.setOnClickListener(v -> {
-            Intent intent =new Intent(ChildHome.this,Bullycomments.class);
+            Intent intent =new Intent(ChildHome.this, BullyCommentMain.class);
+            intent.putExtra("Child_id",ChildID);
             startActivity(intent);
-
         });
 
 
@@ -103,8 +121,31 @@ public class ChildHome extends AppCompatActivity {
                 alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        DatabaseReference mFirebaseInstance = FirebaseDatabase.getInstance().getReference().child("Children");;
-                        mFirebaseInstance.child(ChildID).removeValue();
+                        DatabaseReference mFirebaseInstance = FirebaseDatabase.getInstance().getReference().child("Children");
+                        DatabaseReference mFirebaseInstance2 = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
+                        mFirebaseInstance2.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot childrf : snapshot.getChildren()) {
+                                    SMAccountCredentials findSMA = childrf.getValue(SMAccountCredentials.class);
+                                    if(findSMA.getChild_id().equals(ChildID)){
+                                        Toast.makeText(ChildHome.this, "Deleted successfully", Toast.LENGTH_LONG).show();
+                                        String SMAId=findSMA.getId();
+                                        mFirebaseInstance2.child(SMAId).removeValue();
+                                        mFirebaseInstance.child(ChildID).removeValue();
+                                        finish();
+                                    }
+
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
                 });
                 // not confirm

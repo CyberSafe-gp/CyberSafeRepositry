@@ -54,6 +54,7 @@ public class IncomingReportsMain extends AppCompatActivity {
 
             userID = user.getUid();
             userType = getIntent().getStringExtra("userType");
+            System.out.println("userType "+userType);
         } else {
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
             Intent in = new Intent(IncomingReportsMain.this, ParentLogin.class);
@@ -71,9 +72,7 @@ public class IncomingReportsMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                /*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
-                mIntent.putExtra("Child_id", childID);
-                startActivity(mIntent);*/
+
 
             }
         });
@@ -82,9 +81,7 @@ public class IncomingReportsMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-               /* Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
-                mIntent.putExtra("Child_id", childID);
-                startActivity(mIntent);*/
+
 
             }
         });
@@ -103,10 +100,7 @@ public class IncomingReportsMain extends AppCompatActivity {
             public void OnItemClick(View v, int pos) {
                 Report lr = reportList.get(pos);
                 String status = lr.getStatus();
-
-                if(userType.equals("SchoolManager") && status.equals("Not confirm")){
-
-
+                if(userType.equals("Schoolmanager") && status.equals("Not confirm")){
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(IncomingReportsMain.this);
                     // Setting Alert Dialog Title
                     alertDialogBuilder.setTitle("View report");
@@ -117,54 +111,15 @@ public class IncomingReportsMain extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
                             // school manager and confirm
-
-                            Report lr = reportList.get(pos);
-                            String report_id = lr.getReport_id();
-                            reportRef.child(report_id).child("status").setValue("Confirm");
-
-
-                            String com_id = lr.getComment_id();
-                            String rep_id = lr.getReport_id();
-                            String sender_id = lr.getSender_id();
-                            String receiver_id = lr.getReceiver_id();
-                            String sta = lr.getStatus();
-
-
-                            Intent in = new Intent(IncomingReportsMain.this, Report_info.class);
-                            in.putExtra("Comment_id", com_id);
-                            in.putExtra("Report_id", rep_id);
-                            in.putExtra("sender_id", sender_id);
-                            in.putExtra("receiver_id", receiver_id);
-                            in.putExtra("Status", sta);
-                            in.putExtra("userType", userType);
-                            startActivity(in);
-
-
+                            reportInfo(lr);
                         }
                     });
                     // not confirm
                     alertDialogBuilder.setNegativeButton("Cancel", null).show();
 
                 } else {
-                    //userType = Parent
-
-                    String com_id = lr.getComment_id();
-                    String rep_id = lr.getReport_id();
-                    String sender_id = lr.getSender_id();
-                    String receiver_id = lr.getReceiver_id();
-                    String sta = lr.getStatus();
-
-
-                    Intent in = new Intent(IncomingReportsMain.this, Report_info.class);
-                    in.putExtra("Comment_id", com_id);
-                    in.putExtra("Report_id", rep_id);
-                    in.putExtra("sender_id", sender_id);
-                    in.putExtra("receiver_id", receiver_id);
-                    in.putExtra("Status", sta);
-                    in.putExtra("userType", userType);
-                    startActivity(in);
+                        reportInfo(lr);
                 }
-
             }
         });
 
@@ -225,6 +180,32 @@ public class IncomingReportsMain extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    public void reportInfo(Report report){
+        String status = report.getStatus();
+        String report_id = report.getReport_id();
+        if (status.equals("Not confirm"))
+        reportRef.child(report_id).child("status").setValue("Confirm");
+
+
+        String com_id = report.getComment_id();
+        String rep_id = report.getReport_id();
+        String sender_id = report.getSender_id();
+        String receiver_id = report.getReceiver_id();
+        String sta = report.getStatus();
+
+
+        Intent in = new Intent(IncomingReportsMain.this, Report_info.class);
+        in.putExtra("Comment_id", com_id);
+        in.putExtra("Report_id", rep_id);
+        in.putExtra("sender_id", sender_id);
+        in.putExtra("receiver_id", receiver_id);
+        in.putExtra("Status", sta);
+        in.putExtra("userType", userType);
+        startActivity(in);
 
 
     }

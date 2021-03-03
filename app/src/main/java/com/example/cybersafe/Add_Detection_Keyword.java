@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Keyword;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +26,7 @@ import java.util.ArrayList;
 
 public class Add_Detection_Keyword extends AppCompatActivity {
      public Button dK;
-    private String userID;
+    private String userID, userType;
     DatabaseReference keywordsRef, keywordRef;
     RecyclerView recyclerView;
     ArrayList<Keyword> keywordArrayList= new ArrayList();
@@ -34,18 +37,39 @@ public class Add_Detection_Keyword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__detection__keyword);
 
-   /*     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             userID = user.getUid();
+            userType = getIntent().getStringExtra("userType");
 
         } else {
             System.out.println("userID out");
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
             Intent in = new Intent(Add_Detection_Keyword.this, ParentLogin.class);
             startActivity(in);
-        }*/
+        }
 
-        userID="oN6Md1uGmBaWi6lyKBiTexo7x263oN6Md1uGmBaWi6lyKBiTexo7x263";
+        //Toolbar
+        ImageView back = (ImageView) findViewById(R.id.arrowIncomP2);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
+        ImageView home = (ImageView) findViewById(R.id.homeIncomP2);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
+
+        //userID="oN6Md1uGmBaWi6lyKBiTexo7x263oN6Md1uGmBaWi6lyKBiTexo7x263";
 
         TextView textView = (TextView) findViewById(R.id.noKeyword);
 
@@ -122,6 +146,7 @@ public class Add_Detection_Keyword extends AppCompatActivity {
             private void startActivities() {
 
                 Intent inn = new Intent(Add_Detection_Keyword.this,Add_Detection_Keyword2.class);
+                inn.putExtra("userType",userType);
                 startActivity(inn);
             }
         });

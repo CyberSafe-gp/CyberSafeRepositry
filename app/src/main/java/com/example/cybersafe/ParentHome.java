@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Child;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,14 +39,23 @@ public class ParentHome extends AppCompatActivity {
 
          super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_home);
-        userType1=getIntent().getStringExtra("userType");
 
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+
+            userID = user.getUid();
+            userType1 = getIntent().getStringExtra("userType");
+        } else {
+
+            Intent in = new Intent(ParentHome.this, ParentLogin.class);
+            startActivity(in);
+        }
 
 
 
         //buttons
-        btn1= findViewById(R.id.button3);
+        btn1= findViewById(R.id.button23);
         //add new child
         btn2=findViewById(R.id.button4);
         //detection keyword
@@ -73,6 +83,7 @@ public class ParentHome extends AppCompatActivity {
 
         btn2.setOnClickListener(v -> {
             Intent intent = new Intent(ParentHome.this,Add_Detection_Keyword.class);
+            intent.putExtra("userType",userType1);
 
             startActivity(intent);
         });
@@ -81,7 +92,7 @@ public class ParentHome extends AppCompatActivity {
         btn3.setOnClickListener(v -> {
 
 
-                Intent intent = new Intent(ParentHome.this, EditSchool.class);
+                Intent intent = new Intent(ParentHome.this, Edit_Parent_Profile.class);
             intent.putExtra("userType",userType1);
                 startActivity(intent);
             });
@@ -148,7 +159,7 @@ public class ParentHome extends AppCompatActivity {
 
 
 
-        userID="rTTwi9dfa9W425lPa2A6MiU93yz1";// بدال هذا قيت اوث عشان الاي دي حقت البارنت
+        //userID="rTTwi9dfa9W425lPa2A6MiU93yz1";// بدال هذا قيت اوث عشان الاي دي حقت البارنت
         //userID="rTTwi9dfa9MiU93yz1";
 
         childRef.addValueEventListener(new ValueEventListener() {
