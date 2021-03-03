@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +84,25 @@ public class Add_NewChild extends AppCompatActivity {
 
             // No user is signed in
         }
+        //Toolbar
+        ImageView back = (ImageView) findViewById(R.id.arrowIncomP);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
+        ImageView home = (ImageView) findViewById(R.id.homeIncomP5);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
         ChildRef = FirebaseDatabase.getInstance().getReference().child("Children");
         schoolManagerRef= FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
@@ -574,10 +594,7 @@ public class Add_NewChild extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(Add_NewChild.this, "SMAccountCredentials added successfully", Toast.LENGTH_LONG).show();
-                                //             startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
-                            /*    Intent intent = new Intent();
-                                setResult(RESULT_OK, intent);
-                                finish();*/
+
                             } else {
                                 Toast.makeText(Add_NewChild.this, "SMAccountCredentials doesn't added", Toast.LENGTH_LONG).show();
                             }
@@ -589,7 +606,8 @@ public class Add_NewChild extends AppCompatActivity {
                     // startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
                     /*Intent intent = new Intent();
                     setResult(RESULT_OK, intent);
-                    finish();*/
+                    */
+                    finish();
                 } else {
                     Toast.makeText(Add_NewChild.this, "Child doesn't added", Toast.LENGTH_LONG).show();
                 }
