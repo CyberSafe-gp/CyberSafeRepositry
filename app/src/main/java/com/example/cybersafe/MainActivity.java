@@ -1,50 +1,81 @@
 package com.example.cybersafe;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cybersafe.Objects.Parent;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import org.mozilla.javascript.Function;
+import org.mozilla.javascript.Scriptable;
+
+import java.io.InputStream;
+import java.util.Properties;
+
 
 public class MainActivity  extends AppCompatActivity {
-    public FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    FirebaseDatabase mDatabase=FirebaseDatabase.getInstance();
-    DatabaseReference mDbRef= mDatabase.getReference("Parents");
 
-    public static final String TAG = "TAG";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_interface);
+        setContentView(R.layout.activity_main);
+        Log.d("Rhino", "onCreate: " + runScript(this));
 
-        mAuth.createUserWithEmailAndPassword("latifa@gmail.com", "password").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser userID = mAuth.getCurrentUser();
-                            Parent user = new Parent("Latifa","Mohammad","latifa@gmail.com",userID.getUid());
-                            mDbRef.child(userID.getUid()).setValue(user);
-                            Log.d(TAG, "createUserWithEmail:success");
+    }
 
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+    public static String runScript(Context androidContextObject) {
+        // Get the JavaScript in previous section
+        try {
 
-                        }
+            Resources resources = androidContextObject.getResources();
+            InputStream rawResource = resources.openRawResource(R.raw.sdk);
 
-                        // ...
-                    }
-                });
 
+            Properties properties = new Properties();
+            properties.load(rawResource);
+
+            String source = properties.getProperty("use strict");
+            String functionName = "window.TikApi";
+            Object[] functionParams = new Object[]{};
+            // Every Rhino VM begins with the enter()
+            // This Context is not Android's Context
+            org.mozilla.javascript.Context rhino = org.mozilla.javascript.Context.enter();
+
+            // Turn off optimization to make Rhino Android compatible
+            rhino.setOptimizationLevel(-1);
+
+            Scriptable scope = rhino.initStandardObjects();
+
+            // This line set the javaContext variable in JavaScript
+            //ScriptableObject.putProperty(scope, "javaContext", org.mozilla.javascript.Context.javaToJS(androidContextObject, scope));
+
+            // Note the forth argument is 1, which means the JavaScript source has
+            // been compressed to only one line using something like YUI
+            rhino.evaluateString(scope, source, "JavaScript", 1, null);
+
+            // We get the hello function defined in JavaScript
+            Object obj = scope.get(functionName, scope);
+
+            if (obj instanceof Function) {
+                Function function = (Function) obj;
+                // Call the hello function with params
+                Object result = function.call(rhino, scope, scope, functionParams);
+                // After the hello function is invoked, you will see logcat output
+
+                // Finally we want to print the result of hello function
+                String response = org.mozilla.javascript.Context.toString(result);
+                return response;
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            // We must exit the Rhino VM
+            org.mozilla.javascript.Context.exit();
+        }
+
+        return null;
     }
 }
