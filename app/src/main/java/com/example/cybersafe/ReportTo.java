@@ -62,6 +62,7 @@ public class ReportTo extends AppCompatActivity {
 
             }
         });
+
         childRef.child(ChildID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

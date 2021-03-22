@@ -17,42 +17,28 @@
         android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+<!--        app:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
+       >
 
-    <ImageView
-        android:id="@+id/arrowFlag"
-        android:layout_width="49dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:contentDescription="@string/left_arrow"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test"
-        tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/homeFlag"
-        android:layout_width="49dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:contentDescription="@string/home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/home"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center_horizontal"
+            android:layout_weight="100"
+            android:text="Flag Bully Comment"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textAlignment="center"
+            android:textColor="@color/white"
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Flag bully comments manually "
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="21dp" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="21dp" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <!--<ListView
         android:id="@+id/FlagList"
@@ -70,7 +56,8 @@
         android:padding="5dp"
         android:scrollbars="vertical"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="NotSibling" />
 
     <TextView
         android:id="@+id/noComments"

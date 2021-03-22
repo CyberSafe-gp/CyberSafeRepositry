@@ -8,18 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cybersafe.Objects.Comment;
 import com.example.cybersafe.Objects.Report;
-import com.example.cybersafe.Objects.SchoolManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -192,7 +188,7 @@ public class IncomingReportsMain extends AppCompatActivity {
         String sta = report.getStatus();
 
 
-        Intent in = new Intent(IncomingReportsMain.this, Report_info.class);
+        Intent in = new Intent(IncomingReportsMain.this, Report_info_reported.class);
         in.putExtra("Comment_id", com_id);
         in.putExtra("Report_id", rep_id);
         in.putExtra("sender_id", sender_id);

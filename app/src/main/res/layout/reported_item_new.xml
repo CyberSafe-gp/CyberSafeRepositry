@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2019 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:minHeight="64dp"
+    android:paddingTop="20dp"
+    android:layout_margin="1dp"
+    android:elevation="5dp"
+    android:id="@+id/Incom"
+    app:theme="@style/Theme.MaterialComponents">
+
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/tiktok" />
+
+    <TextView
+        android:id="@+id/WriteChildName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/appIcon"
+        android:layout_toRightOf="@+id/appIcon"
+        android:maxLines="1"
+        android:paddingLeft="3dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
+        android:text="WriteChildName"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textColor="@color/blue"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/WriteDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/WriteChildName"
+        android:layout_marginTop="1dp"
+
+        android:maxLines="2"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:text="WriteDate"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="@color/black"
+        android:textDirection="ltr"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:textStyle="normal"
+        android:maxWidth="200dp"/>
+
+
+    <TextView
+        android:id="@+id/WriteStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="330dp"
+        android:layout_marginLeft="314dp"
+        android:layout_marginTop="35dp"
+        android:maxWidth="200dp"
+        android:text="WriteStatus"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="@color/black"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="-56dp"
+        android:layout_marginEnd="-330dp"
+        android:layout_marginRight="-349dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toStartOf="@+id/WriteStatus"
+        android:layout_toLeftOf="@+id/WriteStatus"
+        android:maxWidth="200dp"
+        android:text="."
+        android:textAppearance="?attr/textAppearanceHeadline1"
+        android:textColor="@color/black"
+        android:textStyle="normal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/WriteDate"
+        android:layout_marginTop="20dp"
+        android:id="@+id/line"
+
+        android:background="@android:color/darker_gray" />
+
+
+
+</RelativeLayout>

@@ -69,7 +69,7 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
     @NonNull
     @Override
     public flagBullyCommentAdapter.CommentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.flag_item, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.flag_item_n, parent, false);
         CommentHolder holder = new CommentHolder(view);
 
         return holder;
@@ -86,8 +86,8 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
         String id = commentsList.get(position).getComment_id();
 
         //set the body and the sender name
-        holder.BullyComment.setText(commentsList.get(position).getBody());
-        holder.BullyName.setText(commentsList.get(position).getSender());
+        holder.BullyComment.setText("\""+commentsList.get(position).getBody()+"\"");
+        holder.BullyName.setText("@"+commentsList.get(position).getSender());
 
 
         // if the user click the flag
@@ -136,7 +136,7 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
                                         // no need for report
                                         alertDialogBuilder.setNegativeButton("No", null).show();
                                     }
-                                }).setNeutralButton("No", null).show();
+                                }).setNegativeButton("No", null).show();
                             }
                         }
                     }

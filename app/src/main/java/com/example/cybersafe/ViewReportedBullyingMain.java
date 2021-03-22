@@ -2,17 +2,12 @@ package com.example.cybersafe;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.MenuItem;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -60,7 +55,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
 
 
         //Toolbar
-        back = (ImageView) findViewById(R.id.arrowVR);
+/*        back = (ImageView) findViewById(R.id.arrowVR);
         home = (ImageView) findViewById(R.id.homeVR);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +69,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             }
-        });
+        });*/
 
 
         textView = (TextView) findViewById(R.id.noReported);
@@ -96,7 +91,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
 
 
                 //Send to Report info page with the information of the report
-                Intent in = new Intent(ViewReportedBullyingMain.this, Report_info.class);
+                Intent in = new Intent(ViewReportedBullyingMain.this, Report_info_reported.class);
 
                 in.putExtra("Comment_id", com_id);
                 in.putExtra("Report_id", rep_id);

@@ -52,9 +52,10 @@ public class FlagMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flag_bully_comment);
-  //      Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        myToolbar.setTitle("AbhiAndroid");
-//        setSupportActionBar(myToolbar);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(myToolbar);
 
 
 
@@ -62,7 +63,7 @@ public class FlagMain extends AppCompatActivity {
         childID = getIntent().getStringExtra("Child_id");
         //childID="-MTz33wOa3jPoFQlixeP";
 
-        //Toolbar
+/*        //Toolbar
         back = (ImageView) findViewById(R.id.arrowFlag);
         home = (ImageView) findViewById(R.id.homeFlag);
 
@@ -79,7 +80,7 @@ public class FlagMain extends AppCompatActivity {
                 finish();
 
             }
-        });
+        });*/
 
 
         textView = (TextView) findViewById(R.id.noComments);

@@ -7,17 +7,28 @@ public class Report implements Comparable< Report > {
     private String receiver_id;
     private String comment_id;
     private String status;
+    private String date;
 
 
     public Report() {
     }
 
-    public Report(String report_id, String sender_id, String receiver_id, String comment_id, String status) {
+
+    public Report(String report_id, String sender_id, String receiver_id, String comment_id, String status, String date) {
         this.report_id = report_id;
         this.sender_id = sender_id;
         this.receiver_id = receiver_id;
         this.comment_id = comment_id;
         this.status = status;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getReport_id() {

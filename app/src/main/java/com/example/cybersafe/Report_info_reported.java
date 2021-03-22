@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,9 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
-public class Report_info extends AppCompatActivity {
+public class Report_info_reported extends AppCompatActivity {
     String Comment_id, Report_id, sender_id, Status,receiver_id, childID, userType;
     DatabaseReference commentRef, SMARef, childRef;
     String childAccount, childName, application, commentText, bullyAccount,SMAccountCredentials_id;
@@ -31,7 +28,7 @@ public class Report_info extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report_info);
+        setContentView(R.layout.report_info_reported);
 
 
         Comment_id =getIntent().getStringExtra("Comment_id");
@@ -42,6 +39,7 @@ public class Report_info extends AppCompatActivity {
         userType =getIntent().getStringExtra("userType");
 
         //Toolbar
+/*
         back = (ImageView) findViewById(R.id.arrowIncomP);
         home = (ImageView) findViewById(R.id.homeIncomP);
 
@@ -49,9 +47,11 @@ public class Report_info extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                /*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
+                */
+/*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
                 mIntent.putExtra("Child_id", childID);
-                startActivity(mIntent);*/
+                startActivity(mIntent);*//*
+
 
             }
         });
@@ -60,12 +60,13 @@ public class Report_info extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent mIntent = new Intent(Report_info.this, ChildHome.class);
+                Intent mIntent = new Intent(Report_info_reported.this, ChildHome.class);
                 mIntent.putExtra("userType", userType);
                 startActivity(mIntent);
 
             }
         });
+*/
 
 
         // get the comment to retrieve the info
@@ -171,7 +172,7 @@ public class Report_info extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
 
-                                Intent mIntent = new Intent(Report_info.this, ChildHome.class);
+                                Intent mIntent = new Intent(Report_info_reported.this, ChildHome.class);
                                 mIntent.putExtra("userType", userType);
                                 mIntent.putExtra("Child_id", childID);
                                 startActivity(mIntent);
