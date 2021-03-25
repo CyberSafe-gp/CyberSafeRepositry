@@ -91,5 +91,14 @@ dependencies {
     //
     api 'com.google.android.material:material:1.1.0-alpha06'
 
+    //BottomNavigationView delete
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:27.0.2'
+
+    //new
+    implementation 'androidx.navigation:navigation-fragment:2.3.1'
+    implementation 'androidx.navigation:navigation-ui:2.3.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
 
 }

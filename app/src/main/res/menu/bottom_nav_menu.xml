@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_incoming_report_24"
+        android:title="@string/incoming_reports" />
+    <item
+        android:id="@+id/rr"
+        android:icon="@drawable/ic_incoming_report_24"
+        android:title="@string/incoming_reports" />
+    <item
+        android:id="@+id/e"
+        android:icon="@drawable/ic_incoming_report_24"
+        android:title="@string/incoming_reports" />
+
+
+</menu>

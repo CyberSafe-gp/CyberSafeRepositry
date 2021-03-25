@@ -43,4 +43,7 @@
     <a href="https://support.tiktok.com/en/using-tiktok/followers-and-following/blocking-the-users">How to block users on TikTok</a>
         </string>
     <string name="flag_bully_comment">Flag Bully Comment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ViewReported" />
 </resources>
