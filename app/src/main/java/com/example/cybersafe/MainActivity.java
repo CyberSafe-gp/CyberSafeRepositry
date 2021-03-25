@@ -4,26 +4,45 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.mozilla.javascript.Function;
+/*import org.mozilla.javascript.Function;
 import org.mozilla.javascript.Scriptable;
-
+*/
 import java.io.InputStream;
 import java.util.Properties;
 
 
 public class MainActivity  extends AppCompatActivity {
 
+
+    WebView web;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("Rhino", "onCreate: " + runScript(this));
+        web = findViewById(R.id.webView);
+        WebSettings webSettings=web.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        web.setWebViewClient(new WebViewClient());
+        web.loadUrl("https://tikapi.io/account/authorize?client_id=c_8PGS0I4EY9&redirect_uri=https://tikapi.io/success");
 
-    }
+
+       // web.loadUrl("https://tikapi.io/account/authorize?client_id=c_8PGS0I4EY9&redirect_uri=https://tikapi.io/success");
+        /*Log.d("Rhino", "onCreate: " + runScript(this));*/
 
 
+    }}
+
+
+
+
+/*
     public static String runScript(Context androidContextObject) {
         // Get the JavaScript in previous section
         try {
@@ -78,4 +97,6 @@ public class MainActivity  extends AppCompatActivity {
 
         return null;
     }
-}
+    */
+
+
