@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:20.0.2'
     implementation 'com.onesignal:OneSignal:3.15.4'
     implementation 'com.onesignal:OneSignal:3.15.4'
-    implementation files('..\\.idea\\libraries\\js.jar')
+//    implementation files('..\\.idea\\libraries\\js.jar')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
