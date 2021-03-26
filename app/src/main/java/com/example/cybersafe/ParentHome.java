@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Child;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,14 +31,15 @@ public class ParentHome extends AppCompatActivity {
     private ParentHomeAdapter adapter;
     DatabaseReference childRef, childrenRef;
     private String userID,userType1;
-    public Button btn1,btn2,btn3,btn4,btn5,btn6;
+    public Button btn2,btn3,btn4,btn5,btn6;
+    FloatingActionButton actionButton;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-         super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_home);
 
 
@@ -53,37 +55,25 @@ public class ParentHome extends AppCompatActivity {
         }
 
 
-
         //buttons
-        btn1= findViewById(R.id.button23);
-        //add new child
-        btn2=findViewById(R.id.button4);
+
+        btn2 = findViewById(R.id.button4);
         //detection keyword
-        btn3=findViewById(R.id.button14);
+        btn3 = findViewById(R.id.button14);
         //edit
-        btn4=findViewById(R.id.button5);
+        btn4 = findViewById(R.id.button5);
         //log-out
-        btn5=findViewById(R.id.incomingrep);
+        btn5 = findViewById(R.id.incomingrep);
         //incoming rep
-        btn6=findViewById(R.id.Viewrep);
+        btn6 = findViewById(R.id.Viewrep);
         // view report
 
 
 
 
-
-
-
-        btn1.setOnClickListener(v -> {
-            Intent intent = new Intent(ParentHome.this,Add_NewChild.class);
-            startActivity(intent);
-        });
-
-
-
         btn2.setOnClickListener(v -> {
-            Intent intent = new Intent(ParentHome.this,Add_Detection_Keyword.class);
-            intent.putExtra("userType",userType1);
+            Intent intent = new Intent(ParentHome.this, Add_Detection_Keyword.class);
+            intent.putExtra("userType", userType1);
 
             startActivity(intent);
         });
@@ -92,35 +82,34 @@ public class ParentHome extends AppCompatActivity {
         btn3.setOnClickListener(v -> {
 
 
-                Intent intent = new Intent(ParentHome.this, Edit_Parent_Profile.class);
-            intent.putExtra("userType",userType1);
-                startActivity(intent);
-            });
+            Intent intent = new Intent(ParentHome.this, Edit_Parent_Profile.class);
+            intent.putExtra("userType", userType1);
+            startActivity(intent);
+        });
 
 
         //log-out
         btn4.setOnClickListener(new View.OnClickListener() {
-       @Override
-        public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-      startActivities();
-       }
+                startActivities();
+            }
 
-        private void startActivities() {
-            FirebaseAuth.getInstance().signOut();
-            finish();
-            Intent intent = new Intent(ParentHome.this,Interface.class);
-           // intent.putExtra("userType", "Parent");
-            startActivity(intent);
-       }
+            private void startActivities() {
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent intent = new Intent(ParentHome.this, Interface.class);
+                // intent.putExtra("userType", "Parent");
+                startActivity(intent);
+            }
         });
-
 
 
         btn5.setOnClickListener(v -> {
 
-            Intent intent = new Intent(ParentHome.this,IncomingReportsMain.class);
-            intent.putExtra("userType",userType1);
+            Intent intent = new Intent(ParentHome.this, IncomingReportsMain.class);
+            intent.putExtra("userType", userType1);
             startActivity(intent);
         });
 
@@ -128,7 +117,7 @@ public class ParentHome extends AppCompatActivity {
 
 
             Intent intent = new Intent(ParentHome.this, ViewReportedBullyingMain.class);
-            intent.putExtra("userType",userType1);
+            intent.putExtra("userType", userType1);
             startActivity(intent);
         });
 
@@ -146,8 +135,8 @@ public class ParentHome extends AppCompatActivity {
                 Child lr = childrenList.get(pos);
                 String Child_id = lr.getChild_id();
                 Intent in = new Intent(ParentHome.this, ChildHome.class);
-                in.putExtra("Child_id",Child_id);
-                in.putExtra("userType",userType1);
+                in.putExtra("Child_id", Child_id);
+                in.putExtra("userType", userType1);
 
                 startActivity(in);
             }
@@ -156,7 +145,6 @@ public class ParentHome extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerPH);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
 
 
         //userID="rTTwi9dfa9W425lPa2A6MiU93yz1";// بدال هذا قيت اوث عشان الاي دي حقت البارنت
@@ -171,7 +159,7 @@ public class ParentHome extends AppCompatActivity {
                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                         Child ch = messageSnapshot.getValue(Child.class);
                         //The sent report
-                        if (ch.getParent_id().equals(userID)){ //if (rep.getUser_id().equals(userID))
+                        if (ch.getParent_id().equals(userID)) { //if (rep.getUser_id().equals(userID))
                             childrenList.add(ch);
                         }
                     }
@@ -187,7 +175,6 @@ public class ParentHome extends AppCompatActivity {
 
             }
         });
-
 
 
         childrenRef.addValueEventListener(new ValueEventListener() {
@@ -212,9 +199,16 @@ public class ParentHome extends AppCompatActivity {
             }
         });
 
+        actionButton.findViewById(R.id.floating_action_button);
 
 
+         //floating_action_button for add child
+       actionButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ParentHome.this, Add_NewChild.class);
+            startActivity(intent);
+        });
+//go to the add child page
+        // Respond to FAB click
 
-    }
+    }}
 
-}
