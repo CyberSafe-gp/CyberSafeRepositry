@@ -29,7 +29,6 @@ public class ParentLogin extends AppCompatActivity {
     private EditText editTextEmail;
     private EditText editTextPassword;
     public static String LoggedIn_User_Email;
-   // private TextView forgetPass;
     public String userTypee;
 
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -50,6 +49,7 @@ public class ParentLogin extends AppCompatActivity {
         });
 
         userTypee=getIntent().getStringExtra("userType");
+        //get and store the type of user loged-in
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference("SchoolManagers");
         Auth = FirebaseAuth.getInstance();
@@ -75,7 +75,7 @@ public class ParentLogin extends AppCompatActivity {
             }
         });
     }
-
+//the log-in function and validate the input
     private void login(){
         final String Email = editTextEmail.getText().toString().trim();
          LoggedIn_User_Email = Email;

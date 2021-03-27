@@ -43,6 +43,7 @@ public class EditSchool extends AppCompatActivity {
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
             Intent in = new Intent(EditSchool.this, ParentLogin.class);
             startActivity(in);
+            //go back
         }
 
             editTextfName = findViewById(R.id.firstname2);
@@ -52,10 +53,11 @@ public class EditSchool extends AppCompatActivity {
             btEdit=(Button)findViewById(R.id.editb);
         userType1=getIntent().getStringExtra("userType");
 
-
+        //to go for the reset passowrd pag
          btreset.setOnClickListener(v -> {
             Intent intent = new Intent(EditSchool.this,resetpassword.class);
              intent.putExtra("userType",userType1);
+             //bring the type of loged-in user
             startActivity(intent);
         });
 
@@ -64,6 +66,7 @@ public class EditSchool extends AppCompatActivity {
 
         SMRef.addValueEventListener(new ValueEventListener() {
                 @Override
+                //bringing all the current user information in the data base and view it in the edit page
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         SchoolManager us = postSnapshot.getValue(SchoolManager.class);
@@ -101,7 +104,7 @@ public class EditSchool extends AppCompatActivity {
 
         }
 
-        //
+        ////here we are changing the user information and valdate it
         private void updateInfo(View view) {
 
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("SchoolManagers").child(userId);
@@ -149,7 +152,7 @@ public class EditSchool extends AppCompatActivity {
                 editTextEmail.requestFocus();
                 return;
             }
-
+//store it in the database for the current user
             SchoolManager Smanger = new SchoolManager(userId,Sid,fname, lastname, pass,email);
             userRef.setValue(Smanger);
             Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(30000).show();

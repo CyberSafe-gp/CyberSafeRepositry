@@ -26,12 +26,21 @@ import java.util.ArrayList;
 
 public class ParentHome extends AppCompatActivity {
     private TextView textView;
+    //
     private RecyclerView recyclerView;
+    //for the adapter
     private ArrayList<Child> childrenList = new ArrayList();
+    //to list all the current parent childs
     private ParentHomeAdapter adapter;
     DatabaseReference childRef, childrenRef;
     private String userID,userType1;
+    //userType1 is for storing  what is the type of the current user
     public Button btn2,btn3,btn4,btn5,btn6;
+    // btn2 is for detection keyword button
+    //btn3 is for edit button
+    //btn4 is for log-out button
+    //btn5 is for incoming report button
+    //btn6 is for view reported list button
     FloatingActionButton actionButton;
 
 
@@ -44,10 +53,13 @@ public class ParentHome extends AppCompatActivity {
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //get the current user
         if (user != null) {
 
             userID = user.getUid();
+            //get and store current user id
             userType1 = getIntent().getStringExtra("userType");
+            //get and store userType1 is for storing  what is the type of the current user
         } else {
 
             Intent in = new Intent(ParentHome.this, ParentLogin.class);
@@ -74,8 +86,9 @@ public class ParentHome extends AppCompatActivity {
         btn2.setOnClickListener(v -> {
             Intent intent = new Intent(ParentHome.this, Add_Detection_Keyword.class);
             intent.putExtra("userType", userType1);
-
+             //to send for the next page the type of user
             startActivity(intent);
+            //go to the add detecton page
         });
 
 
@@ -85,6 +98,7 @@ public class ParentHome extends AppCompatActivity {
             Intent intent = new Intent(ParentHome.this, Edit_Parent_Profile.class);
             intent.putExtra("userType", userType1);
             startActivity(intent);
+
         });
 
 
@@ -95,9 +109,10 @@ public class ParentHome extends AppCompatActivity {
 
                 startActivities();
             }
-
+//log-out
             private void startActivities() {
                 FirebaseAuth.getInstance().signOut();
+                //sign out from the auth firbase
                 finish();
                 Intent intent = new Intent(ParentHome.this, Interface.class);
                 // intent.putExtra("userType", "Parent");
@@ -123,7 +138,7 @@ public class ParentHome extends AppCompatActivity {
 
         //adapter
         textView = (TextView) findViewById(R.id.noChild);
-
+//adapter
         childrenRef = FirebaseDatabase.getInstance().getReference().child("Children");
         childRef = FirebaseDatabase.getInstance().getReference().child("Children");
         childRef.keepSynced(true);
@@ -137,7 +152,7 @@ public class ParentHome extends AppCompatActivity {
                 Intent in = new Intent(ParentHome.this, ChildHome.class);
                 in.putExtra("Child_id", Child_id);
                 in.putExtra("userType", userType1);
-
+//send usertype and selected child id to the child home
                 startActivity(in);
             }
         });

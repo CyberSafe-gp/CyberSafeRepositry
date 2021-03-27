@@ -23,10 +23,17 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ChildHome extends AppCompatActivity {
      public Button btn1,btn4,btn5,btn6;
+//btn1 for buuly coment page transfer button
+// btn4 for flag page button transfer button
+// btn5 for edit page transfer button
+// btn6 for delete child button
 
 
 
     String ChildID,userType1,userID;
+    //child id is  for store the current child id
+    //userType1 is for store what type of user the loged-in user is
+    //userID is for storing the curren loged-in user id
    // Bundle bundle;
 
     @Override
@@ -35,15 +42,20 @@ public class ChildHome extends AppCompatActivity {
         setContentView(R.layout.activity_child_home);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //get the current loged-in user
         if (user != null) {
 
             userID = user.getUid();
+            //bring user id
             ChildID = getIntent().getStringExtra("Child_id");
+            //take from the parent home page the selected child id
             userType1=getIntent().getStringExtra("userType");
+            //store what type of loged-in user is
         } else {
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
             Intent in = new Intent(ChildHome.this, ParentLogin.class);
             startActivity(in);
+            //to go back for the parent home
         }
 
         //Toolbar
@@ -111,6 +123,7 @@ public class ChildHome extends AppCompatActivity {
 
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
+            //code for deleteng the child
             public void onClick(View v) {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ChildHome.this);
                 // Setting Alert Dialog Title
