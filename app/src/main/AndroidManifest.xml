@@ -10,10 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        android:theme="@style/Theme.CyberSafe"-->
 
+        <activity android:name=".ParentHome_New">
+        <intent-filter>
 
+         <action android:name="android.intent.action.MAIN" />
 
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+    </activity>
+        <!-- android:theme="@style/Theme.CyberSafe" -->
         <activity android:name=".Add_Detection_Keyword2" />
         <activity android:name=".Add_Detection_Keyword" />
         <activity android:name=".Add_NewChild" />
@@ -21,56 +28,48 @@
         <activity android:name=".ChildHome" />
         <activity android:name=".Edit_Child_Profile" />
         <activity android:name=".Edit_Parent_Profile" />
-        <activity android:name=".EditSchool"
+        <activity
+            android:name=".EditSchool"
             android:parentActivityName=".SchoolHome">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".FlagMain" />
-        <activity android:name=".Forgetpassword"/>
+        <activity android:name=".Forgetpassword" />
         <activity android:name=".Gethelp" />
-        <activity android:name=".IncomingReportsMain"/>
-        //Main
+        <activity android:name=".IncomingReportsMain" />
         <activity android:name=".Interface">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+         <!--     <action android:name="android.intent.action.MAIN" />-->
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Login_Register" />
         <activity android:name=".ParentHome" />
         <activity android:name=".ParentLogin" />
-        <activity android:name=".ParentRegister"/>
+        <activity android:name=".ParentRegister" />
         <activity android:name=".ParentRegister2" />
-        <activity android:name=".Report_info_reported"/>
-        <activity android:name=".resetpassword"/>
-        <activity android:name=".SchoolHome"/>
+        <activity android:name=".Report_info_reported" />
+        <activity android:name=".resetpassword" />
+        <activity android:name=".SchoolHome" />
         <activity android:name=".SchoolManagerRegister" />
-        <activity android:name=".ViewReportedBullyingMain"/>
-        <activity android:name=".ReportTo"/>
+        <activity android:name=".ViewReportedBullyingMain" />
+        <activity android:name=".ReportTo" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
 
+                <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-
-
-
-
-        <activity android:name=".MainActivity" >
-        <intent-filter>
-<!--<action android:name="android.intent.action.MAIN" />-->
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".MainActivity2" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-
     </application>
 
 </manifest>

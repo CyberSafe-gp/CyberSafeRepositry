@@ -1,17 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_incoming_report_24"
-        android:title="@string/incoming_reports" />
-    <item
-        android:id="@+id/rr"
-        android:icon="@drawable/ic_incoming_report_24"
-        android:title="@string/incoming_reports" />
-    <item
-        android:id="@+id/e"
-        android:icon="@drawable/ic_incoming_report_24"
-        android:title="@string/incoming_reports" />
+        android:icon="@drawable/home"
+        android:title="Home" />
 
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/icon_activity"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/icon_notification"
+        android:title="Notify" />
 
 </menu>
