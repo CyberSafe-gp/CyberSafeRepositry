@@ -85,11 +85,10 @@ public class BullyCommentMain extends AppCompatActivity {
             }
         });
 
-        System.out.println("adapter 222222 ");
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        System.out.println("adapter 333333");
+
 
         //Get the SMAccountCredential ID for the Child to get the comments
         SMAccountCredentialRef.addValueEventListener(new ValueEventListener() {

@@ -72,8 +72,7 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.flag_item_n, parent, false);
         CommentHolder holder = new CommentHolder(view);
 
-        return holder;
-    }
+        return holder; }
 
     @Override
     public void onBindViewHolder(@NonNull CommentHolder holder, int position) {
@@ -88,7 +87,6 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
         //set the body and the sender name
         holder.BullyComment.setText("\""+commentsList.get(position).getBody()+"\"");
         holder.BullyName.setText("@"+commentsList.get(position).getSender());
-
 
         // if the user click the flag
         holder.flag.setOnClickListener(new View.OnClickListener() {
@@ -150,8 +148,6 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
 
             }
         });
-
-
 
 
     }

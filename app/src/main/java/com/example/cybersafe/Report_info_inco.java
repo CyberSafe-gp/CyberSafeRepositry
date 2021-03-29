@@ -132,11 +132,10 @@ public class Report_info_inco extends AppCompatActivity {
                         application = sma.getSocialMediaPlatform();
                         childAccount=sma.getAccount();
                         childID= sma.getChild_id();
-                        System.out.println("childID "+childID);
 
-                        //Write the platform and child account
+/*                        //Write the platform and child account
                         TextView WriteApplication = (TextView)findViewById(R.id.WriteApplication);
-                        WriteApplication.setText(application);
+                        WriteApplication.setText(application);*/
 
                         TextView WriteChildAccount = (TextView)findViewById(R.id.WriteChildAccount);
                         WriteChildAccount.setText(childAccount);
@@ -150,13 +149,8 @@ public class Report_info_inco extends AppCompatActivity {
 
                                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                     Child ch = messageSnapshot.getValue(Child.class);
-                                    //The comment not bully and same as the child email
-                                    System.out.println("ch.getChild_id() "+ch.getChild_id());
                                     if (ch.getChild_id().equals(childID)){
                                         childName = ch.getFirstName() +" "+ ch.getLastName();
-                                        System.out.println("childName "+childName);
-                                        System.out.println("ch.getFirstName() "+ch.getFirstName());
-                                        System.out.println("ch.getLastName() "+ch.getLastName());
                                         TextView WriteChildName = (TextView)findViewById(R.id.WriteChildName);
                                         WriteChildName.setText(childName);
 
@@ -166,18 +160,6 @@ public class Report_info_inco extends AppCompatActivity {
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-
-                        home.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                Intent mIntent = new Intent(Report_info_inco.this, ChildHome.class);
-                                mIntent.putExtra("userType", userType);
-                                mIntent.putExtra("Child_id", childID);
-                                startActivity(mIntent);
 
                             }
                         });

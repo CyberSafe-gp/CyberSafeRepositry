@@ -118,7 +118,6 @@ public class FlagMain extends AppCompatActivity {
                                             //The comment not bully and same as the child's SMAccountCredential ID add it to the comment list
                                             if (com.getFlag().equals(false) && com.getSMAccountCredentials_id().equals(SMAccountCredentialID)){
                                                 commentList.add(com);
-
                                             }
                                         }
                                         adapter.notifyDataSetChanged();

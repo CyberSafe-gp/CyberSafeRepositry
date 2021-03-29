@@ -133,8 +133,8 @@ public class Report_info_reported extends AppCompatActivity {
                         System.out.println("childID "+childID);
 
                         //Write the platform and child account
-                        TextView WriteApplication = (TextView)findViewById(R.id.WriteApplication);
-                        WriteApplication.setText(application);
+/*                        TextView WriteApplication = (TextView)findViewById(R.id.WriteApplication);
+                        WriteApplication.setText(application);*/
 
                         TextView WriteChildAccount = (TextView)findViewById(R.id.WriteChildAccount);
                         WriteChildAccount.setText(childAccount);
@@ -167,7 +167,7 @@ public class Report_info_reported extends AppCompatActivity {
 
                             }
                         });
-
+/*
                         home.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -178,7 +178,7 @@ public class Report_info_reported extends AppCompatActivity {
                                 startActivity(mIntent);
 
                             }
-                        });
+                        });*/
 
 
                         break;}

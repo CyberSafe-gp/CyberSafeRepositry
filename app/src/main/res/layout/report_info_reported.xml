@@ -71,7 +71,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/WriteChildComment"
+            android:id="@+id/BullyCommentText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ChildComment"
@@ -92,7 +92,7 @@
             android:id="@+id/ChildName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/WriteChildComment"
+            android:layout_below="@id/BullyCommentText"
             android:layout_marginTop="40dp"
             android:text="Child Name:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -112,7 +112,7 @@
             android:id="@+id/ChildAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/WriteChildComment"
+            android:layout_below="@id/BullyCommentText"
             android:layout_marginLeft="120dp"
             android:layout_marginTop="40dp"
             android:layout_toRightOf="@id/ChildName"
@@ -124,10 +124,8 @@
             android:id="@+id/WriteChildAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_below="@id/ChildAccount"
             android:layout_alignParentStart="true"
-
             android:layout_alignParentLeft="true"
             android:layout_marginStart="208dp"
             android:layout_marginLeft="215dp"
