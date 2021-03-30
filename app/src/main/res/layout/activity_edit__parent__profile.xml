@@ -6,92 +6,96 @@
     android:layout_height="match_parent"
     tools:context=".Edit_Parent_Profile">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="40dp"
+        android:text="Password:"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="#04406E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.582"
+        app:theme="@style/Theme.MaterialComponents" />
+
     <Button
         android:id="@+id/editButton"
         android:layout_width="246dp"
         android:layout_height="94dp"
-        android:layout_marginStart="82dp"
-        android:layout_marginLeft="82dp"
-        android:layout_marginTop="591dp"
-        android:layout_marginEnd="83dp"
-        android:layout_marginRight="83dp"
-        android:layout_marginBottom="46dp"
-        android:text="@string/edit"
-        android:textColor="@color/blue"
-        app:backgroundTint="@android:color/holo_orange_dark"
+        android:layout_marginStart="93dp"
+        android:layout_marginLeft="93dp"
+        android:layout_marginEnd="93dp"
+        android:layout_marginRight="93dp"
+        android:layout_marginBottom="40dp"
+        android:text="EDIT"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="@android:color/holo_orange_dark"
-        app:strokeColor="#FFFFFF" />
+        app:layout_constraintVertical_bias="0.978"
+        app:rippleColor="@color/blue"
+        app:strokeColor="#FFFFFF"
+        app:theme="@style/Theme.MaterialComponents" />
 
     <Button
         android:id="@+id/changePass"
-        android:layout_width="207dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="102dp"
-        android:layout_marginLeft="102dp"
-        android:layout_marginTop="461dp"
-        android:layout_marginEnd="102dp"
-        android:layout_marginRight="102dp"
-        android:layout_marginBottom="213dp"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="93dp"
+        android:layout_marginLeft="93dp"
+        android:layout_marginEnd="93dp"
+        android:layout_marginRight="93dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/change_password"
-        app:backgroundTint="@android:color/darker_gray"
+        app:backgroundTint="#E5E4E2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.667" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar5"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
 
-    <ImageView
-        android:id="@+id/arrowIncomP6"
-        android:layout_width="49dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:contentDescription="@string/left_arrow"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center_horizontal"
+            android:layout_weight="100"
+            android:text="Edit Profile"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="21dp" />
 
-    <ImageView
-        android:id="@+id/homeIncomP5"
-        android:layout_width="49dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:contentDescription="@string/home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/home"
-        tools:ignore="MissingConstraints" />
+    </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="21dp" />
 
     <EditText
         android:id="@+id/firstNameB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="251dp"
+        android:layout_height="30dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="125dp"
@@ -103,13 +107,15 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.733" />
 
     <EditText
         android:id="@+id/EditEmailAddressB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="251dp"
+        android:layout_height="30dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="315dp"
@@ -118,16 +124,18 @@
         android:layout_marginBottom="371dp"
         android:autofillHints=""
         android:ems="10"
-        android:inputType="textEmailAddress"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.829"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView19"
-        android:layout_width="88dp"
-        android:layout_height="24dp"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="291dp"
@@ -135,16 +143,18 @@
         android:layout_marginRight="223dp"
         android:layout_marginBottom="416dp"
         android:text="@string/email"
-        android:textColor="@color/blue"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="#04406E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/Theme.MaterialComponents" />
 
     <TextView
         android:id="@+id/textView18"
-        android:layout_width="88dp"
-        android:layout_height="24dp"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="190dp"
@@ -152,16 +162,18 @@
         android:layout_marginRight="223dp"
         android:layout_marginBottom="517dp"
         android:text="@string/last_name"
-        android:textColor="@color/blue"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="#04406E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/Theme.MaterialComponents" />
 
     <EditText
         android:id="@+id/lastNameB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="251dp"
+        android:layout_height="30dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="214dp"
@@ -173,13 +185,15 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.853"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView17"
-        android:layout_width="88dp"
-        android:layout_height="24dp"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="101dp"
@@ -187,10 +201,15 @@
         android:layout_marginRight="223dp"
         android:layout_marginBottom="606dp"
         android:text="@string/first_name"
-        android:textColor="@color/blue"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="#04406E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.569"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:theme="@style/Theme.MaterialComponents" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

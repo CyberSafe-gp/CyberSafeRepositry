@@ -8,73 +8,97 @@
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="226dp"
-        android:layout_height="78dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginLeft="92dp"
-        android:layout_marginTop="556dp"
+        android:layout_width="246dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="93dp"
+        android:layout_marginLeft="93dp"
         android:layout_marginEnd="93dp"
         android:layout_marginRight="93dp"
-        android:layout_marginBottom="97dp"
-        android:text="@string/register"
+        android:layout_marginBottom="40dp"
+        android:text="REGISTER"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:theme="@style/Theme.MaterialComponents"
+        android:textColor="@color/white"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:rippleColor="@color/blue"
         app:strokeColor="#FFFFFF" />
+
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="226dp"
-        android:layout_height="78dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginLeft="92dp"
-        android:layout_marginTop="451dp"
+        android:layout_width="246dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="93dp"
+        android:layout_marginLeft="93dp"
         android:layout_marginEnd="93dp"
         android:layout_marginRight="93dp"
-        android:layout_marginBottom="202dp"
-        android:text="@string/log_in"
+        android:layout_marginBottom="40dp"
+        android:text="LOG-IN"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:theme="@style/Theme.MaterialComponents"
+        android:textColor="@color/white"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.825"
         app:rippleColor="@color/blue"
         app:strokeColor="#FFFFFF" />
+
+
+
+
+
+
+
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="422dp"
         android:layout_height="427dp"
-        android:layout_marginBottom="279dp"
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.217"
         app:srcCompat="@drawable/logo" />
 
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="75dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="660dp"
-        android:layout_marginEnd="329dp"
-        android:layout_marginRight="329dp"
-        android:layout_marginBottom="7dp"
-        android:background="#FA9809"
-        android:tint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_awesome_arrow_left"
-        android:contentDescription="TODO" />
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center_horizontal"
+            android:layout_weight="100"
+            android:text=""
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="21dp" />
+
+    </androidx.appcompat.widget.Toolbar>
 </androidx.constraintlayout.widget.ConstraintLayout>
