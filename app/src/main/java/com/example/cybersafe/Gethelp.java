@@ -15,4 +15,10 @@ public class Gethelp extends AppCompatActivity {
         TextView T=(TextView)findViewById(R.id.link);
         T.setMovementMethod(LinkMovementMethod.getInstance());
     }
+
+
+
+
+
+
 }

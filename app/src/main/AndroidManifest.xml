@@ -14,7 +14,7 @@
         <activity android:name=".ParentHome_New">
         <intent-filter>
 
-         <action android:name="android.intent.action.MAIN" />
+<!--         <action android:name="android.intent.action.MAIN" />-->
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
@@ -50,11 +50,18 @@
         <activity android:name=".ParentHome" />
         <activity android:name=".ParentLogin" />
         <activity android:name=".ParentRegister" />
+
         <activity android:name=".ParentRegister2" />
         <activity android:name=".Report_info_reported" />
         <activity android:name=".resetpassword" />
         <activity android:name=".SchoolHome" />
-        <activity android:name=".SchoolManagerRegister" />
+        <activity android:name=".SchoolManagerRegister">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ViewReportedBullyingMain" />
         <activity android:name=".ReportTo" />
         <activity android:name=".MainActivity">

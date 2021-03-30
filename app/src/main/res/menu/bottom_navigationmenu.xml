@@ -9,25 +9,25 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.bottomnavigationbar.home"
-        android:label="@string/title_home"
+        android:label="title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_favourites"
         android:name="com.example.bottomnavigationbar.favourites"
-        android:label="@string/title_favourites"
+        android:label="title_favourites"
         tools:layout="@layout/fragment_favourites" />
 
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.example.bottomnavigationbar.search"
-        android:label="@string/title_search"
+        android:label="title_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.bottomnavigationbar.profile"
-        android:label="@string/title_profile"
+        android:label="title_profile"
         tools:layout="@layout/fragment_profile" />
 
 </navigation>

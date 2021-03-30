@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,30 +14,26 @@
         android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-    <ImageView
-        android:id="@+id/arrowIncomP"
-        android:layout_width="49dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:contentDescription="@string/left_arrow"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test"
-        tools:ignore="MissingConstraints" />
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="School Manager Register"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="21dp"
-        />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center_horizontal"
+            android:layout_weight="100"
+            android:text="School Manager Register"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="21dp"
+            app:theme="@style/Theme.MaterialComponents"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,17 +41,21 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="4dp"
         tools:layout_editor_absoluteY="0dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="100dp"
-        android:text="First name"
-        android:textColor="#04406E"
-        android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="80dp"
+            android:text="First Name"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"
+            android:textColor="#04406E"
+            />
+
         <EditText
             android:id="@+id/firstname"
-            android:layout_width="327dp"
+            android:layout_width="380dp"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
 
@@ -63,13 +64,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:text="Last name"
+            android:text="Last Name"
             android:textColor="#04406E"
-            android:textSize="25dp" />
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"/>
 
         <EditText
             android:id="@+id/lastname"
-            android:layout_width="327dp"
+            android:layout_width="380dp"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
 
@@ -78,17 +80,24 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:text="School name"
+            android:text="School Name"
             android:textColor="#04406E"
-            android:textSize="25dp" />
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"/>
 
         <Spinner
             android:id="@+id/spinnerschoolname"
-            android:layout_width="327dp"
+            android:layout_width="380dp"
             android:layout_height="55dp"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="250dp" />
+            android:layout_marginRight="250dp"
+            android:spinnerMode="dialog"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,13 +105,15 @@
             android:layout_marginTop="15dp"
             android:text="Email"
             android:textColor="#04406E"
-            android:textSize="25dp" />
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"/>
 
         <EditText
             android:id="@+id/email"
-            android:layout_width="327dp"
+            android:layout_width="380dp"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,25 +121,37 @@
             android:layout_marginTop="15dp"
             android:text="Password"
             android:textColor="#04406E"
-            android:textSize="25dp" />
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"/>
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="327dp"
+            android:layout_width="380dp"
             android:layout_height="55dp"
-            android:layout_marginLeft="20dp"
-            android:inputType="textPassword" />
+            android:layout_marginLeft="20dp" />
+
         <Button
             android:id="@+id/submit_area"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
+            android:layout_width="246dp"
+            android:layout_height="94dp"
+            android:layout_marginStart="86dp"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="93dp"
+            android:layout_marginRight="93dp"
+            android:layout_marginBottom="40dp"
             android:text="Submit"
-            android:textSize="20dp"
-            android:textColor="@color/blue"
-            app:backgroundTint="@android:color/holo_orange_dark"
-            android:fontFamily="sans-serif-medium"/>
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textColor="@color/white"
+            app:backgroundTint="#EE9B39"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.896"
+            app:rippleColor="@color/blue"
+            app:theme="@style/Theme.MaterialComponents"/>
 
     </LinearLayout>
 

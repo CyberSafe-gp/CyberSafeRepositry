@@ -1,23 +1,16 @@
 package com.example.cybersafe;
 
-import android.content.Context;
-import android.content.res.Resources;
+
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
+
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-/*import org.mozilla.javascript.Function;
-import org.mozilla.javascript.Scriptable;
-*/
-import java.io.InputStream;
-import java.util.Properties;
 
+import java.util.Properties;
 
 public class MainActivity  extends AppCompatActivity {
 

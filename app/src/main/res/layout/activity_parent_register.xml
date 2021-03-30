@@ -15,51 +15,26 @@
         android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
 
-    <ImageView
-        android:id="@+id/arrowIncomP"
-        android:layout_width="49dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:contentDescription="@string/left_arrow"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center_horizontal"
+            android:layout_weight="100"
+            android:text="Parent Register"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="21dp"
+            app:theme="@style/Theme.MaterialComponents"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Parent Register"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="21dp"
+    </androidx.appcompat.widget.Toolbar>
 
-        />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:layout_marginTop="20dp"
-        android:background="#D5D3D5"
-        android:gravity="center_horizontal"
-        android:text="Parent Information"
-
-        android:foregroundGravity="center_vertical"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#04406E"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,14 +48,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="150dp"
-            android:text="First name"
+            android:layout_marginTop="110dp"
+            android:text="First Name"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"
             android:textColor="#04406E"
-            android:textSize="20dp" />
+            />
 
         <EditText
             android:id="@+id/firstname"
-            android:layout_width="327dp"
+            android:layout_width="380dp"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
 
@@ -89,15 +66,16 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:text="Last name"
+            android:text="Last Name"
             android:textColor="#04406E"
-            android:textSize="20dp" />
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"/>
 
         <EditText
             android:id="@+id/lastname"
-            android:layout_width="327dp"
+            android:layout_width="380dp"
             android:layout_height="55dp"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -106,11 +84,12 @@
             android:layout_marginTop="15dp"
             android:text="Email"
             android:textColor="#04406E"
-            android:textSize="20dp" />
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"/>
 
         <EditText
             android:id="@+id/email"
-            android:layout_width="327dp"
+            android:layout_width="380dp"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
 
@@ -121,11 +100,12 @@
             android:layout_marginTop="15dp"
             android:text="Password"
             android:textColor="#04406E"
-            android:textSize="20dp" />
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:theme="@style/Theme.MaterialComponents"/>
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="327dp"
+            android:layout_width="380dp"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp"
             android:inputType="textPassword" />
@@ -148,17 +128,30 @@ to monitor:"
             android:layout_marginTop="10dp"
             android:layout_marginRight="250dp" />-->
 
+
         <Button
             android:id="@+id/Next"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="30dp"
+            android:layout_width="246dp"
+            android:layout_height="94dp"
+            android:layout_marginStart="86dp"
+            android:layout_marginLeft="93dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="93dp"
+            android:layout_marginRight="93dp"
+            android:layout_marginBottom="40dp"
             android:text="Next"
-            android:textSize="20dp"
-            android:textColor="@color/blue"
-            app:backgroundTint="@android:color/holo_orange_dark"
-            android:fontFamily="sans-serif-medium"/>
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textColor="@color/white"
+            app:backgroundTint="#EE9B39"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.896"
+            app:rippleColor="@color/blue"
+            app:theme="@style/Theme.MaterialComponents"/>
+
 
     </LinearLayout>
 

@@ -98,7 +98,7 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
                         for (DataSnapshot ch : snapshot.getChildren()) {
 
                             Comment findComment =  ch.getValue(Comment.class);
-                             String comID = findComment.getComment_id();
+                            String comID = findComment.getComment_id();
                             Boolean comFlag = findComment.getFlag();
 
                             if(comID.equals(id) & comFlag.equals(false)){
@@ -193,4 +193,3 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
 
 
 }
-
