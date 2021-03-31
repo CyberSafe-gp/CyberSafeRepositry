@@ -85,14 +85,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="330dp"
-        android:layout_marginLeft="314dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="310dp"
+        android:layout_marginLeft="326dp"
+        android:layout_marginTop="30dp"
         android:maxWidth="200dp"
         android:text="WriteStatus"
-        android:textAppearance="?attr/textAppearanceCaption"
+        android:textAppearance="?attr/textAppearanceHeadline6"
         android:textColor="@color/black"
-        android:textStyle="normal" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dot"
@@ -100,15 +100,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
+
         android:layout_marginTop="-56dp"
-        android:layout_marginEnd="-330dp"
+        android:layout_marginEnd="-310dp"
         android:layout_marginRight="-349dp"
         android:layout_marginBottom="0dp"
         android:layout_toStartOf="@+id/WriteStatus"
         android:layout_toLeftOf="@+id/WriteStatus"
         android:maxWidth="200dp"
         android:text="."
-        android:textAppearance="?attr/textAppearanceHeadline1"
+        android:textSize="100dp"
         android:textColor="@color/black"
         android:textStyle="normal" />
 

@@ -29,7 +29,7 @@ public class ViewReportedBullyingAdapter extends RecyclerView.Adapter<ViewReport
     private OnItemClickListener listener;
     private DatabaseReference reportsRef;
     View view;
-    String comment_id, smID, child_id, childFName;
+
 
 
     public ViewReportedBullyingAdapter(Context context, List<Report> reportsList) {
@@ -69,7 +69,7 @@ public class ViewReportedBullyingAdapter extends RecyclerView.Adapter<ViewReport
         reportsRef = FirebaseDatabase.getInstance().getReference().child("Reports");
 
         String stat = reportsList.get(position).getStatus();
-
+        String comment_id=reportsList.get(position).getComment_id();
         // set the text for the item يمكن يتغير
         //holder.WriteRepNo.setText("Report("+(position+1)+")");
 
@@ -86,7 +86,7 @@ public class ViewReportedBullyingAdapter extends RecyclerView.Adapter<ViewReport
                     String comID = findComment.getComment_id();
 
                     if(comID.equals(comment_id)){
-                        smID=findComment.getSMAccountCredentials_id();
+                        String smID=findComment.getSMAccountCredentials_id();
 
                         DatabaseReference smRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
 
@@ -99,14 +99,14 @@ public class ViewReportedBullyingAdapter extends RecyclerView.Adapter<ViewReport
                                     String findSMId = findSM.getId();
 
                                     if(smID.equals(findSMId)){
-                                        child_id=findSM.getChild_id();
+                                        String child_id=findSM.getChild_id();
 
                                         DatabaseReference childRef = FirebaseDatabase.getInstance().getReference().child("Children");
                                         childRef.child(child_id).addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 Child child= dataSnapshot.getValue(Child.class);
-                                                childFName = child.getFirstName();
+                                                String childFName = child.getFirstName();
                                                 holder.WriteChildName.setText(childFName);
 
                                             }
@@ -151,8 +151,8 @@ public class ViewReportedBullyingAdapter extends RecyclerView.Adapter<ViewReport
             holder.WriteStatus.setText("Pending");
             holder.dot.setTextColor(Color.parseColor("#ffff8800")); //Orange
         }
-
     }
+
 
     @Override
     public int getItemCount() {

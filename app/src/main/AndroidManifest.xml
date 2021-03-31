@@ -41,8 +41,7 @@
         <activity android:name=".IncomingReportsMain" />
         <activity android:name=".Interface">
             <intent-filter>
-         <!--     <action android:name="android.intent.action.MAIN" />-->
-
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -66,8 +65,6 @@
         <activity android:name=".ReportTo" />
         <activity android:name=".MainActivity">
             <intent-filter>
-
-                <!-- <action android:name="android.intent.action.MAIN" /> -->
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

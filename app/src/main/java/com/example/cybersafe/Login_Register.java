@@ -64,12 +64,12 @@ public class Login_Register extends AppCompatActivity {
         });
 
         //Back-Button -image
-
-       bk =(ImageButton)findViewById(R.id.imageButton);
-       bk.setOnClickListener(v -> {
-           Intent intentt = new Intent(Login_Register.this,Interface.class);
-           startActivity(intentt);
-       });
+//
+//       bk =(ImageButton)findViewById(R.id.imageButton);
+//       bk.setOnClickListener(v -> {
+//           Intent intentt = new Intent(Login_Register.this,Interface.class);
+//           startActivity(intentt);
+//       });
 
 
 

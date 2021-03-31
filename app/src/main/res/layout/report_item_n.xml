@@ -22,7 +22,8 @@
     android:background="@color/white"
     android:minHeight="64dp"
     android:paddingTop="20dp"
-    android:layout_margin="1dp"
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="5dp"
     android:elevation="5dp"
     android:id="@+id/Incom"
     app:theme="@style/Theme.MaterialComponents">
@@ -36,6 +37,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="11dp"
+        
         android:layout_marginTop="6dp"
         android:background="@drawable/tiktok" />
 

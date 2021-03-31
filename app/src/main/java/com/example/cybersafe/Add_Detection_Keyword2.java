@@ -50,6 +50,7 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
             startActivity(in);
         }
 
+/*
         //Toolbar
         ImageView back = (ImageView) findViewById(R.id.arrowIncomP3);
         back.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +72,7 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
 
             }
         });
+*/
 
         add = findViewById(R.id.adD);
 

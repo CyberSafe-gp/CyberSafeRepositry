@@ -3,11 +3,7 @@ package com.example.cybersafe;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -40,13 +36,19 @@ public class ParentHome_New extends AppCompatActivity {
         Fragment fragment = null;
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                fragment = new HomeFragment();
+                fragment = new HomeFragment(); //Done
                 break;
-            case R.id.navigation_dashboard:
-                fragment = new DashboradFragment();
+            case R.id.navigation_Incoming:
+                fragment = new IncomingFragment(); //Done
                 break;
-            case R.id.navigation_notifications:
-                fragment = new NotificationFragment();
+            case R.id.navigation_List:
+                fragment = new ViewReportedBullyingFragment(); //Done
+                break;
+            case R.id.navigation_Add_New:
+                fragment = new AddNewChildFragment(); //Done
+                break;
+            case R.id.navigation_Keywords:
+                fragment = new Add_Detection_KeywordFragment();
                 break;
         }
         FragmentManager fragmentManager = getSupportFragmentManager();

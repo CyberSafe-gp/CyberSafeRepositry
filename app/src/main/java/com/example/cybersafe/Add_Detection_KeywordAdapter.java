@@ -90,7 +90,7 @@ public class Add_Detection_KeywordAdapter extends RecyclerView.Adapter<Add_Detec
         public KeywordHolder(@NonNull View itemView) {
             super(itemView);
             writeChildP = (TextView) itemView.findViewById(R.id.writeChildP);
-            reportRe = (LinearLayout) itemView.findViewById(R.id.reportRe);
+//            reportRe = (LinearLayout) itemView.findViewById(R.id.reportRe);
 
 
         }

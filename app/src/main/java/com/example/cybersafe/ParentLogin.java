@@ -112,7 +112,7 @@ public class ParentLogin extends AppCompatActivity {
 
                 if(task.isSuccessful()) {
                     if (userTypee.equals("Parent")) {
-                        Intent intent = new Intent(ParentLogin.this, ParentHome.class);
+                        Intent intent = new Intent(ParentLogin.this, ParentHome_New.class);
                         intent.putExtra("userType", userTypee);
                         startActivity(intent);
                     } else{

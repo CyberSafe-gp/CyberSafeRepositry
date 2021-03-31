@@ -65,7 +65,7 @@ public class ParentHome extends AppCompatActivity {
             Intent in = new Intent(ParentHome.this, ParentLogin.class);
             startActivity(in);
         }
-
+/*
 
         //buttons
 
@@ -221,7 +221,7 @@ public class ParentHome extends AppCompatActivity {
        actionButton.setOnClickListener(v -> {
             Intent intent = new Intent(ParentHome.this, Add_NewChild.class);
             startActivity(intent);
-        });
+        });*/
 //go to the add child page
         // Respond to FAB click
 

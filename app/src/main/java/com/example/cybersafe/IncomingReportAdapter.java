@@ -38,7 +38,7 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
     private OnItemClickListener listener;
     private DatabaseReference reportsRef, userRef, SMAccountCredentialsRef;
     View view;
-    String CommentSender, child_id, childFName;
+
 
 
     public IncomingReportAdapter(Context context, List<Report> reportsList) {
@@ -98,13 +98,14 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
                 commentsRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        System.out.println("1111");
                         for (DataSnapshot ch : snapshot.getChildren()) {
 
                             Comment findComment =  ch.getValue(Comment.class);
                             String comID = findComment.getComment_id();
 
                             if(comID.equals(comment_id)){
-                                CommentSender=findComment.getSender();
+                                String CommentSender=findComment.getSender();
 
                                 DatabaseReference smRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
 
@@ -117,14 +118,14 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
                                             String acc = findSM.getAccount();
 
                                             if(CommentSender.equals(acc)){
-                                                child_id=findSM.getChild_id();
+                                                String child_id=findSM.getChild_id();
 
                                                 DatabaseReference childRef = FirebaseDatabase.getInstance().getReference().child("Children");
                                                 childRef.child(child_id).addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                                         Child child= dataSnapshot.getValue(Child.class);
-                                                        childFName = child.getFirstName();
+                                                        String childFName = child.getFirstName();
                                                         holder.WriteChildName.setText(childFName);
 
 
@@ -164,9 +165,9 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
 
                 //Colour the status if Confirm gray, Not confirm blue
                 if (status.equals("Confirm"))
-                    holder.button.setBackgroundColor(Color.parseColor("#F8F8F8"));
+                    holder.button.setBackgroundColor(Color.parseColor("#dfdfdf"));
                 else
-                    holder.button.setBackgroundColor(Color.WHITE );
+                    holder.button.setBackgroundColor(Color.WHITE);
 
 
 
@@ -189,6 +190,7 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
     public class ReportHolder extends RecyclerView.ViewHolder{
         TextView WriteDate, WriteChildName;
         RelativeLayout button ;
+
 
 
         public ReportHolder(@NonNull View itemView) {

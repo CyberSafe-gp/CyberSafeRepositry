@@ -4,9 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Child;
@@ -52,8 +54,19 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
 
     @Override
     public void onBindViewHolder(@NonNull ChildHolder holder, int position) {
-        final String name = childList.get(position).getFirstName();
+        String name = childList.get(position).getFirstName();
+        String gender=childList.get(position).getGender();
         holder.writeChildP.setText(name);
+
+        if (gender.equals("Male")) {
+            holder.icon.setBackground(ContextCompat.getDrawable(context, R.drawable.people_avatar_boy_child_person_icon_131264));//Boy Avatar
+        }
+        else{
+            holder.icon.setBackground(ContextCompat.getDrawable(context, R.drawable.avatar_woman_female_girl_people_icon_131282));//Girl Avatar
+
+        }
+
+
 
     }
 
@@ -64,10 +77,12 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
 
     public class ChildHolder extends RecyclerView.ViewHolder{
         TextView writeChildP;
+        ImageView icon;
 
         public ChildHolder(@NonNull View itemView) {
             super(itemView);
             writeChildP = (TextView) itemView.findViewById(R.id.writeChildP);
+            icon=itemView.findViewById(R.id.Avatar);
 
 
         }

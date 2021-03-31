@@ -48,7 +48,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit__parent__profile);
 
-        //Toolbar
+/*        //Toolbar
         ImageView back = (ImageView) findViewById(R.id.arrowIncomP6);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +65,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
                 finish();
 
             }
-        });
+        });*/
 
         editTextfName = findViewById(R.id.firstNameB);
         editTextlName = findViewById(R.id.lastNameB);

@@ -7,72 +7,66 @@
     android:layout_height="match_parent"
     tools:context=".ParentHome"
     android:orientation="vertical">
-   <Button
-       android:id="@+id/button14"
-       android:layout_width="158dp"
-       android:layout_height="49dp"
-       android:layout_marginBottom="80dp"
-       android:text="edit"
-       android:textColor="@color/blue"
-       app:backgroundTint="@android:color/holo_orange_dark"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="0.905"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/button4"
-       app:layout_constraintVertical_bias="1.0" />
-
-   <Button
-       android:id="@+id/button5"
-       android:layout_width="158dp"
-       android:layout_height="49dp"
-       android:layout_marginBottom="80dp"
-       android:text="log-out"
-       android:textColor="@color/blue"
-       app:backgroundTint="@android:color/holo_orange_dark"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="0.106"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/button4"
-       app:layout_constraintVertical_bias="1.0" />
-
 
    <androidx.appcompat.widget.Toolbar
-       android:id="@+id/toolbar2"
+       android:id="@+id/toolbar"
        android:layout_width="match_parent"
        android:layout_height="60dp"
        android:layout_centerInParent="true"
        android:background="@color/blue"
+       android:orientation="horizontal"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintTop_toTopOf="parent"
-       tools:ignore="MissingConstraints" />
+       tools:ignore="MissingConstraints">
 
-   <EditText
-       android:id="@+id/editTextTextPersonName"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginBottom="4dp"
-       android:ems="10"
-       android:inputType="textPersonName"
-       android:text="Children"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="0.134"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-       app:layout_constraintVertical_bias="0.041" />
+      <TextView
+          android:id="@+id/textView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="left"
+          android:layout_weight="100"
+          android:gravity="center_horizontal"
+          android:text="Parent Home"
+          android:textAlignment="center"
+          android:textAppearance="?attr/textAppearanceHeadline6"
+          android:textColor="@color/white"
+          app:theme="@style/Theme.MaterialComponents"
+          tools:ignore="MissingConstraints"
+          tools:layout_editor_absoluteY="21dp" />
+
+   </androidx.appcompat.widget.Toolbar>
+
+
+  <TextView
+    android:id="@+id/Children"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="#D5D3D5"
+    android:elevation="5dp"
+    android:foregroundGravity="center_vertical"
+    android:gravity="center_vertical"
+    android:paddingLeft="10dp"
+    android:text="Children"
+    android:textAlignment="textStart"
+    android:textAllCaps="false"
+    android:textColor="#04406E"
+    android:textSize="23dp"
+    android:textStyle="bold"
+    app:backgroundTint="@color/white"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar"
+    tools:ignore="RtlCompat" />
 
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/recyclerPH"
-       android:layout_width="360dp"
-       android:layout_height="252dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
        android:layout_marginTop="4dp"
        android:padding="5dp"
        android:scrollbars="vertical"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+       app:layout_constraintTop_toBottomOf="@+id/Children"
        tools:ignore="MissingConstraints" />
 
    <TextView
@@ -87,86 +81,28 @@
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="@+id/toolbar2"
+       app:layout_constraintTop_toTopOf="@+id/toolbar"
        app:layout_constraintVertical_bias="0.259"
        tools:ignore="MissingConstraints" />
 
    <androidx.coordinatorlayout.widget.CoordinatorLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
+       app:layout_constraintEnd_toEndOf="parent"
        tools:context=".ParentHome"
-       tools:layout_editor_absoluteX="130dp"
-       tools:layout_editor_absoluteY="-305dp">
+       tools:layout_editor_absoluteY="50dp">
+
 
       <com.google.android.material.floatingactionbutton.FloatingActionButton
           android:id="@+id/floating_action_button"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_alignParentBottom="true"
+          android:layout_marginTop="520dp"
+          android:layout_marginRight="10dp"
           android:layout_gravity="center|right"
+          app:srcCompat="@drawable/ic_baseline_add_24"
+          tools:ignore="MissingConstraints,VectorDrawableCompat" />
+   </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-          app:srcCompat="@drawable/ic_baseline_add_24" />
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-   <Button
-       android:id="@+id/button4"
-       android:layout_width="360dp"
-       android:layout_height="49dp"
-       android:layout_marginBottom="140dp"
-       android:text="Add detection keyword"
-       app:backgroundTint="@color/blue"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="0.528"
-       app:layout_constraintStart_toStartOf="parent" />
-
-   <Button
-       android:id="@+id/Viewrep"
-       android:layout_width="360dp"
-       android:layout_height="49dp"
-       android:layout_marginBottom="240dp"
-       android:text="View reported bullying list"
-       app:backgroundTint="@color/blue"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent" />
-
-   <Button
-       android:id="@+id/incomingrep"
-       android:layout_width="360dp"
-       android:layout_height="49dp"
-       android:layout_marginBottom="290dp"
-       android:text="Incoming reports"
-       app:backgroundTint="@color/blue"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="0.528"
-       app:layout_constraintStart_toStartOf="parent" />
-
-   <Button
-       android:id="@+id/button23"
-       android:layout_width="360dp"
-       android:layout_height="49dp"
-       android:layout_marginBottom="190dp"
-       android:text="Add a new child"
-       app:backgroundTint="@color/blue"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent" />
-
-   <TextView
-       android:id="@+id/textView2"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Parent Home"
-       android:textColor="@color/white"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       tools:ignore="MissingConstraints"
-       tools:layout_editor_absoluteY="21dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
