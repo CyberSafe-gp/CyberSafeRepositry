@@ -5,18 +5,23 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:paddingTop="0dp"
     tools:context=".ParentHome_New">
 
     <FrameLayout
         android:id="@+id/addFragmentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="0dp"
         android:orientation="vertical"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:paddingTop="0dp"
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_nav_menu"
         android:background="?android:attr/windowBackground"

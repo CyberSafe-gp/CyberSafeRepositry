@@ -106,17 +106,20 @@ public class ParentLogin extends AppCompatActivity {
             return;
         }
 
+
         Auth.signInWithEmailAndPassword(Email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful()) {
                     if (userTypee.equals("Parent")) {
+                        System.out.println("userTypee Parent"+userTypee);
                         Intent intent = new Intent(ParentLogin.this, ParentHome_New.class);
                         intent.putExtra("userType", userTypee);
                         startActivity(intent);
                     } else{
-                        Intent intent = new Intent(ParentLogin.this, SchoolHome.class);
+                        System.out.println("userTypee SM "+userTypee);
+                        Intent intent = new Intent(ParentLogin.this, SchoolHome_new.class);
 
                         intent.putExtra("userType", userTypee);
                         startActivity(intent);

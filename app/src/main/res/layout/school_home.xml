@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fitsSystemWindows="true"
+        android:orientation="horizontal"
+    >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center_horizontal"
+            android:layout_weight="100"
+            android:text="School Manager Home"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:theme="@style/Theme.MaterialComponents"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/Incom"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:minWidth="380dp"
+        android:minHeight="360dp"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/WritheSchoolManagerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:text="School Manager Name:"
+            android:textAppearance="?attr/textAppearanceHeadline3"
+            android:textColor="@color/blue"
+            android:textDirection="ltr"
+            android:textStyle="bold"
+            app:theme="@style/Theme.MaterialComponents" />
+
+        <TextView
+            android:id="@+id/WritheSchoolManagerEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/WritheSchoolManagerName"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:text="Write School Manager Email"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/black"
+            android:textDirection="ltr"
+            app:theme="@style/Theme.MaterialComponents" />
+
+
+        <!--       <TextView
+            android:id="@+id/BullyCommentText"
+            android:layout_width="263dp"
+            android:layout_height="90dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-3dp"
+            android:background="@color/lightGray"
+            android:elevation="10dp"
+            android:gravity="center"
+            android:maxWidth="320dp"
+            android:minWidth="200dp"
+            android:padding="10dp"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+-->
+
+        <View
+            android:id="@id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/WritheSchoolManagerEmail"
+            android:layout_marginTop="21dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/SchoolInfo"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line"
+            android:layout_marginTop="12dp"
+            android:maxLines="2"
+            android:paddingTop="10dp"
+            android:text="School Info"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+             android:textColor="#e18313"
+            android:textDirection="ltr"
+            android:textStyle="bold"
+            app:theme="@style/Theme.MaterialComponents" />
+        <!--android:textColor="#e18313"-->
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/SchoolInfo"
+            android:layout_marginTop="12dp"
+            android:maxLines="2"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:text="School Name"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/blue"
+            android:textDirection="ltr"
+            android:textStyle="bold"
+            app:theme="@style/Theme.MaterialComponents" />
+
+        <TextView
+            android:id="@+id/WriteSchoolName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Name"
+            android:layout_marginTop="5dp"
+            android:maxLines="2"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:text="Write School Name"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/black"
+            android:textDirection="ltr"
+            app:theme="@style/Theme.MaterialComponents" />
+
+        <TextView
+            android:id="@+id/City"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/WriteSchoolName"
+            android:layout_marginTop="12dp"
+            android:maxLines="2"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:text="School City"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/blue"
+            android:textDirection="ltr"
+            android:textStyle="bold"
+            app:theme="@style/Theme.MaterialComponents" />
+
+        <TextView
+            android:id="@+id/WriteSchoolCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/City"
+            android:layout_marginTop="5dp"
+            android:maxLines="2"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:text="Write School City"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/black"
+            android:textDirection="ltr"
+            app:theme="@style/Theme.MaterialComponents" />
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -65,7 +65,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/WriteChildName"
         android:textDirection="ltr"
-
         android:paddingTop="10dp"
         android:paddingLeft="15dp"
         android:maxLines="2"

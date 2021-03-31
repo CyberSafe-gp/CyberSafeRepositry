@@ -26,7 +26,7 @@ public class SchoolHome_new extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.addFragmentLayout2, new HomeFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.addFragmentLayout2, new EditSchoolFragment()).commit();
 
         }
     }
@@ -35,12 +35,16 @@ public class SchoolHome_new extends AppCompatActivity {
             = item -> {
         Fragment fragment = null;
         switch (item.getItemId()) {
-            case R.id.navigation_home2:
-                fragment = new HomeFragment(); //Done
+            case R.id.navigation_Edit2:
+                fragment = new EditSchoolFragment();
                 break;
             case R.id.navigation_incoming2:
-                fragment = new IncomingFragment(); //Done
+                fragment = new IncomingFragment();
                 break;
+            case R.id.navigation_home2:
+                fragment = new SchoolHomeFragment();
+                break;
+
 
         }
         FragmentManager fragmentManager = getSupportFragmentManager();

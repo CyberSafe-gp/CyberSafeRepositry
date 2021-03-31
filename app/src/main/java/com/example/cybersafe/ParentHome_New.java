@@ -44,11 +44,11 @@ public class ParentHome_New extends AppCompatActivity {
             case R.id.navigation_List:
                 fragment = new ViewReportedBullyingFragment(); //Done
                 break;
-            case R.id.navigation_Add_New:
-                fragment = new AddNewChildFragment(); //Done
+            case R.id.navigation_Edit:
+                fragment = new Edit_Parent_ProfileFragment(); //Done
                 break;
             case R.id.navigation_Keywords:
-                fragment = new Add_Detection_KeywordFragment();
+                fragment = new Add_Detection_KeywordFragment(); //Done
                 break;
         }
         FragmentManager fragmentManager = getSupportFragmentManager();

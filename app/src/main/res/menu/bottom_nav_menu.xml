@@ -19,9 +19,9 @@
         android:title="Home" />
 
     <item
-        android:id="@+id/navigation_Add_New"
-        android:icon="@drawable/ic_baseline_person_add_alt_1_242"
-        android:title="Add" />
+        android:id="@+id/navigation_Edit"
+        android:icon="@drawable/ic_baseline_edit_24"
+        android:title="Edit" />
 
     <item
         android:id="@+id/navigation_Keywords"
