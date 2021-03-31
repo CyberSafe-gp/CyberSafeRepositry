@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -57,16 +56,16 @@ public class ChildHome extends AppCompatActivity {
             startActivity(in);
             //to go back for the parent home
         }
-
-        //Toolbar
-        ImageView back = (ImageView) findViewById(R.id.arrowIncomP3);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-
-            }
-        });
+//
+//        //Toolbar
+//        ImageView back = (ImageView) findViewById(R.id.arrowIncomP3);
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//
+//            }
+//        });
 
 
 
