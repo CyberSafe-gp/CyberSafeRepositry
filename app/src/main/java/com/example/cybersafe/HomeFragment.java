@@ -150,7 +150,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
         //actionButton.findViewById(R.id.floating_action_button);
 
         FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.floating_action_button);
