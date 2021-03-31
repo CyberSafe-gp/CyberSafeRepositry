@@ -6,101 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".ChildHome">
 
+
     <Button
         android:id="@+id/button12"
-        android:layout_width="158dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="144dp"
-        android:text="edit profile"
+        android:layout_width="202dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="93dp"
+        android:layout_marginLeft="93dp"
+        android:layout_marginTop="536dp"
+        android:layout_marginEnd="93dp"
+        android:layout_marginRight="93dp"
+        android:layout_marginBottom="120dp"
+        android:text="Edit Profile"
+        android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/blue"
         app:backgroundTint="@android:color/holo_orange_dark"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
-        app:layout_constraintVertical_bias="0.593" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.593"
+        app:theme="@style/Theme.MaterialComponents" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar4"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/blue"
-        android:inputType="textPersonName"
-        android:text="Child Home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="100"
+            android:gravity="center_horizontal"
+            android:text="Child Home"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/white"
+            app:theme="@style/Theme.MaterialComponents"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="21dp" />
 
-    <ImageView
-        android:id="@+id/arrowIncomP3"
-        android:layout_width="49dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:contentDescription="@string/left_arrow"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test"
-        tools:ignore="MissingConstraints" />
-
+    </androidx.appcompat.widget.Toolbar>
 
 
     <Button
         android:id="@+id/button16"
         android:layout_width="377dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="296dp"
+        android:layout_marginTop="327dp"
+        android:layout_marginBottom="324dp"
         android:text="Flag bully comment manually"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textColor="@color/black"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.413" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413"
+        app:theme="@style/Theme.MaterialComponents" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="377dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="416dp"
+        android:layout_marginTop="199dp"
+        android:layout_marginBottom="452dp"
         android:text="bully comments"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textColor="@color/black"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.413" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413"
+        app:theme="@style/Theme.MaterialComponents" />
 
-    <Button
-        android:id="@+id/button22"
-        android:layout_width="158dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="144dp"
-        android:text="delete child"
-        android:textColor="@color/blue"
-        app:backgroundTint="@android:color/holo_red_dark"
-        app:iconTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.885"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
-        app:layout_constraintVertical_bias="0.593" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

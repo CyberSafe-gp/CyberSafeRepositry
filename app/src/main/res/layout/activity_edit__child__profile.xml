@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         tools:context=".Add_NewChild">
         //here
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -20,6 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
+
 
         <ImageView
             android:id="@+id/arrowIncomP"
@@ -44,6 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="21dp" />
+
         <ImageView
             android:id="@+id/homeIncomP5"
             android:layout_width="49dp"
@@ -118,10 +121,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
                 android:orientation="horizontal">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="90dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -133,15 +138,13 @@
 
                     <Button
                         android:id="@+id/date_picker1"
+                        style="?android:spinnerStyle"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="JAN/01/2020"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        style="?android:spinnerStyle"
                         android:onClick="openDatePicker"
-                        />
-
+                        android:text="JAN/01/2020"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
 
                 </LinearLayout>
@@ -170,6 +173,7 @@
                         android:layout_marginTop="15dp" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -204,8 +208,8 @@
                     android:layout_width="206dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="14dp"
-                    android:orientation="vertical"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -324,7 +328,7 @@
                 android:layout_width="327dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/add11"
@@ -332,11 +336,22 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="130dp"
                 android:layout_marginTop="45dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="Submit"
-                android:textSize="20dp"
                 android:textColor="@color/blue"
-                app:backgroundTint="@android:color/holo_orange_dark"
-                android:fontFamily="sans-serif-medium"/>
+                android:textSize="20dp"
+                app:backgroundTint="@android:color/holo_orange_dark" />
+
+            <Button
+                android:id="@+id/button22"
+                android:layout_width="190dp"
+                android:layout_height="48dp"
+                android:text="Delete Child"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/blue"
+                app:backgroundTint="@android:color/holo_red_dark"
+                app:iconTint="@color/white"
+                app:theme="@style/Theme.MaterialComponents" />
 
         </LinearLayout>
 
