@@ -32,6 +32,22 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="21dp" />
 
+        <Button
+            android:id="@+id/Logg2"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="189dp"
+            android:text="Log Out"
+            android:textColor="#EE9B39"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintVertical_bias="0.0"
+            app:strokeColor="#FFFFFF" />
+
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout

@@ -24,7 +24,7 @@ public class  SchoolHome extends AppCompatActivity {
 
     public Button btn11;
     public Button btn12;
-    public Button btn13;
+    private Button logO2;
     DatabaseReference schoolManagerRef, schoolRef;
     String userID;
     String firstName, lastName, schoolID, schoolName,userType1;
@@ -55,28 +55,11 @@ public class  SchoolHome extends AppCompatActivity {
         //edit
         btn12 = findViewById(R.id.button7);
         //incoming reports
-        btn13= findViewById(R.id.button10);
+        logO2= findViewById(R.id.button10);
         // log-out
         SN=(TextView)findViewById(R.id.textView24);
         SID=(TextView)findViewById(R.id.textView16);
 
-
-        //log-out
-        btn13.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivities();
-            }
-
-            private void startActivities() {
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                Intent intent = new Intent(SchoolHome.this,Interface.class);
-                // intent.putExtra("userType", "Parent");
-                startActivity(intent);
-            }
-        });
 
 
 
@@ -161,20 +144,20 @@ public class  SchoolHome extends AppCompatActivity {
         });
 
         //log-out
-        //btn13.setOnClickListener(new View.OnClickListener() {
-            //@Override
-           // public void onClick(View v) {
+        logO2.setOnClickListener(new View.OnClickListener() {
+          @Override
+         public void onClick(View v) {
 
-                //startActivities();
-            //}
+              startActivities();
+          }
 
-            //private void startActivities() {
+           private void startActivities() {
 
-                //Intent intent = new Intent(SchoolHome.this, .class);
-                //intent.putExtra("IntentName", "hi");
-                //startActivity(intent);
-            //}
-       // });
+                Intent intent = new Intent(SchoolHome.this,Interface.class);
+                 intent.putExtra("IntentName", "hi");
+                startActivity(intent);
+           }
+           });
 
 
 

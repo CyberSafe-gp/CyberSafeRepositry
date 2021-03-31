@@ -31,6 +31,7 @@ public class Edit_Parent_ProfileFragment extends Fragment {
 
     private String userId;
 
+    private Button logO;
 
     private FirebaseUser Cuser;
     private static final String TAG = Edit_Parent_Profile.class.getSimpleName();
@@ -62,6 +63,25 @@ public class Edit_Parent_ProfileFragment extends Fragment {
         editTextEmail = getActivity().findViewById(R.id.EditEmailAddressB);
         btEdit=(Button)getActivity().findViewById(R.id.editButton);
         changeP=(Button)getActivity().findViewById(R.id.changePass);
+        logO=(Button)getActivity().findViewById(R.id.Logg);
+
+
+
+        //log-out
+        logO.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivities();
+            }
+
+            private void startActivities() {
+
+                Intent intent = new Intent(getActivity(),Interface.class);
+                intent.putExtra("IntentName", "hi");
+                startActivity(intent);
+            }
+        });
 
 
         //changePass-button

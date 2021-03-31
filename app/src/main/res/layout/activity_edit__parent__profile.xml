@@ -31,6 +31,21 @@
             android:textColor="@color/white"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="21dp" />
+        <Button
+            android:id="@+id/Logg"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="189dp"
+            android:text="Log Out"
+            android:textColor="#EE9B39"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintVertical_bias="0.0"
+            app:strokeColor="#FFFFFF" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -131,7 +146,7 @@
             android:layout_height="94dp"
             android:layout_marginLeft="87dp"
             android:layout_marginTop="35dp"
-            android:text="EDIT"
+            android:text="Edit"
             android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/blue"
             app:backgroundTint="@android:color/holo_orange_dark"
