@@ -38,23 +38,20 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="164dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="158dp"
+        android:layout_width="118dp"
+        android:layout_height="47dp"
         android:text="E-mail"
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textColor="#04406E"
         android:textSize="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/Theme.MaterialComponents" />
+        app:theme="@style/Theme.MaterialComponents"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="149dp" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="164dp"
-        android:layout_height="50dp"
+        android:layout_height="34dp"
         android:layout_marginStart="42dp"
         android:layout_marginLeft="42dp"
         android:layout_marginTop="284dp"
@@ -70,54 +67,50 @@
         android:id="@+id/button9"
         android:layout_width="246dp"
         android:layout_height="94dp"
-        android:layout_marginTop="537dp"
-        android:layout_marginEnd="83dp"
-        android:layout_marginRight="83dp"
         android:text="LOG-IN"
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/blue"
         app:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/Theme.MaterialComponents" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:theme="@style/Theme.MaterialComponents"
+        tools:layout_editor_absoluteY="537dp" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:layout_marginBottom="478dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="31dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
 
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="327dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="325dp"
+        android:layout_marginTop="7dp"
         android:ems="10"
         android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
 
     <TextView
         android:id="@+id/buttonForget"
         android:layout_width="223dp"
         android:layout_height="42dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="391dp"
+        android:layout_marginTop="21dp"
         android:text="Forgot Password?"
         android:textColor="#8F8E8D"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        tools:layout_editor_absoluteX="43dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
