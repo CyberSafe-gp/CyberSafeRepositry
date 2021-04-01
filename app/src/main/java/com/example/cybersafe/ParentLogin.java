@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,8 @@ import com.onesignal.OneSignal;
 
 public class ParentLogin extends AppCompatActivity {
 
-    private Button log,forgetPass;
+    private Button log;
+   private TextView forgetPass;
     private FirebaseAuth Auth;
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -37,16 +39,16 @@ public class ParentLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_login);
 
-
-        //Toolbar
-        ImageView back = (ImageView) findViewById(R.id.arrowIncomP5);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-
-            }
-        });
+//
+//        //Toolbar
+//        ImageView back = (ImageView) findViewById(R.id.arrowIncomP5);
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//
+//            }
+//        });
 
         userTypee=getIntent().getStringExtra("userType");
         //get and store the type of user loged-in
@@ -57,7 +59,7 @@ public class ParentLogin extends AppCompatActivity {
         log = (Button) findViewById(R.id.button9);
         editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
-        forgetPass  = (Button) findViewById(R.id.buttonForget);
+        forgetPass  = (TextView) findViewById(R.id.buttonForget);
         forgetPass.setOnClickListener(v -> {
             Intent intent =new Intent(ParentLogin.this,Forgetpassword.class);
             intent.putExtra("userType",userTypee);
