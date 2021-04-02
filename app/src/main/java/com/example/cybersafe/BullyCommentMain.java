@@ -47,7 +47,7 @@ public class BullyCommentMain extends AppCompatActivity {
 
 
         //Toolbar
-        back = (ImageView) findViewById(R.id.arrowIncomP);
+/*        back = (ImageView) findViewById(R.id.arrowIncomP);
         home = (ImageView) findViewById(R.id.homeIncomP);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +62,7 @@ public class BullyCommentMain extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
 
         Intent in = getIntent();
         childID = getIntent().getStringExtra("Child_id");

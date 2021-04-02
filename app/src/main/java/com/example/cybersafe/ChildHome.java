@@ -120,7 +120,7 @@ public class ChildHome extends AppCompatActivity {
 
 
 
-        btn6.setOnClickListener(new View.OnClickListener() {
+       /* btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             //code for deleteng the child
             public void onClick(View v) {
@@ -164,7 +164,7 @@ public class ChildHome extends AppCompatActivity {
                 alertDialogBuilder.setNegativeButton("Cancel", null).show();
 
             }
-        });
+        });*/
 
 
 

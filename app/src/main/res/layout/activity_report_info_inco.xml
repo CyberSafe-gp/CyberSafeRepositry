@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/WriteChildAccount"
             android:layout_marginTop="42dp"
-            android:text="Bullied Account:"
+            android:text="Bully Child Account:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:textStyle="bold" />
 
@@ -156,20 +156,7 @@
             android:layout_below="@id/BullyAccount"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
 
-        <TextView
-            android:id="@+id/Application"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="Application:"
-            android:layout_below="@id/WriteChildAccount"
-            android:layout_marginLeft="105dp"
-            android:layout_marginTop="40dp"
-            android:layout_toRightOf="@id/BullyAccount"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textStyle="bold"/>
-
-<!--
+        <!--
         <TextView
             android:id="@+id/WriteApplication"
             android:layout_width="wrap_content"
@@ -183,6 +170,19 @@
             android:text="Tiktok"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 -->
+
+        <TextView
+            android:id="@+id/Application"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/WriteChildAccount"
+            android:layout_marginLeft="74dp"
+            android:layout_marginTop="43dp"
+            android:layout_toRightOf="@id/BullyAccount"
+            android:text="Application:"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/appIcon"

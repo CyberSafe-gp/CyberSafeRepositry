@@ -98,13 +98,15 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
                 commentsRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        System.out.println("1111");
+                        System.out.println("onDataChange1");
+
                         for (DataSnapshot ch : snapshot.getChildren()) {
 
                             Comment findComment =  ch.getValue(Comment.class);
                             String comID = findComment.getComment_id();
 
                             if(comID.equals(comment_id)){
+                                System.out.println("o3333");
                                 String CommentSender=findComment.getSender();
 
                                 DatabaseReference smRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
@@ -116,8 +118,10 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
 
                                             SMAccountCredentials findSM =  ch.getValue(SMAccountCredentials.class);
                                             String acc = findSM.getAccount();
-
+                                            System.out.println("CommentSender "+CommentSender);
+                                            System.out.println("acc "+acc);
                                             if(CommentSender.equals(acc)){
+                                                System.out.println("4444");
                                                 String child_id=findSM.getChild_id();
 
                                                 DatabaseReference childRef = FirebaseDatabase.getInstance().getReference().child("Children");

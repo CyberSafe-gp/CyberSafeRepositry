@@ -42,7 +42,7 @@ public class Add_Detection_KeywordAdapter extends RecyclerView.Adapter<Add_Detec
     @NonNull
     @Override
     public KeywordHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.parent_home_item, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.keyword_item, parent, false);
         Add_Detection_KeywordAdapter.KeywordHolder holder = new Add_Detection_KeywordAdapter.KeywordHolder(view);
 
 /*        view.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +89,7 @@ public class Add_Detection_KeywordAdapter extends RecyclerView.Adapter<Add_Detec
 
         public KeywordHolder(@NonNull View itemView) {
             super(itemView);
-            writeChildP = (TextView) itemView.findViewById(R.id.writeChildP);
+            writeChildP = (TextView) itemView.findViewById(R.id.writeKeyword);
 //            reportRe = (LinearLayout) itemView.findViewById(R.id.reportRe);
 
 

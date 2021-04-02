@@ -196,15 +196,26 @@ public class IncomingFragment extends Fragment {
         String receiver_id = report.getReceiver_id();
         String sta = report.getStatus();
 
+        if(userType.equals("Parent")){
 
-        Intent in = new Intent(getActivity(), Report_info_reported.class);
+        Intent in = new Intent(getActivity(), Report_info_inco.class);
         in.putExtra("Comment_id", com_id);
         in.putExtra("Report_id", rep_id);
         in.putExtra("sender_id", sender_id);
         in.putExtra("receiver_id", receiver_id);
         in.putExtra("Status", sta);
         in.putExtra("userType", userType);
-        startActivity(in);
+        startActivity(in);} else {
+
+            Intent in = new Intent(getActivity(), Report_info_reported.class);
+            in.putExtra("Comment_id", com_id);
+            in.putExtra("Report_id", rep_id);
+            in.putExtra("sender_id", sender_id);
+            in.putExtra("receiver_id", receiver_id);
+            in.putExtra("Status", sta);
+            in.putExtra("userType", userType);
+            startActivity(in);}
+
 
 
     }

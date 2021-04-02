@@ -26,7 +26,7 @@ public class SchoolHome_new extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.addFragmentLayout2, new EditSchoolFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.addFragmentLayout2, new SchoolHomeFragment()).commit();
 
         }
     }

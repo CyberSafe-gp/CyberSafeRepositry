@@ -11,7 +11,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,8 @@
             android:gravity="center_horizontal"
             android:layout_weight="100"
             android:text="Incoming Reports"
-            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:theme="@style/Theme.MaterialComponents"

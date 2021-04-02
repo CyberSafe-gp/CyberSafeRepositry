@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,8 @@
             android:gravity="center_horizontal"
             android:layout_weight="100"
             android:text="Edit Profile"
-            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textStyle="bold"
             app:theme="@style/Theme.MaterialComponents"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -35,7 +36,7 @@
             android:id="@+id/Logg"
             android:layout_width="110dp"
             android:layout_height="48dp"
-            android:layout_marginLeft="189dp"
+            android:layout_marginLeft="180dp"
             android:text="Log Out"
             android:textColor="#EE9B39"
             android:textSize="18dp"
@@ -54,8 +55,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-29dp">
+        tools:layout_editor_absoluteX="-189dp"
+        tools:layout_editor_absoluteY="51dp">
 
         <TextView
             android:id="@+id/textView17"
@@ -65,9 +66,9 @@
             android:layout_marginTop="100dp"
             android:text="First name"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"
             android:textColor="#04406E"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            app:theme="@style/Theme.MaterialComponents" />
 
         <EditText
             android:id="@+id/firstNameB"
@@ -83,9 +84,9 @@
             android:layout_marginTop="15dp"
             android:text="Last name"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"
             android:textColor="#04406E"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            app:theme="@style/Theme.MaterialComponents" />
 
         <EditText
             android:id="@+id/lastNameB"
@@ -101,9 +102,9 @@
             android:layout_marginTop="15dp"
             android:text="Email"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"
             android:textColor="#04406E"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            app:theme="@style/Theme.MaterialComponents" />
 
         <EditText
             android:id="@+id/EditEmailAddressB"
@@ -119,17 +120,17 @@
             android:layout_marginTop="29dp"
             android:text="Password"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"
             android:textColor="#04406E"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            app:theme="@style/Theme.MaterialComponents" />
 
 
         <Button
             android:id="@+id/changePass"
             android:layout_width="215dp"
             android:layout_height="60dp"
-            android:layout_marginTop="30dp"
             android:layout_marginLeft="97dp"
+            android:layout_marginTop="30dp"
             android:text="Change Password"
             android:textColor="@color/blue"
             app:backgroundTint="#E5E4E2"
@@ -153,8 +154,6 @@
             app:theme="@style/Theme.MaterialComponents" />
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

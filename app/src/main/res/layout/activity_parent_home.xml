@@ -12,7 +12,7 @@
    <androidx.appcompat.widget.Toolbar
        android:id="@+id/toolbar"
        android:layout_width="match_parent"
-       android:layout_height="60dp"
+       android:layout_height="80dp"
        android:layout_centerInParent="true"
        android:background="@color/blue"
        android:orientation="horizontal"
@@ -29,7 +29,8 @@
           android:gravity="center_horizontal"
           android:text="Parent Home"
           android:textAlignment="center"
-          android:textAppearance="?attr/textAppearanceHeadline6"
+          android:textAppearance="?attr/textAppearanceHeadline5"
+          android:textStyle="bold"
           android:textColor="@color/white"
           app:theme="@style/Theme.MaterialComponents"
           tools:ignore="MissingConstraints"
@@ -99,8 +100,10 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_alignParentBottom="true"
-          android:layout_marginTop="520dp"
+          android:layout_marginTop="540dp"
           android:layout_marginRight="10dp"
+          android:backgroundTint="#e18313"
+
           android:layout_gravity="center|right"
           app:srcCompat="@drawable/ic_baseline_add_24"
           tools:ignore="MissingConstraints,VectorDrawableCompat" />

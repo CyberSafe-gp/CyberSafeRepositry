@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,8 @@
             android:gravity="center_horizontal"
             android:layout_weight="100"
             android:text="Edit School"
-            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textStyle="bold"
             app:theme="@style/Theme.MaterialComponents"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -149,7 +150,7 @@
             android:text="EDIT"
             android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/blue"
-            app:backgroundTint="@android:color/holo_orange_dark"
+            app:backgroundTint="#e18313"
             app:theme="@style/Theme.MaterialComponents" />
 
     </LinearLayout>

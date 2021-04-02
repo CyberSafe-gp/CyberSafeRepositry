@@ -23,7 +23,7 @@ public class Report_info_inco extends AppCompatActivity {
 
     String Comment_id, Report_id, sender_id, Status,receiver_id, childID, userType;
     DatabaseReference commentRef, SMARef, childRef;
-    String childAccount, childName, application, commentText, bullyAccount,SMAccountCredentials_id;
+    String childAccount, childName, application, commentText, bulliedAccount,SMAccountCredentials_id;
     ImageView back, home;
 
 
@@ -41,34 +41,6 @@ public class Report_info_inco extends AppCompatActivity {
         userType =getIntent().getStringExtra("userType");
 
         //Toolbar
-/*
-        back = (ImageView) findViewById(R.id.arrowIncomP);
-        home = (ImageView) findViewById(R.id.homeIncomP);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                */
-/*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
-                mIntent.putExtra("Child_id", childID);
-                startActivity(mIntent);*//*
-
-
-            }
-        });
-
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent mIntent = new Intent(Report_info_inco.this, ChildHome.class);
-                mIntent.putExtra("userType", userType);
-                startActivity(mIntent);
-
-            }
-        });
-*/
 
 
         // get the comment to retrieve the info
@@ -86,15 +58,15 @@ public class Report_info_inco extends AppCompatActivity {
 
                         // the info that we can reach from the comment
                         commentText = com.getBody();
-                        bullyAccount = com.getSender();
-                        SMAccountCredentials_id = com.getSMAccountCredentials_id();
+                        childAccount = com.getSender(); //Child
+                        SMAccountCredentials_id = com.getSMAccountCredentials_id();//bulied
 
                         //Write the bully comment and the bully(sender) account and child account on the text view
-                        TextView BullyCommentText = (TextView)findViewById(R.id.BullyCommentText);
+                        TextView BullyCommentText = (TextView)findViewById(R.id.WriteChildAccount);
                         BullyCommentText.setText(commentText);
 
-                        TextView WriteBullyAccount = (TextView)findViewById(R.id.WriteBullyAccount);
-                        WriteBullyAccount.setText(bullyAccount);
+                        TextView WriteBullyAccount = (TextView)findViewById(R.id.WriteChildAccount);
+                        WriteBullyAccount.setText(childAccount);
 
 
                         break;}
@@ -129,18 +101,21 @@ public class Report_info_inco extends AppCompatActivity {
 
                         // the info that we can reach from the SMAccountCredentials
 
-                        application = sma.getSocialMediaPlatform();
-                        childAccount=sma.getAccount();
-                        childID= sma.getChild_id();
+                       // application = sma.getSocialMediaPlatform();
+                        bulliedAccount=sma.getAccount();
+                        //childID= sma.getChild_id();
 
 /*                        //Write the platform and child account
                         TextView WriteApplication = (TextView)findViewById(R.id.WriteApplication);
                         WriteApplication.setText(application);*/
 
-                        TextView WriteChildAccount = (TextView)findViewById(R.id.WriteChildAccount);
-                        WriteChildAccount.setText(childAccount);
+                        TextView WriteChildAccount = (TextView)findViewById(R.id.WriteBullyAccount);
+                        WriteChildAccount.setText(bulliedAccount);}
 
-                        // get the smAccountCredentials to retrieve the info
+                    if(childAccount.equals(sma.getAccount())){
+
+                        childID= sma.getChild_id();
+
                         childRef = FirebaseDatabase.getInstance().getReference().child("Children");
                         childRef.addValueEventListener(new ValueEventListener() {
                             @Override

@@ -49,6 +49,7 @@
         <activity android:name=".Forgetpassword" />
         <activity android:name=".Gethelp" />
         <activity android:name=".IncomingReportsMain" />
+        <activity android:name=".Report_info_inco"/>
         <activity android:name=".Interface">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
