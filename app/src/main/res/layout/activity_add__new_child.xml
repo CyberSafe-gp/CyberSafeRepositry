@@ -282,16 +282,20 @@
 
 
             <Button
-                android:id="@+id/add1"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="130dp"
-                android:layout_marginTop="45dp"
-                android:text="Submit"
-                android:textSize="20dp"
-                android:textColor="@color/blue"
-                app:backgroundTint="@android:color/holo_orange_dark"
-                android:fontFamily="sans-serif-medium"/>
+            android:id="@+id/add1"
+            android:layout_width="246dp"
+            android:layout_height="94dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginLeft="80dp"
+            android:text="Add"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textColor="@color/blue"
+            app:backgroundTint="@android:color/holo_orange_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:theme="@style/Theme.MaterialComponents" />
+
+
 
         </LinearLayout>
 
