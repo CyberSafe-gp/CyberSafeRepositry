@@ -128,29 +128,19 @@ to monitor:"
             android:layout_marginTop="10dp"
             android:layout_marginRight="250dp" />-->
 
-
         <Button
             android:id="@+id/Next"
             android:layout_width="246dp"
             android:layout_height="94dp"
-            android:layout_marginStart="86dp"
-            android:layout_marginLeft="93dp"
-            android:layout_marginTop="45dp"
-            android:layout_marginEnd="93dp"
-            android:layout_marginRight="93dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginLeft="80dp"
             android:text="Next"
             android:textAppearance="?attr/textAppearanceHeadline5"
-            android:textColor="@color/white"
-            app:backgroundTint="#EE9B39"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/blue"
+            app:backgroundTint="@android:color/holo_orange_dark"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.523"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.896"
-            app:rippleColor="@color/blue"
-            app:theme="@style/Theme.MaterialComponents"/>
+            app:theme="@style/Theme.MaterialComponents" />
 
 
     </LinearLayout>

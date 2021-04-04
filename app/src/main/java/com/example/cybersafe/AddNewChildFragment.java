@@ -50,7 +50,7 @@ package com.example.cybersafe;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddNewChildFragment extends Fragment {
+public class AddNewChildFragment<textview> extends Fragment {
 
     DatabaseReference schoolRef , ChildRef , SMARef,schoolManagerRef;
     private Spinner genderSpinner, citySpinner,schoolSpinner,gradeSpinner,Applications;
@@ -83,6 +83,7 @@ public class AddNewChildFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.activity_add__new_child, container, false);
+
     }
 
     @Override
@@ -272,6 +273,7 @@ public class AddNewChildFragment extends Fragment {
                 }
 
                 //Set school dropdown menu
+                setSchoolManager.setBackgroundResource(0);
                 schoolSpinner= (Spinner)getActivity().findViewById(R.id.School);
                 ArrayList<String> schoolList = new ArrayList<>();
                 if(userCity.equals("Select")) {
@@ -338,9 +340,12 @@ public class AddNewChildFragment extends Fragment {
                                                     }
                                                 }
                                                 if (find == true) {
-                                                    setSchoolManager.setTextColor(Color.GREEN);
-                                                    setSchoolManager.setText("School Manager is registered");
+//                                                    setSchoolManager.setTextColor(Color.GREEN);
+//                                                    setSchoolManager.setText("School Manager is registered");
+                                                   //
+                                                    setSchoolManager.setBackgroundResource(R.drawable.mark);
                                                 }else{
+                                                    setSchoolManager.setBackgroundResource(0);
                                                     setSchoolManager.setTextColor(Color.RED);
                                                     setSchoolManager.setText("School Manager is not registered");
                                                 }

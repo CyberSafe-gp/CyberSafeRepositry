@@ -39,7 +39,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
         <TextView
@@ -49,9 +49,8 @@
             android:layout_marginTop="80dp"
             android:text="First Name"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"
             android:textColor="#04406E"
-            />
+            app:theme="@style/Theme.MaterialComponents" />
 
         <EditText
             android:id="@+id/firstname"
@@ -65,9 +64,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="Last Name"
-            android:textColor="#04406E"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"/>
+            android:textColor="#04406E"
+            app:theme="@style/Theme.MaterialComponents" />
 
         <EditText
             android:id="@+id/lastname"
@@ -81,9 +80,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="School Name"
-            android:textColor="#04406E"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"/>
+            android:textColor="#04406E"
+            app:theme="@style/Theme.MaterialComponents" />
 
         <Spinner
             android:id="@+id/spinnerschoolname"
@@ -97,16 +96,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="Email"
-            android:textColor="#04406E"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"/>
+            android:textColor="#04406E"
+            app:theme="@style/Theme.MaterialComponents" />
 
         <EditText
             android:id="@+id/email"
@@ -120,9 +118,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="Password"
-            android:textColor="#04406E"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"/>
+            android:textColor="#04406E"
+            app:theme="@style/Theme.MaterialComponents" />
 
         <EditText
             android:id="@+id/password"
@@ -151,7 +149,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.896"
             app:rippleColor="@color/blue"
-            app:theme="@style/Theme.MaterialComponents"/>
+            app:theme="@style/Theme.MaterialComponents" />
 
     </LinearLayout>
 

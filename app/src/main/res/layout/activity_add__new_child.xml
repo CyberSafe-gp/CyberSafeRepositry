@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Add_NewChild">
-//toolbar
+
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:layout_gravity="left"
                 android:gravity="center_horizontal"
                 android:layout_weight="100"
-                android:text="Add A New Child "
+                android:text="Add A New Child"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -38,26 +39,6 @@
                 app:theme="@style/Theme.MaterialComponents"/>
 
         </androidx.appcompat.widget.Toolbar>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="407dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="20dp"
-            android:background="#D5D3D5"
-            android:fontFamily="serif"
-            android:foregroundGravity="center_vertical"
-            android:gravity="center_vertical"
-            android:text="Child Information"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="#04406E"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            tools:ignore="RtlCompat" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,15 +52,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="150dp"
-                android:text="First name"
+                android:layout_marginTop="80dp"
+                android:text="First Name"
+                android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textColor="#04406E"
-                android:textSize="20dp" />
+                app:theme="@style/Theme.MaterialComponents" />
 
             <EditText
                 android:id="@+id/firstnameCH"
-                android:layout_width="327dp"
-                android:layout_height="50dp"
+                android:layout_width="380dp"
+                android:layout_height="55dp"
                 android:layout_marginLeft="20dp" />
 
             <TextView
@@ -87,37 +69,41 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
-                android:text="Last name"
+                android:text="Last Name"
+                android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textColor="#04406E"
-                android:textSize="20dp" />
+                app:theme="@style/Theme.MaterialComponents" />
 
             <EditText
                 android:id="@+id/lastnameCH"
-                android:layout_width="327dp"
-                android:layout_height="50dp"
+                android:layout_width="380dp"
+                android:layout_height="55dp"
                 android:layout_marginLeft="20dp" />
 
-            <LinearLayout
+           <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="95dp"
+                android:layout_height="110dp"
                 android:orientation="horizontal">
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="90dp"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="4dp"
                     android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp"
-                    android:text="DateOfBirth"
-                    android:textColor="#04406E"
-                    android:textSize="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:text="DateOfBirth"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textColor="#04406E"
+                        app:theme="@style/Theme.MaterialComponents" />
 
                     <Button
                         android:id="@+id/date_picker"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
                         android:text="JAN/01/2020"
                         android:textSize="20sp"
                         android:textColor="@color/black"
@@ -133,24 +119,24 @@
                 <LinearLayout
                     android:layout_width="238dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginLeft="4dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="90dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="15dp"
                         android:text="Gender"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
                         android:textColor="#04406E"
-                        android:textSize="20dp" />
+                        app:theme="@style/Theme.MaterialComponents" />
 
                     <Spinner
                         android:id="@+id/gender"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="90dp"
-                        android:layout_marginTop="15dp" />
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp" />
                 </LinearLayout>
             </LinearLayout>
            <LinearLayout
@@ -159,88 +145,102 @@
                android:orientation="horizontal">
 
                <LinearLayout
-                   android:layout_width="183dp"
-                   android:layout_height="110dp"
-                   android:layout_marginTop="15dp"
+                   android:layout_width="200dp"
+                   android:layout_height="match_parent"
+                   android:layout_marginLeft="1dp"
                    android:orientation="vertical">
 
 
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginLeft="30dp"
-                       android:layout_marginTop="1dp"
+                       android:layout_marginLeft="20dp"
+                       android:layout_marginTop="15dp"
                        android:text="City"
+                       android:textAppearance="?attr/textAppearanceHeadline6"
                        android:textColor="#04406E"
-                       android:textSize="20dp" />
+                       app:theme="@style/Theme.MaterialComponents" />
 
                    <Spinner
                        android:id="@+id/City"
-                       android:layout_width="154dp"
-                       android:layout_height="40dp"
-                       android:layout_marginLeft="20dp"
-                       android:layout_marginTop="10dp" />
+                       android:layout_width="170dp"
+                       android:layout_height="50dp"
+                       android:layout_marginLeft="20dp" /> />
                </LinearLayout>
 
 
                <LinearLayout
-                   android:layout_width="206dp"
+                   android:layout_width="238dp"
                    android:layout_height="match_parent"
-                   android:layout_marginLeft="14dp"
-                   android:orientation="vertical"
-                   android:layout_marginTop="5dp">
+                   android:layout_marginLeft="11dp"
+                   android:orientation="vertical">
 
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginLeft="90dp"
+                       android:layout_marginLeft="20dp"
                        android:layout_marginTop="15dp"
                        android:text="Grade"
+                       android:textAppearance="?attr/textAppearanceHeadline6"
                        android:textColor="#04406E"
-                       android:textSize="20dp" />
+                       app:theme="@style/Theme.MaterialComponents" />
 
                    <Spinner
                        android:id="@+id/Grade"
-                       android:layout_width="100dp"
-                       android:layout_height="40dp"
-                       android:layout_marginLeft="85dp"
-                       android:layout_marginTop="15dp" />
+                       android:layout_width="170dp"
+                       android:layout_height="50dp"
+                       android:layout_marginLeft="20dp" />
                </LinearLayout>
            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="0dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
                     android:text="School"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textColor="#04406E"
-                    android:textSize="20dp" />
-
-                <Spinner
+                    app:theme="@style/Theme.MaterialComponents" />/>
+     <LinearLayout
+        android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="horizontal">
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/School"
-                    android:layout_width="375dp"
-                    android:layout_height="40dp"
+                    android:layout_width="340dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginTop="10dp"
+<!--                <TextView-->
+<!--                    android:id="@+id/dot"-->
+<!--                    android:layout_width="30dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginLeft="340dp"-->
+<!--                    android:background="@drawable/mark"-->
+<!--                    />-->
+
+                     <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="20dp"
                     android:text=""
                     android:id="@+id/setSchoolManager"
                     android:textColor="#04406E"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:background="@drawable/mark" />
 
-
+     </LinearLayout>
 
             </LinearLayout>
 
@@ -248,7 +248,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="407dp"
                 android:layout_height="37dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="0dp"
                 android:background="#D5D3D5"
                 android:fontFamily="serif"
                 android:foregroundGravity="center_vertical"
@@ -279,36 +279,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:text="Username"
-                android:textColor="#04406E"
-                android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="327dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:text="Password"
-                android:textColor="#04406E"
-                android:textSize="20dp" />
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="327dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:inputType="textPassword"/>
 
             <Button
                 android:id="@+id/add1"
