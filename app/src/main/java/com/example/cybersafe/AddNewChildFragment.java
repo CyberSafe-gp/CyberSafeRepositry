@@ -347,7 +347,7 @@ public class AddNewChildFragment<textview> extends Fragment {
                                                 }else{
                                                     setSchoolManager.setBackgroundResource(0);
                                                     setSchoolManager.setTextColor(Color.RED);
-                                                    setSchoolManager.setText("School Manager is not registered");
+//                                                    setSchoolManager.setText("School Manager is not registered");
                                                 }
 
                                             }
