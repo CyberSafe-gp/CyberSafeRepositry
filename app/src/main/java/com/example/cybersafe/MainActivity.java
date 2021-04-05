@@ -1,95 +1,83 @@
 package com.example.cybersafe;
 
 
+import android.annotation.TargetApi;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import android.util.Log;
+import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebMessage;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
 
-import java.util.Properties;
 
 public class MainActivity  extends AppCompatActivity {
 
-
     WebView web;
+    // creating a variable for our text view
+    private TextView messageTV;
+    Button button;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        web = findViewById(R.id.webView);
-        WebSettings webSettings=web.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        web.setWebViewClient(new WebViewClient());
-        web.loadUrl("https://tikapi.io/account/authorize?client_id=c_8PGS0I4EY9&redirect_uri=https://tikapi.io/success");
 
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        Uri data = intent.getData();
 
-       // web.loadUrl("https://tikapi.io/account/authorize?client_id=c_8PGS0I4EY9&redirect_uri=https://tikapi.io/success");
-        /*Log.d("Rhino", "onCreate: " + runScript(this));*/
+       /* messageTV.setText(data.getHost());*/
 
+        button = findViewById(R.id.button);
 
-    }}
-
-
-
-
-/*
-    public static String runScript(Context androidContextObject) {
-        // Get the JavaScript in previous section
-        try {
-
-            Resources resources = androidContextObject.getResources();
-            InputStream rawResource = resources.openRawResource(R.raw.sdk);
-
-
-            Properties properties = new Properties();
-            properties.load(rawResource);
-
-            String source = properties.getProperty("use strict");
-            String functionName = "window.TikApi";
-            Object[] functionParams = new Object[]{};
-            // Every Rhino VM begins with the enter()
-            // This Context is not Android's Context
-            org.mozilla.javascript.Context rhino = org.mozilla.javascript.Context.enter();
-
-            // Turn off optimization to make Rhino Android compatible
-            rhino.setOptimizationLevel(-1);
-
-            Scriptable scope = rhino.initStandardObjects();
-
-            // This line set the javaContext variable in JavaScript
-            //ScriptableObject.putProperty(scope, "javaContext", org.mozilla.javascript.Context.javaToJS(androidContextObject, scope));
-
-            // Note the forth argument is 1, which means the JavaScript source has
-            // been compressed to only one line using something like YUI
-            rhino.evaluateString(scope, source, "JavaScript", 1, null);
-
-            // We get the hello function defined in JavaScript
-            Object obj = scope.get(functionName, scope);
-
-            if (obj instanceof Function) {
-                Function function = (Function) obj;
-                // Call the hello function with params
-                Object result = function.call(rhino, scope, scope, functionParams);
-                // After the hello function is invoked, you will see logcat output
-
-                // Finally we want to print the result of hello function
-                String response = org.mozilla.javascript.Context.toString(result);
-                return response;
-            } else {
-                return null;
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://tikapi.io/account/authorize?client_id=c_8PGS0I4EY9redirect_uri=http://www.cybersafe.com"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            // We must exit the Rhino VM
-            org.mozilla.javascript.Context.exit();
-        }
+        });
 
-        return null;
+
+
+
+
+/*        web = (WebView) findViewById(R.id.webView);
+        WebSettings webSettings = web.getSettings();
+
+        webSettings.setJavaScriptEnabled(true);
+
+        //*enabled dom storage*
+        webSettings.setDomStorageEnabled(true);
+        //enabling javascript
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        //database enabled
+        webSettings.setDatabaseEnabled(true);
+        //setwebcclient
+        web.setWebViewClient(new WebViewClient());
+
+        web.loadUrl("https://cybersafe-52e21.web.app/apiauthintication.html");*/
+
+
     }
-    */
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+    }
+}

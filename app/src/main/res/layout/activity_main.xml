@@ -7,8 +7,40 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
- <WebView
-    android:id="@+id/webView"
-      android:layout_width="match_parent"
-     android:layout_height="790dp"></WebView>
-        </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <!--text view for displaying welcome message-->
+    <TextView
+        android:id="@+id/idTVWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:text="Welcome to "
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/purple_500"
+        android:textSize="30sp"
+        android:gravity="center_horizontal" />
+
+    <!--text view for displaying the organization
+        name from the link which we have generated-->
+    <TextView
+        android:id="@+id/idTVMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/idTVWelcome"
+        android:text="Organization Name"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/purple_500"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal" />
+
+</LinearLayout>
