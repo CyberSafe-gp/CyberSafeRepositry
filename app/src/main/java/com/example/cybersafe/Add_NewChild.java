@@ -343,11 +343,14 @@ public class Add_NewChild extends AppCompatActivity {
                                                         }
                                                     }
                                                     if (find == true) {
-                                                        setSchoolManager.setTextColor(Color.GREEN);
-                                                        setSchoolManager.setText("School Manager is registered");
+//                                                    setSchoolManager.setTextColor(Color.GREEN);
+//                                                    setSchoolManager.setText("School Manager is registered");
+                                                        //
+                                                        setSchoolManager.setBackgroundResource(R.drawable.mark);
                                                     }else{
+                                                        setSchoolManager.setBackgroundResource(0);
                                                         setSchoolManager.setTextColor(Color.RED);
-                                                        setSchoolManager.setText("School Manager is not registered");
+//                                                    setSchoolManager.setText("School Manager is not registered");
                                                     }
 
                                                 }

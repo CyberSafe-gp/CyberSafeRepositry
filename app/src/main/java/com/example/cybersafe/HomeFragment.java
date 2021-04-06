@@ -157,15 +157,15 @@ public class HomeFragment extends Fragment {
         //floating_action_button for add child
         fab.setOnClickListener(v -> {
 
-            Fragment fragment = new AddNewChildFragment();
+//            Fragment fragment = new AddNewChildFragment();
 
             FragmentManager fragmentManager = getFragmentManager();
 //            fragmentManager.beginTransaction().addToBackStack(null);
 
-            fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
+//            fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
 
-//            Intent intent = new Intent(getActivity(), Add_NewChild.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getActivity(), Add_NewChild.class);
+            startActivity(intent);
         });
     }
 }
