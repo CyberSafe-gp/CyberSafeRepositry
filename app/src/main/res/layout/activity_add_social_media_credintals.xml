@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="0dp">
+
+
+
+<androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:background="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="center_horizontal"
+                android:layout_weight="100"
+                android:text="Add Child Credential"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="21dp"
+                app:theme="@style/Theme.MaterialComponents"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="104dp"
+
+        android:text="Click the below button to log in into TikTok:"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/addSocial"
+        android:layout_width="299dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="88dp"
+        android:src="@drawable/tiktoklogo"
+        android:elevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:theme="@style/Theme.MaterialComponents" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="246dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="180dp"
+        android:text="Add child"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textColor="@color/blue"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addSocial"
+        app:theme="@style/Theme.MaterialComponents" />
+</androidx.constraintlayout.widget.ConstraintLayout>
