@@ -50,29 +50,7 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
             startActivity(in);
         }
 
-/*
-        //Toolbar
-        ImageView back = (ImageView) findViewById(R.id.arrowIncomP3);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
 
-            }
-        });
-
-        ImageView home = (ImageView) findViewById(R.id.homeIncomP3);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mIntent = new Intent(Add_Detection_Keyword2.this, ChildHome.class);
-                mIntent.putExtra("userType", userType);
-                startActivity(mIntent);
-
-
-            }
-        });
-*/
 
         add = findViewById(R.id.adD);
 

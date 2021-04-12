@@ -99,13 +99,13 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addDetectionK"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center|right"
             android:layout_marginTop="540dp"
-            android:backgroundTint="#e18313"
             android:layout_marginRight="10dp"
+            android:backgroundTint="#e18313"
             app:srcCompat="@drawable/ic_baseline_add_24"
             tools:ignore="MissingConstraints,VectorDrawableCompat" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

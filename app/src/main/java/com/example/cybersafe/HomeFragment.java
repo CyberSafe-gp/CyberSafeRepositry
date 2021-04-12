@@ -139,7 +139,7 @@ public class HomeFragment extends Fragment {
                         textView.setText("");
                         break;
                     } else {
-                        textView.setText("no existing children");
+                        textView.setText("No Existing Children");
                     }
                 }
 

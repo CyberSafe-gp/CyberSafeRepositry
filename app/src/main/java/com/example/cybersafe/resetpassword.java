@@ -1,6 +1,5 @@
 package com.example.cybersafe;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -32,7 +31,7 @@ public class resetpassword extends AppCompatActivity {
                 startActivity(new Intent(Forgetpassword.this, MainActivity.class));
             }
         });*/
-        emailEditText = (EditText) findViewById(R.id.editTextTextEmailAddress2);
+        emailEditText = (EditText) findViewById(R.id.editTextTextEmailAddress22);
         resetpasswordB =(Button) findViewById(R.id.button15);
 
         Auth= FirebaseAuth.getInstance();

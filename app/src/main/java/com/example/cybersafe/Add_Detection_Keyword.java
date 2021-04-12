@@ -1,5 +1,6 @@
 package com.example.cybersafe;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Keyword;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +32,8 @@ public class Add_Detection_Keyword  extends AppCompatActivity {
     DatabaseReference keywordsRef, keywordRef;
     RecyclerView recyclerView;
     ArrayList<Keyword> keywordArrayList= new ArrayList();
-    Add_Detection_KeywordAdapter adapter;
+    Add_Detection_KeywordAdapter adapter;Cause: invalid entry CRC (expected 0xa0369eff but got 0x4b5c613d)
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,27 +52,6 @@ public class Add_Detection_Keyword  extends AppCompatActivity {
             startActivity(in);
         }
 
-/*        //Toolbar
-        ImageView back = (ImageView) findViewById(R.id.arrowIncomP2);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-
-            }
-        });
-
-        ImageView home = (ImageView) findViewById(R.id.homeIncomP2);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-
-            }
-        });*/
-
-
-        //userID="oN6Md1uGmBaWi6lyKBiTexo7x263oN6Md1uGmBaWi6lyKBiTexo7x263";
 
         TextView textView = (TextView) findViewById(R.id.noKeyword);
 
@@ -150,6 +132,18 @@ public class Add_Detection_Keyword  extends AppCompatActivity {
                 startActivity(inn);
             }
         });
+
+////
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.addDetectionK);
+
+        fab.setOnClickListener(v -> {
+
+//            FragmentManager fragmentManager = getFragmentManager();
+
+            Intent intent = new Intent(this, Add_NewChild.class);
+            startActivity(intent);
+        });
+    }
 
     }
 }

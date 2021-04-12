@@ -62,7 +62,7 @@
                 android:id="@+id/firstnameCH"
                 android:layout_width="390dp"
                 android:layout_height="55dp"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,9 +78,9 @@
                 android:id="@+id/lastnameCH"
                 android:layout_width="390dp"
                 android:layout_height="55dp"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="10dp" />
 
-           <LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
                 android:orientation="horizontal">
@@ -219,27 +219,14 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp" />
 
-<!--                <TextView-->
-<!--                    android:id="@+id/dot"-->
-<!--                    android:layout_width="30dp"-->
-<!--                    android:layout_height="30dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_marginLeft="340dp"-->
-<!--                    android:background="@drawable/mark"-->
-<!--                    />-->
-
-                     <TextView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="20dp"
-                    android:text=""
-                    android:id="@+id/setSchoolManager"
-                    android:textColor="#04406E"
-                    android:textSize="20dp"
-                    android:background="@drawable/mark" />
-
+         <ImageView
+             android:layout_width="30dp"
+             android:layout_height="30dp"
+             android:layout_marginLeft="4dp"
+             android:layout_marginTop="20dp"
+             android:text=""
+             android:id="@+id/setSchoolManager"
+             android:background="@drawable/mark" />
 
 
      </LinearLayout>
@@ -282,7 +269,6 @@
                 android:layout_marginTop="10dp" />
 
 
-
             <Button
             android:id="@+id/add1"
             android:layout_width="246dp"
@@ -298,7 +284,6 @@
             app:theme="@style/Theme.MaterialComponents" />
 
 
-//done
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

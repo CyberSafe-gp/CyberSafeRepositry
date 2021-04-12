@@ -1,11 +1,5 @@
 package com.example.cybersafe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +8,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Report;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,9 +56,6 @@ public class IncomingReportsMain extends AppCompatActivity {
             startActivity(in);
         }
 
-        //Toolbar
-        back = (ImageView) findViewById(R.id.arrowIncomP);
-        home = (ImageView) findViewById(R.id.homeIncomP);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

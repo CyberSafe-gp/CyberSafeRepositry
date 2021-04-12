@@ -10,7 +10,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ParentHome_New extends AppCompatActivity {
+public class
+ParentHome_New extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     @Override

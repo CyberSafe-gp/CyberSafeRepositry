@@ -1,12 +1,7 @@
 package com.example.cybersafe;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,18 +12,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cybersafe.Objects.Child;
-import com.example.cybersafe.Objects.Comment;
-import com.example.cybersafe.Objects.Report;
 import com.example.cybersafe.Objects.SMAccountCredentials;
 import com.example.cybersafe.Objects.School;
 import com.example.cybersafe.Objects.SchoolManager;
-import com.example.cybersafe.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,7 +38,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class Add_NewChild extends AppCompatActivity {
 
@@ -85,32 +79,14 @@ public class Add_NewChild extends AppCompatActivity {
 
             // No user is signed in
         }
-        //Toolbar
-        ImageView back = (ImageView) findViewById(R.id.arrowIncomP);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-
-            }
-        });
-
-        ImageView home = (ImageView) findViewById(R.id.homeIncomP5);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-
-            }
-        });
 
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
         ChildRef = FirebaseDatabase.getInstance().getReference().child("Children");
         schoolManagerRef= FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
         firstnameCH = (EditText) findViewById((R.id.firstnameCH));
         lastnameCH = (EditText) findViewById((R.id.lastnameCH));
-        username = (EditText) findViewById((R.id.username));
-        password = (EditText) findViewById((R.id.password));
+//        username = (EditText) findViewById((R.id.username));
+//        password = (EditText) findViewById((R.id.password));
         setSchoolManager = (TextView) findViewById((R.id.setSchoolManager));
         date_picker = findViewById(R.id.date_picker);
         date_picker.setText(makeDateString(0,0,0));
@@ -332,7 +308,7 @@ public class Add_NewChild extends AppCompatActivity {
                                             schoolManagerRef.addValueEventListener(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                                                    find = false;
                                                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                                                         SchoolManager findSM = postSnapshot.getValue(SchoolManager.class);
 
@@ -346,10 +322,12 @@ public class Add_NewChild extends AppCompatActivity {
 //                                                    setSchoolManager.setTextColor(Color.GREEN);
 //                                                    setSchoolManager.setText("School Manager is registered");
                                                         //
-                                                        setSchoolManager.setBackgroundResource(R.drawable.mark);
+                                                        setSchoolManager.setVisibility(View.VISIBLE);
+//                                                        setSchoolManager.setBackgroundResource(R.drawable.mark);
                                                     }else{
-                                                        setSchoolManager.setBackgroundResource(0);
-                                                        setSchoolManager.setTextColor(Color.RED);
+//                                                        setSchoolManager.setBackgroundResource(0);
+//                                                        setSchoolManager.setTextColor(Color.RED);
+                                                        setSchoolManager.setVisibility(View.INVISIBLE);
 //                                                    setSchoolManager.setText("School Manager is not registered");
                                                     }
 
@@ -699,6 +677,7 @@ public class Add_NewChild extends AppCompatActivity {
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
     }
 
+
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
@@ -712,8 +691,6 @@ public class Add_NewChild extends AppCompatActivity {
             return 0;
         }
     }
-
-
 
 
 }
