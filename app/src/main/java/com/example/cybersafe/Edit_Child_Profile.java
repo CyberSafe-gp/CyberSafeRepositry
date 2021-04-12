@@ -106,7 +106,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
        // username = (EditText) findViewById((R.id.username1));
        // password = (EditText) findViewById((R.id.password1));
-        setSchoolManager = (TextView) findViewById((R.id.setSchoolManager));
+       // setSchoolManager = (TextView) findViewById((R.id.setSchoolManager)); انا لينه حذفتها لانه كانت تسبب لي ايرور
         date_picker = findViewById(R.id.date_picker1);
 
         //delete
@@ -134,7 +134,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                 for (DataSnapshot childrf : snapshot.getChildren()) {
                                     SMAccountCredentials findSMA = childrf.getValue(SMAccountCredentials.class);
                                     if(findSMA.getChild_id().equals(childID)){
-                                        Toast.makeText(ChildHome.this, "Deleted successfully", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Edit_Child_Profile.this, "Deleted successfully", Toast.LENGTH_LONG).show();
                                         String SMAId=findSMA.getId();
                                         mFirebaseInstance2.child(SMAId).removeValue();
                                         mFirebaseInstance.child(childID).removeValue();
@@ -619,18 +619,18 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
 //                    usernameD =username.getText().toString();
 //                    passwordD =password.getText().toString();
-                    SMAccountCredentials SMAobj=new SMAccountCredentials(SMAId,childID,apps,passwordD,usernameD);
+/*                    SMAccountCredentials SMAobj=new SMAccountCredentials(SMAId,childID,apps,passwordD,usernameD);
 
                     SMARef.child(SMAId).setValue(SMAobj);
 
-                    Toast.makeText(Edit_Child_Profile.this, "Child updated successfully", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Edit_Child_Profile.this, "Child updated successfully", Toast.LENGTH_LONG).show();*/
                     // startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
                     /*Intent intent = new Intent();
                     setResult(RESULT_OK, intent);
                     */
                     finish();
                 } else {
-                    Toast.makeText(Edit_Child_Profile.this, "Child doesn't updated", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(Edit_Child_Profile.this, "Child doesn't updated", Toast.LENGTH_LONG).show();
                 }
 
             }

@@ -32,7 +32,7 @@ public class Add_Detection_Keyword  extends AppCompatActivity {
     DatabaseReference keywordsRef, keywordRef;
     RecyclerView recyclerView;
     ArrayList<Keyword> keywordArrayList= new ArrayList();
-    Add_Detection_KeywordAdapter adapter;Cause: invalid entry CRC (expected 0xa0369eff but got 0x4b5c613d)
+    Add_Detection_KeywordAdapter adapter; //Cause: invalid entry CRC (expected 0xa0369eff but got 0x4b5c613d)
 
 
     @Override
@@ -146,4 +146,3 @@ public class Add_Detection_Keyword  extends AppCompatActivity {
     }
 
     }
-}

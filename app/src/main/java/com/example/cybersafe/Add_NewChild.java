@@ -2,6 +2,7 @@ package com.example.cybersafe;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -534,6 +535,7 @@ public class Add_NewChild extends AppCompatActivity {
         String firstName=firstnameCH.getText().toString();
         String lastName=lastnameCH.getText().toString();
 
+        Intent in = new Intent(Add_NewChild.this, addSocialMediaCredintals.class);
 
         in.putExtra("parentid",parentid);
         in.putExtra("school_id",school_id);
