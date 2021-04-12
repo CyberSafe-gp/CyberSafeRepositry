@@ -12,8 +12,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addSocialMediaCredintals"></activity>
-        <activity android:name=".CustomRequest" />
+        <activity android:name=".addSocialMediaCredintals">
+
+<!--            Deep link to redirect the user to our app-->
+            <intent-filter tools:ignore="AppLinkUrlError">
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="www.cybersafe.com"
+                    android:scheme="https" />
+
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.cybersafe.com"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+
 
         <meta-data
             android:name="android.max_aspect"
@@ -79,42 +104,7 @@
         <activity android:name=".ViewReportedBullyingMain" />
         <activity android:name=".ReportTo" />
         <activity android:name=".MainActivity">
-            <intent-filter tools:ignore="AppLinkUrlError">
-                <category android:name="android.intent.category.LAUNCHER" />
 
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <!--
-                <data android:scheme="http"
-                android:host="https://cybersafe-52e21.web.app/apiauthintication.html"
-              />
-                -->
-
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <!--
-            <data android:scheme="https"
-                android:host="https://cybersafe-52e21.web.app/apiauthintication.html"
-                />
-
-
-            <data android:host="local.test/" android:scheme="http"
-                tools:ignore="AppLinkUrlError"></data>
-                  https://tikapi.io/account/authorize?client_id=c_8PGS0I4EY9redirect_uri=http://www.cybersafe.com
-
-                  http://www.cybersafe.com
-                -->
-
-                <data
-                    android:host="www.cybersafe.com"
-                    android:scheme="http" />
-            </intent-filter>
         </activity>
         <activity android:name=".MainActivity2">
             <intent-filter>

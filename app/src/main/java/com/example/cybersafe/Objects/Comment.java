@@ -7,22 +7,18 @@ public class Comment {
     private String sender;
     private String body;
     private Boolean flag;
-    private String timestamp;
-    private String timeRetrieved;
 
 
 
     public Comment() {
     }
 
-    public Comment(String comment_id, String SMAccountCredentials_id, String sender, String body, Boolean flag, String timestamp, String timeRetrieved) {
+    public Comment(String comment_id, String SMAccountCredentials_id, String sender, String body, Boolean flag) {
         this.comment_id = comment_id;
         this.SMAccountCredentials_id = SMAccountCredentials_id;
         this.sender = sender;
         this.body = body;
         this.flag = flag;
-        this.timestamp = timestamp;
-        this.timeRetrieved = timeRetrieved;
     }
 
     public String getComment_id() {
@@ -70,23 +66,6 @@ public class Comment {
     }
 
 
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
-
-    public String getTimeRetrieved() {
-        return timeRetrieved;
-    }
-
-    public void setTimeRetrieved(String timeRetrieved) {
-        this.timeRetrieved = timeRetrieved;
-    }
 
 
 }

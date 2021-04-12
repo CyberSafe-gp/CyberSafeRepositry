@@ -4,19 +4,32 @@ public class SMAccountCredentials {
     private String id;
     private String child_id;
     private String socialMediaPlatform;
-    private String password;
     private String account;
-
+    private String access_token;
+    private String Author_id;
+    private int commentCounter;
 
     public SMAccountCredentials() {
     }
 
-    public SMAccountCredentials(String id, String child_id, String socialMediaPlatform, String password, String account) {
+
+    public SMAccountCredentials(String id, String child_id, String socialMediaPlatform, String account, String access_token, String author_id, int commentCounter) {
         this.id = id;
         this.child_id = child_id;
         this.socialMediaPlatform = socialMediaPlatform;
-        this.password = password;
         this.account = account;
+        this.access_token = access_token;
+        Author_id = author_id;
+        this.commentCounter = commentCounter;
+    }
+
+
+    public int getCommentCounter() {
+        return commentCounter;
+    }
+
+    public void setCommentCounter(int commentCounter) {
+        this.commentCounter = commentCounter;
     }
 
     public String getId() {
@@ -43,14 +56,6 @@ public class SMAccountCredentials {
         this.socialMediaPlatform = socialMediaPlatform;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getAccount() {
         return account;
     }
@@ -61,15 +66,21 @@ public class SMAccountCredentials {
 
 
 
+    public String getAccess_token() {
+        return access_token;
+    }
 
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
 
+    public String getAuthor_id() {
+        return Author_id;
+    }
 
-
-
-
-
-
-
+    public void setAuthor_id(String author_id) {
+        Author_id = author_id;
+    }
 
 
 }

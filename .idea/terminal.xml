@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="TerminalProjectOptionsProvider">
+    <envs>
+      <env key="GOOGLE_APPLICATION_CREDENTIALS" value="$USER_HOME$/Downloads/cybersafe-52e21-7740f2fa5b54.json" />
+    </envs>
+  </component>
+</project>
