@@ -225,7 +225,7 @@
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="20dp"
                         android:text=""
-                        android:id="@+id/setSchoolManager"
+                        android:id="@+id/setSchoolManager1"
                         android:background="@drawable/mark" />
 
 

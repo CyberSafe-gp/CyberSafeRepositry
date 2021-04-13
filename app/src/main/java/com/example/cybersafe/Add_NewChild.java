@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,7 +60,8 @@ public class Add_NewChild extends AppCompatActivity {
     private EditText password ;
     private FirebaseUser user;
     private Button add ;
-    TextView setSchoolManager;
+    //TextView setSchoolManager;
+    ImageView setSchoolManager;
     LocalDate birthDate;
     boolean find=false;
     final SMAccountCredentials SMAobj=new SMAccountCredentials();
@@ -88,7 +91,11 @@ public class Add_NewChild extends AppCompatActivity {
         lastnameCH = (EditText) findViewById((R.id.lastnameCH));
 //        username = (EditText) findViewById((R.id.username));
 //        password = (EditText) findViewById((R.id.password));
-        setSchoolManager = (TextView) findViewById((R.id.setSchoolManager));
+
+        //image
+//        setSchoolManager = (TextView) findViewById((R.id.setSchoolManager));
+        setSchoolManager =findViewById((R.id.setSchoolManager));
+
         date_picker = findViewById(R.id.date_picker);
         date_picker.setText(makeDateString(0,0,0));
 

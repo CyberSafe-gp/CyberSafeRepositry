@@ -38,23 +38,12 @@ public class ParentLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_login);
 
-//
-//        //Toolbar
-//        ImageView back = (ImageView) findViewById(R.id.arrowIncomP5);
-//        back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//
-//            }
-//        });
 
         userTypee=getIntent().getStringExtra("userType");
         //get and store the type of user loged-in
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference("SchoolManagers");
         Auth = FirebaseAuth.getInstance();
-       // forgetPass  = (TextView) findViewById(R.id.textView13);
         log = (Button) findViewById(R.id.button9);
         editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
@@ -118,12 +107,16 @@ public class ParentLogin extends AppCompatActivity {
                         Intent intent = new Intent(ParentLogin.this, ParentHome_New.class);
                         intent.putExtra("userType", userTypee);
                         startActivity(intent);
+                        editTextEmail.getText().clear();
+                        editTextPassword.getText().clear();
+
                     } else{
                         System.out.println("userTypee SM "+userTypee);
                         Intent intent = new Intent(ParentLogin.this, SchoolHome_new.class);
-
                         intent.putExtra("userType", userTypee);
                         startActivity(intent);
+                        editTextEmail.getText().clear();
+                        editTextPassword.getText().clear();
                 }
 
 

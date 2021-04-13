@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,6 +73,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
     private FirebaseUser Cuser;
     private static final String TAG = Edit_Child_Profile.class.getSimpleName();
     String usernameD,passwordD, SMAId;
+    ImageView setSchoolManager1;
 
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Children");
 
@@ -107,6 +109,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
        // username = (EditText) findViewById((R.id.username1));
        // password = (EditText) findViewById((R.id.password1));
        // setSchoolManager = (TextView) findViewById((R.id.setSchoolManager)); انا لينه حذفتها لانه كانت تسبب لي ايرور
+        setSchoolManager1 =findViewById((R.id.setSchoolManager1));
         date_picker = findViewById(R.id.date_picker1);
 
         //delete
@@ -423,6 +426,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                                                                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                                                    find = false;
                                                                     SchoolManager findSM = postSnapshot.getValue(SchoolManager.class);
 
                                                                     String findschoolid = findSM.getSchool_id();
@@ -432,11 +436,14 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                                                     }
                                                                 }
                                                                 if (find == true) {
-                                                                    setSchoolManager.setTextColor(Color.GREEN);
-                                                                    setSchoolManager.setText("School Manager is registered");
+//                                                                    setSchoolManager.setTextColor(Color.GREEN);
+//                                                                    setSchoolManager.setText("School Manager is registered");
+                                                                    setSchoolManager1.setVisibility(View.VISIBLE);
+
                                                                 }else{
-                                                                    setSchoolManager.setTextColor(Color.RED);
-                                                                    setSchoolManager.setText("School Manager is not registered");
+//                                                                    setSchoolManager.setTextColor(Color.RED);
+//                                                                    setSchoolManager.setText("School Manager is not registered");
+                                                                    setSchoolManager1.setVisibility(View.INVISIBLE);
                                                                 }
 
                                                             }
