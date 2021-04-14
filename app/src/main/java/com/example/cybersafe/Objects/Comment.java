@@ -6,6 +6,7 @@ public class Comment {
     private String SMAccountCredentials_id;
     private String sender;
     private String body;
+    private String C_ID;
     private Boolean flag;
 
 
@@ -13,12 +14,13 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String comment_id, String SMAccountCredentials_id, String sender, String body, Boolean flag) {
+    public Comment(String comment_id, String SMAccountCredentials_id, String sender, String body, Boolean flag,String C_ID) {
         this.comment_id = comment_id;
         this.SMAccountCredentials_id = SMAccountCredentials_id;
         this.sender = sender;
         this.body = body;
         this.flag = flag;
+        this.C_ID =C_ID;
     }
 
     public String getComment_id() {
@@ -63,6 +65,10 @@ public class Comment {
 
     public void setFlag(Boolean flag) {
         this.flag = flag;
+    }
+
+    public String getC_ID() {
+        return  C_ID;
     }
 
 
