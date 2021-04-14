@@ -67,7 +67,7 @@ public class MainActivity2 extends AppCompatActivity {
     //ArrayList parentChildren=new ArrayList();
     ArrayList<String> parentChildren = new ArrayList();
     ArrayList<SMAccountCredentials> ChildrenSMA = new ArrayList();
-    String accessToken, author_id, account,media_id,child_id;
+    String accessToken, author_id, account,media_id,SMA_ID;
     float video_Count,numberOfVideoRequest,numberOfCommentRequest;
     //in each request the is the minmmum number of videos and comments
     float video=20;
@@ -123,33 +123,38 @@ public class MainActivity2 extends AppCompatActivity {
 
 //        //Get the Social Media Account Credentials and the comment and add it to the database
 //
-//        for(int i =0; parentChildren.size()>=0;i++){
+        for(int i =0; parentChildren.size()>=0;i++) {
 //
-//            String child_id = parentChildren.get(i);
-//            SMARef.addValueEventListener(new ValueEventListener() {
+            String child_id = parentChildren.get( i );
+          SMARef.addValueEventListener(new ValueEventListener() {
+                                           @Override
+                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                               if (snapshot.exists()) {
+
+                                                   for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                                       SMAccountCredentials checkSMA = messageSnapshot.getValue( SMAccountCredentials.class );
+
+                                                       if (checkSMA.getChild_id().equals( child_id )) {
+                                                           //Get the Social Media Account Credentials information we need
+                                                           SMA_ID = checkSMA.getId();
+                                                           accessToken = checkSMA.getAccess_token();
+                                                           author_id = checkSMA.getAuthor_id();
+                                                           account = checkSMA.getAccount();
+                                                           commentCounter = checkSMA.getCommentCounter();
+                                                           break;
+                                                       }
+                                                   }
+                                               }
+                                           }
+
+                                           @Override
+                                           public void onCancelled(@NonNull DatabaseError error) {
+
+                                           }
+                                       });
 //
-//
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if (snapshot.exists()) {
-//
-//                        for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-//                            SMAccountCredentials checkSMA = messageSnapshot.getValue( SMAccountCredentials.class );
-//
-//                            if (checkSMA.getChild_id().equals( child_id )) {
-//                                //Get the Social Media Account Credentials information we need
-//                                child_id = checkSMA.getChild_id();
-//                                accessToken = checkSMA.getAccess_token();
-//                                author_id = checkSMA.getAuthor_id();
-//                                account = checkSMA.getAccount();
-//                                commentCounter = checkSMA.getCommentCounter();
-//                            }
-//                        }}}
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
+
+
 
                 JsonObjectRequest getRequest = new JsonObjectRequest( Request.Method.GET
                 , "https://api.tikapi.io/user/info", null, new Response.Listener<JSONObject>() {
@@ -186,7 +191,7 @@ public class MainActivity2 extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put( "X-ACCOUNT-KEY", "2OehchZsl76sXtMI5ceqpMVATtSv1Uaq" ); //but accessToken insted
+                params.put( "X-ACCOUNT-KEY", accessToken ); //but accessToken insted
                 params.put( "X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS" );//always the same
                 params.put( "Accept", "application/json" );
                 return params;
@@ -228,7 +233,7 @@ for(x=0;x<=numberOfVideoRequest;x++){
 
 //bring for this media id"vedio"the comment list
                                  for (int s = 0; s < numberOfCommentRequest; s++) {
-                                      String url1 = "https://api.tikapi.io/comment/list?media_id=" + media_id + "&cursor=0&count=30&author_id=6878402755733390337&author_username=luuluuomar";
+                                      String url1 = "https://api.tikapi.io/comment/list?media_id=" + media_id + "&cursor=0&count=30&author_id="+author_id+"&author_username="+account;
 
                                       //GET request is creating the RequestQueue. The RequestQueue is what deals with all the requests passed into it and automatically handles all the backend work such as creating worker threads, reading from/writing to the cache and parsing responses.
                                         JsonObjectRequest getRequest2 = new JsonObjectRequest( Request.Method.GET
@@ -263,7 +268,7 @@ for(x=0;x<=numberOfVideoRequest;x++){
 
                                                          Comment com = messageSnapshot.getValue( Comment.class );
 
-                                                         if (com.getComment_id().equals( child_id )) {
+                                                         if (com.getSMAccountCredentials_id().equals(SMA_ID )) {
 
                                                              if (com.getC_ID().equals( commentID )) {
                                                                  commentExist = true;
@@ -282,12 +287,12 @@ for(x=0;x<=numberOfVideoRequest;x++){
                                            if(!commentExist) {
                                                System.out.println( "hello from if statment" );
 
-                                                  String SMA_id = SMARef.push().getKey();
+                                                  String Comment_ID =  commentRef.push().getKey();
                                                             //create comment object to store it in database
 
-                                                             Comment commentObj= new Comment(child_id,SMA_id,senderName,comment,false,commentID);
+                                                             Comment commentObj= new Comment(Comment_ID,SMA_ID,senderName,comment,false,commentID);
                                                             //Add the comment to the database
-                                                             commentRef.child(SMA_id).setValue(commentObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                             commentRef.child(Comment_ID).setValue(commentObj).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
 
@@ -324,7 +329,7 @@ for(x=0;x<=numberOfVideoRequest;x++){
                                            //we nee extra headers for our api url
                                            public Map<String, String> getHeaders() throws AuthFailureError {
                                                     Map<String, String> params = new HashMap<String, String>();
-                                                  params.put( "X-ACCOUNT-KEY", "2OehchZsl76sXtMI5ceqpMVATtSv1Uaq" );
+                                                  params.put( "X-ACCOUNT-KEY", accessToken );
                                                    params.put( "X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS" );
                                                   params.put( "Accept", "application/json" );
                                                    return params;
@@ -356,7 +361,7 @@ for(x=0;x<=numberOfVideoRequest;x++){
                             //we nee extra headers for our api url
                             public Map<String, String> getHeaders() throws AuthFailureError {
                                 Map<String, String> params = new HashMap<String, String>();
-                                params.put( "X-ACCOUNT-KEY", "2OehchZsl76sXtMI5ceqpMVATtSv1Uaq" );
+                                params.put( "X-ACCOUNT-KEY",accessToken);
                                 params.put( "X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS" );
                                 params.put( "Accept", "application/json" );
                                 return params;
@@ -365,6 +370,7 @@ for(x=0;x<=numberOfVideoRequest;x++){
 
                         //store the requests
                         queue1.add( getRequest1 );
-                    }}}
+                    }}
+    }}
 
 
