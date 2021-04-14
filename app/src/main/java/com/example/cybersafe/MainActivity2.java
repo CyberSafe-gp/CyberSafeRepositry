@@ -63,11 +63,11 @@ import static com.google.firebase.database.FirebaseDatabase.getInstance;
 public class MainActivity2 extends AppCompatActivity {
     //create an ArrayList to store our retrieved data in.
     int commentCounter;
-    String Parent_ID;
+
     //ArrayList parentChildren=new ArrayList();
     ArrayList<String> parentChildren = new ArrayList();
     ArrayList<SMAccountCredentials> ChildrenSMA = new ArrayList();
-    String accessToken, author_id, account,media_id,SMA_ID;
+    String accessToken, author_id, account,media_id,SMA_ID,Parent_ID;
     float video_Count,numberOfVideoRequest,numberOfCommentRequest;
     //in each request the is the minmmum number of videos and comments
     float video=20;
