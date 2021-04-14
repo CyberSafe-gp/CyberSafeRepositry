@@ -61,7 +61,6 @@
             </intent-filter>
         </activity> <!-- android:theme="@style/Theme.CyberSafe" -->
         <activity android:name=".Add_Detection_Keyword2" />
-        <activity android:name=".Add_Detection_Keyword" />
         <activity android:name=".Add_NewChild" />
         <activity android:name=".BullyCommentMain" />
         <activity android:name=".ChildHome" />
@@ -81,7 +80,7 @@
         <activity android:name=".Interface">
             <intent-filter>
 
-                <!-- <action android:name="android.intent.action.MAIN" /> -->
+             <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -108,7 +107,7 @@
         </activity>
         <activity android:name=".MainActivity2">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <!-- <action android:name="android.intent.action.MAIN" /> -->
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
