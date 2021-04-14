@@ -317,7 +317,7 @@ public class Add_NewChild extends AppCompatActivity {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                     find = false;
-                                                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                                    setSchoolManager.setVisibility(View.INVISIBLE);                                                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                                                         SchoolManager findSM = postSnapshot.getValue(SchoolManager.class);
 
                                                         String findschoolid = findSM.getSchool_id();
