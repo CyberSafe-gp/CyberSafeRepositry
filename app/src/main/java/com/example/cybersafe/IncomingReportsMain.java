@@ -104,7 +104,7 @@ public class IncomingReportsMain extends AppCompatActivity {
                     alertDialogBuilder.setNegativeButton("Cancel", null).show();
 
                 } else { //Parent or School manager and confirm
-                        reportInfo(lr);
+                    reportInfo(lr);
                 }
             }
         });
@@ -154,7 +154,8 @@ public class IncomingReportsMain extends AppCompatActivity {
                         textView.setText("");
                         break;
                     } else {
-                        textView.setText("no incoming report");
+
+                        textView.setText("No incoming report");
 
                     }
                 }
@@ -175,7 +176,7 @@ public class IncomingReportsMain extends AppCompatActivity {
         String status = report.getStatus();
         String report_id = report.getReport_id();
         if (status.equals("Not confirm"))
-        reportRef.child(report_id).child("status").setValue("Confirm");
+            reportRef.child(report_id).child("status").setValue("Confirm");
 
 
         String com_id = report.getComment_id();
