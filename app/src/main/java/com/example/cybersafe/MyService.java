@@ -7,13 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -48,6 +45,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,7 +65,10 @@ public class MyService extends Service {
 
     //create an ArrayList to store our retrieved data in.
     int commentCounter;
-
+    //we need it in looping over the comment list if the child comment exceeds 30 because the limit for each request is 30 comment
+    ArrayList<Integer> commentCursor= new ArrayList<>( Arrays.asList(0, 30, 60, 90, 120, 150,180,210,240,270,300));
+    //we need it in looping over the video media id  if the child videos  exceeds 20 because the limit for each request is 20 video
+    ArrayList<Integer> videoCursor= new ArrayList<>( Arrays.asList(0, 20, 40, 60, 80, 100,120,140,160,180,200));
     //ArrayList parentChildren=new ArrayList();
     ArrayList<String> parentChildren = new ArrayList();
     ArrayList<SMAccountCredentials> ChildrenSMA = new ArrayList();
@@ -219,15 +220,15 @@ if(!(parentChildren.isEmpty())) {
 
         System.out.println(numberOfVideoRequest);
 
-        float x = 0;
 
-        for (x = 0; x <= numberOfVideoRequest; x++) {
+
+        for (int x = 0; x <numberOfVideoRequest; x++) {
 
             //then loop and bring all the child videos id to use it in get comment list request
 
 
-            JsonObjectRequest getRequest1 = new JsonObjectRequest(Request.Method.GET
-                    , "https://api.tikapi.io/user/feed?count=20&cursor=0", null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest getRequest1 = new JsonObjectRequest( Request.Method.GET
+                    , "https://api.tikapi.io/user/feed?count=20&cursor="+ videoCursor.get( x ), null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
@@ -247,7 +248,7 @@ if(!(parentChildren.isEmpty())) {
 
 //bring for this media id"vedio"the comment list
                             for (int s = 0; s < numberOfCommentRequest; s++) {
-                                String url1 = "https://api.tikapi.io/comment/list?media_id=" + media_id + "&cursor=0&count=30&author_id=" + author_id + "&author_username=" + account;
+                                String url1 = "https://api.tikapi.io/comment/list?media_id="+media_id+"&cursor=+"+ commentCursor.get( s )+"&count=30&author_id=" + author_id + "&author_username=" + account;
 
                                 //GET request is creating the RequestQueue. The RequestQueue is what deals with all the requests passed into it and automatically handles all the backend work such as creating worker threads, reading from/writing to the cache and parsing responses.
                                 JsonObjectRequest getRequest2 = new JsonObjectRequest(Request.Method.GET

@@ -118,7 +118,7 @@ public class addSocialMediaCredintals extends AppCompatActivity {
                 //we nee extra headers for our api url
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put( "X-ACCOUNT-KEY","2OehchZsl76sXtMI5ceqpMVATtSv1Uaq" );// access
+                    params.put( "X-ACCOUNT-KEY",access_token );// access
                     params.put( "X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS" );
                     params.put( "Accept", "application/json" );
                     return params;
