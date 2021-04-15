@@ -84,7 +84,6 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
         int len = KEYWORDS.length;
 
 
-
         for (int i = 0; i < len; i++) {
             Matcher m = p.matcher(KEYWORDS[i]);
             Matcher m2 = p2.matcher(KEYWORDS[i]);
