@@ -3,8 +3,6 @@ package com.example.cybersafe;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +14,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -594,7 +591,7 @@ public class Add_NewChild extends AppCompatActivity {
 
 
 
-                    SMAccountCredentials SMAobj=new SMAccountCredentials(SMA_id ,child_id,"TikTok",childAccount,access_token,Author_id,0);
+                    SMAccountCredentials SMAobj=new SMAccountCredentials(SMA_id ,child_id,"TikTok",childAccount,access_token,Author_id);
 
 
 

@@ -7,30 +7,26 @@ public class SMAccountCredentials {
     private String account;
     private String access_token;
     private String Author_id;
-    private int commentCounter;
+
 
     public SMAccountCredentials() {
     }
 
 
-    public SMAccountCredentials(String id, String child_id, String socialMediaPlatform, String account, String access_token, String author_id, int commentCounter) {
+    public SMAccountCredentials(String id, String child_id, String socialMediaPlatform, String account, String access_token, String author_id) {
         this.id = id;
         this.child_id = child_id;
         this.socialMediaPlatform = socialMediaPlatform;
         this.account = account;
         this.access_token = access_token;
         Author_id = author_id;
-        this.commentCounter = commentCounter;
+
     }
 
 
-    public int getCommentCounter() {
-        return commentCounter;
-    }
 
-    public void setCommentCounter(int commentCounter) {
-        this.commentCounter = commentCounter;
-    }
+
+
 
     public String getId() {
         return id;

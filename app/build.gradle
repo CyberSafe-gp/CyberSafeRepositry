@@ -3,6 +3,7 @@ plugins {
     id 'com.onesignal.androidsdk.onesignal-gradle-plugin'
     id 'com.android.application'
     id 'com.google.gms.google-services'
+
 }
 
 android {
@@ -49,7 +50,7 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.firebase:firebase-client-android:2.5.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -66,9 +67,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:20.0.4'
     //
     implementation 'com.android.support:multidex:1.0.3'
-
     //toolbar
     implementation 'androidx.appcompat:appcompat:1.0.0'
+
+
     //noinspection GradleCompatible
     implementation 'com.android.support:design:24.1.1'
     //noinspection GradleCompatible
@@ -107,7 +109,7 @@ dependencies {
 
     // Declare the dependency for the Firebase ML model downloader library
     // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-ml-modeldownloader'
+//    implementation 'com.google.firebase:firebase-ml-modeldownloader'
 
     // Also declare the dependency for the TensorFlow Lite library and specify its version
     implementation 'org.tensorflow:tensorflow-lite:2.3.0'
@@ -138,21 +140,20 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 //sara search
     implementation 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
-
     implementation 'com.android.volley:volley:1.2.0'
 
 
+
     //MODEL
-        // Import the BoM for the Firebase platform
-        implementation platform('com.google.firebase:firebase-bom:26.8.0')
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:26.8.0')
 
-        // Declare the dependency for the Firebase ML model downloader library
-        // When using the BoM, you don't specify versions in Firebase library dependencies
-        implementation 'com.google.firebase:firebase-ml-modeldownloader'
+    // Declare the dependency for the Firebase ML model downloader library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+//    implementation 'com.google.firebase:firebase-ml-modeldownloader'
 
-        // Also declare the dependency for the TensorFlow Lite library and specify its version
-        implementation 'org.tensorflow:tensorflow-lite:2.3.0'
-
+    // Also declare the dependency for the TensorFlow Lite library and specify its version
+    implementation 'org.tensorflow:tensorflow-lite:2.3.0'
 
 
     //API
