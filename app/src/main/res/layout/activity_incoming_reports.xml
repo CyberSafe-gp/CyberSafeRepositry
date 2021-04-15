@@ -53,7 +53,7 @@
         android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textColor="#676363"
+        android:textColor="#423F3F"
         android:textIsSelectable="false"
         android:textSize="25sp"
         android:textStyle="bold"
