@@ -154,7 +154,7 @@ public class IncomingReportsMain extends AppCompatActivity {
                         textView.setText("");
                         break;
                     } else {
-                        textView.setText("no incoming report");
+                        textView.setText("No incoming report");
 
                     }
                 }
