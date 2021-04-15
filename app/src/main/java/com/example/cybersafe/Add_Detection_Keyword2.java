@@ -54,6 +54,8 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
 
         add = findViewById(R.id.adD);
 
+
+
         add.setOnClickListener((View v) -> {
 
                 addDetectionKeywords();
