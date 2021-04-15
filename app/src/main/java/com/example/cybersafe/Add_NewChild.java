@@ -63,7 +63,7 @@ public class Add_NewChild extends AppCompatActivity {
     //TextView setSchoolManager;
     ImageView setSchoolManager;
     LocalDate birthDate;
-    boolean find=false;
+    public boolean find=false;
     final SMAccountCredentials SMAobj=new SMAccountCredentials();
 //    public Add_NewChild() {}
 //current user id
@@ -314,10 +314,12 @@ public class Add_NewChild extends AppCompatActivity {
 
                                             //Check if the school manager register
                                             schoolManagerRef.addValueEventListener(new ValueEventListener() {
+
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    find = false;
-                                                    setSchoolManager.setVisibility(View.INVISIBLE);                                                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+
+                                                           find=false;
+                                                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                                                         SchoolManager findSM = postSnapshot.getValue(SchoolManager.class);
 
                                                         String findschoolid = findSM.getSchool_id();

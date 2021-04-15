@@ -226,7 +226,8 @@
              android:layout_marginTop="20dp"
              android:text=""
              android:id="@+id/setSchoolManager"
-             android:background="@drawable/mark" />
+             android:background="@drawable/mark"
+             android:visibility="invisible"/>
 
 
      </LinearLayout>
