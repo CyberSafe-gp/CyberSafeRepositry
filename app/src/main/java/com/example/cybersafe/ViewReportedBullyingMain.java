@@ -31,7 +31,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
     private ViewReportedBullyingAdapter adapter;
     DatabaseReference reportRef, reportsRef;
     private String userID, userType;
-    ImageView back, home;
+    ImageView back, home ;
 
 
     @Override
@@ -149,7 +149,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
                         textView.setText("");
                         break;
                     } else {
-                        textView.setText("No reported comment");
+                        textView.setText("no reported comment");
 
                     }
                 }
