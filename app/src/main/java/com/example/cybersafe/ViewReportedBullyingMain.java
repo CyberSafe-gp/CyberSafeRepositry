@@ -31,7 +31,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
     private ViewReportedBullyingAdapter adapter;
     DatabaseReference reportRef, reportsRef;
     private String userID, userType;
-    ImageView back, home;
+    ImageView back, home ;
 
 
     @Override

@@ -35,7 +35,7 @@ public class IncomingReportsMain extends AppCompatActivity {
     private IncomingReportAdapter adapter;
     private FirebaseUser user;
     private String userID, userType;
-    ImageView back, home;
+    ImageView back, home ;
 
 
     @Override
