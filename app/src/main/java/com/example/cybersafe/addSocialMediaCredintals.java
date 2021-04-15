@@ -35,10 +35,14 @@ import java.util.Map;
 public class addSocialMediaCredintals extends AppCompatActivity {
     DatabaseReference ChildRef, SMARef;
     ImageView loginTikTok;
+    Button next;
     String access_token;
     String Author_id;
     String childAccount;
-    RequestQueue queue = Volley.newRequestQueue( this );
+    Uri data;
+
+
+
     String url = "https://api.tikapi.io/user/info";
 
     @Override
@@ -46,7 +50,7 @@ public class addSocialMediaCredintals extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_social_media_credintals );
 
-        //Get the child information to add it to the data base
+      /*  //Get the child information to add it to the data base
 
         String parent_id = getIntent().getStringExtra("parentid");
         String school_id = getIntent().getStringExtra("school_id");
@@ -56,18 +60,20 @@ public class addSocialMediaCredintals extends AppCompatActivity {
         String userCity = getIntent().getStringExtra("userCity");
         String userGender = getIntent().getStringExtra("userGender");
         String userGrade = getIntent().getStringExtra("userGrade");
-
+*/
         ChildRef = FirebaseDatabase.getInstance().getReference().child("Children");
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
 
-
+        RequestQueue queue = Volley.newRequestQueue( addSocialMediaCredintals.this );
 
         Intent intent = getIntent();
-        Uri data = intent.getData();
+         data = intent.getData();
 
         //To get the access token for the login TikTok
         if(data != null){
              access_token = data.getQueryParameter("access_token");
+            Toast.makeText(addSocialMediaCredintals.this, "access_token  "+access_token, Toast.LENGTH_LONG).show();
+
 
             //Get Author id and child Account
 
@@ -85,6 +91,10 @@ public class addSocialMediaCredintals extends AppCompatActivity {
                         JSONObject jsonArray3= jsonObj3.getJSONObject("user");
                         Author_id=jsonArray3.getString( "id" );
                         childAccount=jsonArray3.getString("uniqueId");
+
+
+
+
 
                     } catch (JSONException e) {
 
@@ -118,52 +128,11 @@ public class addSocialMediaCredintals extends AppCompatActivity {
             queue.add( getRequest );
 
 
-            String child_id = ChildRef.push().getKey();
-
-            Child ChildObj=new Child(child_id, parent_id, school_id, firstName,lastName, date, userCity,userGender,Integer.parseInt(userGrade) );
-
-            //Add child to database
-            ChildRef.child(child_id).setValue(ChildObj).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-
-                    if (task.isSuccessful()) {
-
-                        //social
-                        String SMAid = SMARef.push().getKey();
 
 
-                        SMAccountCredentials SMAObj=new SMAccountCredentials(SMAid,child_id,"TikTok",childAccount,access_token,Author_id,0);
-
-
-
-                        SMARef.child(SMAid).setValue(SMAObj).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(addSocialMediaCredintals.this, "Child added successfully", Toast.LENGTH_LONG).show();
-
-                                } else {
-                                    Toast.makeText(addSocialMediaCredintals.this, "Child doesn't added", Toast.LENGTH_LONG).show();
-                                }
-
-                            }
-                        });
-
-                   /*     Toast.makeText(Add_NewChild.this, "Child added successfully", Toast.LENGTH_LONG).show();
-                        // startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
-                        Intent intent = new Intent();
-                        setResult(RESULT_OK, intent);
-
-                        finish();*/
-                    } else {
-                       // Toast.makeText(Add_NewChild.this, "Child doesn't added", Toast.LENGTH_LONG).show();
-                    }
-
-                }
-            });
-
-
+        }
+        else {
+            Toast.makeText(addSocialMediaCredintals.this, "log in your child TikTok", Toast.LENGTH_LONG).show();
 
         }
 
@@ -178,8 +147,31 @@ public class addSocialMediaCredintals extends AppCompatActivity {
             }
         });
 
+        next =  findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(data != null && Author_id != null && childAccount != null ){
+                    String SMA_id = SMARef.push().getKey();
+
+                    Intent in = new Intent(addSocialMediaCredintals.this, Add_NewChild.class);
+
+                    in.putExtra("Author_id",Author_id);
+                    in.putExtra("childAccount",childAccount);
+                    in.putExtra("SMA_id",SMA_id);
+                    in.putExtra("access_token",access_token);
+                    startActivity(in);
+                }else{
+                    Toast.makeText(addSocialMediaCredintals.this, "Error oucord", Toast.LENGTH_LONG).show();
+
+                }
 
 
+
+
+            }
+        });
 
 
 

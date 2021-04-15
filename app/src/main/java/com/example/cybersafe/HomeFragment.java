@@ -164,7 +164,7 @@ public class HomeFragment extends Fragment {
 
 //            fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
 
-            Intent intent = new Intent(getActivity(), Add_NewChild.class);
+            Intent intent = new Intent(getActivity(), addSocialMediaCredintals.class);
             startActivity(intent);
         });
     }

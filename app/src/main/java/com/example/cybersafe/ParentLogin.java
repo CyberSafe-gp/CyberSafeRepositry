@@ -1,6 +1,9 @@
 package com.example.cybersafe;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -21,6 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.onesignal.OneSignal;
+
+import java.util.Calendar;
 
 public class ParentLogin extends AppCompatActivity {
 
@@ -106,6 +111,26 @@ public class ParentLogin extends AppCompatActivity {
                         System.out.println("userTypee Parent"+userTypee);
                         Intent intent = new Intent(ParentLogin.this, ParentHome_New.class);
                         intent.putExtra("userType", userTypee);
+
+                        //Start the service every one hour
+                        //startService(new Intent(ParentLogin.this, MyService.class));
+
+                    /*    Intent serviceIntent = new Intent(ParentLogin.this, MyService.class);
+                        startService(serviceIntent);*/
+                        //Start the service every one hour
+
+                        startService(new Intent(ParentLogin.this, MyService.class));
+                        Calendar cal = Calendar.getInstance();
+                        Intent intent2 = new Intent(ParentLogin.this, MyService.class);
+                        PendingIntent pintent = PendingIntent
+                                .getService(ParentLogin.this, 0, intent2, 0);
+
+                        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                        // Start service every hour
+                        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                                3600*1000, pintent);
+
+
                         startActivity(intent);
                         editTextEmail.getText().clear();
                         editTextPassword.getText().clear();

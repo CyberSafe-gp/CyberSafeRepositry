@@ -414,14 +414,18 @@ public class Add_NewChild extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-            savechild();
+            saveChild();
             }
         });
 
+
+
     }
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void savechild() {
+    private void saveChild() {
         //FirebaseUser currentUser = mAuth.getCurrentUser();
 
         System.out.println("add savechild");
@@ -544,7 +548,7 @@ public class Add_NewChild extends AppCompatActivity {
         String firstName=firstnameCH.getText().toString();
         String lastName=lastnameCH.getText().toString();
 
-        Intent in = new Intent(Add_NewChild.this, addSocialMediaCredintals.class);
+      /*  Intent in = new Intent(Add_NewChild.this, addSocialMediaCredintals.class);
 
         in.putExtra("parentid",parentid);
         in.putExtra("school_id",school_id);
@@ -553,18 +557,25 @@ public class Add_NewChild extends AppCompatActivity {
         in.putExtra("date",date);
         in.putExtra("userCity",userCity);
         in.putExtra("userGender",userGender);
-        in.putExtra("userGrade",Integer.parseInt(userGrade));
-        startActivity(in);
+        in.putExtra("userGrade",userGrade);
+        startActivity(in);*/
 
-  /*      //}
-       //String id2 = ChildRef.push().getKey();
+          //Get the social media credintals information to add it to the data base
+
+        String Author_id = getIntent().getStringExtra("Author_id");
+        String childAccount = getIntent().getStringExtra("childAccount");
+        String SMA_id = getIntent().getStringExtra("SMA_id");
+        String access_token = getIntent().getStringExtra("access_token");
+
+        //}
+       String child_id = ChildRef.push().getKey();
 
 
-         //Child Childobj=new Child(id2, parentid, school_id, firstName,lastName, date, userCity,userGender,Integer.parseInt(userGrade) );
+         Child Childobj=new Child(child_id, parentid, school_id, firstName,lastName, date, userCity,userGender,Integer.parseInt(userGrade) );
 
 
 
-       *//* Childobj.setDate_of_birth(date );
+       /* Childobj.setDate_of_birth(date );
         Childobj.setGender(userGender);
         Childobj.setCity(userCity);
         Childobj.setGrade(userGrade);
@@ -572,31 +583,22 @@ public class Add_NewChild extends AppCompatActivity {
         Childobj.setParent_id(parentid);
         Childobj.setFirstName(firstnameCH.getText().toString());
         Childobj.setLastName(lastnameCH.getText().toString());
-        Childobj.setChild_id(id2);*//*
+        Childobj.setChild_id(id2);*/
 
         //Add child to database
-        ChildRef.child(id2).setValue(Childobj).addOnCompleteListener(new OnCompleteListener<Void>() {
+        ChildRef.child(child_id).setValue(Childobj).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()) {
 
-                    //social
-                    String id = SMARef.push().getKey();
-                    String usernameD =username.getText().toString();
-                    String passwordD =password.getText().toString();
 
-                    SMAccountCredentials SMAobj=new SMAccountCredentials(id,id2,apps,passwordD,usernameD);
 
-        Intent in = new Intent(Add_NewChild.this, addSocialMediaCredintals.class);
+                    SMAccountCredentials SMAobj=new SMAccountCredentials(SMA_id ,child_id,"TikTok",childAccount,access_token,Author_id,0);
 
-                    *//*SMAobj.setId(id);
-                    SMAobj.setAccount(username.getText().toString());
-                    SMAobj.setPassword(password.getText().toString());
-                    SMAobj.setSocialMediaPlatform(apps);
-                    SMAobj.setChild_id("");*//*
 
-                    SMARef.child(id).setValue(SMAobj).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                    SMARef.child(SMA_id).setValue(SMAobj).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
@@ -611,16 +613,16 @@ public class Add_NewChild extends AppCompatActivity {
 
                     Toast.makeText(Add_NewChild.this, "Child added successfully", Toast.LENGTH_LONG).show();
                     // startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
-                    *//*Intent intent = new Intent();
+                    Intent intent = new Intent();
                     setResult(RESULT_OK, intent);
-                    *//*
+
                     finish();
                 } else {
                     Toast.makeText(Add_NewChild.this, "Child doesn't added", Toast.LENGTH_LONG).show();
                 }
 
             }
-        });*/
+        });
 
 
     }
