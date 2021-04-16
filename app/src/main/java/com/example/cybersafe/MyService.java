@@ -74,7 +74,7 @@ public class MyService extends Service {
     //in each request the is the minmmum number of videos and comments
     float video=20;
     float comment=30;
-    boolean commentExist=false;
+    boolean commentExist=true;
 
 //we need it in looping over the comment list if the child comment exceeds 30 because the limit for each request is 30 comment
     ArrayList<Integer> commentCursor= new ArrayList<>( Arrays.asList(0, 30, 60, 90, 120, 150,180,210,240,270,300));
@@ -96,8 +96,7 @@ public class MyService extends Service {
         commentsRef = FirebaseDatabase.getInstance().getReference().child("Comments");
 
         //store requests
-        RequestQueue queue1= Volley.newRequestQueue( this );
-        RequestQueue queue2 = Volley.newRequestQueue( this );
+
         RequestQueue queue = Volley.newRequestQueue( this );
 
         FirebaseUser currentParent=FirebaseAuth.getInstance().getCurrentUser();
@@ -112,30 +111,7 @@ public class MyService extends Service {
 
         //Get parent children
         System.out.println("111111");
-//        ChildRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()) {
-//                    parentChildren.clear();
-//                     System.out.println("there is childs");
-//                    for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-//                        Child checkChild = messageSnapshot.getValue(Child.class);
-//                        //The income report
-//                        System.out.println("insidee looping child ");
-//                        if (checkChild.getParent_id().equals(Parent_ID)) {
-//                            parentChildren.add(checkChild.getChild_id());
-//                            System.out.println("childes added");
-//                        }
-//                    }
-//
-//
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+
 
         //        //Get the Social Media Account Credentials and the comment and add it to the database
 
@@ -144,11 +120,10 @@ public class MyService extends Service {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     parentChildren.clear();
-                    System.out.println("there is childs");
+                    System.out.println("there is children");
                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                         Child checkChild = messageSnapshot.getValue(Child.class);
-                        //The income report
-                        System.out.println("insidee looping child ");
+                        //Add children id that belong to the parent
                         if (checkChild.getParent_id().equals(Parent_ID)) {
                             parentChildren.add(checkChild.getChild_id());
                             System.out.println("childes added");
@@ -157,8 +132,10 @@ public class MyService extends Service {
                     System.out.println("parentChildren ########## "+parentChildren.isEmpty());
                     if(!(parentChildren.isEmpty())) {
                         for (int i = 0; parentChildren.size() >i; i++) {
-                               System.out.println("i issssssssssssssss"+i);
+
                             String child_id = parentChildren.get(i);
+
+
                             SMARef.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -218,196 +195,14 @@ public class MyService extends Service {
                                                 //store the requests
                                                 queue.add(getRequest);
                                                 System.out.println("444444");
-                                                //make a request for the media id but first we make sure that we request for all the vedios the child post because each request bring only 20 vedios
+
+                                                //make a request for the media id but first we make sure that we request for all the videos the child post because each request bring only 20 videos
                                                 numberOfVideoRequest = (float) video_Count / video;
 
                                                 System.out.println(numberOfVideoRequest);
 
+                                                getVideo(numberOfVideoRequest, child_id);
 
-                                                for (int x = 0; x <= numberOfVideoRequest; x++) {
-
-                                                    //then loop and bring all the child videos id to use it in get comment list request
-
-
-                                                    JsonObjectRequest getRequest1 = new JsonObjectRequest(Request.Method.GET
-                                                            , "https://api.tikapi.io/user/feed?count=20&cursor="+videoCursor.get( x ), null, new Response.Listener<JSONObject>() {
-                                                        @Override
-                                                        public void onResponse(JSONObject response) {
-                                                            try {
-                                                                //all the comments from the child account until it reaches the count that is specfid in url
-                                                                JSONArray jsonArray = response.getJSONArray("itemList");
-                                                                for (int i = 0; i < jsonArray.length(); i++) {
-                                                                    // specify what type of response we want from the URL. we are making a JsonObjectRequest
-                                                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                                                    media_id = jsonObject.getString("id");
-                                                                    System.out.println("Media id:" + media_id);
-                                                                    JSONObject userObj = jsonObject.getJSONObject("stats");
-                                                                    int commentCount = userObj.getInt("commentCount");
-                                                                    System.out.println("total comment recived for this post is " + commentCount);
-                                                                    numberOfCommentRequest = commentCount / comment;
-                                                                    System.out.println(numberOfCommentRequest);
-                                                                    System.out.println("55555");
-
-//bring for this media id"vedio"the comment list
-                                                                    for (int s = 0; s < numberOfCommentRequest; s++) {
-                                                                        String url1 = "https://api.tikapi.io/comment/list?media_id=" + media_id + "&cursor="+ commentCursor.get( s )+"&count=30&author_id="+author_id+"&author_username="+account ;
-
-                                                                        //GET request is creating the RequestQueue. The RequestQueue is what deals with all the requests passed into it and automatically handles all the backend work such as creating worker threads, reading from/writing to the cache and parsing responses.
-                                                                        JsonObjectRequest getRequest2 = new JsonObjectRequest(Request.Method.GET
-                                                                                , url1, null, new Response.Listener<JSONObject>() {
-                                                                            @Override
-                                                                            public void onResponse(JSONObject response) {
-                                                                                try {
-                                                                                    //all the comments from the child account until it reaches the count that is specfid in url
-
-                                                                                    JSONArray jsonArray = response.getJSONArray("comments");
-                                                                                    for (int j = 0; j < jsonArray.length(); j++) {
-                                                                                        JSONObject jsonObject = jsonArray.getJSONObject(j);
-                                                                                        //get the comment body
-                                                                                        String comment = jsonObject.getString("text");
-                                                                                        System.out.println("comment:" + comment);
-                                                                                        //get comment id
-                                                                                        String commentID = jsonObject.getString("cid");
-                                                                                        System.out.println("commentID:" + commentID);
-                                                                                        //Get the sender name
-                                                                                        JSONObject userObj = jsonObject.getJSONObject("user");
-                                                                                        String senderName = userObj.getString("unique_id");
-                                                                                        System.out.println("the sender is " + senderName);
-                                                                                        //chick if the comment already exist
-
-                                                                                        commentsRef = FirebaseDatabase.getInstance().getReference().child("Comments");
-                                                                                        commentsRef.addValueEventListener(new ValueEventListener() {
-
-
-                                                                                            @Override
-                                                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                                                for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-
-                                                                                                    Comment com = messageSnapshot.getValue(Comment.class);
-
-                                                                                                    if (com.getSMAccountCredentials_id().equals(SMA_ID)) {
-
-                                                                                                        if (com.getC_ID().equals(commentID)) {
-                                                                                                            commentExist = true;
-                                                                                                            break;
-                                                                                                        }
-                                                                                                    }
-
-                                                                                                }//make sure about this code with leenah
-                                                                                            }
-
-                                                                                            @Override
-                                                                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                                                                            }
-                                                                                        });
-
-                                                                                        if (!commentExist) {
-                                                                                            System.out.println("hello from if statment");
-
-                                                                                            boolean filter = filter(comment, child_id);
-                                                                                            boolean ourModel = ourModel(comment);
-                                                                                            boolean sentimentAnalysisAPI = sentimentAnalysisAPI(comment);
-
-                                                                                            String Comment_ID = commentsRef.push().getKey();
-                                                                                            Comment commentObj;
-                                                                                            boolean bully;
-
-                                                                                            if (filter || ourModel || sentimentAnalysisAPI) {
-                                                                                                //create comment object to store it in database
-                                                                                                commentObj = new Comment(Comment_ID, SMA_ID, senderName, comment, true, commentID);
-                                                                                                bully = true;
-                                                                                            } else {
-                                                                                                //create comment object to store it in database
-                                                                                                commentObj = new Comment(Comment_ID, SMA_ID, senderName, comment, false, commentID);
-                                                                                                bully = false;
-                                                                                            }
-
-
-                                                                                            //Add the comment to the database
-                                                                                            commentsRef.child(Comment_ID).setValue(commentObj).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                                                @Override
-                                                                                                public void onComplete(@NonNull Task<Void> task) {
-
-                                                                                                    // بس لتجريب بعدين نحذفها اذا ضبط
-                                                                                                    if (task.isSuccessful()) {
-                                                                                                        Toast.makeText(MyService.this, "Comment added successfully", Toast.LENGTH_LONG).show();
-                                                                                                        if (bully) {
-                                                                                                            addNotification(child_id);
-                                                                                                        }
-
-                                                                                                    }
-                                                                                                }
-                                                                                            });
-
-
-//
-                                                                                        }
-                                                                                    }
-                                                                                } catch (JSONException e) {
-                                                                                    e.printStackTrace();
-                                                                                }
-
-
-                                                                            }
-//
-//
-                                                                        },
-                                                                                new Response.ErrorListener() {
-                                                                                    @Override
-                                                                                    public void onErrorResponse(VolleyError error) {
-////                                                            // TODO Auto-generated method stub
-////
-                                                                                        Log.d("ERROR", "error => " + error.toString());
-                                                                                    }
-                                                                                }
-                                                                        ) {
-                                                                            @Override
-                                                                            //we nee extra headers for our api url
-                                                                            public Map<String, String> getHeaders() throws AuthFailureError {
-                                                                                Map<String, String> params = new HashMap<String, String>();
-                                                                                params.put("X-ACCOUNT-KEY", accessToken);
-                                                                                params.put("X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS");
-                                                                                params.put("Accept", "application/json");
-                                                                                return params;
-                                                                            }
-                                                                        };
-                                                                        //store the requests
-                                                                        queue2.add(getRequest2);
-
-                                                                    }
-                                                                }
-                                                            } catch (JSONException e) {
-                                                                e.printStackTrace();
-                                                            }
-
-                                                        }
-
-
-                                                    },
-                                                            new Response.ErrorListener() {
-                                                                @Override
-                                                                public void onErrorResponse(VolleyError error) {
-                                                                    // TODO Auto-generated method stub
-                                                                    System.out.println("errrrroorrrrrrrrrrrr");
-                                                                    Log.d("ERROR", "error => " + error.toString());
-                                                                }
-                                                            }
-                                                    ) {
-                                                        @Override
-                                                        //we nee extra headers for our api url
-                                                        public Map<String, String> getHeaders() throws AuthFailureError {
-                                                            Map<String, String> params = new HashMap<String, String>();
-                                                            params.put("X-ACCOUNT-KEY",accessToken);
-                                                            params.put("X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS");
-                                                            params.put("Accept", "application/json");
-                                                            return params;
-                                                        }
-                                                    };
-
-                                                    //store the requests
-                                                    queue1.add(getRequest1);
-                                                }
                                                 break;
                                             }
                                         }
@@ -451,6 +246,207 @@ public class MyService extends Service {
     public void onDestroy() {
         super.onDestroy();
         System.out.println("onDestroy");
+    }
+
+    public void getVideo(float numberOfVideoRequest1, String child_id){
+
+        RequestQueue queue1= Volley.newRequestQueue( this );
+
+        for (int x = 0; x < numberOfVideoRequest1; x++) {
+
+            //then loop and bring all the child videos id to use it in get comment list request
+            JsonObjectRequest getRequest1 = new JsonObjectRequest(Request.Method.GET
+                    , "https://api.tikapi.io/user/feed?count=20&cursor="+videoCursor.get( x ), null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        //all the comments from the child account until it reaches the count that is specified in url
+                        JSONArray jsonArray = response.getJSONArray("itemList");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            // specify what type of response we want from the URL. we are making a JsonObjectRequest
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            media_id = jsonObject.getString("id");
+                            System.out.println("Media id:" + media_id);
+                            JSONObject userObj = jsonObject.getJSONObject("stats");
+                            int commentCount = userObj.getInt("commentCount");
+                            System.out.println("total comment recived for this post is " + commentCount);
+                            numberOfCommentRequest = commentCount / comment;
+                            System.out.println(numberOfCommentRequest);
+                            System.out.println("55555");
+
+                            getComments(numberOfCommentRequest, child_id);
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+            },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // TODO Auto-generated method stub
+                            System.out.println("errrrroorrrrrrrrrrrr");
+                            Log.d("ERROR", "error => " + error.toString());
+                        }
+                    }
+            ) {
+                @Override
+                //we nee extra headers for our api url
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("X-ACCOUNT-KEY",accessToken);
+                    params.put("X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS");
+                    params.put("Accept", "application/json");
+                    return params;
+                }
+            };
+
+            //store the requests
+            queue1.add(getRequest1);
+        }
+    }
+
+    public void getComments(float media_id, String child_id){
+
+        RequestQueue queue2 = Volley.newRequestQueue( this );
+
+
+        //bring for this media id"video"the comment list
+        for (int s = 0; s < numberOfCommentRequest; s++) {
+            String url1 = "https://api.tikapi.io/comment/list?media_id=" + media_id + "&cursor="+ commentCursor.get( s )+"&count=30&author_id="+author_id+"&author_username="+account ;
+
+            //GET request is creating the RequestQueue. The RequestQueue is what deals with all the requests passed into it and automatically handles all the backend work such as creating worker threads, reading from/writing to the cache and parsing responses.
+            JsonObjectRequest getRequest2 = new JsonObjectRequest(Request.Method.GET
+                    , url1, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        //all the comments from the child account until it reaches the count that is specfid in url
+
+                        JSONArray jsonArray = response.getJSONArray("comments");
+                        for (int j = 0; j < jsonArray.length(); j++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(j);
+                            //get the comment body
+                            String comment = jsonObject.getString("text");
+                            System.out.println("comment:" + comment);
+                            //get comment id
+                            String commentID = jsonObject.getString("cid");
+                            System.out.println("commentID:" + commentID);
+                            //Get the sender name
+                            JSONObject userObj = jsonObject.getJSONObject("user");
+                            String senderName = userObj.getString("unique_id");
+                            System.out.println("the sender is " + senderName);
+                            //chick if the comment already exist
+
+                            commentsRef = FirebaseDatabase.getInstance().getReference().child("Comments");
+                            commentsRef.addValueEventListener(new ValueEventListener() {
+
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    commentExist = false;
+                                    for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+
+                                        Comment com = messageSnapshot.getValue(Comment.class);
+
+
+                                        if (com.getSMAccountCredentials_id().equals(SMA_ID)) {
+                                            System.out.println("@@@"+com.getComment_id());
+                                            System.out.println("com.getC_ID()"+com.getC_ID());
+                                            System.out.println("commentID"+commentID);
+
+                                            if (com.getC_ID().equals(commentID)) {
+                                                commentExist = true;
+                                                break;
+                                            }
+                                        }
+
+                                    }//make sure about this code with leenah
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+                            if (!commentExist) {
+                                System.out.println("hello from if statment");
+
+                                boolean filter = filter(comment, child_id);
+                                boolean ourModel = ourModel(comment);
+                                boolean sentimentAnalysisAPI = sentimentAnalysisAPI(comment);
+
+                                String Comment_ID = commentsRef.push().getKey();
+                                Comment commentObj;
+                                boolean bully;
+
+                                if (filter || ourModel || sentimentAnalysisAPI) {
+                                    //create comment object to store it in database
+                                    commentObj = new Comment(Comment_ID, SMA_ID, senderName, comment, commentID, true);
+                                    bully = true;
+                                } else {
+                                    //create comment object to store it in database
+                                    commentObj = new Comment(Comment_ID, SMA_ID, senderName, comment, commentID, false);
+                                    bully = false;
+                                }
+
+
+                                //Add the comment to the database
+                                commentsRef.child(Comment_ID).setValue(commentObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                        // بس لتجريب بعدين نحذفها اذا ضبط
+                                        if (task.isSuccessful()) {
+                                            //Toast.makeText(MyService.this, "Comment added successfully", Toast.LENGTH_LONG).show();
+                                            if (bully) {
+                                                addNotification(child_id);
+                                            }
+
+                                        }
+                                    }
+                                });
+
+
+                                commentExist = false;
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+//
+//
+            },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+////                                                            // TODO Auto-generated method stub
+////
+                            Log.d("ERROR", "error => " + error.toString());
+                        }
+                    }
+            ) {
+                @Override
+                //we nee extra headers for our api url
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("X-ACCOUNT-KEY", accessToken);
+                    params.put("X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS");
+                    params.put("Accept", "application/json");
+                    return params;
+                }
+            };
+            //store the requests
+            queue2.add(getRequest2);
+
+        }
     }
 
     //detect if the comment contain any keyword the parent enter
@@ -526,14 +522,12 @@ public class MyService extends Service {
 
             @Override
             public void onResponse(Call<String> call, retrofit2.Response<String> response) {
-                System.out.println("onResponse onResponse");
                 if (response.isSuccessful()){
 
-                    System.out.println("###### "+response.body());
                     if (response.body().contains("Not a Bully")){
                         bully[0] =true;
-                    }else{
 
+                    }else{
                         bully[0] = false;
                     }
                 }else{
@@ -548,7 +542,7 @@ public class MyService extends Service {
 
             }
         });
-
+        System.out.println("onResponse onResponse Reetuuurrnnn");
         return  bully[0];
     }
 
@@ -569,6 +563,7 @@ public class MyService extends Service {
                                             .openRawResource(R.raw.credentials)))
                             .build());
 
+
             // Instantiate the Language client com.google.cloud.language.v1.LanguageServiceClient
             Document doc = Document.newBuilder().setContent(comment).setType(Document.Type.PLAIN_TEXT).build();
             AnalyzeSentimentResponse response = language.analyzeSentiment(doc);
@@ -579,7 +574,7 @@ public class MyService extends Service {
 //                System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
 //                System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
                 sentimentScore= sentiment.getScore();
-
+                language.close();
             }
 
             // System.out.println("SSS");

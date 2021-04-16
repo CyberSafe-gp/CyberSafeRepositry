@@ -14,13 +14,13 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String comment_id, String SMAccountCredentials_id, String sender, String body, Boolean flag,String C_ID) {
+    public Comment(String comment_id, String SMAccountCredentials_id, String sender, String body, String c_ID, Boolean flag) {
         this.comment_id = comment_id;
         this.SMAccountCredentials_id = SMAccountCredentials_id;
         this.sender = sender;
         this.body = body;
+        C_ID = c_ID;
         this.flag = flag;
-        this.C_ID =C_ID;
     }
 
     public String getComment_id() {
@@ -68,10 +68,10 @@ public class Comment {
     }
 
     public String getC_ID() {
-        return  C_ID;
+        return C_ID;
     }
 
-
-
-
+    public void setC_ID(String c_ID) {
+        C_ID = c_ID;
+    }
 }
