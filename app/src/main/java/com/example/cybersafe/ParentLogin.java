@@ -128,7 +128,7 @@ public class ParentLogin extends AppCompatActivity {
                         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                         // Start service every hour
                         alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                3600*1000, pintent);
+                                300000, pintent);
 
 
                         startActivity(intent);
