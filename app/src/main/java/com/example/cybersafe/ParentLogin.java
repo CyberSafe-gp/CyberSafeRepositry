@@ -1,6 +1,5 @@
 package com.example.cybersafe;
 
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -60,8 +59,6 @@ public class ParentLogin extends AppCompatActivity {
 
         });
 
-
-
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +93,7 @@ public class ParentLogin extends AppCompatActivity {
         }
 
         if(password.length() < 8){
-            editTextPassword.setError("Min password length should be 8 characters");
+            editTextPassword.setError("The password must be at least 8 characters.");
             editTextPassword.requestFocus();
             return;
         }
@@ -149,7 +146,7 @@ public class ParentLogin extends AppCompatActivity {
 
                 }
                 else
-                    Toast.makeText(ParentLogin.this, "failed to login", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ParentLogin.this, "The email or password entered is invalid.Pleas try again", Toast.LENGTH_LONG).show();
                 }
         });
     }

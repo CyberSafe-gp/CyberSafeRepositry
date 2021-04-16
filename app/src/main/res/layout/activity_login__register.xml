@@ -6,73 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".Login_Register">
 
+
     <Button
         android:id="@+id/registerButton"
         android:layout_width="246dp"
         android:layout_height="94dp"
-        android:layout_marginStart="93dp"
-        android:layout_marginLeft="93dp"
-        android:layout_marginEnd="93dp"
-        android:layout_marginRight="93dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="72dp"
         android:text="REGISTER"
         android:textAppearance="?attr/textAppearanceHeadline5"
-        app:theme="@style/Theme.MaterialComponents"
         android:textColor="@color/white"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:rippleColor="@color/blue"
-        app:strokeColor="#FFFFFF" />
-
+        app:strokeColor="#FFFFFF"
+        app:theme="@style/Theme.MaterialComponents" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="246dp"
         android:layout_height="94dp"
-        android:layout_marginStart="93dp"
-        android:layout_marginLeft="93dp"
-        android:layout_marginEnd="93dp"
-        android:layout_marginRight="93dp"
-        android:layout_marginBottom="40dp"
         android:text="LOG-IN"
         android:textAppearance="?attr/textAppearanceHeadline5"
-        app:theme="@style/Theme.MaterialComponents"
         android:textColor="@color/white"
         app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.825"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.529"
         app:rippleColor="@color/blue"
-        app:strokeColor="#FFFFFF" />
-
-
-
-
-
-
-
+        app:strokeColor="#FFFFFF"
+        app:theme="@style/Theme.MaterialComponents" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="422dp"
-        android:layout_height="427dp"
+        android:layout_width="402dp"
+        android:layout_height="399dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/todo"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.217"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/logo" />
-
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -80,9 +60,9 @@
         android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -90,13 +70,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:gravity="center_horizontal"
             android:layout_weight="100"
+            android:gravity="center_horizontal"
             android:text=""
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"
             android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/white"
+            app:theme="@style/Theme.MaterialComponents"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="21dp" />
 

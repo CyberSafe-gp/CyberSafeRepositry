@@ -8,7 +8,6 @@ package com.example.cybersafe;
         import android.view.ViewGroup;
         import android.widget.Button;
         import android.widget.EditText;
-
         import androidx.annotation.NonNull;
         import androidx.annotation.Nullable;
         import androidx.fragment.app.Fragment;
@@ -34,7 +33,6 @@ public class Edit_Parent_ProfileFragment extends Fragment {
     private Button logO;
 
     private FirebaseUser Cuser;
-    private static final String TAG = Edit_Parent_Profile.class.getSimpleName();
     private Button btEdit , changeP;
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Parents");
 
@@ -93,6 +91,8 @@ public class Edit_Parent_ProfileFragment extends Fragment {
         Cuser = FirebaseAuth.getInstance().getCurrentUser();
 
         g.addValueEventListener(new ValueEventListener() {
+
+            //bringing all the current user information in the data base and view it in the edit page
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
@@ -126,6 +126,8 @@ public class Edit_Parent_ProfileFragment extends Fragment {
             }
         });
     }
+
+    //here we are changing the user information and validate it
     private void updateInfo(View view) {
 
 
@@ -175,9 +177,12 @@ public class Edit_Parent_ProfileFragment extends Fragment {
             return;
         }
 
+        Cuser.updateEmail(email);
+
+        //store it in the database for the current user
         Parent p = new Parent(fname, lastname, email, userId);
         userRef.setValue(p);
-        Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(30000).show();
+        Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(20000).show();
 
 
     }

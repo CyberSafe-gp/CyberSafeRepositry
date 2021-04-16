@@ -175,6 +175,10 @@ public class EditSchoolFragment extends Fragment {
             editTextEmail.requestFocus();
             return;
         }
+
+        FirebaseUser Cuser2 = FirebaseAuth.getInstance().getCurrentUser();
+        Cuser2.updateEmail(email);
+
 //store it in the database for the current user
         SchoolManager Smanger = new SchoolManager(userId,Sid,City,fname, lastname, pass,email);
         userRef.setValue(Smanger);

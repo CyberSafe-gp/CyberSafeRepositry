@@ -46,26 +46,12 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
         lastname = (EditText) findViewById((R.id.lastname));
         email = (EditText) findViewById((R.id.email));
         password = (EditText) findViewById((R.id.password));
-       /* spinner1 = findViewById(R.id.spinner1);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Children, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(adapter);*/
 
-        /////mmmmmm
+
         Next = findViewById(R.id.Next);
         Next.setOnClickListener((View.OnClickListener) this);
 
-        /*spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                number = parent.getItemAtPosition(position).toString();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
 
     }
     public void onClick(View v){
@@ -81,8 +67,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
         final String lastname1= lastname.getText().toString().trim();
         final String email1= email.getText().toString().trim();
         final String password1= password.getText().toString().trim();
-        //final String number1= number.trim();
-        
+
         System.out.print(firstname1);
 
         if(firstname1.isEmpty()){
@@ -101,7 +86,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
             return;
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(email1).matches()){
-            email.setError("Please provide valid email");
+            email.setError("Please enter your email address in format: yourname@example.com");
             email.requestFocus();
             return;
         }
@@ -111,7 +96,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
             return;
         }
         if(password1.length()<8){
-            password.setError("Min password length should be 8 characters!");
+            password.setError("The password must be at least 8 characters");
             password.requestFocus();
             return;
         }
