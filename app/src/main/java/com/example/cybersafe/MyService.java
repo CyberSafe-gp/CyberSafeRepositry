@@ -57,7 +57,7 @@ import retrofit2.Call;
 //اتوقع نناديها باللوق ان واللوق اوت
 public class MyService extends Service {
 
-    DatabaseReference keywordsRef, keywordRef,commentRef, commentsRef, SMARef, ChildRef;
+    DatabaseReference keywordsRef, keywordRef,commentsRef, SMARef, ChildRef;
     ArrayList<Keyword> keywordArrayList= new ArrayList();
     ArrayList<Comment> commentList = new ArrayList();
     // private String userID, childID;
@@ -275,8 +275,8 @@ public class MyService extends Service {
                                                                                         System.out.println("the sender is " + senderName);
                                                                                         //chick if the comment already exist
 
-
-                                                                                        commentRef.addValueEventListener(new ValueEventListener() {
+                                                                                        commentsRef = FirebaseDatabase.getInstance().getReference().child("Comments");
+                                                                                        commentsRef.addValueEventListener(new ValueEventListener() {
 
 
                                                                                             @Override
@@ -309,7 +309,7 @@ public class MyService extends Service {
                                                                                             boolean ourModel = ourModel(comment);
                                                                                             boolean sentimentAnalysisAPI = sentimentAnalysisAPI(comment);
 
-                                                                                            String Comment_ID = commentRef.push().getKey();
+                                                                                            String Comment_ID = commentsRef.push().getKey();
                                                                                             Comment commentObj;
                                                                                             boolean bully;
 
@@ -325,7 +325,7 @@ public class MyService extends Service {
 
 
                                                                                             //Add the comment to the database
-                                                                                            commentRef.child(Comment_ID).setValue(commentObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                            commentsRef.child(Comment_ID).setValue(commentObj).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                                 @Override
                                                                                                 public void onComplete(@NonNull Task<Void> task) {
 
@@ -463,9 +463,7 @@ public class MyService extends Service {
         keywordRef.keepSynced(true);
 
         // SMAccountCredentialRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
-        commentsRef = FirebaseDatabase.getInstance().getReference().child("Comments");
-        commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
-        commentRef.keepSynced(true);
+
 
 
 
