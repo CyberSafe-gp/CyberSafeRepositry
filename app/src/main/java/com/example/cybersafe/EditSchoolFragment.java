@@ -30,7 +30,7 @@ package com.example.cybersafe;
  * A simple {@link Fragment} subclass.
  */
 public class EditSchoolFragment extends Fragment {
-    private String userId,userEmail,Fname,lName,Sid,pass,userType1;
+    private String userId,userEmail,Fname,lName,Sid,pass,userType1,City;
     private FirebaseUser SchoolUser;
     private Button btEdit,btreset;
     String userID;
@@ -99,6 +99,7 @@ public class EditSchoolFragment extends Fragment {
                         userId = us.getSchoolManager_id();
                         Fname=us.getFirstName();
                         lName = us.getLastName();
+                        City=us.getCity();
                         userId = us.getSchoolManager_id();
                         Sid=us.getSchool_id();
                         pass=us.getPassword();
@@ -175,7 +176,7 @@ public class EditSchoolFragment extends Fragment {
             return;
         }
 //store it in the database for the current user
-        SchoolManager Smanger = new SchoolManager(userId,Sid,fname, lastname, pass,email);
+        SchoolManager Smanger = new SchoolManager(userId,Sid,City,fname, lastname, pass,email);
         userRef.setValue(Smanger);
         Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(30000).show();
 

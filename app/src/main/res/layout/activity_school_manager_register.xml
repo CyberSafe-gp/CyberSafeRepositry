@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -73,6 +79,20 @@
             android:layout_width="380dp"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:text="City"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="#04406E"
+            app:theme="@style/Theme.MaterialComponents" />
+        <Spinner
+            android:id="@+id/City"
+            android:layout_width="380dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="20dp" /> />
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,16 +104,23 @@
             android:textColor="#04406E"
             app:theme="@style/Theme.MaterialComponents" />
 
-        <Spinner
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/spinnerschoolname"
-            android:layout_width="380dp"
-            android:layout_height="55dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="250dp"
-            android:spinnerMode="dialog"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="330dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="360dp"
+            android:layout_marginTop="-37dp"
+            android:text=""
+            android:id="@+id/setManager"
+            android:background="@drawable/mark"
+            android:visibility="invisible"/>
+
 
 
         <TextView
@@ -154,3 +181,4 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

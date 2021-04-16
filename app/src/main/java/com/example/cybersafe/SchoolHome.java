@@ -131,7 +131,7 @@ public class  SchoolHome extends AppCompatActivity {
         btn11 = (Button) findViewById(R.id.btn1);
 
         btn11.setOnClickListener(v -> {
-            Intent intent = new Intent(SchoolHome.this,EditSchool.class);
+            Intent intent = new Intent(SchoolHome.this,EditSchoolFragment.class);
             intent.putExtra("userType",userType1);
             startActivity(intent);
         });

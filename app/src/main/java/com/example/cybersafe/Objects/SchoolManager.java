@@ -8,18 +8,21 @@ public class SchoolManager {
     private String lastName;
     private String password;
     private String email;
+    private String City;
 
 
     public SchoolManager() {
     }
 
-    public SchoolManager(String schoolManager_id, String school_id, String firstName, String lastName, String password, String email) {
+    public SchoolManager(String schoolManager_id, String school_id,String City, String firstName, String lastName, String password, String email) {
         this.schoolManager_id = schoolManager_id;
         this.school_id = school_id;
+        this.City = City;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
+
 
     }
 
@@ -29,10 +32,7 @@ public class SchoolManager {
     }
 
     public void setSchoolManager_id(String schoolManager_id) {
-        this.schoolManager_id = schoolManager_id;
-    }
-
-
+        this.schoolManager_id = schoolManager_id; }
 
     public String getSchool_id() {
         return school_id;
@@ -42,7 +42,13 @@ public class SchoolManager {
         this.school_id = school_id;
     }
 
+    public String getCity() {
+        return City;
+    }
 
+    public void setCity(String City) {
+        this.City = City;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -60,6 +66,7 @@ public class SchoolManager {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 
 
     public String getPassword() {

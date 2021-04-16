@@ -474,64 +474,64 @@ public class Add_NewChild extends AppCompatActivity {
         int actual = calculateAge(birthDate, getTodaysDate());
         if(6<= actual && actual <= 14){
             int grade = Integer.parseInt(userGrade);
-            //Check the age and the grade match
-            switch (actual){
-                case 6:
-                    if( !(grade == 1 || grade == 2)){
-                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    break;
-                case 7:
-                    if( !(grade == 1 || grade == 2 || grade == 3)){
-                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    break;
-                case 8:
-                    if( !(grade == 2 || grade == 3 || grade == 4)){
-                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    break;
-                case 9:
-                    if( !(grade == 3 || grade == 4 || grade == 5)){
-                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    break;
-                case 10:
-                    if( !(grade == 4 || grade == 5 || grade == 6)){
-                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    break;
-                case 11:
-                    if( !(grade == 5 || grade == 6 || grade == 7)){
-                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    break;
-                case 12:
-                    if( !(grade == 6 || grade == 7 || grade == 8)){
-                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    break;
-                case 13:
-                    if( !(grade == 7 || grade == 8 || grade == 9)){
-                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    break;
-                case 14:
-                    if( !(grade == 8 || grade == 9 || grade == 10)){
-                        Toast.makeText(Add_NewChild.this, "Please l", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    break;
-
-            }
+//            //Check the age and the grade match
+//            switch (actual){
+//                case 6:
+//                    if( !(grade == 1 || grade == 2)){
+//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//                    break;
+//                case 7:
+//                    if( !(grade == 1 || grade == 2 || grade == 3)){
+//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//                    break;
+//                case 8:
+//                    if( !(grade == 2 || grade == 3 || grade == 4)){
+//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//                    break;
+//                case 9:
+//                    if( !(grade == 3 || grade == 4 || grade == 5)){
+//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//                    break;
+//                case 10:
+//                    if( !(grade == 4 || grade == 5 || grade == 6)){
+//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//                    break;
+//                case 11:
+//                    if( !(grade == 5 || grade == 6 || grade == 7)){
+//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//                    break;
+//                case 12:
+//                    if( !(grade == 6 || grade == 7 || grade == 8)){
+//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//                    break;
+//                case 13:
+//                    if( !(grade == 7 || grade == 8 || grade == 9)){
+//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//                    break;
+//                case 14:
+//                    if( !(grade == 8 || grade == 9 || grade == 10)){
+//                        Toast.makeText(Add_NewChild.this, "Please l", Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//                    break;
+//
+//            }
 
         }else {
             Toast.makeText(Add_NewChild.this, "The child you add his/her age must be between 6 - 14", Toast.LENGTH_LONG).show();
