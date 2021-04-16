@@ -30,9 +30,11 @@ public class Edit_Parent_Profile extends AppCompatActivity {
     //public Button editB;
     // public static final String TAG = "TAG";
     private String userId;
+    //for storing the current user id
 
 
     private FirebaseUser Cuser;
+
     private static final String TAG = Edit_Parent_Profile.class.getSimpleName();
     private Button btEdit , changeP;
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Parents");
@@ -77,6 +79,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
         //changePass-button
         changeP.setOnClickListener(v -> {
             Intent intentt = new Intent(Edit_Parent_Profile.this,resetpassword.class);
+            //to go for the reset passowrd page
             startActivity(intentt);
         });
 
@@ -86,6 +89,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
 
         g.addValueEventListener(new ValueEventListener() {
             @Override
+            //bringing all the current user information in the data base and view it in the edit page
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     com.example.cybersafe.Objects.Parent us = postSnapshot.getValue(Parent.class);
@@ -118,6 +122,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
             }
         });
     }
+    //here we are changing the user information and valdate it
             private void updateInfo(View view) {
 
 
@@ -166,7 +171,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
                     editTextEmail.requestFocus();
                     return;
                 }
-
+//store it in the database for the current user
                 Parent p = new Parent(fname, lastname, email, userId);
                 userRef.setValue(p);
                 Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(30000).show();

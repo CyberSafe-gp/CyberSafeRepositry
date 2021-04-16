@@ -1,4 +1,4 @@
-package com.example.cybersafe;
+ package com.example.cybersafe;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -274,7 +273,7 @@ public class MyService extends Service {
                             System.out.println(numberOfCommentRequest);
                             System.out.println("55555");
 
-                            getComments(numberOfCommentRequest, child_id);
+                            getComments(numberOfCommentRequest,media_id, child_id);
 
                         }
                     } catch (JSONException e) {
@@ -310,7 +309,7 @@ public class MyService extends Service {
         }
     }
 
-    public void getComments(float media_id, String child_id){
+    public void getComments(float numberOfCommentRequest,String media_id, String child_id){
 
         RequestQueue queue2 = Volley.newRequestQueue( this );
 
