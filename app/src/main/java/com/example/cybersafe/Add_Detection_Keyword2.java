@@ -23,8 +23,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-
-
 public class Add_Detection_Keyword2 extends AppCompatActivity {
     private TextInputEditText keywords;
     public Button add;
