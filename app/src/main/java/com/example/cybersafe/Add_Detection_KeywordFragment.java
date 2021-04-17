@@ -1,31 +1,31 @@
-
 package com.example.cybersafe;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-        import android.widget.TextView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-        import androidx.annotation.NonNull;
-        import androidx.annotation.Nullable;
-        import androidx.fragment.app.Fragment;
-        import androidx.recyclerview.widget.LinearLayoutManager;
-        import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-        import com.example.cybersafe.Objects.Keyword;
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-
-        import java.util.ArrayList;
+import com.example.cybersafe.Objects.Keyword;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
 
 
 /**
@@ -33,12 +33,12 @@ package com.example.cybersafe;
  */
 public class Add_Detection_KeywordFragment extends Fragment {
 
-    public Button dK;
     private String userID, userType;
     DatabaseReference keywordsRef, keywordRef;
     RecyclerView recyclerView;
     ArrayList<Keyword> keywordArrayList= new ArrayList();
     Add_Detection_KeywordAdapter adapter;
+    FloatingActionButton fab2;
 
 
     public Add_Detection_KeywordFragment() {
@@ -58,13 +58,11 @@ public class Add_Detection_KeywordFragment extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             userID = user.getUid();
-            //userType = getIntent().getStringExtra("userType");
             userType = getActivity().getIntent().getExtras().getString("userType");
 
         } else {
             System.out.println("userID out");
-            // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
-            Intent in = new Intent(getActivity(), ParentLogin.class);
+            Intent in = new Intent(getActivity(), Interface.class);
             startActivity(in);
         }
 
@@ -78,6 +76,16 @@ public class Add_Detection_KeywordFragment extends Fragment {
         adapter = new Add_Detection_KeywordAdapter(getActivity(), keywordArrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
+
+        //Add-detection-keywords-button
+        fab2 = (FloatingActionButton) getActivity().findViewById(R.id.floatingBB);
+
+        fab2.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getFragmentManager();
+            Intent intent = new Intent(getActivity(), Add_Detection_Keyword2.class);
+            startActivity(intent);
+        });
 
         //Now we get the keyword List
         keywordRef.addValueEventListener(new ValueEventListener() {
@@ -105,6 +113,7 @@ public class Add_Detection_KeywordFragment extends Fragment {
 
             }
         });
+
         //If no comment found print no existing comments
         keywordsRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -127,26 +136,6 @@ public class Add_Detection_KeywordFragment extends Fragment {
 
             }
         });
-
-        //Add-Detection-Keyword-Button
-/*
-        dK= getActivity().findViewById(R.id.addDetectionK);
-
-        dK.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                startActivities();
-            }
-
-            private void startActivities() {
-
-                Intent inn = new Intent(getActivity(),Add_Detection_Keyword2.class);
-                inn.putExtra("userType",userType);
-                startActivity(inn);
-            }
-        });*/
 
     }
 }
