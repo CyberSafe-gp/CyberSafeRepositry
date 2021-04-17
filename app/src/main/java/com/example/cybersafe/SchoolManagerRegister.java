@@ -42,9 +42,8 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
     private EditText email;
     private String schoolname;
     private Spinner spinnerschoolname,citySpinner;
-    private TextView Submit;
+    private Button Submit;
     private DatabaseReference schoolRef;
-    private Button submit_area;
     private String  school_id;
     private String city[],userCity;
     public boolean find=false;
@@ -235,16 +234,12 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 //                registration();
 //                        break;
 //            }}
-        Submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.submit_area:
-                        registration();
-                        break;
 
-                }
-            }
+
+        Submit = findViewById(R.id.submit_area);
+        Submit.setOnClickListener((View v) -> {
+
+            registration();
 
         });
     }
