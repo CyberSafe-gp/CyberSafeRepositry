@@ -34,7 +34,7 @@ public class IncomingReportsMain extends AppCompatActivity {
     private ArrayList<Report> reportList = new ArrayList();
     private IncomingReportAdapter adapter;
     private FirebaseUser user;
-    private String userID, userType;
+    private String userID, userType,senderAcc;
     ImageView back, home ;
 
 

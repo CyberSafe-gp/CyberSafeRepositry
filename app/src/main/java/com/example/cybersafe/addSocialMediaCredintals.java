@@ -1,8 +1,5 @@
 package com.example.cybersafe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,10 +18,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.cybersafe.Objects.Child;
-import com.example.cybersafe.Objects.SMAccountCredentials;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -91,6 +86,7 @@ public class addSocialMediaCredintals extends AppCompatActivity {
                         JSONObject jsonArray3= jsonObj3.getJSONObject("user");
                         Author_id=jsonArray3.getString( "id" );
                         childAccount=jsonArray3.getString("uniqueId");
+                        System.out.println("ddddddddddddddddddddddooooooooooone");
 
 
 

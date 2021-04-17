@@ -22,8 +22,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Comment;
 import com.example.cybersafe.Objects.Keyword;
+import com.example.cybersafe.Objects.Report;
 import com.example.cybersafe.Objects.SMAccountCredentials;
-import com.fasterxml.jackson.core.json.DupDetector;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -45,8 +45,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,7 +61,7 @@ import retrofit2.Call;
 //اتوقع نناديها باللوق ان واللوق اوت
 public class MyService extends Service {
 
-    DatabaseReference keywordsRef, keywordRef, commentsRef, SMARef, ChildRef;
+    DatabaseReference keywordsRef, keywordRef, commentsRef, SMARef, ChildRef ,ReportRef;
     ArrayList<Keyword> keywordArrayList = new ArrayList();
     ArrayList<Comment> commentList = new ArrayList();
     // private String userID, childID;
@@ -96,6 +99,7 @@ public class MyService extends Service {
         ChildRef = FirebaseDatabase.getInstance().getReference().child( "Children" );
         SMARef = FirebaseDatabase.getInstance().getReference().child( "SMAccountCredentials" );
         commentsRef = FirebaseDatabase.getInstance().getReference().child( "Comments" );
+        ReportRef = FirebaseDatabase.getInstance().getReference().child( "Reports" );
 
         //store requests
 
@@ -565,12 +569,7 @@ public class MyService extends Service {
 
     private void chickIfCommentExist(String child_id,String comment,String senderName,String commentID) {
 
-//        ref.child("users").orderByChild("ID").equalTo("U1EL5623").once("value",snapshot => {
-//        if (snapshot.exists()){
-//      const userData = snapshot.val();
-//            console.log("exists!", userData);
-//        }
-//});
+
 
 
         System.out.println( "hello from chick method" );
@@ -594,41 +593,7 @@ public class MyService extends Service {
         });
 
 
-      /*  final boolean[] commentExist = {false};
-        commentsRef.addValueEventListener( new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-
-                    Comment com = messageSnapshot.getValue( Comment.class );
-
-
-                    if (com.getSMAccountCredentials_id().equals( SMA_ID )) {
-
-
-                        if (com.getC_ID().equals( commentID)) {
-                            commentExist[0] = true;
-                            System.out.println( "it is already exist" );
-                        }
-
-                    }
-
-
-                }
-
-                if(!(commentExist[0])){
-                    addComment(child_id,comment,senderName,commentID) ;
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println( "hello from cancel chick  method" );
-            }
-        } );
-*/
     }
 
     private void addComment(String child_id,String comment,String senderName,String commentID){
@@ -676,6 +641,53 @@ public class MyService extends Service {
 
                            if (bully) {
                                showNotification( child_id );
+                               SMARef.addValueEventListener( new ValueEventListener() {
+                                   @Override
+                                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                       if (snapshot.exists()) {
+
+                                           for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                               SMAccountCredentials SMA = messageSnapshot.getValue( SMAccountCredentials.class );
+                                               //Add children id that belong to the parent
+                                               if (SMA.getAccount().equals( senderName )) {
+                                                   String childID = SMA.getChild_id();
+
+                                                   ChildRef.addValueEventListener( new ValueEventListener() {
+                                                       @Override
+                                                       public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                           if (snapshot.exists()) {
+                                                               for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                                                   Child child = messageSnapshot.getValue( Child.class );
+                                                                   //Add children id that belong to the parent
+                                                                   if (child.getChild_id().equals( childID )) {
+                                                                       String ParentID = child.getParent_id();
+                                                                       ReportRef = FirebaseDatabase.getInstance().getReference().child( "Report" );
+
+                                                                       String Report_id = ReportRef.push().getKey();
+                                                                       Report incomingReport = new Report( Report_id, Parent_ID, ParentID, Comment_ID, "Not confirm", getDateTime() );
+
+                                                                       break;
+                                                                   }
+                                                               }
+                                                           }
+                                                       }
+
+                                                       @Override
+                                                       public void onCancelled(@NonNull DatabaseError error) {
+
+                                                       }
+                                                   } );
+                                                   break;
+                                               }
+                                           }
+                                       }
+                                   }
+
+                                   @Override
+                                   public void onCancelled(@NonNull DatabaseError error) {
+
+                                   }
+                               } );
                             }
 
                             }
@@ -692,6 +704,13 @@ public class MyService extends Service {
 
 
     }
+    private String getDateTime() {
+        DateFormat dateFormat = new SimpleDateFormat( "yyyy/MM/dd" );
+        Date date = new Date();
+        return dateFormat.format( date );
+    }
+
+
 
     void showNotification(String child_id) {
         String title="Bully comment detected!!";
