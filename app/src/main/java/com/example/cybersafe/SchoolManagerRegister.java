@@ -38,6 +38,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
     private EditText firstName;
     private EditText lastName;
     private EditText password;
+
     private EditText email;
     private String schoolname;
     private Spinner spinnerschoolname,citySpinner;
