@@ -25,6 +25,17 @@
     android:id="@+id/Incom"
     app:theme="@style/Theme.MaterialComponents">
 
+    <ImageView
+        android:id="@+id/botBully2"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        app:srcCompat="@android:drawable/presence_offline" />
+
 
     <TextView
         android:id="@+id/writeKeyword"
