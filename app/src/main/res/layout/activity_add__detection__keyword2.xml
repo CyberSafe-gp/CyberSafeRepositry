@@ -35,18 +35,18 @@
         android:layout_marginTop="191dp"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="492dp"
+        android:layout_marginBottom="470dp"
         android:text="Enter The Keywords:"
-        android:textStyle="bold"
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="#04406E"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:theme="@style/Theme.MaterialComponents"  />
+        app:theme="@style/Theme.MaterialComponents" />
 
     <Button
         android:id="@+id/adD"
@@ -66,7 +66,7 @@
         app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.916"
+        app:layout_constraintVertical_bias="0.834"
         app:rippleColor="@color/blue"
         app:strokeColor="#FFFFFF"
         app:theme="@style/Theme.MaterialComponents" />
