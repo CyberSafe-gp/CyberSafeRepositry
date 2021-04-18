@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.MessageDigest;
 import java.util.ArrayList;
 public class SchoolManagerRegister extends AppCompatActivity  implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
@@ -221,23 +222,6 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         });
 
 
-//        @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        Submit= findViewById(R.id.submit_area);
-//        Submit.setOnClickListener((View.OnClickListener).);
-//    }
-//
-//            public void onClick(View v) {
-//                switch (v.getId()){
-//                    case R.id.submit_area:
-//                registration();
-//                        break;
-//            }}
-
-
-
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -271,43 +255,6 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         });
     }
 
-
-
-
-        //)
-//        Submit= findViewById(R.id.submit_area);
-//        //Submit.setOnClickListener((View.OnClickListener) this);
-//       // Submit.setOnClickListener(o);
-//        Submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                registration();
-//            }
-//        });
-        ////for search
-//        inputSearch.addTextChangedListener(new TextWatcher() {
-//
-//            @Override
-//            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-//                // When user changed the Text
-//                MainActivity.this.adapter.getFilter().filter(cs);
-//            }
-//
-//            @Override
-//            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-//                                          int arg3) {
-//                // TODO Auto-generated method stub
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable arg0) {
-//                // TODO Auto-generated method stub
-//            }
-//        });//end search
-
-
-
     private void registration() {
 
         final String firstname1 = firstName.getText().toString().trim();
@@ -315,7 +262,6 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         //final String City;
         final String email1 = email.getText().toString().trim();
         final String password1 = password.getText().toString().trim();
-        //final String schoolname = schoolname.trim();
 
         System.out.print(firstname1);
 
@@ -363,13 +309,15 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
             password.requestFocus();
             return;
         }
+        String pass = password.getText().toString();
+        String newPass = sha256(pass).toString();
         mAuth.createUserWithEmailAndPassword(email1, password1)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                            @Override
                                            public void onComplete(@NonNull Task<AuthResult> task) {
                                                if (task.isSuccessful()) {
                                                    String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                                   SchoolManager USER = new SchoolManager(id,school_id,userCity,firstname1,lastname1,password1,email1);
+                                                   SchoolManager USER = new SchoolManager(id,school_id,userCity,firstname1,lastname1,newPass,email1,"Not Confirm");
                                                    FirebaseDatabase.getInstance().getReference("SchoolManagers")
                                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                            .setValue(USER).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -377,7 +325,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                        public void onComplete(@NonNull Task<Void> task) {
                                                            if (task.isSuccessful()) {
                                                                Toast.makeText(SchoolManagerRegister.this, "SchoolManager registered Successfully ", Toast.LENGTH_LONG).show();
-                                                               Intent x=new Intent(SchoolManagerRegister.this, SchoolHome_new.class);
+                                                               Intent x=new Intent(SchoolManagerRegister.this, Admin_School.class);
                                                                x.putExtra("userType","SchoolManagers");
                                                                startActivity(x);
 
@@ -417,7 +365,23 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         }
         return CH&&ch&&num;
     }
+    public static String sha256(String base) {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
 
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
