@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cybersafe.Objects.Child;
@@ -22,6 +23,8 @@ public class Admin_School extends AppCompatActivity {
     DatabaseReference SchoolM = FirebaseDatabase.getInstance().getReference().child("SchoolManager");
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String userID = user.getUid();
+    private TextView text;
+
 
 
     @Override
@@ -42,13 +45,12 @@ SchoolM.addValueEventListener(new ValueEventListener() {
                     Intent intent = new Intent(Admin_School.this,SchoolHomeFragment.class);
                     startActivity(intent);}
                     else{
-
-                    Toast.makeText(Admin_School.this, "The school Manager registered has not confirmed successfully", Toast.LENGTH_LONG).show();
+                    text.setText(" ");
                 }
                 }
             else {
 
-                ///
+                text.setText(" ");
             }
         }
 
