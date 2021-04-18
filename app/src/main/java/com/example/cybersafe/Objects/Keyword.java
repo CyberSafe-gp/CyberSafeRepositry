@@ -1,19 +1,29 @@
 package com.example.cybersafe.Objects;
 
 public class Keyword {
+    private  String Keyword_id;
     private String keyword;
     private String language;
     private String parent_id;
 
 
 
+
     public Keyword() {
     }
 
-    public Keyword(String keyword, String language,String parent_id) {
+    public Keyword(String Keyword_id,String keyword, String language,String parent_id) {
+        this.Keyword_id=Keyword_id;
         this.keyword = keyword;
         this.language = language;
         this.parent_id = parent_id;
+    }
+    public String getKeyword_id() {
+        return Keyword_id;
+    }
+
+    public void setKeyword_id(String Keyword_id) {
+        this.Keyword_id= Keyword_id;
     }
 
     public String getKeyword() {
@@ -23,6 +33,7 @@ public class Keyword {
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
+
 
     public String getLanguage() {
         return language;
@@ -40,4 +51,6 @@ public class Keyword {
      this.parent_id = parent_id;
 
  }
+
+
 }

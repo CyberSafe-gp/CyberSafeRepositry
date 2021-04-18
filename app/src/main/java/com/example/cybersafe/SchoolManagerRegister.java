@@ -29,30 +29,29 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-
 public class SchoolManagerRegister extends AppCompatActivity  implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-    DatabaseReference schoolManagerRef;
+    DatabaseReference schoolManagerRef2;
     private FirebaseAuth mAuth;
     private EditText firstName;
     private EditText lastName;
     private EditText password;
-
     private EditText email;
     private String schoolname;
     private Spinner spinnerschoolname,citySpinner;
     private Button Submit;
+    private TextView upi;
     private DatabaseReference schoolRef;
     private String  school_id;
     private String city[],userCity;
     public boolean find=false;
+    public boolean x = false;
     ImageView setManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_manager_register);
-
+        upi= (TextView) findViewById(R.id.upi);
         mAuth = FirebaseAuth.getInstance();
         firstName = (EditText) findViewById((R.id.firstname));
         lastName = (EditText) findViewById((R.id.lastname));
@@ -61,6 +60,8 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         password = (EditText) findViewById((R.id.password));
         schoolRef = FirebaseDatabase.getInstance().getReference().child("Schools");
         spinnerschoolname = findViewById(R.id.spinnerschoolname);
+        Submit = findViewById(R.id.submit_area);
+        schoolManagerRef2= FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
 
 
         //City dropdown menu
@@ -100,13 +101,13 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 
 
                 //Set school dropdown menu
-                spinnerschoolname = (Spinner) findViewById(R.id.School);
+                spinnerschoolname = (Spinner) findViewById(R.id.spinnerschoolname);
                 ArrayList<String> schoolList = new ArrayList<>();
                 if (userCity.equals("Select")) {
                     schoolList.add("Select city first");
                 }
-                final ArrayAdapter schooladapter = new ArrayAdapter<String>(SchoolManagerRegister.this, android.R.layout.simple_spinner_item, schoolList);
-                spinnerschoolname.setAdapter(schooladapter);
+                final ArrayAdapter schooladapter2 = new ArrayAdapter<String>(SchoolManagerRegister.this, android.R.layout.simple_spinner_item, schoolList);
+                spinnerschoolname.setAdapter(schooladapter2);
 
                 schoolRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -124,7 +125,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                         schoolList.add(findSchool.getSchoolName());
                                 }
                             }
-                            schooladapter.notifyDataSetChanged();
+                            schooladapter2.notifyDataSetChanged();
                         }
                     }
 
@@ -150,15 +151,16 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                     String x = chapterObj.getSchoolName();
                                     if (x.equalsIgnoreCase(schoolname)) {
                                         school_id = chapterObj.getSchool_id();
-
-                                        //Check if the school manager register
-
-                                        schoolManagerRef.addValueEventListener(new ValueEventListener() {
+                                        setManager =(ImageView) findViewById(R.id.setManager);
+                                        //Check if the school already register
+                                        schoolManagerRef2= FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
+                                        schoolManagerRef2.addValueEventListener(new ValueEventListener() {
 
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                                                 find = false;
+                                                upi.setText(" ");
                                                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                                                     SchoolManager findSM = postSnapshot.getValue(SchoolManager.class);
 
@@ -169,16 +171,13 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                     }
                                                 }
                                                 if (find == true) {
-//                                                    setSchoolManager.setTextColor(Color.GREEN);
-//                                                    setSchoolManager.setText("School Manager is registered");
-                                                    //
                                                     setManager.setVisibility(View.INVISIBLE);
-//                                                        setSchoolManager.setBackgroundResource(R.drawable.mark);
+                                                    upi.setText("This School is already registered");
                                                 } else {
-//                                                        setSchoolManager.setBackgroundResource(0);
-//                                                        setSchoolManager.setTextColor(Color.RED);
+
                                                     setManager.setVisibility(View.VISIBLE);
-//                                                    setSchoolManager.setText("School Manager is not registered");
+                                                    upi.setText(" ");
+
                                                 }
 
                                             }
@@ -193,7 +192,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 
 
                                 }
-                                schooladapter.notifyDataSetChanged();
+                                schooladapter2.notifyDataSetChanged();
                             }
 
                             @Override
@@ -201,7 +200,8 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 
                             }
 
-                        });
+                        }
+                    );
                     }
 
                     @Override
@@ -236,10 +236,36 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 //            }}
 
 
-        Submit = findViewById(R.id.submit_area);
-        Submit.setOnClickListener((View v) -> {
 
-            registration();
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.submit_area:
+                        schoolManagerRef2.orderByChild("school_id").equalTo(school_id).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    Toast.makeText(SchoolManagerRegister.this, "This School is already registered", Toast.LENGTH_LONG).show();
+                                }
+                                else{
+                                    registration();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                        break;
+
+
+
+
+
+                }
+            }
 
         });
     }
@@ -282,6 +308,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 
 
     private void registration() {
+
         final String firstname1 = firstName.getText().toString().trim();
         final String lastname1 = lastName.getText().toString().trim();
         //final String City;
@@ -312,6 +339,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
             return;
         }
 
+
         if (!Patterns.EMAIL_ADDRESS.matcher(email1).matches()) {
             email.setError("Please provide valid email");
             email.requestFocus();
@@ -322,6 +350,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
             password.requestFocus();
             return;
         }
+
         if (password1.length() < 8) {
             password.setError("Min password length should be 8 characters!");
             password.requestFocus();
@@ -347,7 +376,9 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                        public void onComplete(@NonNull Task<Void> task) {
                                                            if (task.isSuccessful()) {
                                                                Toast.makeText(SchoolManagerRegister.this, "SchoolManager registered Successfully ", Toast.LENGTH_LONG).show();
-                                                               startActivity(new Intent(SchoolManagerRegister.this, SchoolHomeFragment.class));
+                                                               Intent x=new Intent(SchoolManagerRegister.this, SchoolHome_new.class);
+                                                               x.putExtra("userType","SchoolManagers");
+                                                               startActivity(x);
 
                                                            } else {
                                                                Toast.makeText(SchoolManagerRegister.this, "Registration failed ", Toast.LENGTH_LONG).show();

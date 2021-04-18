@@ -47,7 +47,7 @@ public class resetpassword extends AppCompatActivity {
         String email= emailEditText.getText().toString().trim();
 
         if(email.isEmpty()){
-            emailEditText.setError("Enter a valid email");
+            emailEditText.setError(" Email is required");
             emailEditText.requestFocus();
             return;
         }

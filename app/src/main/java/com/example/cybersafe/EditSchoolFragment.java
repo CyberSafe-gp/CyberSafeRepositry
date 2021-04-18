@@ -36,7 +36,7 @@ public class EditSchoolFragment extends Fragment {
     String userID;
     private DatabaseReference SMRef =  FirebaseDatabase.getInstance().getReference("SchoolManagers");
     private EditText editTextfName,editTextlName,editTextEmail;
-
+    private Button logOut;
     public EditSchoolFragment() {
         // Required empty public constructor
     }
@@ -63,7 +63,7 @@ public class EditSchoolFragment extends Fragment {
         else {
             System.out.println("userID out");
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
-            Intent in = new Intent(getActivity(), ParentLogin.class);
+            Intent in = new Intent(getActivity(), Interface.class);
             startActivity(in);
             //go back
         }
@@ -73,6 +73,7 @@ public class EditSchoolFragment extends Fragment {
         editTextEmail = getActivity().findViewById(R.id.email2);
         btreset=(Button)getActivity().findViewById(R.id.button21);
         btEdit=(Button)getActivity().findViewById(R.id.editb);
+        logOut=(Button)getActivity().findViewById(R.id.Logg2);
         userType1= getActivity().getIntent().getStringExtra("userType");
 
         //to go for the reset passowrd pag
@@ -83,7 +84,23 @@ public class EditSchoolFragment extends Fragment {
             startActivity(intent);
         });
 
-        //
+
+        //log-out
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivities();
+            }
+
+            private void startActivities() {
+                Intent intent = new Intent(getActivity(),Interface.class);
+                intent.putExtra("IntentName", "hi");
+                FirebaseAuth.getInstance().signOut();
+                startActivity(intent);
+            }
+
+        });
 
 
         SMRef.addValueEventListener(new ValueEventListener() {

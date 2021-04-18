@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,7 @@ public class Add_NewChild extends AppCompatActivity {
     private String gender[],city[],Grade[];
     private String userCity, userGender,userGrade,userschool,parentid,school_id,date ;
     private String apps;
+    private TextView oom;
     private Button date_picker;
     private DatePickerDialog datePickerDialog;
     private FirebaseAuth mAuth;
@@ -80,7 +82,7 @@ public class Add_NewChild extends AppCompatActivity {
 
             // No user is signed in
         }
-
+        oom= (TextView) findViewById(R.id.oo);
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
         ChildRef = FirebaseDatabase.getInstance().getReference().child("Children");
         schoolManagerRef= FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
@@ -335,7 +337,7 @@ public class Add_NewChild extends AppCompatActivity {
 //                                                        setSchoolManager.setBackgroundResource(0);
 //                                                        setSchoolManager.setTextColor(Color.RED);
                                                         setSchoolManager.setVisibility(View.INVISIBLE);
-//                                                    setSchoolManager.setText("School Manager is not registered");
+                                                        oom.setText("School Manager is not registered");
                                                     }
 
                                                 }

@@ -69,7 +69,6 @@
             </intent-filter>
         </activity> <!-- android:theme="@style/Theme.CyberSafe" -->
         <activity android:name=".Add_Detection_Keyword2" />
-        <activity android:name=".Add_Detection_Keyword" />
         <activity android:name=".Add_NewChild" >
 
 
@@ -78,13 +77,6 @@
         <activity android:name=".ChildHome" />
         <activity android:name=".Edit_Child_Profile" />
         <activity android:name=".Edit_Parent_Profile" />
-        <activity
-            android:name=".EditSchool"
-            android:parentActivityName=".SchoolHome">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".FlagMain" />
         <activity android:name=".Forgetpassword" />
         <activity android:name=".Gethelp" />
@@ -105,7 +97,8 @@
         <activity android:name=".ParentRegister2" />
         <activity android:name=".Report_info_reported" />
         <activity android:name=".resetpassword" />
-        <activity android:name=".SchoolHome" />
+        <activity android:name=".SchoolHomeFragment"
+            tools:ignore="Instantiatable" />
         <activity android:name=".SchoolManagerRegister">
             <intent-filter>
 

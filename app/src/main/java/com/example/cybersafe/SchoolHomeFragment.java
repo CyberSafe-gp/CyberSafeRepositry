@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.example.cybersafe.Objects.School;
 import com.example.cybersafe.Objects.SchoolManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -80,7 +79,11 @@ public class SchoolHomeFragment extends Fragment {
                         Fname=us.getFirstName();
                         lName = us.getLastName();
                         SchoolID=us.getSchool_id();
-                        String name=Fname+" "+lName;
+                        char ca=Character.toUpperCase(Fname.charAt(0));
+                        String sub=Fname.substring(1,Fname.length());
+
+                        String name=ca+sub+" "+lName;
+
                         WritheSchoolManagerName.setText(name);
                         WritheSchoolManagerEmail.setText(userEmail);
 

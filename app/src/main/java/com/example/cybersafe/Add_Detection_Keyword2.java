@@ -22,13 +22,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//shahad
+
 public class Add_Detection_Keyword2 extends AppCompatActivity {
     private TextInputEditText keywords;
     public Button add;
     String id, userType;
     FirebaseDatabase mDatabase =FirebaseDatabase.getInstance();
     DatabaseReference mDbRef = mDatabase.getReference("Keywords");
+
 
 
     @Override
@@ -46,7 +47,7 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
         } else {
             System.out.println("userID out");
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
-            Intent in = new Intent(Add_Detection_Keyword2.this, ParentLogin.class);
+            Intent in = new Intent(Add_Detection_Keyword2.this, Interface.class);
             startActivity(in);
         }
 
@@ -77,47 +78,51 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
         } else
             keywords.getText().clear();
 
-        String[] KEYWORDS = keyWords.split(",");
-
+        //String[] KEYWORDS = keyWords.split(",");
+        String[] KEYWORDS = keyWords.split("،|,");
        // Pattern p = Pattern.compile("[a-z]+|[A-Z]+|[0-9]+|\\s+");
-        Pattern p = Pattern.compile("^[\\s\\w\\d\\?><;,\\{\\}\\[\\]\\-_\\+=!@\\#\\$%^&\\*\\|\\']*$");
-        Pattern p2 = Pattern.compile("[\\u0600-\\u06ff]|[\\u0750-\\u077f]|[\\ufb50-\\ufc3f]|[\\ufe70-\\ufefc]\n");
+       // Pattern EnglishPattern = Pattern.compile("^[\\s\\w\\d\\?><;,\\{\\}\\[\\]\\-_\\+=!@\\#\\$%^&\\*\\|\\']*$");
+      //regular Exprission to detect arabic lamguage
+        Pattern ArabicPattern = Pattern.compile("^[\\u0621-\\u064A]+$");
 
 
         int len = KEYWORDS.length;
 
 
         for (int i = 0; i < len; i++) {
-            Matcher m = p.matcher(KEYWORDS[i]);
-            Matcher m2 = p2.matcher(KEYWORDS[i]);
+            //Matcher m = EnglishPattern.matcher(KEYWORDS[i]);
+            Matcher m2 = ArabicPattern.matcher(KEYWORDS[i]);
 
-            //English-Keywords
-            if (m.matches()) {
 
-               // String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                Keyword k= new Keyword(KEYWORDS[i], "English",id);
-                String keyId=mDbRef.push().getKey();
-                String successfully = KEYWORDS[i]+ " added successfully";
-                String notSuccessfully = KEYWORDS[i]+ " not added successfully";
-                FirebaseDatabase.getInstance().getReference("Keywords").child(keyId).setValue(k).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(Add_Detection_Keyword2.this, successfully, Toast.LENGTH_LONG).show();
-
-                        } else {
-                            Toast.makeText(Add_Detection_Keyword2.this, notSuccessfully, Toast.LENGTH_LONG).show();
-                        }
-
-                    }
-                });
-
-            }
             //Arabic-Keywords
-            else if (m2.matches()) {
+             if (m2.matches()) {
                // String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                Keyword k= new Keyword(KEYWORDS[i], "Arabic",id);
-                String keyId=mDbRef.push().getKey();
+                 String keyId=mDbRef.push().getKey();
+                Keyword k= new Keyword(keyId,KEYWORDS[i], "Arabic",id);
+                String successfully = KEYWORDS[i]+ " added successfully";
+                String notSuccessfully = KEYWORDS[i]+ " not added successfully";
+                mDbRef.child(keyId).setValue(k).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Add_Detection_Keyword2.this, successfully, Toast.LENGTH_LONG).show();
+
+                        } else {
+                            Toast.makeText(Add_Detection_Keyword2.this, notSuccessfully, Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+
+            }
+
+
+            //Other languages
+            else  {
+
+                // String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                 String keyId=mDbRef.push().getKey();
+                Keyword k= new Keyword(keyId,KEYWORDS[i], "Not Arabic",id);
                 String successfully = KEYWORDS[i]+ " added successfully";
                 String notSuccessfully = KEYWORDS[i]+ " not added successfully";
                 FirebaseDatabase.getInstance().getReference("Keywords").child(keyId).setValue(k).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -135,26 +140,6 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
 
             }
 
-            //Other-Keywords
-           else{
-             //   String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                Keyword k= new Keyword(KEYWORDS[i], "Other",id);
-                String keyId=mDbRef.push().getKey();
-                String successfully = KEYWORDS[i]+ " added successfully";
-                String notSuccessfully = KEYWORDS[i]+ " not added successfully";
-                FirebaseDatabase.getInstance().getReference("Keywords").child(keyId).setValue(k).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(Add_Detection_Keyword2.this, successfully, Toast.LENGTH_LONG).show();
-
-                        } else {
-                            Toast.makeText(Add_Detection_Keyword2.this, notSuccessfully, Toast.LENGTH_LONG).show();
-                        }
-
-                    }
-                });
-            }
 
             }
 

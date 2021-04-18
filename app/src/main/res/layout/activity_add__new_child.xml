@@ -229,6 +229,14 @@
              android:background="@drawable/mark"
              android:visibility="invisible"/>
 
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:id="@+id/oo"
+             android:layout_marginLeft="-350dp"
+             android:layout_marginRight="45dp"
+             android:layout_marginTop="65dp"
+             />
 
      </LinearLayout>
 
