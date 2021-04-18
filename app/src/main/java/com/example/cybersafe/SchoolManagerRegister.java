@@ -168,6 +168,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                     if (school_id.equalsIgnoreCase(findschoolid)) {
                                                         find = true;
                                                         break;
+
                                                     }
                                                 }
                                                 if (find == true) {
