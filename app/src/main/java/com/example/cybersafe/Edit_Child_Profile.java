@@ -46,40 +46,27 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
 
     DatabaseReference schoolRef , ChildRef , SMARef,schoolManagerRef;
-    private Spinner genderSpinner, citySpinner,schoolSpinner,gradeSpinner,Applications;
+    private Spinner genderSpinner, citySpinner,schoolSpinner,gradeSpinner;
     private String gender[],city[],Grade[];
 
-    private String userCity, userGender,userGrade,userschool,parentid,school_id,date, schoolName ;
-    private String apps;
+    private String userCity, userGender,userGrade,userschool,parentid,school_id,schoolName ;
     private Button date_picker;
     private DatePickerDialog datePickerDialog;
-    private FirebaseAuth mAuth;
 
-    //start for social media
-//    private EditText username;
-//    private EditText password ;
     private FirebaseUser user;
-    TextView setSchoolManager;
     LocalDate birthDate;
     boolean find=false;
-    final SMAccountCredentials SMAobj=new SMAccountCredentials();
 
     //shahad
     private EditText firstnameCH,lastnameCH;
-    private Button add,deletB ;
-    private String userIdC,userIdP,userIdS,Fname,lName,DOB,Cityy,Genderr,childID;
-    private String DOB1;
+    private Button editInfo,deletB ;
+    private String userIdP,userIdS,Fname,lName,DOB,Cityy,Genderr,childID;
     private  int Gradee;
     private FirebaseUser Cuser;
-    private static final String TAG = Edit_Child_Profile.class.getSimpleName();
-    String usernameD,passwordD, SMAId;
+    String SMAId;
     ImageView setSchoolManager1;
 
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Children");
-
-//    public Add_NewChild() {}
-//current user id
-    // فالديت للعمر والقريد
 
 
     @Override
@@ -105,20 +92,15 @@ public class Edit_Child_Profile extends AppCompatActivity {
         //SHAHAD
         firstnameCH = (EditText) findViewById((R.id.firstnameCH1));
         lastnameCH = (EditText) findViewById((R.id.lastnameCH1));
-
-       // username = (EditText) findViewById((R.id.username1));
-       // password = (EditText) findViewById((R.id.password1));
-       // setSchoolManager = (TextView) findViewById((R.id.setSchoolManager)); انا لينه حذفتها لانه كانت تسبب لي ايرور
         setSchoolManager1 =findViewById((R.id.setSchoolManager1));
         date_picker = findViewById(R.id.date_picker1);
 
-        //delete
+
+        //delete-child-button
         deletB=  findViewById(R.id.buttonx);
-
-
-  deletB.setOnClickListener(new View.OnClickListener() {
+        deletB.setOnClickListener(new View.OnClickListener() {
             @Override
-            //code for deleteng the child
+            //code for deleting the child
             public void onClick(View v) {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Edit_Child_Profile.this);
                 // Setting Alert Dialog Title
@@ -175,8 +157,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
                     com.example.cybersafe.Objects.Child us = postSnapshot.getValue(Child.class);
 
                     if (us.getChild_id().equals(childID)) {
-                        //userIdC = us.getChild_id();
-
                         userIdP = us.getParent_id();
                         userIdS = us.getSchool_id();
                         Fname=us.getFirstName();
@@ -188,10 +168,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
                         firstnameCH.setText(Fname);
                         lastnameCH .setText(lName);
 
-
-//System.out.println(DOB);
                        String[] ddatte = DOB.split("/");
-
                         date_picker.setText(makeDateString(getMonthFormat(ddatte[0]),Integer.parseInt(ddatte[1]),Integer.parseInt(ddatte[2])));
 
                         gradeSpinner = (Spinner)findViewById(R.id.Grade1);
@@ -265,7 +242,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
                             }
                         });
 
-                        //        //Gender dropdown menu
+                        //Gender dropdown menu
                         genderSpinner = (Spinner)findViewById(R.id.gender1);
                         gender = new String[] {"Male", "Female"};
 
@@ -365,6 +342,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
 
 
+
                                 schoolRef.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -374,10 +352,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                             //Check if user select city
                                             if(!userCity.equals("Select")){
                                                 schoolList.clear();
-//                                                schoolList.add("Select");
-//
-//                                                schoolList.clear();
-//                                                //schoolList.add("Select");
                                                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                                                     School findSchool = postSnapshot.getValue(School.class);
                                                     if (findSchool.getCity().equals(userCity))
@@ -398,7 +372,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                 //Set child School
                                 for (int i = 0; i < schoolList.size(); i++) {
                                     if (schoolList.get(i).equals(schoolName)) {
-                                        citySpinner.setSelection(i);
+                                        schoolSpinner.setSelection(i);
                                     }
                                 }
 
@@ -436,18 +410,11 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                                                     }
                                                                 }
                                                                 if (find == true) {
-//                                                                    setSchoolManager.setTextColor(Color.GREEN);
-//                                                                    setSchoolManager.setText("School Manager is registered");
                                                                     setSchoolManager1.setVisibility(View.VISIBLE);
-
                                                                 }else{
-//                                                                    setSchoolManager.setTextColor(Color.RED);
-//                                                                    setSchoolManager.setText("School Manager is not registered");
                                                                     setSchoolManager1.setVisibility(View.INVISIBLE);
                                                                 }
-
                                                             }
-
                                                             @Override
                                                             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -499,35 +466,13 @@ public class Edit_Child_Profile extends AppCompatActivity {
         });
 
 
-        //Social media account credentials
-        Applications = findViewById(R.id.Applications1);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.application, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Applications.setAdapter(adapter);
-
-        Applications.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                apps = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
         SMARef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     SMAccountCredentials smAccountCredentials = postSnapshot.getValue(SMAccountCredentials.class);
                     if (smAccountCredentials.getChild_id().equals(childID)) {
-//                        usernameD =smAccountCredentials.getAccount();
-//                        passwordD=smAccountCredentials.getPassword();
                         SMAId=smAccountCredentials.getId();
-//                        username.setText(usernameD);
-//                        password.setText(passwordD);
                     }
                 }
 
@@ -541,12 +486,9 @@ public class Edit_Child_Profile extends AppCompatActivity {
         });
 
 
-        add = (Button) findViewById(R.id.add11);
+        editInfo = (Button) findViewById(R.id.editChild);
 
-        add.setOnClickListener(new View.OnClickListener() {
-
-            //                    final String username1= username.getText().toString().trim();
-//                    final String password2= password.getText().toString().trim();
+        editInfo.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
@@ -557,7 +499,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
      }
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void savechild() {
-        //FirebaseUser currentUser = mAuth.getCurrentUser();
         System.out.println("childID "+childID);
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Children").child(childID);
 
@@ -576,8 +517,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
             lastnameCH.requestFocus();
             return;
         }
-//
-//
 
         // check data of birth is not empty
         if (DOB == null) {
@@ -614,7 +553,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
 
         Child Childobj=new Child(childID, userIdP, userIdS, firstName,lastName, DOB, userCity,userGender,Integer.parseInt(userGrade) );
-        //userRef.setValue(Childobj);
 
 
         //Edit child to database
@@ -623,18 +561,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()) {
-
-//                    usernameD =username.getText().toString();
-//                    passwordD =password.getText().toString();
-/*                    SMAccountCredentials SMAobj=new SMAccountCredentials(SMAId,childID,apps,passwordD,usernameD);
-
-                    SMARef.child(SMAId).setValue(SMAobj);
-
-                    Toast.makeText(Edit_Child_Profile.this, "Child updated successfully", Toast.LENGTH_LONG).show();*/
-                    // startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
-                    /*Intent intent = new Intent();
-                    setResult(RESULT_OK, intent);
-                    */
                     finish();
                 } else {
                    // Toast.makeText(Edit_Child_Profile.this, "Child doesn't updated", Toast.LENGTH_LONG).show();
