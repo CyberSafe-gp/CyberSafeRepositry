@@ -189,8 +189,8 @@ public class Edit_Child_Profile extends AppCompatActivity {
                         lastnameCH .setText(lName);
 
 
-
-                       String[] ddatte = DOB.split(" ");
+//System.out.println(DOB);
+                       String[] ddatte = DOB.split("/");
 
                         date_picker.setText(makeDateString(getMonthFormat(ddatte[0]),Integer.parseInt(ddatte[1]),Integer.parseInt(ddatte[2])));
 
