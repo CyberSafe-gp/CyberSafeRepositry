@@ -48,6 +48,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
     public boolean find=false;
     public boolean x = false;
     ImageView setManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
