@@ -9,12 +9,13 @@ public class SchoolManager {
     private String password;
     private String email;
     private String City;
+    private String admin;
 
 
     public SchoolManager() {
     }
 
-    public SchoolManager(String schoolManager_id, String school_id,String City, String firstName, String lastName, String password, String email) {
+    public SchoolManager(String schoolManager_id, String school_id,String City, String firstName, String lastName, String password, String email,String admin) {
         this.schoolManager_id = schoolManager_id;
         this.school_id = school_id;
         this.City = City;
@@ -22,10 +23,15 @@ public class SchoolManager {
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-
-
+        this.admin=admin;
     }
 
+    public String getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(String schoolManager_id) {
+        this.admin = admin; }
 
     public String getSchoolManager_id() {
         return schoolManager_id;
