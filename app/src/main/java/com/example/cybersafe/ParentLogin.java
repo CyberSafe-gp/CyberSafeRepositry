@@ -1,6 +1,5 @@
 package com.example.cybersafe;
 
-import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -39,7 +38,6 @@ import com.onesignal.OneSignal;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -166,7 +164,7 @@ public class ParentLogin extends AppCompatActivity {
                         startService(serviceIntent);*/
                         //Start the service every one hour
 
-                        startService(new Intent(ParentLogin.this, MyService.class));
+                        /*startService(new Intent(ParentLogin.this, MyService.class));
                         Calendar cal = Calendar.getInstance();
                         Intent intent2 = new Intent(ParentLogin.this, MyService.class);
                         PendingIntent pintent = PendingIntent
@@ -175,7 +173,7 @@ public class ParentLogin extends AppCompatActivity {
                         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                         // Start service every hour
                         alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                100000, pintent);
+                                100000, pintent);*/
 
                         UpdateToken("Parents");
                         startActivity(intent);

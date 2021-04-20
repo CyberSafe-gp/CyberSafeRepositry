@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cybersafe">
 
-
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -69,6 +67,7 @@
             </intent-filter>
         </activity> <!-- android:theme="@style/Theme.CyberSafe" -->
         <activity android:name=".Add_Detection_Keyword2" />
+        <activity android:name="Report_info_inco"/>
         <activity android:name=".Add_NewChild" >
 
 
@@ -79,20 +78,28 @@
         <activity android:name=".Edit_Parent_Profile" />
         <activity android:name=".FlagMain" />
         <activity android:name=".Forgetpassword" />
+        <activity android:name=".sa">
+
+        </activity>
         <activity android:name=".Gethelp" />
         <activity android:name=".IncomingReportsMain" />
         <activity android:name=".Interface">
             <intent-filter>
 
-                    <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-                    <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
 
             </intent-filter>
         </activity>
         <activity android:name=".Login_Register" />
         <activity android:name=".ParentHome" />
-        <activity android:name=".ParentLogin" />
+        <activity android:name=".ParentLogin" >
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ParentRegister" />
         <activity android:name=".ParentRegister2" />
         <activity android:name=".Report_info_reported" />

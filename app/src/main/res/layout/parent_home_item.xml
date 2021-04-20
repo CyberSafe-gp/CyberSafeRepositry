@@ -38,6 +38,19 @@ app:theme="@style/Theme.MaterialComponents">
 
         android:layout_marginTop="7dp"
 />
+
+    <ImageView
+        android:id="@+id/red"
+        android:layout_width="25dp"
+        android:layout_height="28dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:src="@drawable/red_circle_1155276042606ekqvli9k" />
+
     <TextView
         android:id="@+id/writeChildP"
         android:layout_width="wrap_content"
@@ -57,6 +70,8 @@ app:theme="@style/Theme.MaterialComponents">
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/blue"
         android:textStyle="bold" />
+
+
 
     <View
         android:layout_width="match_parent"

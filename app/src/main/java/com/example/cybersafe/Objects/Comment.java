@@ -8,6 +8,8 @@ public class Comment {
     private String body;
     private String C_ID;
     private Boolean flag;
+    private String Notification;
+
 
 
 
@@ -21,6 +23,7 @@ public class Comment {
         this.body = body;
         C_ID = c_ID;
         this.flag = flag;
+        Notification="new";
     }
 
     public String getComment_id() {
@@ -73,5 +76,13 @@ public class Comment {
 
     public void setC_ID(String c_ID) {
         C_ID = c_ID;
+    }
+
+    public String getNotification() {
+        return Notification;
+    }
+
+    public void setNotification(String notification) {
+        Notification = notification;
     }
 }

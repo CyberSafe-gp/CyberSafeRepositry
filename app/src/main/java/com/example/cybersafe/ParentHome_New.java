@@ -25,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class
 ParentHome_New extends AppCompatActivity {
@@ -63,9 +62,9 @@ ParentHome_New extends AppCompatActivity {
         SMARef = FirebaseDatabase.getInstance().getReference().child( "SMAccountCredentials" );
 
 
+////Notification
 
-
-
+        //Get all parent children
         ChildRef.addValueEventListener(new ValueEventListener() {
                                            @Override
                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -84,6 +83,8 @@ ParentHome_New extends AppCompatActivity {
 
                                                        for (int i = 0; parentChildren.size() > i; i++) {
                                                            String child_id = parentChildren.get( i ).getChild_id();
+
+                                                           //Get the social media id for each parent's child
                                                            SMARef.addValueEventListener(new ValueEventListener() {
                                                                @Override
                                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -117,19 +118,25 @@ ParentHome_New extends AppCompatActivity {
 
 
 
-                commentsRef.addChildEventListener(new ChildEventListener() {
+        //Check if the comment reference in database add new check if it belongs to one of the child and the comment is bully then show the notification
+        commentsRef.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                        System.out.println("onChildAdded ");
+                        System.out.println("onChildAdded2 ");
                         Comment lastComment = snapshot.getValue(Comment.class);
                         String commentSMA =lastComment.getSMAccountCredentials_id();
                         System.out.println("commentSMA "+commentSMA);
-                        if (Arrays.asList("-MYMubiuPwqiHBNddt4j").contains(commentSMA)){
-                            System.out.println("contains");
-                            if(lastComment.getFlag().equals(true)){
-                                badge.setVisible(true);
-                                System.out.println("onChildAdded222222 ");
+                        System.out.println("getC_ID "+lastComment.getC_ID());
+
+                        for (int i = 0; SMA_IDS.size() > i; i++){
+
+                            if (SMA_IDS.get(i).equals(commentSMA)) {
+                                System.out.println("contains");
+                                if (lastComment.getFlag().equals(true)) {
+                                    badge.setVisible(true);
+                                    System.out.println("onChildAdded222222 ");
+                                }
                             }
 
                         }
@@ -159,7 +166,7 @@ ParentHome_New extends AppCompatActivity {
                     }
                 });
 
-
+////
 
         if (savedInstanceState == null) {
 
@@ -175,7 +182,7 @@ ParentHome_New extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.navigation_home:
                 fragment = new HomeFragment(); //Done
-//                badge.setVisible(false);
+//                badge.setVisible(false); //if click the icon the badge disappears
                 break;
             case R.id.navigation_Incoming:
                 fragment = new IncomingFragment(); //Done
