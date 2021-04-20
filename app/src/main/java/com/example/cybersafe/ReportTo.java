@@ -1,7 +1,6 @@
 package com.example.cybersafe;
 
-import android.content.Intent;
-import android.graphics.Color;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +16,11 @@ import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Report;
 import com.example.cybersafe.Objects.SMAccountCredentials;
 import com.example.cybersafe.Objects.SchoolManager;
+import com.example.cybersafe.SendNotificationPack.APIService;
+import com.example.cybersafe.SendNotificationPack.Client;
+import com.example.cybersafe.SendNotificationPack.Data;
+import com.example.cybersafe.SendNotificationPack.MyResponse;
+import com.example.cybersafe.SendNotificationPack.NotificationSender;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,8 +36,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ReportTo extends AppCompatActivity {
-    String Comment_id,senderID, SMA_id, sender,ChildID, body, childFName, childLName, childName,childAccount,parentID, schoolMID;
+    String Comment_id,senderID, SMA_id, sender,ChildID, body, childFName, childLName, childName,childAccount,parentID, schoolMID,school_Token;
     ImageView back, home;
     Child child, senderObj;
     private FirebaseUser user;
@@ -44,6 +52,8 @@ public class ReportTo extends AppCompatActivity {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
+    private APIService apiService;
+   String childSchoolId, senderSchoolId;
 
 
     @Override
@@ -104,6 +114,7 @@ public class ReportTo extends AppCompatActivity {
                 childFName = child.getFirstName();
                 childLName = child.getLastName();
                 childName=childFName+" "+childLName;
+                childSchoolId=child.getSchool_id();
 
                 TextView WriteChildName = (TextView)findViewById(R.id.WriteChildName);
                 WriteChildName.setText(childName);
@@ -129,6 +140,7 @@ public class ReportTo extends AppCompatActivity {
                         // the info that we can reach from the SMAccountCredentials
                         senderID= sma.getChild_id();
 
+
                         // get the smAccountCredentials to retrieve the info
                         DatabaseReference childRef = FirebaseDatabase.getInstance().getReference().child("Children");
                         childRef.addValueEventListener(new ValueEventListener() {
@@ -140,6 +152,9 @@ public class ReportTo extends AppCompatActivity {
                                     Child ch = messageSnapshot.getValue(Child.class);
                                     if (ch.getChild_id().equals(senderID)){
                                       senderObj=ch;
+                                      senderSchoolId=senderObj.getSchool_id();
+
+
 
                                         break;}
                                 }
@@ -163,31 +178,37 @@ public class ReportTo extends AppCompatActivity {
             }
         });
 
-        String childSchoolId=child.getSchool_id();
-        String senderSchoolId=senderObj.getSchool_id();
-        String senderID=senderObj.getChild_id();
+
+
+
         Button report = (Button)findViewById(R.id.report);
 
 
         //check if School Manager exist and get the School Manager ID also enable or enable the button
         schoolRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                     SchoolManager SM = messageSnapshot.getValue(SchoolManager.class);
                     if(SM.getSchool_id().equals(childSchoolId)){//check if School Manager exist and get the School Manager ID
                         schoolMID=SM.getSchool_id();
+                        school_Token=SM.getToken();
                         findSchoolManager=true;
                     }
                 }
 
                 //Enable or enable the button
                 if (childSchoolId.equals(senderSchoolId) && !(ChildID.equals(senderID)) && findSchoolManager){
+
+                    report.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
                     report.setEnabled(true);
 
                 } else {
+                    report.setBackgroundColor(getResources().getColor(R.color.gray));
                     report.setEnabled(false);
-                    report.setBackgroundColor(Color.parseColor("#F8F8F8"));
+
+                    System.out.println("##################");
                 }
 
             }
@@ -214,6 +235,10 @@ public class ReportTo extends AppCompatActivity {
 
                                                   if (task.isSuccessful()) {
                                                       Toast.makeText(ReportTo.this, "Report send successfully", Toast.LENGTH_LONG).show();
+                                                      apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
+
+                                                      sendNotifications(school_Token, "Cyber Safe","New report");
+
                                                       finish();
 
                                                   } else {
@@ -229,30 +254,6 @@ public class ReportTo extends AppCompatActivity {
 
 
 
-        //Toolbar
-/*        back = (ImageView) findViewById(R.id.arrowIncomP);
-        home = (ImageView) findViewById(R.id.homeIncomP);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent mIntent = new Intent(ReportTo.this, ChildHome.class);
-                mIntent.putExtra("userType", "Parent");
-                mIntent.putExtra("Child_id", ChildID);
-                startActivity(mIntent);
-
-            }
-        });*/
-
-
 
 
 
@@ -263,5 +264,25 @@ public class ReportTo extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    public void sendNotifications(String usertoken, String title, String message) {
+        Data data = new Data(title, message);
+        NotificationSender sender = new NotificationSender(data, usertoken);
+        apiService.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
+            @Override
+            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body().success != 1) {
+                        Toast.makeText(ReportTo.this, "Failed ", Toast.LENGTH_LONG);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

@@ -1,12 +1,9 @@
 package com.example.cybersafe;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Keyword;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -113,7 +109,7 @@ public class Add_Detection_Keyword  extends AppCompatActivity {
             }
         });
 
-        //Add-Detection-Keyword-Button
+/*        //Add-Detection-Keyword-Button
 
         dK= findViewById(R.id.addDetectionK);
 
@@ -142,7 +138,7 @@ public class Add_Detection_Keyword  extends AppCompatActivity {
 
             Intent intent = new Intent(this, Add_NewChild.class);
             startActivity(intent);
-        });
+        });*/
     }
 
     }

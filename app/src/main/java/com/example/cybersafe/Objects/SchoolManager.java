@@ -10,20 +10,23 @@ public class SchoolManager {
     private String email;
     private String City;
     private String admin;
+    private String token;
+
 
 
     public SchoolManager() {
     }
 
-    public SchoolManager(String schoolManager_id, String school_id,String City, String firstName, String lastName, String password, String email,String admin) {
+    public SchoolManager(String schoolManager_id, String school_id, String firstName, String lastName, String password, String email, String city, String admin, String token) {
         this.schoolManager_id = schoolManager_id;
         this.school_id = school_id;
-        this.City = City;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.admin=admin;
+        City = city;
+        this.admin = admin;
+        this.token = token;
     }
 
     public String getAdmin() {
@@ -91,5 +94,13 @@ public class SchoolManager {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

@@ -20,6 +20,7 @@
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:theme="@style/Theme.MaterialComponents"
         android:fitsSystemWindows="true"
         android:paddingTop="0dp"
         android:layout_alignParentBottom="true"

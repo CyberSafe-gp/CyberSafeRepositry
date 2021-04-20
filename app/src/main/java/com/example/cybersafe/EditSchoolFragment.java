@@ -24,6 +24,7 @@ package com.example.cybersafe;
         import com.google.firebase.database.DatabaseReference;
         import com.google.firebase.database.FirebaseDatabase;
         import com.google.firebase.database.ValueEventListener;
+        import com.google.firebase.iid.FirebaseInstanceId;
 
 
 /**
@@ -197,7 +198,9 @@ public class EditSchoolFragment extends Fragment {
         Cuser2.updateEmail(email);
 
 //store it in the database for the current user
-        SchoolManager Smanger = new SchoolManager(userId,Sid,City,fname, lastname, pass,email);
+        String token = FirebaseInstanceId.getInstance().getToken();
+
+        SchoolManager Smanger = new SchoolManager(userId,Sid,City,fname, lastname, pass,email,"Not confirm" ,token);
         userRef.setValue(Smanger);
         Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(30000).show();
 

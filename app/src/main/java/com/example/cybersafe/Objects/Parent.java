@@ -6,16 +6,17 @@ public class Parent {
     //private String password;
     private String email;
     private String parent_id;
+    private String token;
 
     public Parent() {
     }
 
-    public Parent(String firstName, String lastName, String email, String parent_id) {
+    public Parent(String firstName, String lastName, String email, String parent_id, String token) {
         this.firstName = firstName;
         this.lastName = lastName;
-        //this.password = password;
         this.email = email;
         this.parent_id = parent_id;
+        this.token = token;
     }
 
     public String getFirstName() {
@@ -56,5 +57,13 @@ public class Parent {
 
     public void setParent_id(String parent_id) {
         this.parent_id = parent_id;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

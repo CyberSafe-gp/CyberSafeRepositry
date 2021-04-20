@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Calendar;
 
@@ -112,7 +113,8 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
                                            public void onComplete(@NonNull Task<AuthResult> task) {
                                                if(task.isSuccessful()){
                                                    String id =FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                                   Parent USER = new Parent(firstname1,lastname1,email1,id);
+                                                   String token = FirebaseInstanceId.getInstance().getToken();
+                                                   Parent USER = new Parent(firstname1,lastname1,email1,id,token);
                                                    FirebaseDatabase.getInstance().getReference("Parents")
                                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                            .setValue(USER).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -123,7 +125,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
                                                                Intent intent=new Intent(ParentRegister.this,ParentHome_New.class);
                                                                intent.putExtra("userType","Parent");
 
-                                                               //Start the service every one hour
+                                                         /*      //Start the service every one hour
                                                                startService(new Intent(ParentRegister.this, MyService.class));
                                                                Calendar cal = Calendar.getInstance();
                                                                Intent intent2 = new Intent(ParentRegister.this, MyService.class);
@@ -133,7 +135,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
                                                                AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                                                                // Start service every hour
                                                                alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                                                       3600*1000, pintent);
+                                                                       3600*1000, pintent);*/
 
                                                                startActivity(intent);
 

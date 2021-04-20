@@ -21,6 +21,7 @@ package com.example.cybersafe;
         import com.google.firebase.database.DatabaseReference;
         import com.google.firebase.database.FirebaseDatabase;
         import com.google.firebase.database.ValueEventListener;
+        import com.google.firebase.iid.FirebaseInstanceId;
 
 
 /**
@@ -77,6 +78,7 @@ public class Edit_Parent_ProfileFragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(),Interface.class);
                 intent.putExtra("IntentName", "hi");
+                FirebaseAuth.getInstance().signOut();
                 startActivity(intent);
             }
         });
@@ -176,11 +178,12 @@ public class Edit_Parent_ProfileFragment extends Fragment {
             editTextEmail.requestFocus();
             return;
         }
+        String token = FirebaseInstanceId.getInstance().getToken();
 
         Cuser.updateEmail(email);
 
         //store it in the database for the current user
-        Parent p = new Parent(fname, lastname, email, userId);
+        Parent p = new Parent(fname, lastname, email, userId,token);
         userRef.setValue(p);
         Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(20000).show();
 

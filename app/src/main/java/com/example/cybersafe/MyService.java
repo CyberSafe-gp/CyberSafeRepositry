@@ -22,8 +22,10 @@ import com.android.volley.toolbox.Volley;
 import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Comment;
 import com.example.cybersafe.Objects.Keyword;
+import com.example.cybersafe.Objects.Parent;
 import com.example.cybersafe.Objects.Report;
 import com.example.cybersafe.Objects.SMAccountCredentials;
+import com.example.cybersafe.SendNotificationPack.APIService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -61,7 +63,10 @@ import retrofit2.Call;
 //اتوقع نناديها باللوق ان واللوق اوت
 public class MyService extends Service {
 
-    DatabaseReference keywordsRef, keywordRef, commentsRef, SMARef, ChildRef ,ReportRef;
+    private final String SERVER_KEY = "AAAAj3DgA1s:APA91bEmIDGuXxzcBT40HIf5oPYk6YDXrsCK2GBuHH_g74G9w30v-famyQwSFuQ9U2qi_iEC8jXcKv83zJUcDhqPmqa7uWwV8d38jvy1AsPRTV_ZNz79FCPOZnUNmR-xyIMqy5nmNZZe";
+
+
+    DatabaseReference keywordsRef, keywordRef, commentsRef, SMARef, ChildRef ,ReportRef, ParentRef;
     ArrayList<Keyword> keywordArrayList = new ArrayList();
     ArrayList<Comment> commentList = new ArrayList();
     // private String userID, childID;
@@ -74,6 +79,7 @@ public class MyService extends Service {
     ArrayList<SMAccountCredentials> ChildrenSMA = new ArrayList();
     String accessToken, author_id, account, media_id, SMA_ID, Parent_ID;
     float video_Count, numberOfVideoRequest, numberOfCommentRequest;
+    private APIService apiService;
 
     //in each request the is the minmmum number of videos and comments
     float video = 20;
@@ -100,6 +106,7 @@ public class MyService extends Service {
         SMARef = FirebaseDatabase.getInstance().getReference().child( "SMAccountCredentials" );
         commentsRef = FirebaseDatabase.getInstance().getReference().child( "Comments" );
         ReportRef = FirebaseDatabase.getInstance().getReference().child( "Reports" );
+        ParentRef = FirebaseDatabase.getInstance().getReference().child( "Parents" );
 
         //store requests
 
@@ -575,7 +582,7 @@ public class MyService extends Service {
         System.out.println( "hello from chick method" );
 
 
-        commentsRef.orderByChild("C_ID").equalTo(commentID).addValueEventListener(new ValueEventListener() {
+        commentsRef.orderByChild("c_ID").equalTo(commentID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -630,17 +637,20 @@ public class MyService extends Service {
                     }
                     //bus number doesn't exists.
                     //Add the comment to the database
-                    commentsRef.child(Comment_ID).setValue( commentObj ).addOnCompleteListener( new OnCompleteListener<Void>() {
+                    commentsRef.child(Comment_ID).setValue(commentObj).addOnCompleteListener( new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            // بس لتجريب بعدين نحذفها اذا ضبط
+
                             if (task.isSuccessful()) {
 
                                 System.out.println("isSuccessful isSuccessful isSuccessful");
 
                            if (bully) {
                                showNotification( child_id );
+
+
+                               //check if the sender exixt
                                SMARef.addValueEventListener( new ValueEventListener() {
                                    @Override
                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -661,10 +671,46 @@ public class MyService extends Service {
                                                                    //Add children id that belong to the parent
                                                                    if (child.getChild_id().equals( childID )) {
                                                                        String ParentID = child.getParent_id();
-                                                                       ReportRef = FirebaseDatabase.getInstance().getReference().child( "Report" );
+
+
+
+
+
+                                                                       ReportRef = FirebaseDatabase.getInstance().getReference().child( "Reports" );
 
                                                                        String Report_id = ReportRef.push().getKey();
-                                                                       Report incomingReport = new Report( Report_id, Parent_ID, ParentID, Comment_ID, "Not confirm", getDateTime() );
+                                                                       Report incomingReport = new Report( Report_id, "Admin", ParentID, Comment_ID, "Not confirm", getDateTime());
+                                                                       ReportRef.child(Report_id).setValue(incomingReport).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                           @Override
+                                                                           public void onComplete(@NonNull Task<Void> task) {
+                                                                               if (task.isSuccessful()){
+                                                                                   ParentRef.addValueEventListener(new ValueEventListener() {
+                                                                                       @Override
+                                                                                       public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                           if (snapshot.exists()){
+                                                                                               for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+
+                                                                                                   Parent parent = messageSnapshot.getValue( Parent.class );
+                                                                                                   if(ParentID.equals(parent.getParent_id())){
+                                                                                                       String token = parent.getToken();
+                                                                                                       sendNotification(token);
+                                                                                                       break;
+                                                                                                   }
+                                                                                               }
+                                                                                           }
+                                                                                       }
+
+                                                                                       @Override
+                                                                                       public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                                       }
+                                                                                   });
+
+
+
+                                                                               }
+                                                                           }
+                                                                       });
 
                                                                        break;
                                                                    }
@@ -738,6 +784,58 @@ public class MyService extends Service {
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());
 
+
+    }
+
+
+    public void sendNotification(String token){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        try {
+            JSONObject message = new JSONObject();
+            message.put("to", token);
+            message.put("priority", "high");
+
+            JSONObject notification = new JSONObject();
+            notification.put("title", "Notification");
+            notification.put("body", "New report");
+
+            message.put("notification", notification);
+
+            JsonObjectRequest getRequest1 = new JsonObjectRequest( Request.Method.POST
+                    , "https://fcm.googleapis.com/fcm/send", message, new com.android.volley.Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                    System.out.println( "RRREEESSSPPPOOONNN" );
+
+                }
+            },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // TODO Auto-generated method stub
+                            System.out.println( "errrrroorrrrrrrrrrrr" );
+                            Log.d( "ERROR", "error => " + error.toString() );
+                        }
+                    }
+            ) {
+                @Override
+                //we nee extra headers for our api url
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put( "Content-type", "application/json" );
+                    params.put( "Authorization", "key="+ SERVER_KEY );
+                    return params;
+                }
+            };
+
+
+            requestQueue.add( getRequest1 );
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 

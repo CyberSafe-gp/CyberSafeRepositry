@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment {
             userType1 = getActivity().getIntent().getExtras().getString("userType");
             //get and store userType1 is for storing  what is the type of the current user
         } else {
+            System.out.println("EEEEELLLLLSSSEEEE");
 
             Intent in = new Intent(getActivity(), ParentLogin.class);
             startActivity(in);

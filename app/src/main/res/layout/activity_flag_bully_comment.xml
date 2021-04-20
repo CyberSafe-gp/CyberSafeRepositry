@@ -10,35 +10,33 @@
     android:paddingTop="0dp">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints"
-        >
-
+        tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:gravity="center_horizontal"
             android:layout_weight="100"
+            android:gravity="center_horizontal"
             android:text="Flag Bully Comment"
-            android:textAppearance="?attr/textAppearanceHeadline6"
             android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textStyle="bold"
             android:textColor="@color/white"
             app:theme="@style/Theme.MaterialComponents"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="21dp" />
 
     </androidx.appcompat.widget.Toolbar>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFlag"
@@ -47,7 +45,7 @@
         android:layout_marginTop="64dp"
         android:padding="5dp"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         tools:layout_editor_absoluteX="0dp"
         tools:ignore="NotSibling" />
 
@@ -56,15 +54,17 @@
         android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="350dp"
         android:textColor="#000000"
         android:textIsSelectable="false"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="@+id/recyclerViewFlag"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.452"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
