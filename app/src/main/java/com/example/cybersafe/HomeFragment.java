@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
         } else {
             System.out.println("EEEEELLLLLSSSEEEE");
 
-            Intent in = new Intent(getActivity(), ParentLogin.class);
+            Intent in = new Intent(getActivity(), Login.class);
             startActivity(in);
         }
 
