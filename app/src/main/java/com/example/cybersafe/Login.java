@@ -105,7 +105,7 @@ public class Login extends AppCompatActivity {
         }
           //validation
         if(password.length() < 8){
-            editTextPassword.setError("The password must be at least 8 characters.");
+            editTextPassword.setError(" The password must be at least 8 characters.");
             editTextPassword.requestFocus();
             return;
         }

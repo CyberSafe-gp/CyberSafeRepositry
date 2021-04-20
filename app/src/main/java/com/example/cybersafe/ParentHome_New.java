@@ -177,7 +177,7 @@ ParentHome_New extends AppCompatActivity {
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = item -> {
+            =item -> {
         Fragment fragment = null;
         switch (item.getItemId()) {
             case R.id.navigation_home:
