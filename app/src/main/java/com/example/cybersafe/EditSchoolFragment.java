@@ -31,7 +31,7 @@ package com.example.cybersafe;
  * A simple {@link Fragment} subclass.
  */
 public class EditSchoolFragment extends Fragment {
-    private String userId,userEmail,Fname,lName,Sid,pass,userType1,City;
+    private String userId,userEmail,Fname,lName,Sid,userType1,City;
     private FirebaseUser SchoolUser;
     private Button btEdit,btreset;
     String userID;
@@ -77,7 +77,7 @@ public class EditSchoolFragment extends Fragment {
         logOut=(Button)getActivity().findViewById(R.id.Logg2);
         userType1= getActivity().getIntent().getStringExtra("userType");
 
-        //to go for the reset passowrd pag
+        //to go for the reset password page
         btreset.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(),resetpassword.class);
             intent.putExtra("userType",userType1);
@@ -120,7 +120,6 @@ public class EditSchoolFragment extends Fragment {
                         City=us.getCity();
                         userId = us.getSchoolManager_id();
                         Sid=us.getSchool_id();
-                        pass=us.getPassword();
                         editTextfName.setText(Fname);
                         editTextlName .setText(lName);
                         editTextEmail.setText(userEmail);
@@ -197,10 +196,10 @@ public class EditSchoolFragment extends Fragment {
         FirebaseUser Cuser2 = FirebaseAuth.getInstance().getCurrentUser();
         Cuser2.updateEmail(email);
 
-//store it in the database for the current user
+        //store it in the database for the current user
         String token = FirebaseInstanceId.getInstance().getToken();
 
-        SchoolManager Smanger = new SchoolManager(userId,Sid,City,fname, lastname, pass,email,"Not confirm" ,token);
+        SchoolManager Smanger = new SchoolManager(userId,Sid,City,fname, lastname,email,"Not confirm" ,token);
         userRef.setValue(Smanger);
         Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(30000).show();
 

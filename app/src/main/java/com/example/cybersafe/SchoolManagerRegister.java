@@ -325,7 +325,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                if (task.isSuccessful()) {
                                                    String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                                    String token = FirebaseInstanceId.getInstance().getToken();
-                                                   SchoolManager USER = new SchoolManager(id,school_id,userCity,firstname1,lastname1,password1,email1,"Not confirm",token);
+                                                   SchoolManager USER = new SchoolManager(id,school_id,userCity,firstname1,lastname1,email1,"Not confirm",token);
                                                    FirebaseDatabase.getInstance().getReference("SchoolManagers")
                                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                            .setValue(USER).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -333,7 +333,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                        public void onComplete(@NonNull Task<Void> task) {
                                                            if (task.isSuccessful()) {
                                                                Toast.makeText(SchoolManagerRegister.this, "SchoolManager registered Successfully ", Toast.LENGTH_LONG).show();
-                                                               Intent intent = new Intent(SchoolManagerRegister.this, SchoolHome_new.class);
+                                                               Intent intent = new Intent(SchoolManagerRegister.this, Admin_School.class);
                                                                intent.putExtra("userType", "SchoolManager");
 
 

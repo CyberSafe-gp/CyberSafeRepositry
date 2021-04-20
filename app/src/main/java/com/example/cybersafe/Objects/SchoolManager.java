@@ -6,7 +6,6 @@ public class SchoolManager {
     private String school_id;
     private String firstName;
     private String lastName;
-    private String password;
     private String email;
     private String City;
     private String admin;
@@ -17,12 +16,11 @@ public class SchoolManager {
     public SchoolManager() {
     }
 
-    public SchoolManager(String schoolManager_id, String school_id, String firstName, String lastName, String password, String email, String city, String admin, String token) {
+    public SchoolManager(String schoolManager_id, String school_id, String firstName, String lastName,String email, String city, String admin, String token) {
         this.schoolManager_id = schoolManager_id;
         this.school_id = school_id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
         this.email = email;
         City = city;
         this.admin = admin;
@@ -75,17 +73,6 @@ public class SchoolManager {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 
 
     public String getEmail() {
