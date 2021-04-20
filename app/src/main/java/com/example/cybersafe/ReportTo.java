@@ -16,11 +16,6 @@ import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Report;
 import com.example.cybersafe.Objects.SMAccountCredentials;
 import com.example.cybersafe.Objects.SchoolManager;
-import com.example.cybersafe.SendNotificationPack.APIService;
-import com.example.cybersafe.SendNotificationPack.Client;
-import com.example.cybersafe.SendNotificationPack.Data;
-import com.example.cybersafe.SendNotificationPack.MyResponse;
-import com.example.cybersafe.SendNotificationPack.NotificationSender;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,10 +31,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class ReportTo extends AppCompatActivity {
     String Comment_id,senderID, SMA_id, sender,ChildID, body, childFName, childLName, childName,childAccount,parentID, schoolMID,school_Token;
     ImageView back, home;
@@ -52,7 +43,6 @@ public class ReportTo extends AppCompatActivity {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
-    private APIService apiService;
    String childSchoolId, senderSchoolId;
 
 
@@ -235,9 +225,7 @@ public class ReportTo extends AppCompatActivity {
 
                                                   if (task.isSuccessful()) {
                                                       Toast.makeText(ReportTo.this, "Report send successfully", Toast.LENGTH_LONG).show();
-                                                      apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
-                                                      sendNotifications(school_Token, "Cyber Safe","New report");
 
                                                       finish();
 
@@ -266,23 +254,4 @@ public class ReportTo extends AppCompatActivity {
         return dateFormat.format(date);
     }
 
-    public void sendNotifications(String usertoken, String title, String message) {
-        Data data = new Data(title, message);
-        NotificationSender sender = new NotificationSender(data, usertoken);
-        apiService.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
-            @Override
-            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                if (response.code() == 200) {
-                    if (response.body().success != 1) {
-                        Toast.makeText(ReportTo.this, "Failed ", Toast.LENGTH_LONG);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MyResponse> call, Throwable t) {
-
-            }
-        });
-    }
 }

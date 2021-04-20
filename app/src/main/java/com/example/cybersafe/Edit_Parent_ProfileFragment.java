@@ -79,6 +79,9 @@ public class Edit_Parent_ProfileFragment extends Fragment {
                 Intent intent = new Intent(getActivity(),Interface.class);
                 intent.putExtra("IntentName", "hi");
                 FirebaseAuth.getInstance().signOut();
+                getActivity().stopService(new Intent(getActivity(), MyService.class));
+
+
                 startActivity(intent);
             }
         });

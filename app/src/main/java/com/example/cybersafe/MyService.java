@@ -25,7 +25,6 @@ import com.example.cybersafe.Objects.Keyword;
 import com.example.cybersafe.Objects.Parent;
 import com.example.cybersafe.Objects.Report;
 import com.example.cybersafe.Objects.SMAccountCredentials;
-import com.example.cybersafe.SendNotificationPack.APIService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -79,7 +78,6 @@ public class MyService extends Service {
     ArrayList<SMAccountCredentials> ChildrenSMA = new ArrayList();
     String accessToken, author_id, account, media_id, SMA_ID, Parent_ID;
     float video_Count, numberOfVideoRequest, numberOfCommentRequest;
-    private APIService apiService;
 
     //in each request the is the minmmum number of videos and comments
     float video = 20;
@@ -750,6 +748,8 @@ public class MyService extends Service {
 
 
     }
+
+    //get today date for the report day
     private String getDateTime() {
         DateFormat dateFormat = new SimpleDateFormat( "yyyy/MM/dd" );
         Date date = new Date();
@@ -757,7 +757,7 @@ public class MyService extends Service {
     }
 
 
-
+//For the current parent if detected a bully comment for one of his/her children
     void showNotification(String child_id) {
         String title="Bully comment detected!!";
         String message="your child receive a bully comment";
@@ -787,7 +787,7 @@ public class MyService extends Service {
 
     }
 
-
+//For the bully's parent if he/she exist send report about his/her child
     public void sendNotification(String token){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         try {
