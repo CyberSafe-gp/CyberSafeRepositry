@@ -1,8 +1,5 @@
 package com.example.cybersafe;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -28,8 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.onesignal.OneSignal;
-
-import java.util.Calendar;
 
 public class Login extends AppCompatActivity {
 
@@ -210,6 +205,8 @@ public class Login extends AppCompatActivity {
                                        Intent intent = new Intent(Login.this, Login.class);
                                        intent.putExtra("userType", userTypee);
                                        startActivity(intent);
+                                       editTextEmail.getText().clear();
+                                       editTextPassword.getText().clear();
                                    }
                                }
                                @Override
