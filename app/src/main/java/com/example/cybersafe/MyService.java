@@ -22,7 +22,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Comment;
 import com.example.cybersafe.Objects.Keyword;
-import com.example.cybersafe.Objects.Parent;
 import com.example.cybersafe.Objects.Report;
 import com.example.cybersafe.Objects.SMAccountCredentials;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -705,29 +704,6 @@ public class MyService extends Service {
                                                                            @Override
                                                                            public void onComplete(@NonNull Task<Void> task) {
                                                                                if (task.isSuccessful()){
-                                                                                   ParentRef.addValueEventListener(new ValueEventListener() {
-                                                                                       @Override
-                                                                                       public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                                           if (snapshot.exists()){
-                                                                                               for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-
-                                                                                                   Parent parent = messageSnapshot.getValue( Parent.class );
-                                                                                                   if(ParentID.equals(parent.getParent_id())){
-                                                                                                       String token = parent.getToken();
-                                                                                                       sendNotification(token);
-                                                                                                       break;
-                                                                                                   }
-                                                                                               }
-                                                                                           }
-                                                                                       }
-
-                                                                                       @Override
-                                                                                       public void onCancelled(@NonNull DatabaseError error) {
-
-                                                                                       }
-                                                                                   });
-
-
 
                                                                                }
                                                                            }
@@ -839,58 +815,6 @@ public class MyService extends Service {
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());
 
-
-    }
-
-//For the bully's parent if he/she exist send report about his/her child
-    public void sendNotification(String token){
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        try {
-            JSONObject message = new JSONObject();
-            message.put("to", token);
-            message.put("priority", "high");
-
-            JSONObject notification = new JSONObject();
-            notification.put("title", "Notification");
-            notification.put("body", "New report");
-
-            message.put("notification", notification);
-
-            JsonObjectRequest getRequest1 = new JsonObjectRequest( Request.Method.POST
-                    , "https://fcm.googleapis.com/fcm/send", message, new com.android.volley.Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-
-                    System.out.println( "RRREEESSSPPPOOONNN" );
-
-                }
-            },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            // TODO Auto-generated method stub
-                            System.out.println( "errrrroorrrrrrrrrrrr" );
-                            Log.d( "ERROR", "error => " + error.toString() );
-                        }
-                    }
-            ) {
-                @Override
-                //we nee extra headers for our api url
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put( "Content-type", "application/json" );
-                    params.put( "Authorization", "key="+ SERVER_KEY );
-                    return params;
-                }
-            };
-
-
-            requestQueue.add( getRequest1 );
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
     }
 
