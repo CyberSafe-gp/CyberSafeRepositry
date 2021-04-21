@@ -53,6 +53,13 @@ public class Login extends AppCompatActivity {
         ParentRef=FirebaseDatabase.getInstance().getReference().child( "Parents" );
         SchoolMangerRef=FirebaseDatabase.getInstance().getReference().child( "SchoolManagers");
         userTypee=getIntent().getStringExtra("userType");
+        TextView setUserType =   findViewById(R.id.userType);
+        //userType
+        if(userTypee.equals("Parent")){
+            setUserType.setText("Parent Log-in");
+        }else if(userTypee.equals("SchoolManager")){
+            setUserType.setText("School Manager Log-in");
+        }
         //get and store the type of user loged-in
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference("SchoolManagers");

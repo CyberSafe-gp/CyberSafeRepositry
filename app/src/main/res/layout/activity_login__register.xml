@@ -6,20 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".Login_Register">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
+        app:theme="@style/Theme.MaterialComponents">
+
+        <TextView
+            android:id="@+id/userType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center_horizontal"
+            android:layout_weight="100"
+            android:text="Cybersafe"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:theme="@style/Theme.MaterialComponents"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="21dp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="246dp"
         android:layout_height="94dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="36dp"
         android:text="REGISTER"
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/white"
         app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
         app:rippleColor="@color/blue"
         app:strokeColor="#FFFFFF"
         app:theme="@style/Theme.MaterialComponents" />
@@ -32,12 +63,10 @@
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/white"
         app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.529"
         app:rippleColor="@color/blue"
         app:strokeColor="#FFFFFF"
         app:theme="@style/Theme.MaterialComponents" />
@@ -51,34 +80,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar1"
         app:srcCompat="@drawable/logo" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_centerInParent="true"
-        android:background="@color/blue"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_weight="100"
-            android:gravity="center_horizontal"
-            android:text=""
-            android:textAlignment="center"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:textColor="@color/white"
-            app:theme="@style/Theme.MaterialComponents"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="21dp" />
-
-    </androidx.appcompat.widget.Toolbar>
 </androidx.constraintlayout.widget.ConstraintLayout>

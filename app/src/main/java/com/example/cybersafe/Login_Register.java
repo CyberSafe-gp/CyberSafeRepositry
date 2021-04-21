@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +22,16 @@ public class Login_Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login__register);
         String user = getIntent().getStringExtra("userType");
+
+
+        TextView setUserType = findViewById(R.id.userType);
+        //userType
+        if(user.equals("Parent")){
+            setUserType.setText("Parent");
+        }else if(user.equals("SchoolManager")){
+            setUserType.setText("School Manager");
+        }
+
 
      //Login-Button -- !!
 
