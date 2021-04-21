@@ -87,11 +87,17 @@ public class HomeFragment extends Fragment {
 
                 Child lr = childrenList.get(pos);
                 String Child_id = lr.getChild_id();
-                Intent in = new Intent(getActivity(), ChildHome.class);
-                in.putExtra("Child_id", Child_id);
-                in.putExtra("userType", userType1);
-//send usertype and selected child id to the child home
-                startActivity(in);
+                //Intent in = new Intent(getActivity(), ChildHome.class);
+                //Go to child home
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                Fragment fragment = new ChildHomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("Child_id", Child_id);
+                bundle.putString("userType", userType1);
+
+                fragment.setArguments(bundle);
+                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).addToBackStack(null).commit();
+
             }
         });
 
