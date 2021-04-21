@@ -49,6 +49,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
     private String city[],userCity;
     public boolean find=false;
     ImageView setManager;
+    Boolean checkSchool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,9 +178,11 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                 if (find == true) {
                                                     setManager.setVisibility(View.INVISIBLE);
                                                     upi.setText("This School is already registered");
+                                                    checkSchool=true;
                                                 } else {
                                                     setManager.setVisibility(View.VISIBLE);
                                                     upi.setText(" ");
+                                                    checkSchool=false;
                                                 }
 
                                             }
@@ -226,25 +229,8 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.submit_area:
-                        schoolManagerRef2.orderByChild("school_id").equalTo(school_id).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if (snapshot.exists()){
-                                    Toast.makeText(SchoolManagerRegister.this, "This School is already registered", Toast.LENGTH_LONG).show();
-                                }
-                                else{
-                                    registration();
-                                }
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
+                      registration();
                         break;
-
-
-
 
 
                 }
@@ -262,9 +248,11 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         final String password1 = password.getText().toString().trim();
         final String confirmPass1= confirmPass.getText().toString().trim();
 
-        //final String schoolname = schoolname.trim();
 
-        System.out.print(firstname1);
+        if(checkSchool){
+            Toast.makeText(SchoolManagerRegister.this, "This School is already registered", Toast.LENGTH_LONG).show();
+            return;
+        }
 
         if (firstname1.isEmpty()) {
             firstName.setError("First name is required");
@@ -319,6 +307,8 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                 confirmPass.requestFocus();
                 return;
             }}
+
+
         mAuth.createUserWithEmailAndPassword(email1, password1)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                            @Override
@@ -336,6 +326,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                                Toast.makeText(SchoolManagerRegister.this, "SchoolManager registered Successfully ", Toast.LENGTH_LONG).show();
                                                                Intent intent = new Intent(SchoolManagerRegister.this, Admin_School.class);
                                                                intent.putExtra("userType", "SchoolManager");
+                                                               startActivity(intent);
 
 
                                                            } else {
@@ -354,6 +345,22 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                 );
     }
 
+    private boolean checkSchool(){
+        final boolean[] flag = {false};
+        schoolManagerRef2.orderByChild("school_id").equalTo(school_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    flag[0] = true;
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return flag[0];
+    }
 
     private boolean passwordValidation(String password) {
         boolean CH = false;
@@ -391,4 +398,5 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
     public void onClick(View v) {
 
     }
+
 }

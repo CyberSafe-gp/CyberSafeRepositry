@@ -39,7 +39,6 @@ public class Interface extends AppCompatActivity {
                 Intent intent = new Intent(Interface.this,Login_Register.class);
                 intent.putExtra("userType", "Parent");
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -49,7 +48,7 @@ public class Interface extends AppCompatActivity {
 
 
         schoolB.setOnClickListener(v -> {
-            Intent intent =new Intent(Interface.this,Login.class);
+            Intent intent =new Intent(Interface.this,Login_Register.class);
             intent.putExtra("userType","SchoolManager");
             startActivity(intent);
 

@@ -101,6 +101,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ParentRegister" />
+        <activity android:name=".Admin_School" />
         <activity android:name=".ParentRegister2" />
         <activity android:name=".Report_info_reported" />
         <activity android:name=".resetpassword" />
