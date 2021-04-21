@@ -1,6 +1,7 @@
 package com.example.cybersafe;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,7 @@ public class ReportToFragment extends Fragment {
     Child child, senderObj;
     private FirebaseUser user;
     boolean findSchoolManager=false;
-
+    Button gethelp;
     //For today date
     private TextView dateTimeDisplay;
     private Calendar calendar;
@@ -76,6 +77,24 @@ public class ReportToFragment extends Fragment {
         sender = bundle.getString("sender");
         body = bundle.getString("body");
         ChildID = bundle.getString("Child_id");
+
+        gethelp= (Button) getActivity().findViewById(R.id.getthelp);
+
+        gethelp.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                startActivities();
+            }
+
+            private void startActivities() {
+
+                Intent intent = new Intent(getActivity() ,Gethelp.class);
+
+                startActivity(intent);
+            }
+        });
 
 
         TextView BullyCommentText = (TextView)getActivity().findViewById(R.id.BullyCommentText);
