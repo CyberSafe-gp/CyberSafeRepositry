@@ -241,6 +241,37 @@ public class MyService extends Service {
             }
         } );
 
+        /////
+
+
+        DatabaseReference reportRef = FirebaseDatabase.getInstance().getReference().child("Reports");
+
+        //To get the list of the incoming report
+        reportRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                        Report rep = messageSnapshot.getValue(Report.class);
+                        //If there new incoming report notify the school manager
+                        if (rep.getReceiver_id().equals(Parent_ID) && rep.getNotification().equals("new")){
+                            showNotificationReport();
+                            reportRef.child(rep.getReport_id()).child("notification").setValue("old");
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        ////
+
 
         return START_STICKY;
     }
@@ -255,6 +286,15 @@ public class MyService extends Service {
     public void onDestroy() {
         super.onDestroy();
         System.out.println( "onDestroy" );
+    }
+
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        super.onTaskRemoved(rootIntent);
+        System.out.println("onTaskRemoved");
+        Intent intent = new Intent("com.android.ServiceStopped");
+        sendBroadcast(intent);
+
     }
 
     public void getVideo(float numberOfVideoRequest1, String child_id) {
@@ -554,23 +594,6 @@ public class MyService extends Service {
         return sentimentPNN;
     }
 
-    private void addNotification(String child_id) {
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder( this )
-                        .setSmallIcon( R.drawable.logo )
-                        .setContentTitle( "Bully comment detected!!" )
-                        .setContentText( "your child receive a bully comment" );
-
-        Intent notificationIntent = new Intent( this, BullyCommentMain.class );
-        notificationIntent.putExtra( "Child_id", child_id );
-        PendingIntent contentIntent = PendingIntent.getActivity( this, 0, notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT );
-        builder.setContentIntent( contentIntent );
-
-        // Add as notification
-        NotificationManager manager = (NotificationManager) getSystemService( Context.NOTIFICATION_SERVICE );
-        manager.notify( 0, builder.build() );
-    }
 
     private void chickIfCommentExist(String child_id,String comment,String senderName,String commentID) {
 
@@ -645,7 +668,7 @@ public class MyService extends Service {
                                 System.out.println("isSuccessful isSuccessful isSuccessful");
 
                            if (bully) {
-                               showNotification( child_id );
+                               showNotificationBullyComment( child_id );
 
 
                                //check if the sender exixt
@@ -757,10 +780,10 @@ public class MyService extends Service {
     }
 
 
-//For the current parent if detected a bully comment for one of his/her children
-    void showNotification(String child_id) {
-        String title="Bully comment detected!!";
-        String message="your child receive a bully comment";
+    //For the current parent if detected a bully comment for one of his/her children notify the parent
+    void showNotificationBullyComment(String child_id) {
+        String title="CyberSafe";
+        String message="Bully comment detected! your child receive a bully comment";
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -773,13 +796,45 @@ public class MyService extends Service {
         }
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "YOUR_CHANNEL_ID")
-                .setSmallIcon(R.drawable.logo) // notification icon
+                .setSmallIcon(R.drawable.ic_baseline_notifications_24) // notification icon
                 .setContentTitle(title) // title for notification
                 .setContentText(message)// message for notification
                 .setAutoCancel(true); // clear notification after click
 
-        Intent intent = new Intent(getApplicationContext(), BullyCommentMain.class);
-        intent.putExtra( "Child_id", child_id );
+        //When click notification open children page
+        Intent intent = new Intent(getApplicationContext(), ParentHome_New.class);
+        intent.putExtra( "openNotification", "BullyComment" );
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(pi);
+        mNotificationManager.notify(0, mBuilder.build());
+
+
+    }
+
+    //For the current user if there a new incoming report notify the parent
+    void showNotificationReport() {
+        String title="Report";
+        String message="New incoming report.";
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("YOUR_CHANNE",
+                    "YOUR_CHANNE",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("CyberSafe Notification");
+            channel.setShowBadge(true);
+            mNotificationManager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "YOUR_CHANNE")
+                .setSmallIcon(R.drawable.ic_baseline_notifications_24) // notification icon
+                .setContentTitle(title) // title for notification
+                .setContentText(message)// message for notification
+                .setAutoCancel(true); // clear notification after click
+
+
+        Intent intent = new Intent(getApplicationContext(), ParentHome_New.class);
+        intent.putExtra( "openNotification", "IncomingReport" );
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());

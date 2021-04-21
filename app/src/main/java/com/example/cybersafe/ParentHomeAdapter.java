@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Comment;
 import com.example.cybersafe.Objects.SMAccountCredentials;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -175,6 +173,8 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
 
 ////Notification
 
+        final boolean[] exist = {false};
+
         //Get the social media id for the child
         SMARef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -187,40 +187,32 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
                         if (checkSMA.getChild_id().equals(child_id)) {
                             SMA_id = checkSMA.getId();
 
+
+
                             //Check if the comment reference in database add new check if it belongs to  the child and the comment is bully then show the notification
-                            commentsRef.orderByKey().limitToLast(1).addChildEventListener(new ChildEventListener() {
+                            commentsRef.addValueEventListener(new ValueEventListener() {
+
                                 @Override
-                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (snapshot.exists()){
+                                        for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                            Comment lastComment = messageSnapshot.getValue(Comment.class);
+                                            String commentSMA = lastComment.getSMAccountCredentials_id();
+                                            String notification = lastComment.getNotification();
 
-                                    Comment lastComment = snapshot.getValue(Comment.class);
-                                    String commentSMA =lastComment.getSMAccountCredentials_id();
-
-                                    if (SMA_id.equals(commentSMA)) {
-                                        System.out.println("PHA Equals");
-                                        if (lastComment.getFlag().equals(true)) {
-                                            System.out.println("PHA True");
+                                            if (SMA_id.equals(commentSMA)) {
+                                                if (lastComment.getFlag().equals(true) && notification.equals("new")) {
+                                                    exist[0] = true;
+                                                }
+                                            }
+                                        }
+                                        //if there is a new comment and bully show notification
+                                        if (exist[0]){
                                             holder.red.setVisibility(View.VISIBLE);
+                                        }else{
+                                            holder.red.setVisibility(View.INVISIBLE);
                                         }
                                     }
-
-
-
-
-                                }
-
-                                @Override
-                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                }
-
-                                @Override
-                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                }
-
-                                @Override
-                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
                                 }
 
                                 @Override

@@ -50,8 +50,6 @@ public class Comment {
         this.sender = sender;
     }
 
-
-
     public String getBody() {
         return body;
     }
@@ -60,7 +58,13 @@ public class Comment {
         this.body = body;
     }
 
+    public String getC_ID() {
+        return C_ID;
+    }
 
+    public void setC_ID(String c_ID) {
+        C_ID = c_ID;
+    }
 
     public Boolean getFlag() {
         return flag;
@@ -68,14 +72,6 @@ public class Comment {
 
     public void setFlag(Boolean flag) {
         this.flag = flag;
-    }
-
-    public String getC_ID() {
-        return C_ID;
-    }
-
-    public void setC_ID(String c_ID) {
-        C_ID = c_ID;
     }
 
     public String getNotification() {

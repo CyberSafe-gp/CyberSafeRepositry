@@ -94,10 +94,11 @@ public class BullyCommentMainFragment extends Fragment {
 
                                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                         Comment com = messageSnapshot.getValue(Comment.class);
+                                        String comment_id=com.getComment_id();
                                         //The comment not bully and same as the child's SMAccountCredential ID add it to the comment list
                                         if (com.getFlag().equals(true) && com.getSMAccountCredentials_id().equals(SMAccountCredentialID)){
                                             commentList.add(com);
-
+                                            commentsRef.child(comment_id).child("notification").setValue("old");
                                         }
                                     }
                                     adapter.notifyDataSetChanged();

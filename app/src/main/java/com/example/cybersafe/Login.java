@@ -1,5 +1,8 @@
 package com.example.cybersafe;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -25,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.onesignal.OneSignal;
+
+import java.util.Calendar;
 
 public class Login extends AppCompatActivity {
 
@@ -134,16 +139,16 @@ public class Login extends AppCompatActivity {
                                             Intent intent = new Intent(Login.this,ParentHome_New.class);
                                             intent.putExtra("userType", userTypee);
                                             //start the service for ever hour
-//                                            startService(new Intent(Login.this, MyService.class));
-//                                            Calendar cal = Calendar.getInstance();
-//                                            Intent intent2 = new Intent(Login.this, MyService.class);
-//                                            PendingIntent pintent = PendingIntent
-//                                                    .getService(Login.this, 0, intent2, 0);
-//
-//                                            AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-//                                            // Start service every hour
-//                                            alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-//                                                    300000, pintent);
+                                            startService(new Intent(Login.this, MyService.class));
+                                            Calendar cal = Calendar.getInstance();
+                                            Intent intent2 = new Intent(Login.this, MyService.class);
+                                            PendingIntent pintent = PendingIntent
+                                                    .getService(Login.this, 0, intent2, 0);
+
+                                            AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                            // Start service every hour
+                                            alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                                                    300000, pintent);
 
                                           //transfer the parent to the his/her home
                                             startActivity(intent);
@@ -156,6 +161,7 @@ public class Login extends AppCompatActivity {
                                             Toast.makeText(Login.this, "Please make sure you choose the correct user type", Toast.LENGTH_LONG).show();
                                             Intent intent = new Intent(Login.this, Login.class);
                                             intent.putExtra("userType", userTypee);
+
                                             startActivity(intent);
                                         }
                                     }
@@ -194,6 +200,7 @@ public class Login extends AppCompatActivity {
                                        //transfer to the school manger home
                                        Intent intent = new Intent(Login.this, SchoolHome_new.class);
                                        intent.putExtra("userType", userTypee);
+                                       startService(new Intent(Login.this, ServiceSM.class));
                                        startActivity(intent);
                                        //empty the log in page
                                        editTextEmail.getText().clear();

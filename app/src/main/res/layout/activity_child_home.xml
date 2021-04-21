@@ -7,7 +7,6 @@
     tools:context=".ChildHome">
 
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -28,9 +27,9 @@
             android:gravity="center_horizontal"
             android:text="Child Home"
             android:textAlignment="center"
-            android:textStyle="bold"
             android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/white"
+            android:textStyle="bold"
             app:theme="@style/Theme.MaterialComponents"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="21dp" />
@@ -106,6 +105,21 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/redDot"
+        android:layout_width="25dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="65dp"
+        android:elevation="15dp"
+        android:visibility="invisible"
+        android:src="@drawable/red_circle_1155276042606ekqvli9k"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

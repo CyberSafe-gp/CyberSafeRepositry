@@ -34,7 +34,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
-        app:srcCompat="@android:drawable/presence_offline" />
+        android:src="@drawable/x_black" />
 
 
     <TextView
@@ -53,7 +53,7 @@
         android:paddingTop="10dp"
         android:paddingEnd="10dp"
         android:paddingRight="10dp"
-        android:text="Lenaah"
+        android:text="keyword"
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/blue"
         android:textStyle="bold" />

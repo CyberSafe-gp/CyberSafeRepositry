@@ -131,9 +131,10 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             app:layout_constraintEnd_toEndOf="@+id/Name"
-            app:srcCompat="@drawable/profile"
             tools:ignore="MissingConstraints,VectorDrawableCompat"
             tools:layout_editor_absoluteY="152dp" />
+<!--            app:srcCompat="@drawable/profile"-->
+
 
         <TextView
             android:id="@+id/Name"

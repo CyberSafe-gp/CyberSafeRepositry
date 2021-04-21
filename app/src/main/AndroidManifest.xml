@@ -68,8 +68,8 @@
         </activity> <!-- android:theme="@style/Theme.CyberSafe" -->
         <activity android:name=".Add_Detection_Keyword2" />
         <activity android:name="Report_info_inco"/>
+        <activity android:name="Login_Register"/>
         <activity android:name=".Add_NewChild" >
-
 
         </activity>
         <activity android:name=".BullyCommentMain" />
@@ -92,7 +92,7 @@
 
             </intent-filter>
         </activity>
-        <activity android:name=".Login_Register" />
+
         <activity android:name=".ParentHome" />
         <activity android:name=".Login">
             <intent-filter>

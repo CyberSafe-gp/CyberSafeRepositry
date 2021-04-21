@@ -98,6 +98,7 @@ public class EditSchoolFragment extends Fragment {
                 Intent intent = new Intent(getActivity(),Interface.class);
                 intent.putExtra("IntentName", "hi");
                 FirebaseAuth.getInstance().signOut();
+                getActivity().stopService(new Intent(getActivity(), ServiceSM.class));
                 startActivity(intent);
             }
 

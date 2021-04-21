@@ -8,6 +8,7 @@ public class Report implements Comparable< Report > {
     private String comment_id;
     private String status;
     private String date;
+    private String Notification;
 
 
     public Report() {
@@ -21,6 +22,7 @@ public class Report implements Comparable< Report > {
         this.comment_id = comment_id;
         this.status = status;
         this.date = date;
+        Notification = "new";
     }
 
     public String getDate() {
@@ -74,5 +76,13 @@ public class Report implements Comparable< Report > {
     @Override
     public int compareTo(Report o) {
         return this.getStatus().compareTo(o.getStatus());
+    }
+
+    public String getNotification() {
+        return Notification;
+    }
+
+    public void setNotification(String notification) {
+        Notification = notification;
     }
 }

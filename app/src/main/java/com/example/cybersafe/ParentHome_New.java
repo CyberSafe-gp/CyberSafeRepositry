@@ -5,19 +5,18 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Comment;
+import com.example.cybersafe.Objects.Report;
 import com.example.cybersafe.Objects.SMAccountCredentials;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,12 +27,12 @@ import java.util.ArrayList;
 
 public class
 ParentHome_New extends AppCompatActivity {
-    BadgeDrawable badge;
+
     BottomNavigationView bottomNavigationView;
-    DatabaseReference commentsRef, ChildRef,SMARef;
+    DatabaseReference commentsRef, ChildRef,SMARef,reportRef;
     ArrayList<Child> parentChildren = new ArrayList();
     ArrayList<String> SMA_IDS = new ArrayList();
-    String  Parent_ID;
+    String  Parent_ID, openNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +41,24 @@ ParentHome_New extends AppCompatActivity {
         FirebaseUser currentParent = FirebaseAuth.getInstance().getCurrentUser();
         if (currentParent != null) {
             Parent_ID = currentParent.getUid();
+        }
+
+        openNotification = getIntent().getStringExtra("openNotification");
+
+        if (openNotification != null){
+
+            if(openNotification.equals("BullyComment")){
+                Fragment fragment  = new HomeFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
+
+
+            } else if(openNotification.equals("IncomingReport")){
+                Fragment fragment  = new IncomingFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
+            }
+
 
         }
 
@@ -53,19 +70,26 @@ ParentHome_New extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.BLACK));
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
-        badge = bottomNavigationView.getOrCreateBadge(R.id.navigation_home);
-        badge.setVisible(false);
+        BadgeDrawable badgeHome = bottomNavigationView.getOrCreateBadge(R.id.navigation_home);
+        badgeHome.setVisible(false);
+        BadgeDrawable badgeReport = bottomNavigationView.getOrCreateBadge(R.id.navigation_Incoming);
+        badgeReport.setVisible(false);
 
 
         commentsRef = FirebaseDatabase.getInstance().getReference().child( "Comments" );
         ChildRef = FirebaseDatabase.getInstance().getReference().child( "Children" );
         SMARef = FirebaseDatabase.getInstance().getReference().child( "SMAccountCredentials" );
+        reportRef = FirebaseDatabase.getInstance().getReference().child("Reports");
+
 
 
 ////Notification
+        final boolean[] existComment = {false};
 
+        //For the bully comment badge
         //Get all parent children
         ChildRef.addValueEventListener(new ValueEventListener() {
+
                                            @Override
                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                if (snapshot.exists()) {
@@ -97,6 +121,38 @@ ParentHome_New extends AppCompatActivity {
                                                                                SMA_IDS.add(checkSMA.getId());
                                                                            }
                                                                        }
+                                                                       //Check if the comment reference in database add new check if it belongs to one of the child and the comment is bully then show the notification
+                                                                       commentsRef.addValueEventListener(new ValueEventListener() {
+                                                                           @Override
+                                                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                               if (snapshot.exists()){
+                                                                                   existComment[0] = false;
+                                                                                   for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                                                                       Comment lastComment = messageSnapshot.getValue(Comment.class);
+                                                                                       String commentSMA =lastComment.getSMAccountCredentials_id();
+                                                                                       String notification = lastComment.getNotification();
+                                                                                       for (int i = 0; SMA_IDS.size() > i; i++){
+                                                                                           if (SMA_IDS.get(i).equals(commentSMA)) {
+                                                                                               if (lastComment.getFlag().equals(true) &&  notification.equals("new")) {
+                                                                                                   //if there is a new comment and bully the exist[0] = true and show notification
+                                                                                                   existComment[0] = true;
+
+                                                                                               }
+                                                                                           }
+
+                                                                                       }
+
+                                                                                   }
+                                                                                   badgeHome.setVisible(existComment[0]);
+                                                                               }
+                                                                           }
+
+                                                                           @Override
+                                                                           public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                           }
+                                                                       });
+
                                                                    }
                                                                }
 
@@ -116,55 +172,44 @@ ParentHome_New extends AppCompatActivity {
                                            }
                                        });
 
+        badgeHome.setVisible(existComment[0]);
 
 
-        //Check if the comment reference in database add new check if it belongs to one of the child and the comment is bully then show the notification
-        commentsRef.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        System.out.println("onChildAdded2 ");
-                        Comment lastComment = snapshot.getValue(Comment.class);
-                        String commentSMA =lastComment.getSMAccountCredentials_id();
-                        System.out.println("commentSMA "+commentSMA);
-                        System.out.println("getC_ID "+lastComment.getC_ID());
-
-                        for (int i = 0; SMA_IDS.size() > i; i++){
-
-                            if (SMA_IDS.get(i).equals(commentSMA)) {
-                                System.out.println("contains");
-                                if (lastComment.getFlag().equals(true)) {
-                                    badge.setVisible(true);
-                                    System.out.println("onChildAdded222222 ");
-                                }
-                            }
+        //For the Incoming report badge
+        //To get the list of the incoming report
+        final boolean[] existReport = {false};
+        reportRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    existReport[0]=false;
+                    for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                        Report rep = messageSnapshot.getValue(Report.class);
+                        //If there new incoming report notify the school manager
+                        if (rep.getReceiver_id().equals(Parent_ID) && !(rep.getStatus().equals("Confirm"))){
+                            System.out.println("RRPPPOOOTTYY");
+                            existReport[0] = true;
 
                         }
-
-
-
                     }
 
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                }
+                //if there is a new incoming report and not confirm the exist[0] = true and show badge
+                badgeReport.setVisible(existReport[0]);
 
-                    }
+            }
 
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
+            }
+        });
 
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+        badgeReport.setVisible(existReport[0]);
 
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+
 
 ////
 
@@ -181,20 +226,20 @@ ParentHome_New extends AppCompatActivity {
         Fragment fragment = null;
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                fragment = new HomeFragment(); //Done
-//                badge.setVisible(false); //if click the icon the badge disappears
+                fragment = new HomeFragment();
+
                 break;
             case R.id.navigation_Incoming:
-                fragment = new IncomingFragment(); //Done
+                fragment = new IncomingFragment();
                 break;
             case R.id.navigation_school:
-                fragment = new ViewReportedBullyingFragment(); //Done
+                fragment = new ViewReportedBullyingFragment();
                 break;
             case R.id.navigation_Edit:
-                fragment = new Edit_Parent_ProfileFragment(); //Done
+                fragment = new Edit_Parent_ProfileFragment();
                 break;
             case R.id.navigation_Keywords:
-                fragment = new Add_Detection_KeywordFragment(); //Done
+                fragment = new Add_Detection_KeywordFragment();
                 break;
         }
         FragmentManager fragmentManager = getSupportFragmentManager();

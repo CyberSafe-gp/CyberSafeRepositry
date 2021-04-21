@@ -64,7 +64,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
-            app:srcCompat="@android:drawable/presence_offline" />
+           android:src="@drawable/x_black" />
 
         <ImageView
             android:id="@+id/TikTok"
