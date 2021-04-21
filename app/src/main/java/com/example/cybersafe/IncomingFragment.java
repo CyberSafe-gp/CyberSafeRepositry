@@ -1,6 +1,5 @@
 package com.example.cybersafe;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,7 +29,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -198,14 +197,21 @@ public class IncomingFragment extends Fragment {
 
         if(userType.equals("Parent")){
 
-        Intent in = new Intent(getActivity(), Report_info_inco.class);
-        in.putExtra("Comment_id", com_id);
-        in.putExtra("Report_id", rep_id);
-        in.putExtra("sender_id", sender_id);
-        in.putExtra("receiver_id", receiver_id);
-        in.putExtra("Status", sta);
-        in.putExtra("userType", userType);
-        startActivity(in);} else {
+            //Go to Report info page
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            Fragment fragment = new Report_info_incomingFragment();
+            Bundle bundleReport = new Bundle();
+            bundleReport.putString("Comment_id", com_id);
+            bundleReport.putString("Report_id", rep_id);
+            bundleReport.putString("sender_id", sender_id);
+            bundleReport.putString("receiver_id", receiver_id);
+            bundleReport.putString("Status", sta);
+            bundleReport.putString("userType", userType);
+
+            fragment.setArguments(bundleReport);
+            fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).addToBackStack(null).commit();
+
+        } else {
 
             Intent in = new Intent(getActivity(), Report_info_reported.class);
             in.putExtra("Comment_id", com_id);

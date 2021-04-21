@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -82,16 +83,21 @@ public class ViewReportedBullyingFragment extends Fragment {
                 String sta = lr.getStatus();
 
 
-                //Send to Report info page with the information of the report
-                Intent in = new Intent(getActivity(), Report_info_reported.class);
+                //Go to Report info page with the information of the report
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                Fragment fragment = new Report_info_reportedFragment();
+                Bundle bundleReport = new Bundle();
 
-                in.putExtra("Comment_id", com_id);
-                in.putExtra("Report_id", rep_id);
-                in.putExtra("sender_id", sender_id);
-                in.putExtra("receiver_id", receiver_id);
-                in.putExtra("Status", sta);
-                in.putExtra("userType", userType);
-                startActivity(in);
+                bundleReport.putString("Comment_id", com_id);
+                bundleReport.putString("Report_id", rep_id);
+                bundleReport.putString("sender_id", sender_id);
+                bundleReport.putString("receiver_id", receiver_id);
+                bundleReport.putString("Status", sta);
+                bundleReport.putString("userType", userType);
+
+                fragment.setArguments(bundleReport);
+                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).addToBackStack(null).commit();
+
             }
         });
 

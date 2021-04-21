@@ -1,13 +1,8 @@
 package com.example.cybersafe;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class ChildHome extends AppCompatActivity {
      public Button btn1,btn4,btn5,btn6;
@@ -24,7 +19,7 @@ public class ChildHome extends AppCompatActivity {
     //userID is for storing the curren loged-in user id
    // Bundle bundle;
 
-    @Override
+ /*   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_home);
@@ -159,4 +154,6 @@ public class ChildHome extends AppCompatActivity {
 //
 //
 //    }
-}}
+}*/
+
+}

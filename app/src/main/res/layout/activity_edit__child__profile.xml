@@ -233,19 +233,7 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/buttonx"
-                android:layout_width="258dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="75dp"
-                android:layout_marginTop="56dp"
-                android:text="Delet Child"
-                android:textColor="@color/blue"
-                android:textAppearance="?attr/textAppearanceHeadline5"
-                app:theme="@style/Theme.MaterialComponents"
-                app:backgroundTint="@android:color/holo_red_dark"
 
-                />
 
             <Button
                 android:id="@+id/editChild"

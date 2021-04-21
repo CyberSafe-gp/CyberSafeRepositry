@@ -7,33 +7,11 @@
     tools:context=".ChildHome">
 
 
-    <Button
-        android:id="@+id/button12"
-        android:layout_width="202dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="93dp"
-        android:layout_marginLeft="93dp"
-        android:layout_marginTop="536dp"
-        android:layout_marginEnd="93dp"
-        android:layout_marginRight="93dp"
-        android:layout_marginBottom="120dp"
-        android:text="Edit Profile"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/blue"
-        app:backgroundTint="@android:color/holo_orange_dark"
-        app:iconTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.593"
-        app:theme="@style/Theme.MaterialComponents" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
         android:orientation="horizontal"
@@ -50,7 +28,8 @@
             android:gravity="center_horizontal"
             android:text="Child Home"
             android:textAlignment="center"
-            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/white"
             app:theme="@style/Theme.MaterialComponents"
             tools:ignore="MissingConstraints"
@@ -59,41 +38,74 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-    <Button
-        android:id="@+id/button16"
-        android:layout_width="377dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="327dp"
-        android:layout_marginBottom="324dp"
-        android:text="Flag bully comment manually"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/bullyComments"
+        android:layout_width="273dp"
+        android:layout_height="232dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/white"
+        android:elevation="7dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.413"
-        app:theme="@style/Theme.MaterialComponents" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:theme="@style/Theme.MaterialComponents"
+        tools:ignore="MissingConstraints">
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="377dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="199dp"
-        android:layout_marginBottom="452dp"
-        android:text="bully comments"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
+        <ImageView
+            android:layout_width="204dp"
+            android:layout_height="176dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/bully_comments"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detected Bullying"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="@color/blue"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/flagComment"
+        android:layout_width="273dp"
+        android:layout_height="232dp"
+
+        android:layout_marginTop="50dp"
+        android:background="@color/white"
+        android:elevation="7dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.413"
-        app:theme="@style/Theme.MaterialComponents" />
+        app:layout_constraintTop_toBottomOf="@+id/bullyComments"
+        app:theme="@style/Theme.MaterialComponents"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:layout_width="204dp"
+            android:layout_height="176dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/flag_bully_comments"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flag Bullying"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="@color/blue"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,6 +38,7 @@ public class Interface extends AppCompatActivity {
                 Intent intent = new Intent(Interface.this,Login_Register.class);
                 intent.putExtra("userType", "Parent");
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -58,6 +59,7 @@ public class Interface extends AppCompatActivity {
                 Intent inn = new Intent(Interface.this,Login_Register.class);
                 inn.putExtra("userType", "SchoolManager");
                 startActivity(inn);
+                finish();
             }
         });
         

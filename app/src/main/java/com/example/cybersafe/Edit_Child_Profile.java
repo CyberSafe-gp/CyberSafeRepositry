@@ -2,8 +2,6 @@ package com.example.cybersafe;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -96,7 +93,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
         date_picker = findViewById(R.id.date_picker1);
 
 
-        //delete-child-button
+     /*   //delete-child-button
         deletB=  findViewById(R.id.buttonx);
         deletB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +139,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
                 alertDialogBuilder.setNegativeButton("Cancel", null).show();
 
             }
-        });
+        });*/
 
         
 

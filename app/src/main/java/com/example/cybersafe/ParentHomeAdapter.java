@@ -1,14 +1,20 @@
 package com.example.cybersafe;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -67,6 +73,94 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
         String child_id=childList.get(position).getChild_id();
         holder.writeChildP.setText(name);
         holder.red.setVisibility(View.INVISIBLE);
+
+        holder.dots.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.dots:
+
+                        PopupMenu popup = new PopupMenu(context.getApplicationContext(), v);
+                        popup.getMenuInflater().inflate(R.menu.dots_menu,
+                                popup.getMenu());
+                        popup.show();
+                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+
+                                switch (item.getItemId()) {
+                                    case R.id.edit:
+
+                                        //Go to Edit page
+                                        Intent intent = new Intent(context,Edit_Child_Profile.class);
+                                        intent.putExtra("Child_id",child_id);
+                                        context.startActivity(intent);
+
+                                        break;
+                                    case R.id.delete:
+                                        //Show confirm message
+
+                                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                                        // Setting Alert Dialog Title
+                                        alertDialogBuilder.setTitle("Delete Child");
+                                        // Setting Alert Dialog Message
+                                        alertDialogBuilder.setMessage("Are you sure you want to delete this child?");
+                                        //Confirm the delete
+                                        alertDialogBuilder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        DatabaseReference childrenReference = FirebaseDatabase.getInstance().getReference().child("Children");
+                                                        DatabaseReference SMAReference = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
+                                                        childrenReference.addValueEventListener(new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                for (DataSnapshot childrf : snapshot.getChildren()){
+                                                                    SMAccountCredentials findSMA = childrf.getValue(SMAccountCredentials.class);
+                                                                    if(findSMA.getChild_id().equals(child_id)){
+                                                                        String SMAId=findSMA.getId();
+                                                                        //Delete the social media credential for this child
+                                                                        SMAReference.child(SMAId).removeValue();
+                                                                        //Delete the child
+                                                                        childrenReference.child(child_id).removeValue();
+                                                                        Toast.makeText(context, "Deleted successfully", Toast.LENGTH_LONG).show();
+
+                                                                    }
+
+                                                                }
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                        // not confirm
+                                        alertDialogBuilder.setNegativeButton("Cancel", null).show();
+
+
+
+
+                                        Toast.makeText(context.getApplicationContext(), "Delete " + " : " + position, Toast.LENGTH_LONG).show();
+
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+
+                                return true;
+                            }
+                        });
+
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        });
 
         //Change the avatar depend on gender
         if (gender.equals("Male")) {
@@ -161,7 +255,7 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
 
     public class ChildHolder extends RecyclerView.ViewHolder{
         TextView writeChildP;
-        ImageView icon , red;
+        ImageView icon , red, dots;
 
 
         public ChildHolder(@NonNull View itemView) {
@@ -169,6 +263,7 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
             writeChildP = (TextView) itemView.findViewById(R.id.writeChildP);
             icon=itemView.findViewById(R.id.Avatar);
             red=itemView.findViewById(R.id.red);
+            dots=itemView.findViewById(R.id.dots);
 
 
         }

@@ -54,12 +54,14 @@ public class Login_Register extends AppCompatActivity {
                 intent2.putExtra("userType", "Parent");
 
                 startActivity(intent2);
+                finish();
         }
             else {
 
                 Intent intent3 = new Intent(Login_Register.this, SchoolManagerRegister.class);
                 intent3.putExtra("userType", "SchoolManager");
                 startActivity(intent3);
+                finish();
             }
         });
 

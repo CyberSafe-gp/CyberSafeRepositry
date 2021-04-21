@@ -177,8 +177,10 @@ public class ParentLogin extends AppCompatActivity {
 
                         UpdateToken("Parents");
                         startActivity(intent);
+                        finish();
                         editTextEmail.getText().clear();
                         editTextPassword.getText().clear();
+                        finish();
 
 
                     } else{
@@ -187,8 +189,10 @@ public class ParentLogin extends AppCompatActivity {
                         intent.putExtra("userType", userTypee);
                         UpdateToken("SchoolManagers");
                         startActivity(intent);
+                        finish();
                         editTextEmail.getText().clear();
                         editTextPassword.getText().clear();
+                        finish();
 
                 }
 
