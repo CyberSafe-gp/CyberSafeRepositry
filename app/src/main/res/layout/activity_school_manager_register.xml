@@ -161,7 +161,23 @@
             android:id="@+id/password"
             android:layout_width="380dp"
             android:layout_height="55dp"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:inputType="textPassword"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Confirm Password"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="#04406E"
+            app:theme="@style/Theme.MaterialComponents" />
+        <EditText
+            android:id="@+id/confirmpass"
+            android:layout_width="380dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="20dp"
+            android:inputType="textPassword"/>
 
         <Button
             android:id="@+id/submit_area"

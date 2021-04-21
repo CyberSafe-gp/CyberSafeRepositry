@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,21 +34,22 @@ import java.util.ArrayList;
 
 public class SchoolManagerRegister extends AppCompatActivity  implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-    DatabaseReference schoolManagerRef;
+    DatabaseReference schoolManagerRef2;
     private FirebaseAuth mAuth;
     private EditText firstName;
     private EditText lastName;
-    private EditText password;
-
+    private EditText password ,confirmPass;
     private EditText email;
     private String schoolname;
     private Spinner spinnerschoolname,citySpinner;
     private Button Submit;
+    private TextView upi;
     private DatabaseReference schoolRef;
     private String  school_id;
     private String city[],userCity;
     public boolean find=false;
     ImageView setManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +62,9 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         email = (EditText) findViewById((R.id.email));
         password = (EditText) findViewById((R.id.password));
         schoolRef = FirebaseDatabase.getInstance().getReference().child("Schools");
-        spinnerschoolname = findViewById(R.id.spinnerschoolname);
+        confirmPass= (EditText) findViewById((R.id.confirmpass));
+        upi= (TextView) findViewById((R.id.upi));
+        Submit=findViewById((R.id.submit_area));
 
 
         //City dropdown menu
@@ -71,7 +75,6 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         cityAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         citySpinner.setAdapter(cityAdapter);
 
-        schoolRef = FirebaseDatabase.getInstance().getReference().child("Schools");
 
         //Get the user input for the city and set the School dropdown menu
         citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -100,13 +103,13 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 
 
                 //Set school dropdown menu
-                spinnerschoolname = (Spinner) findViewById(R.id.School);
+                spinnerschoolname = findViewById(R.id.spinnerschoolname);
                 ArrayList<String> schoolList = new ArrayList<>();
                 if (userCity.equals("Select")) {
                     schoolList.add("Select city first");
                 }
-                final ArrayAdapter schooladapter = new ArrayAdapter<String>(SchoolManagerRegister.this, android.R.layout.simple_spinner_item, schoolList);
-                spinnerschoolname.setAdapter(schooladapter);
+                final ArrayAdapter schooladapter2 = new ArrayAdapter<String>(SchoolManagerRegister.this, android.R.layout.simple_spinner_item, schoolList);
+                spinnerschoolname.setAdapter(schooladapter2);
 
                 schoolRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -124,7 +127,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                         schoolList.add(findSchool.getSchoolName());
                                 }
                             }
-                            schooladapter.notifyDataSetChanged();
+                            schooladapter2.notifyDataSetChanged();
                         }
                     }
 
@@ -150,15 +153,18 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                     String x = chapterObj.getSchoolName();
                                     if (x.equalsIgnoreCase(schoolname)) {
                                         school_id = chapterObj.getSchool_id();
+                                        setManager =(ImageView) findViewById(R.id.setManager);
 
                                         //Check if the school manager register
+                                        schoolManagerRef2= FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
 
-                                        schoolManagerRef.addValueEventListener(new ValueEventListener() {
+                                        schoolManagerRef2.addValueEventListener(new ValueEventListener() {
 
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                                                 find = false;
+                                                upi.setText(" ");
                                                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                                                     SchoolManager findSM = postSnapshot.getValue(SchoolManager.class);
 
@@ -169,16 +175,11 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                     }
                                                 }
                                                 if (find == true) {
-//                                                    setSchoolManager.setTextColor(Color.GREEN);
-//                                                    setSchoolManager.setText("School Manager is registered");
-                                                    //
                                                     setManager.setVisibility(View.INVISIBLE);
-//                                                        setSchoolManager.setBackgroundResource(R.drawable.mark);
+                                                    upi.setText("This School is already registered");
                                                 } else {
-//                                                        setSchoolManager.setBackgroundResource(0);
-//                                                        setSchoolManager.setTextColor(Color.RED);
                                                     setManager.setVisibility(View.VISIBLE);
-//                                                    setSchoolManager.setText("School Manager is not registered");
+                                                    upi.setText(" ");
                                                 }
 
                                             }
@@ -193,7 +194,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 
 
                                 }
-                                schooladapter.notifyDataSetChanged();
+                                schooladapter2.notifyDataSetChanged();
                             }
 
                             @Override
@@ -220,50 +221,37 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         });
 
 
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.submit_area:
+                        schoolManagerRef2.orderByChild("school_id").equalTo(school_id).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    Toast.makeText(SchoolManagerRegister.this, "This School is already registered", Toast.LENGTH_LONG).show();
+                                }
+                                else{
+                                    registration();
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
-        Submit = findViewById(R.id.submit_area);
-        Submit.setOnClickListener((View v) -> {
+                            }
+                        });
+                        break;
 
-            registration();
+
+
+
+
+                }
+            }
 
         });
     }
-
-
-
-
-        //)
-//        Submit= findViewById(R.id.submit_area);
-//        //Submit.setOnClickListener((View.OnClickListener) this);
-//       // Submit.setOnClickListener(o);
-//        Submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                registration();
-//            }
-//        });
-        ////for search
-//        inputSearch.addTextChangedListener(new TextWatcher() {
-//
-//            @Override
-//            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-//                // When user changed the Text
-//                MainActivity.this.adapter.getFilter().filter(cs);
-//            }
-//
-//            @Override
-//            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-//                                          int arg3) {
-//                // TODO Auto-generated method stub
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable arg0) {
-//                // TODO Auto-generated method stub
-//            }
-//        });//end search
-
 
 
     private void registration() {
@@ -272,6 +260,8 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         //final String City;
         final String email1 = email.getText().toString().trim();
         final String password1 = password.getText().toString().trim();
+        final String confirmPass1= confirmPass.getText().toString().trim();
+
         //final String schoolname = schoolname.trim();
 
         System.out.print(firstname1);
@@ -318,6 +308,17 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
             password.requestFocus();
             return;
         }
+        if (confirmPass1.isEmpty()){
+            confirmPass.setError("Confirm Password is required");
+            confirmPass.requestFocus();
+            return;
+        }
+        if (!confirmPass1.isEmpty()){
+            if (!confirmPass1.equals(password1)) {
+                confirmPass.setError("Password do not match");
+                confirmPass.requestFocus();
+                return;
+            }}
         mAuth.createUserWithEmailAndPassword(email1, password1)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                            @Override

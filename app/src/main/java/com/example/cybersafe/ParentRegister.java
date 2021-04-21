@@ -30,7 +30,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
 
 
     private FirebaseAuth mAuth;
-    private EditText firstname,lastname,email,password;
+    private EditText firstname,lastname,email,password,ConfirmPass;
     private String number;
     Spinner spinner1;
     //Button Next;
@@ -47,6 +47,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
         lastname = (EditText) findViewById((R.id.lastname));
         email = (EditText) findViewById((R.id.email));
         password = (EditText) findViewById((R.id.password));
+        ConfirmPass= (EditText) findViewById((R.id.ConfirmPass));
 
 
         Next = findViewById(R.id.Next);
@@ -68,6 +69,8 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
         final String lastname1= lastname.getText().toString().trim();
         final String email1= email.getText().toString().trim();
         final String password1= password.getText().toString().trim();
+        final String confirmPass= ConfirmPass.getText().toString().trim();
+
 
         System.out.print(firstname1);
 
@@ -107,54 +110,68 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
             password.requestFocus();
             return;
         }
-        mAuth.createUserWithEmailAndPassword(email1,password1)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                           @Override
-                                           public void onComplete(@NonNull Task<AuthResult> task) {
-                                               if(task.isSuccessful()){
-                                                   String id =FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                                   String token = FirebaseInstanceId.getInstance().getToken();
-                                                   Parent USER = new Parent(firstname1,lastname1,email1,id,token);
-                                                   FirebaseDatabase.getInstance().getReference("Parents")
-                                                           .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                           .setValue(USER).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                       @Override
-                                                       public void onComplete(@NonNull Task<Void> task) {
-                                                           if (task.isSuccessful()) {
-                                                               Toast.makeText(ParentRegister.this, "Parent registered Successfully ", Toast.LENGTH_LONG).show();
-                                                               Intent intent=new Intent(ParentRegister.this,ParentHome_New.class);
-                                                               intent.putExtra("userType","Parent");
+        if (confirmPass.isEmpty()){
+            ConfirmPass.setError("Confirm Password is required");
+            ConfirmPass.requestFocus();
+            return;
+        }
+        if (!confirmPass.isEmpty()){
+            if (!confirmPass.equals(password1)) {
+                ConfirmPass.setError("Password do not match");
+                ConfirmPass.requestFocus();
+                return;
+            }
+            mAuth.createUserWithEmailAndPassword(email1, password1)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                               @Override
+                                               public void onComplete(@NonNull Task<AuthResult> task) {
+                                                   if (task.isSuccessful()) {
+                                                       String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                                       String token = FirebaseInstanceId.getInstance().getToken();
+                                                       Parent USER = new Parent(firstname1, lastname1, email1, id, token);
+                                                       FirebaseDatabase.getInstance().getReference("Parents")
+                                                               .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                               .setValue(USER).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                           @Override
+                                                           public void onComplete(@NonNull Task<Void> task) {
+                                                               if (task.isSuccessful()) {
+                                                                   Toast.makeText(ParentRegister.this, "Parent registered Successfully ", Toast.LENGTH_LONG).show();
+                                                                   Intent intent = new Intent(ParentRegister.this, ParentHome_New.class);
+                                                                   intent.putExtra("userType", "Parent");
 
-                                                         /*      //Start the service every one hour
-                                                               startService(new Intent(ParentRegister.this, MyService.class));
-                                                               Calendar cal = Calendar.getInstance();
-                                                               Intent intent2 = new Intent(ParentRegister.this, MyService.class);
-                                                               PendingIntent pintent = PendingIntent
-                                                                       .getService(ParentRegister.this, 0, intent2, 0);
+                                                             /*      //Start the service every one hour
+                                                                   startService(new Intent(ParentRegister.this, MyService.class));
+                                                                   Calendar cal = Calendar.getInstance();
+                                                                   Intent intent2 = new Intent(ParentRegister.this, MyService.class);
+                                                                   PendingIntent pintent = PendingIntent
+                                                                           .getService(ParentRegister.this, 0, intent2, 0);
 
-                                                               AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                                                               // Start service every hour
-                                                               alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                                                       3600*1000, pintent);*/
+                                                                   AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                                                   // Start service every hour
+                                                                   alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                                                                           3600*1000, pintent);*/
 
-                                                               startActivity(intent);
+                                                                   startActivity(intent);
 
+                                                               } else {
+                                                                   Toast.makeText(ParentRegister.this, "Registration failed ", Toast.LENGTH_LONG).show();
+
+                                                               }
                                                            }
-                                                           else {
-                                                               Toast.makeText(ParentRegister.this, "Registration failed ", Toast.LENGTH_LONG).show();
+                                                       });
+                                                   } else {
+                                                       Toast.makeText(ParentRegister.this, "this email is Already taken", Toast.LENGTH_LONG).show();
 
-                                                           }
-                                                       }
-                                                   }  );
-                                               }
-                                               else {
-                                                   Toast.makeText(ParentRegister.this, "this email is Already taken", Toast.LENGTH_LONG).show();
+                                                   }
 
                                                }
-
                                            }
-                                       }
-                );
+                    );
+        } else {
+            ConfirmPass.setError("Confirm Password is required");
+            ConfirmPass.requestFocus();
+            return;
+        }
     }
 
     private boolean passwordValidation(String password) {
