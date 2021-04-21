@@ -38,28 +38,44 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="346dp"
-        android:layout_height="48dp"
-        android:text="Wait to activate your account"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="#04406E"
+        android:layout_width="353dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="32dp"
+        android:text="You have registered successfully. "
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="#6B6F71"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11"
+        app:theme="@style/Theme.MaterialComponents" />
+
+    <TextView
+        android:id="@+id/textView5k"
+        android:layout_width="348dp"
+        android:layout_height="79dp"
+        android:text="Please wait the admin must verify
+        the school to activate the account."
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="#6B6F71"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.753"
+        app:layout_constraintHorizontal_bias="0.793"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.042"
         app:theme="@style/Theme.MaterialComponents" />
 
     <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="371dp"
-        android:layout_height="370dp"
-        android:layout_marginTop="84dp"
+        android:id="@+id/imageView11"
+        android:layout_width="311dp"
+        android:layout_height="287dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/ic_baseline_supervisor_account_24" />
+        app:srcCompat="@drawable/customerservice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
