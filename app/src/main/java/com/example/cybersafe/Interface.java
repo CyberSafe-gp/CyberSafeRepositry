@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,7 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class Interface extends AppCompatActivity {
     Button parentB;
-    Button schoolB;
+    TextView schoolB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class Interface extends AppCompatActivity {
         parentB.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)  {
 
                 startActivities();
             }
@@ -44,25 +45,18 @@ public class Interface extends AppCompatActivity {
 
 
         //School-Button
-       schoolB= findViewById(R.id.schoolButton);
+       schoolB= (TextView) findViewById(R.id.schoolButton);
 
-        schoolB.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+        schoolB.setOnClickListener(v -> {
+            Intent intent =new Intent(Interface.this,Login.class);
+            intent.putExtra("userType","SchoolManager");
+            startActivity(intent);
 
-                startActivities();
-            }
+            finish();
 
-            private void startActivities() {
 
-                Intent inn = new Intent(Interface.this,Login_Register.class);
-                inn.putExtra("userType", "SchoolManager");
-                startActivity(inn);
-                finish();
-            }
         });
-        
 
     }
 
