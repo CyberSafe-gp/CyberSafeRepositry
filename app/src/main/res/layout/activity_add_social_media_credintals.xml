@@ -62,40 +62,63 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
 
-        android:layout_marginTop="72dp"
-        android:text="Click the below button to log in into TikTok:"
+        android:layout_marginTop="40dp"
+        android:text="Click the Tik Tok image button to log in into TikTok:"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:textColor="@color/blue"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/addSocial"
-        android:layout_width="299dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="336dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="188dp"
+        android:adjustViewBounds="true"
         android:elevation="2dp"
         android:src="@drawable/tiktoklogo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
+
+
         app:theme="@style/Theme.MaterialComponents" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+
+        android:layout_marginTop="72dp"
+        android:text="Note:In this step you need to let your child's Tik Tok account public if it's private. "
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:textColor="@color/gray"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.14"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/next"
         android:layout_width="246dp"
         android:layout_height="94dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="176dp"
         android:text="Next"
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/blue"
-        app:backgroundTint="@android:color/holo_orange_dark"
+        android:backgroundTint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addSocial"
         app:theme="@style/Theme.MaterialComponents" />

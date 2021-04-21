@@ -1,5 +1,6 @@
 package com.example.cybersafe;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,11 +40,15 @@ public class addSocialMediaCredintals extends AppCompatActivity {
 
 
     String url = "https://api.tikapi.io/user/info";
-
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_social_media_credintals );
+        //disable next button until log in successfully with tik tok
+
+
+
 
       /*  //Get the child information to add it to the data base
 
@@ -86,8 +91,8 @@ public class addSocialMediaCredintals extends AppCompatActivity {
                         JSONObject jsonArray3= jsonObj3.getJSONObject("user");
                         Author_id=jsonArray3.getString( "id" );
                         childAccount=jsonArray3.getString("uniqueId");
+                        System.out.println(childAccount+"jjjjjj"+Author_id);
                         System.out.println("ddddddddddddddddddddddooooooooooone");
-
 
 
 
@@ -143,31 +148,36 @@ public class addSocialMediaCredintals extends AppCompatActivity {
             }
         });
 
-        next =  findViewById(R.id.next);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                if(data != null && Author_id != null && childAccount != null ){
+
+
+// to let next button not clickable unliss their is data from the login with tik tok
+        next =  findViewById(R.id.next);
+
+            next.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(data != null && Author_id != null && childAccount != null ) {
                     String SMA_id = SMARef.push().getKey();
 
-                    Intent in = new Intent(addSocialMediaCredintals.this, Add_NewChild.class);
+                    Intent in = new Intent( addSocialMediaCredintals.this, Add_NewChild.class );
 
-                    in.putExtra("Author_id",Author_id);
-                    in.putExtra("childAccount",childAccount);
-                    in.putExtra("SMA_id",SMA_id);
-                    in.putExtra("access_token",access_token);
-                    startActivity(in);
-                }else{
-                    Toast.makeText(addSocialMediaCredintals.this, "Error oucord", Toast.LENGTH_LONG).show();
-
+                    in.putExtra( "Author_id", Author_id );
+                    in.putExtra( "childAccount", childAccount );
+                    in.putExtra( "SMA_id", SMA_id );
+                    in.putExtra( "access_token", access_token );
+                    startActivity( in );
                 }
+                    else{
+
+                        Toast.makeText(addSocialMediaCredintals.this, "please make sure you log-in with Tik Tok first by clicking the Tik Tok image above", Toast.LENGTH_LONG).show();
+
+                    }
+        }
+                });
 
 
 
-
-            }
-        });
 
 
 

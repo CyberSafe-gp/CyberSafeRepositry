@@ -64,11 +64,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="100dp"
-            android:text="First name"
+            android:text="First Name"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"
             android:textColor="#04406E"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            app:theme="@style/Theme.MaterialComponents" />
 
         <EditText
             android:id="@+id/firstname2"
@@ -82,11 +82,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:text="Last name"
+            android:text="Last Name"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            app:theme="@style/Theme.MaterialComponents"
             android:textColor="#04406E"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            app:theme="@style/Theme.MaterialComponents" />
 
         <EditText
             android:id="@+id/lastname2"
@@ -129,9 +129,9 @@
             android:id="@+id/button21"
             android:layout_width="215dp"
             android:layout_height="60dp"
-            android:layout_marginTop="30dp"
             android:layout_marginLeft="97dp"
-            android:text="Change Password"
+            android:layout_marginTop="30dp"
+            android:text="Change Password?"
             android:textColor="@color/blue"
             app:backgroundTint="#E5E4E2"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -147,7 +147,7 @@
             android:layout_height="94dp"
             android:layout_marginLeft="87dp"
             android:layout_marginTop="35dp"
-            android:text="EDIT"
+            android:text="Save"
             android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/blue"
             app:backgroundTint="#e18313"

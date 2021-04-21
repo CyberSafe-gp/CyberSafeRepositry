@@ -126,7 +126,7 @@ public class Login extends AppCompatActivity {
                                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                         Parent parent = messageSnapshot.getValue( Parent.class );
                                         //Add children id that belong to the parent
-                                        if (parent.getEmail().equals( Email )) {
+                                        if (parent.getEmail().equalsIgnoreCase( Email )) {
 
                                             isParent[0] = true;
                                             continue;
@@ -138,7 +138,7 @@ public class Login extends AppCompatActivity {
                                             System.out.println("userTypee Parent"+userTypee);
                                             Intent intent = new Intent(Login.this,ParentHome_New.class);
                                             intent.putExtra("userType", userTypee);
-                                            //start the service
+                                            //start the service for ever hour
 //                                            startService(new Intent(Login.this, MyService.class));
 //                                            Calendar cal = Calendar.getInstance();
 //                                            Intent intent2 = new Intent(Login.this, MyService.class);
@@ -172,12 +172,6 @@ public class Login extends AppCompatActivity {
                         } );
 
 
-                        //Start the service every one hour
-                        //startService(new Intent(Login.this, MyService.class));
-
-                    /*    Intent serviceIntent = new Intent(Login.this, MyService.class);
-                        startService(serviceIntent);*/
-                        //Start the service every one hour
 
 
 
@@ -192,7 +186,7 @@ public class Login extends AppCompatActivity {
                                        for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                            SchoolManager schoolManager = messageSnapshot.getValue( SchoolManager.class );
                                            //Add children id that belong to the parent
-                                           if (schoolManager.getEmail().equals( Email )) {
+                                           if (schoolManager.getEmail().equalsIgnoreCase( Email )) {
                                                isSchoolManager = true;
                                                continue;
 

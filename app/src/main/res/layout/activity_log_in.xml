@@ -47,7 +47,7 @@
         android:layout_marginTop="88dp"
         android:text="E-mail"
         android:textAppearance="?attr/textAppearanceHeadline6"
-        android:textColor="@color/black"
+        android:textColor="@color/blue"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,6 +1,5 @@
 package com.example.cybersafe;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -25,13 +24,7 @@ public class Forgetpassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgetpassword);
-        //cancelB= (TextView) findViewById(R.id.);
-/*        cancelB.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View view) {
-                startActivity(new Intent(Forgetpassword.this, MainActivity.class));
-            }
-        });*/
         emailEditText = (EditText) findViewById(R.id.editTextTextEmailAddress2);
         resetpasswordB =(Button) findViewById(R.id.button10);
 

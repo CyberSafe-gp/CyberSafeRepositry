@@ -24,13 +24,7 @@ public class resetpassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpassword);
-        //cancelB= (TextView) findViewById(R.id.);
-/*        cancelB.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View view) {
-                startActivity(new Intent(Forgetpassword.this, MainActivity.class));
-            }
-        });*/
         emailEditText = (EditText) findViewById(R.id.editTextTextEmailAddress22);
         resetpasswordB =(Button) findViewById(R.id.button15);
 
