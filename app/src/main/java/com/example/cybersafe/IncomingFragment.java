@@ -75,7 +75,7 @@ public class IncomingFragment extends Fragment {
                 System.out.println("userType "+userType);
             } else {
                 // if user not log in go to Interface page
-                Intent in = new Intent(getActivity(), ParentLogin.class);
+                Intent in = new Intent(getActivity(), Interface.class);
                 Toast.makeText(getActivity(), "You have to login first", Toast.LENGTH_LONG).show();
                 startActivity(in);
             }

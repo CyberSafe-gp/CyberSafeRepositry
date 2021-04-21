@@ -59,7 +59,7 @@ public class ViewReportedBullyingFragment extends Fragment {
             userType = getActivity().getIntent().getExtras().getString("userType");
         } else {
             // if user not log in go to parent login page
-            Intent in = new Intent(getActivity(), ParentLogin.class);
+            Intent in = new Intent(getActivity(), Login.class);
             Toast.makeText(getActivity(), "You have to login first", Toast.LENGTH_LONG).show();
             startActivity(in);
         }

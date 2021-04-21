@@ -51,7 +51,7 @@ public class IncomingReportsMain extends AppCompatActivity {
             System.out.println("userType "+userType);
         } else {
             // if user not log in go to Interface page
-            Intent in = new Intent(IncomingReportsMain.this, ParentLogin.class);
+            Intent in = new Intent(IncomingReportsMain.this, Interface.class);
             Toast.makeText(IncomingReportsMain.this, "You have to login first", Toast.LENGTH_LONG).show();
             startActivity(in);
         }

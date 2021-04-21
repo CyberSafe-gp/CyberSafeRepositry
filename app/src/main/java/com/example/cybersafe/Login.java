@@ -139,16 +139,16 @@ public class Login extends AppCompatActivity {
                                             Intent intent = new Intent(Login.this,ParentHome_New.class);
                                             intent.putExtra("userType", userTypee);
                                             //start the service
-                                            startService(new Intent(Login.this, MyService.class));
-                                            Calendar cal = Calendar.getInstance();
-                                            Intent intent2 = new Intent(Login.this, MyService.class);
-                                            PendingIntent pintent = PendingIntent
-                                                    .getService(Login.this, 0, intent2, 0);
-
-                                            AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                                            // Start service every hour
-                                            alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                                    300000, pintent);
+//                                            startService(new Intent(Login.this, MyService.class));
+//                                            Calendar cal = Calendar.getInstance();
+//                                            Intent intent2 = new Intent(Login.this, MyService.class);
+//                                            PendingIntent pintent = PendingIntent
+//                                                    .getService(Login.this, 0, intent2, 0);
+//
+//                                            AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//                                            // Start service every hour
+//                                            alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+//                                                    300000, pintent);
 
                                           //transfer the parent to the his/her home
                                             startActivity(intent);

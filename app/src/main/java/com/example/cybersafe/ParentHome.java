@@ -53,8 +53,8 @@ public class ParentHome extends AppCompatActivity {
             userType1 = getIntent().getStringExtra("userType");
             //get and store userType1 is for storing  what is the type of the current user
         } else {
-
-            Intent in = new Intent(ParentHome.this, ParentLogin.class);
+//to first page
+            Intent in = new Intent(ParentHome.this, Interface.class);
             startActivity(in);
         }
 /*

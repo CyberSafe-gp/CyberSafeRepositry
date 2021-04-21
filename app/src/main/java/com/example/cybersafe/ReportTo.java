@@ -1,6 +1,7 @@
 package com.example.cybersafe;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +38,7 @@ public class ReportTo extends AppCompatActivity {
     Child child, senderObj;
     private FirebaseUser user;
     boolean findSchoolManager=false;
-
+    Button gethelp;
     //For today date
     private TextView dateTimeDisplay;
     private Calendar calendar;
@@ -64,6 +65,25 @@ public class ReportTo extends AppCompatActivity {
         sender =getIntent().getStringExtra("sender");
         body =getIntent().getStringExtra("body");
         ChildID = getIntent().getStringExtra("Child_id");
+        //Gethelp-Button
+        gethelp= findViewById(R.id.getthelp);
+
+        gethelp.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                startActivities();
+            }
+
+            private void startActivities() {
+
+                Intent intent = new Intent(ReportTo.this,Gethelp.class);
+
+                startActivity(intent);
+            }
+        });
+
 
 
         TextView BullyCommentText = (TextView)findViewById(R.id.BullyCommentText);

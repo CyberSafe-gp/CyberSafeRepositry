@@ -45,7 +45,7 @@ public class  SchoolHome extends AppCompatActivity {
         } else {
             System.out.println("userID out");
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
-            Intent in = new Intent(SchoolHome.this, ParentLogin.class);
+            Intent in = new Intent(SchoolHome.this, Interface.class);
             startActivity(in);
         }
 

@@ -27,7 +27,7 @@ public class Login_Register extends AppCompatActivity {
       log=findViewById(R.id.loginButton);
 
       log.setOnClickListener((View v) -> {
-          Intent intent = new Intent(Login_Register.this, ParentLogin.class);
+          Intent intent = new Intent(Login_Register.this, Login.class);
 
           if (user.equals("Parent"))
           {

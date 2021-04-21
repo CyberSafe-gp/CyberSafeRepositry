@@ -12,9 +12,9 @@
         android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -22,33 +22,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:gravity="center_horizontal"
             android:layout_weight="100"
+            android:gravity="center_horizontal"
             android:text=" Get Help "
-            android:textAppearance="?attr/textAppearanceHeadline6"
             android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/white"
+            app:theme="@style/Theme.MaterialComponents"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="21dp"
-            app:theme="@style/Theme.MaterialComponents"/>
+            tools:layout_editor_absoluteY="21dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/link"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="346dp"
+        android:layout_height="210dp"
         android:text="@string/link"
-        android:layout_marginTop="130dp"
-        android:textSize="25dp"
         android:textColor="#E68A2D"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintLeft_toRightOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-
-
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="351dp"
+        android:layout_height="259dp"
+        android:layout_marginTop="140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/get" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

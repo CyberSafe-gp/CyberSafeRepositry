@@ -48,7 +48,7 @@ public class ViewReportedBullyingMain extends AppCompatActivity {
             userType = getIntent().getStringExtra("userType");
         } else {
             // if user not log in go to parent login page
-            Intent in = new Intent(ViewReportedBullyingMain.this, ParentLogin.class);
+            Intent in = new Intent(ViewReportedBullyingMain.this, Login.class);
             Toast.makeText(ViewReportedBullyingMain.this, "You have to login first", Toast.LENGTH_LONG).show();
             startActivity(in);
         }

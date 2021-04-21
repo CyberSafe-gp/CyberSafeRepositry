@@ -62,7 +62,7 @@ public class ChildHomeFragment extends Fragment {
             //store what type of loged-in user is
         } else {
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
-            Intent in = new Intent(getActivity(), ParentLogin.class);
+            Intent in = new Intent(getActivity(), Interface.class);
             startActivity(in);
             //to go back for the parent home
         }

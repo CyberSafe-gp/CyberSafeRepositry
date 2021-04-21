@@ -36,7 +36,7 @@ public class ChildHome extends AppCompatActivity {
             //store what type of loged-in user is
         } else {
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
-            Intent in = new Intent(ChildHome.this, ParentLogin.class);
+            Intent in = new Intent(ChildHome.this, Interface.class);
             startActivity(in);
             //to go back for the parent home
         }
