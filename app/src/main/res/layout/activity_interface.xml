@@ -15,53 +15,36 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:background="@color/blue"
+        android:fitsSystemWindows="true"
+        android:orientation="horizontal"
         android:paddingTop="0dp"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
         app:contentInsetStartWithNavigation="0dp"
-        android:background="@color/blue"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:fitsSystemWindows="true"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-
-
-
-        <Button
-            android:id="@+id/schoolButton"
-            android:layout_width="190dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="171dp"
-            android:text="School Manager"
-            android:textColor="#EE9B39"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.625"
-            app:layout_constraintVertical_bias="0.0"
-            app:strokeColor="#FFFFFF" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="53dp"
             android:layout_height="58dp"
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
-            app:srcCompat="@drawable/ic_baseline_assignment_ind_24"
             tools:ignore="MissingConstraints,VectorDrawableCompat"
             tools:layout_editor_absoluteY="0dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
+
     <TextView
         android:id="@+id/textView25"
-        android:layout_width="389dp"
-        android:layout_height="80dp"
+        android:layout_width="387dp"
+        android:layout_height="68dp"
         android:layout_marginTop="16dp"
         android:background="#FFFFFF"
         android:gravity="center_horizontal"
@@ -70,6 +53,7 @@
         android:textAppearance="?attr/textAppearanceBody1"
         android:textColor="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5"
         app:theme="@style/Theme.MaterialComponents"
@@ -77,8 +61,8 @@
 
     <Button
         android:id="@+id/parentButton"
-        android:layout_width="246dp"
-        android:layout_height="94dp"
+        android:layout_width="230dp"
+        android:layout_height="85dp"
         android:layout_marginStart="93dp"
         android:layout_marginLeft="93dp"
         android:layout_marginTop="24dp"
@@ -91,14 +75,12 @@
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView25"
-        app:layout_constraintVertical_bias="0.241"
+        app:layout_constraintVertical_bias="0.0"
         app:rippleColor="@color/blue"
         app:strokeColor="#FFFFFF"
         app:theme="@style/Theme.MaterialComponents" />
-
 
     <ImageView
         android:id="@+id/imageView5"
@@ -111,6 +93,20 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/schoolButton"
+        android:layout_width="275dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:text="  School Manager?"
+        android:textColor="#04406E"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parentButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
