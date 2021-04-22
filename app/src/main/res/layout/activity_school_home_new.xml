@@ -27,6 +27,8 @@ tools:context=".SchoolHome_new">
     android:layout_alignParentBottom="true"
     app:menu="@menu/bottom_nav_menu2"
     app:theme="@style/Theme.MaterialComponents"
+    android:backgroundTint="@color/white"
+    app:backgroundTint="@color/white"
     android:background="?android:attr/windowBackground"
     app:itemIconTint="@color/blue"
     />
