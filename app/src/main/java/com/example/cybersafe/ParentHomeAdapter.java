@@ -105,35 +105,55 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
                                         alertDialogBuilder.setMessage("Are you sure you want to delete this child?");
                                         //Confirm the delete
                                         alertDialogBuilder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                DatabaseReference childrenReference = FirebaseDatabase.getInstance().getReference().child( "Children" );
+                                                DatabaseReference SMAReference = FirebaseDatabase.getInstance().getReference().child( "SMAccountCredentials" );
+                                                childrenReference.addValueEventListener( new ValueEventListener() {
                                                     @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        DatabaseReference childrenReference = FirebaseDatabase.getInstance().getReference().child("Children");
-                                                        DatabaseReference SMAReference = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
-                                                        childrenReference.addValueEventListener(new ValueEventListener() {
-                                                            @Override
-                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                for (DataSnapshot childrf : snapshot.getChildren()){
-                                                                    SMAccountCredentials findSMA = childrf.getValue(SMAccountCredentials.class);
-                                                                    if(findSMA.getChild_id().equals(child_id)){
-                                                                        String SMAId=findSMA.getId();
-                                                                        //Delete the social media credential for this child
-                                                                        SMAReference.child(SMAId).removeValue();
-                                                                        //Delete the child
-                                                                        childrenReference.child(child_id).removeValue();
-                                                                        Toast.makeText(context, "Deleted successfully", Toast.LENGTH_LONG).show();
+                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                        for (DataSnapshot childrf : snapshot.getChildren()) {
+                                                            Child child = childrf.getValue( Child.class );
+                                                            if (child.getChild_id().equals( child_id )) {
+                                                                SMAReference.addValueEventListener( new ValueEventListener() {
+
+
+                                                                    @Override
+                                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                        for (DataSnapshot SMARe : snapshot.getChildren()) {
+                                                                            SMAccountCredentials SMA = SMARe.getValue( SMAccountCredentials.class );
+                                                                            if (SMA.getChild_id().equals( child_id )) {
+                                                                                String SMAId = SMA.getId();
+                                                                                //Delete the social media credential for this child
+                                                                                SMAReference.child( SMAId ).removeValue();
+                                                                                //Delete the child
+                                                                                childrenReference.child( child_id ).removeValue();
+                                                                                Toast.makeText( context, "Deleted successfully", Toast.LENGTH_LONG ).show();
+
+                                                                            }
+                                                                        }
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onCancelled(@NonNull DatabaseError error) {
 
                                                                     }
 
-                                                                }
+                                                                } );
                                                             }
-
-                                                            @Override
-                                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                                            }
-                                                        });
+                                                        }
                                                     }
-                                                });
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                    }
+                                                } );
+
+                                            }
+                                        });
+
+
                                         // not confirm
                                         alertDialogBuilder.setNegativeButton("Cancel", null).show();
 
