@@ -324,7 +324,8 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                if (task.isSuccessful()) {
                                                    //Creat new school manager and store it in the database
                                                    String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                                   SchoolManager USER = new SchoolManager(id,school_id,userCity,firstname1,lastname1,email1,"Not confirm");
+
+                                                   SchoolManager USER = new SchoolManager(id,school_id,firstname1,lastname1,email1,userCity,"Not confirm");
                                                    FirebaseDatabase.getInstance().getReference("SchoolManagers")
                                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                            .setValue(USER).addOnCompleteListener(new OnCompleteListener<Void>() {
