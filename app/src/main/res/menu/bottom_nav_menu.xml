@@ -4,6 +4,11 @@
     app:theme="@style/Theme.MaterialComponents">
 
 
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_baseline_home_242"
+        android:title="Home"
+        app:theme="@style/Theme.MaterialComponents"/>
 
     <item
         android:id="@+id/navigation_Incoming"
@@ -12,7 +17,7 @@
 
     <item
         android:id="@+id/navigation_school"
-        android:icon="@drawable/ic_school"
+        android:icon="@drawable/ic_baseline_outgoing"
         android:title="Outgoing" />
 
     <item
@@ -30,5 +35,12 @@
         android:id="@+id/navigation_Keywords"
         android:icon="@drawable/ic_baseline_add_comment_24"
         android:title="Keywords" />
+
+    <item
+        android:id="@+id/navigation_Edit"
+        android:icon="@drawable/ic_baseline_profile"
+        android:title="Profile" />
+
+
 
 </menu>

@@ -169,7 +169,7 @@ public class IncomingFragment extends Fragment {
                             textView.setText("");
                             break;
                         } else {
-                            textView.setText("No incoming report");
+                            textView.setText("No incoming reports");
 
                         }
                     }

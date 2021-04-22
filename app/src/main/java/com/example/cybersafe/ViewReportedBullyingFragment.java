@@ -150,7 +150,7 @@ public class ViewReportedBullyingFragment extends Fragment {
                         textView.setText("");
                         break;
                     } else {
-                        textView.setText("No reported comment");
+                        textView.setText("No reported comments");
 
                     }
                 }
