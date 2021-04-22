@@ -52,7 +52,7 @@ public class Login extends AppCompatActivity {
         //userType
         if(userTypee.equals("Parent")){
             setUserType.setText("Parent Log-in");
-        }else if(userTypee.equals("SchoolManager")){
+        }else {
             setUserType.setText("School Manager Log-in");
         }
         //get and store the type of user loged-in
@@ -184,6 +184,7 @@ public class Login extends AppCompatActivity {
 
                                @Override
                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                   String admin = "Not confirm";
                                    boolean isSchoolManager = false;
                                    if (snapshot.exists()) {
                                        for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
@@ -191,22 +192,34 @@ public class Login extends AppCompatActivity {
                                            //Add children id that belong to the parent
                                            if (schoolManager.getEmail().equalsIgnoreCase( Email )) {
                                                isSchoolManager = true;
-                                               continue;
+                                               admin= schoolManager.getAdmin();
 
                                            }
                                        }
                                    }
                                      //if the email is exist in school mangers database.
                                    if (isSchoolManager){
+
                                        System.out.println("userTypee SM "+userTypee);
-                                       //transfer to the school manger home
-                                       Intent intent = new Intent(Login.this, SchoolHome_new.class);
-                                       intent.putExtra("userType", userTypee);
-                                       startService(new Intent(Login.this, ServiceSM.class));
-                                       startActivity(intent);
-                                       //empty the log in page
-                                       editTextEmail.getText().clear();
-                                       editTextPassword.getText().clear();
+                                       if(admin.equals("Confirm")){
+                                           //transfer to the school manger home
+                                           Intent intent = new Intent(Login.this, SchoolHome_new.class);
+                                           intent.putExtra("userType", userTypee);
+                                           startService(new Intent(Login.this, ServiceSM.class));
+                                           startActivity(intent);
+                                           //empty the log in page
+                                           editTextEmail.getText().clear();
+                                           editTextPassword.getText().clear();
+                                       }else{
+                                           //transfer to the school manger home
+                                           Intent intent = new Intent(Login.this, Admin_School.class);
+                                           intent.putExtra("userType", userTypee);
+                                           startActivity(intent);
+                                           //empty the log in page
+                                           editTextEmail.getText().clear();
+                                           editTextPassword.getText().clear();
+                                       }
+
 
                                    }else {
                                        // in here the email and password is exist in our database but the user type is wrong

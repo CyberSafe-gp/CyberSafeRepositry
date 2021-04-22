@@ -1,30 +1,29 @@
 package com.example.cybersafe;
 
         import android.content.Intent;
-        import android.os.Bundle;
-        import android.util.Patterns;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-        import android.widget.EditText;
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
-        import androidx.annotation.NonNull;
-        import androidx.annotation.Nullable;
-        import androidx.appcompat.app.AppCompatActivity;
-        import androidx.appcompat.widget.Toolbar;
-        import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
-        import com.example.cybersafe.Objects.SchoolManager;
-        import com.google.android.material.snackbar.Snackbar;
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-        import com.google.firebase.iid.FirebaseInstanceId;
+import com.example.cybersafe.Objects.SchoolManager;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -198,9 +197,7 @@ public class EditSchoolFragment extends Fragment {
         Cuser2.updateEmail(email);
 
         //store it in the database for the current user
-        String token = FirebaseInstanceId.getInstance().getToken();
-
-        SchoolManager Smanger = new SchoolManager(userId,Sid,City,fname, lastname,email,"Not confirm" ,token);
+        SchoolManager Smanger = new SchoolManager(userId,Sid,City,fname, lastname,email,"Not confirm" );
         userRef.setValue(Smanger);
         Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(30000).show();
 

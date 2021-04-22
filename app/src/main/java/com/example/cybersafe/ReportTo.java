@@ -203,7 +203,6 @@ public class ReportTo extends AppCompatActivity {
                     SchoolManager SM = messageSnapshot.getValue(SchoolManager.class);
                     if(SM.getSchool_id().equals(childSchoolId)){//check if School Manager exist and get the School Manager ID
                         schoolMID=SM.getSchool_id();
-                        school_Token=SM.getToken();
                         findSchoolManager=true;
                     }
                 }

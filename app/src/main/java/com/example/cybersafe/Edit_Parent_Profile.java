@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 public class Edit_Parent_Profile extends AppCompatActivity {
 
@@ -151,8 +150,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
                     return;
                 }
 //store it in the database for the current user
-                String token = FirebaseInstanceId.getInstance().getToken();
-                Parent p = new Parent(fname, lastname, email, userId,token);
+                Parent p = new Parent(fname, lastname, email, userId);
                 userRef.setValue(p);
                 Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(30000).show();
 

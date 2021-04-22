@@ -1,8 +1,5 @@
 package com.example.cybersafe;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -22,9 +19,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
-
-import java.util.Calendar;
 
 public class ParentRegister extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
@@ -135,8 +129,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
                                                    if (task.isSuccessful()) {
                                                        //Creat new Parent and store it in the database
                                                        String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                                       String token = FirebaseInstanceId.getInstance().getToken();
-                                                       Parent USER = new Parent(firstname1, lastname1, email1, id, token);
+                                                       Parent USER = new Parent(firstname1, lastname1, email1, id);
                                                        FirebaseDatabase.getInstance().getReference("Parents")
                                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                                .setValue(USER).addOnCompleteListener(new OnCompleteListener<Void>() {

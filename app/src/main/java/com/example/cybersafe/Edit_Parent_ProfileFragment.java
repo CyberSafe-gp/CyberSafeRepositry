@@ -1,27 +1,27 @@
 package com.example.cybersafe;
 
         import android.content.Intent;
-        import android.os.Bundle;
-        import android.util.Patterns;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import androidx.annotation.NonNull;
-        import androidx.annotation.Nullable;
-        import androidx.fragment.app.Fragment;
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
-        import com.example.cybersafe.Objects.Parent;
-        import com.google.android.material.snackbar.Snackbar;
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-        import com.google.firebase.iid.FirebaseInstanceId;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.example.cybersafe.Objects.Parent;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -181,12 +181,11 @@ public class Edit_Parent_ProfileFragment extends Fragment {
             editTextEmail.requestFocus();
             return;
         }
-        String token = FirebaseInstanceId.getInstance().getToken();
 
         Cuser.updateEmail(email);
 
         //store it in the database for the current user
-        Parent p = new Parent(fname, lastname, email, userId,token);
+        Parent p = new Parent(fname, lastname, email, userId);
         userRef.setValue(p);
         Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(20000).show();
 
