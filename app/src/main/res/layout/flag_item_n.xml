@@ -40,13 +40,14 @@
 
     <TextView
         android:id="@+id/WriteBullyName"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:maxLines="1"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
         android:paddingEnd="10dp"
         android:paddingRight="10dp"
+        android:layout_toRightOf="@id/TikTok"
         android:text=""
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/blue"
@@ -67,6 +68,18 @@
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textColor="@color/black"
          />
+
+    <ImageView
+        android:id="@+id/TikTok"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="4dp"
+        app:srcCompat="@drawable/tiktok" />
 
     <View
         android:layout_width="match_parent"
