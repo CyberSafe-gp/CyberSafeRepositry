@@ -28,7 +28,7 @@ import java.util.Calendar;
 
 public class ParentRegister extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-
+   // modifiers
     private FirebaseAuth mAuth;
     private EditText firstname,lastname,email,password,ConfirmPass;
     private String number;
@@ -40,8 +40,6 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_register);
-
-
         mAuth = FirebaseAuth.getInstance();
         firstname = (EditText) findViewById((R.id.firstname));
         lastname = (EditText) findViewById((R.id.lastname));
@@ -73,48 +71,57 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
 
 
         System.out.print(firstname1);
+// if loops to check that the user fill every text field .
 
+        // check first name  is not empty
         if(firstname1.isEmpty()){
             firstname.setError("First name is required");
             firstname.requestFocus();
             return;
         }
+        // check last name  is not empty
         if(lastname1.isEmpty()){
             lastname.setError("Last name is required");
             lastname.requestFocus();
             return;
         }
+        // check Email is not empty
         if(email1.isEmpty()) {
             email.setError(" Email is required");
             email.requestFocus();
             return;
         }
+        // check if the  email is valid
         if(!Patterns.EMAIL_ADDRESS.matcher(email1).matches()){
             email.setError("Please enter your email address in format: yourname@example.com");
             email.requestFocus();
             return;
         }
+        // check Password is not empty
         if(password1.isEmpty()){
             password.setError("Password is required");
             password.requestFocus();
             return;
         }
+        // check if Password contain more than 7 characters
         if(password1.length()<8){
             password.setError("The password must be at least 8 characters");
             password.requestFocus();
             return;
         }
-
+        // check if the  Password is strong
         if(!passwordValidation(password1)){
             password.setError("Password should contains at least one capital letter, one small letter and one number");
             password.requestFocus();
             return;
         }
+        // check Confirm Password is not empty
         if (confirmPass.isEmpty()){
             ConfirmPass.setError("Confirm Password is required");
             ConfirmPass.requestFocus();
             return;
         }
+        //check the match between password and confirm password
         if (!confirmPass.isEmpty()){
             if (!confirmPass.equals(password1)) {
                 ConfirmPass.setError("Password do not match");
@@ -126,6 +133,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
                                                @Override
                                                public void onComplete(@NonNull Task<AuthResult> task) {
                                                    if (task.isSuccessful()) {
+                                                       //Creat new Parent and store it in the database
                                                        String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                                        String token = FirebaseInstanceId.getInstance().getToken();
                                                        Parent USER = new Parent(firstname1, lastname1, email1, id, token);
@@ -173,7 +181,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
             return;
         }
     }
-
+//check  Password  contains at least one capital letter, one small letter and one number
     private boolean passwordValidation(String password) {
         boolean CH = false;
         boolean ch = false;

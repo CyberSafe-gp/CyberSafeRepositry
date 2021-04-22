@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 
 public class SchoolManagerRegister extends AppCompatActivity  implements AdapterView.OnItemSelectedListener, View.OnClickListener {
-
+    // modifiers
     DatabaseReference schoolManagerRef2;
     private FirebaseAuth mAuth;
     private EditText firstName;
@@ -118,7 +118,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 
 
                         if (dataSnapshot.exists()) {
-                            //Check if user select city
+                            //Check if user select city to Bring the schools of the selected city
                             if (!userCity.equals("Select")) {
                                 schoolList.clear();
                                 schoolList.add("Select");
@@ -163,7 +163,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                                                //if the school registered green check will be visible
                                                 find = false;
                                                 upi.setText(" ");
                                                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
@@ -248,22 +248,26 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         final String password1 = password.getText().toString().trim();
         final String confirmPass1= confirmPass.getText().toString().trim();
 
+// if loops to check that the user fill every text field .
 
+        //check school will return boolean if true toast message will appear
         if(checkSchool){
             Toast.makeText(SchoolManagerRegister.this, "This School is already registered", Toast.LENGTH_LONG).show();
             return;
         }
-
+       // check first name  is not empty
         if (firstname1.isEmpty()) {
             firstName.setError("First name is required");
             firstName.requestFocus();
             return;
         }
+        // check last name  is not empty
         if (lastname1.isEmpty()) {
             lastName.setError("Last name is required");
             lastName.requestFocus();
             return;
         }
+        // check Email is not empty
         if (email1.isEmpty()) {
             email.setError(" Email is required");
             email.requestFocus();
@@ -275,32 +279,37 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
             return;
         }
 
+        // check if the  email is valid
         if (!Patterns.EMAIL_ADDRESS.matcher(email1).matches()) {
-            email.setError("Please provide valid email");
+            email.setError("Please enter your email address in format: yourname@example.com");
             email.requestFocus();
             return;
         }
+        // check Password is not empty
         if (password1.isEmpty()) {
             password.setError("Password is required");
             password.requestFocus();
             return;
         }
+        // check if Password contain more than 7 characters
         if (password1.length() < 8) {
-            password.setError("Min password length should be 8 characters!");
+            password.setError("The password must be at least 8 characters");
             password.requestFocus();
             return;
         }
-
+        // check if the  Password is strong
         if (!passwordValidation(password1)) {
             password.setError("Password should contains at least one capital letter, one small letter and one number");
             password.requestFocus();
             return;
         }
+        // check Confirm Password is not empty
         if (confirmPass1.isEmpty()){
             confirmPass.setError("Confirm Password is required");
             confirmPass.requestFocus();
             return;
         }
+        //check the match between password and confirm password
         if (!confirmPass1.isEmpty()){
             if (!confirmPass1.equals(password1)) {
                 confirmPass.setError("Password do not match");
@@ -308,12 +317,13 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                 return;
             }}
 
-
+        //To
         mAuth.createUserWithEmailAndPassword(email1, password1)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                            @Override
                                            public void onComplete(@NonNull Task<AuthResult> task) {
                                                if (task.isSuccessful()) {
+                                                   //Creat new school manager and store it in the database
                                                    String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                                    String token = FirebaseInstanceId.getInstance().getToken();
                                                    SchoolManager USER = new SchoolManager(id,school_id,userCity,firstname1,lastname1,email1,"Not confirm",token);
@@ -323,6 +333,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                                        @Override
                                                        public void onComplete(@NonNull Task<Void> task) {
                                                            if (task.isSuccessful()) {
+                                                               //if school manager register successfully it will move to the admin verification
                                                                Toast.makeText(SchoolManagerRegister.this, "SchoolManager registered Successfully ", Toast.LENGTH_LONG).show();
                                                                Intent intent = new Intent(SchoolManagerRegister.this, Admin_School.class);
                                                                intent.putExtra("userType", "SchoolManager");
@@ -330,6 +341,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
 
 
                                                            } else {
+                                                               //if Registration failed toast message will appear
                                                                Toast.makeText(SchoolManagerRegister.this, "Registration failed ", Toast.LENGTH_LONG).show();
 
                                                            }
@@ -344,7 +356,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                                        }
                 );
     }
-
+//if the entered school is match to any of the registered school the checkSchool will return true
     private boolean checkSchool(){
         final boolean[] flag = {false};
         schoolManagerRef2.orderByChild("school_id").equalTo(school_id).addValueEventListener(new ValueEventListener() {
@@ -361,7 +373,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
         });
         return flag[0];
     }
-
+    //check  Password  contains at least one capital letter, one small letter and one number
     private boolean passwordValidation(String password) {
         boolean CH = false;
         boolean ch = false;
