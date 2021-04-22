@@ -21,23 +21,12 @@
         android:title="Outgoing" />
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_baseline_home_242"
-        android:title="Home"
-        app:theme="@style/Theme.MaterialComponents"/>
-
-    <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_baseline_edit_24"
-        android:title="Profile" />
-
-    <item
         android:id="@+id/navigation_Keywords"
         android:icon="@drawable/ic_baseline_add_comment_24"
         android:title="Keywords" />
 
     <item
-        android:id="@+id/navigation_Edit"
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_baseline_profile"
         android:title="Profile" />
 

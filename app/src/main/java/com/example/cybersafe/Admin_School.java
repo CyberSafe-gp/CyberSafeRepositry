@@ -58,6 +58,7 @@ public class Admin_School extends AppCompatActivity {
                                 Toast.makeText(Admin_School.this, "School Manager registered has been confirmed Successfully", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(Admin_School.this, SchoolHome_new.class);
                                 startService(new Intent(Admin_School.this, ServiceSM.class));
+                                intent.putExtra("userType","SchoolManager");
                                 startActivity(intent);
                             } else {
                             }
