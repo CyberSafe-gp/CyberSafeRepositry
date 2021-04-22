@@ -1,5 +1,8 @@
 package com.example.cybersafe;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -25,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.onesignal.OneSignal;
+
+import java.util.Calendar;
 
 public class Login extends AppCompatActivity {
 
@@ -139,7 +144,7 @@ public class Login extends AppCompatActivity {
                                     Intent intent = new Intent(Login.this,ParentHome_New.class);
                                     intent.putExtra("userType", userTypee);
                                     //start the service for ever hour
-                                         /*   startService(new Intent(Login.this, MyService.class));
+                                            startService(new Intent(Login.this, MyService.class));
                                             Calendar cal = Calendar.getInstance();
                                             Intent intent2 = new Intent(Login.this, MyService.class);
                                             PendingIntent pintent = PendingIntent
@@ -148,7 +153,7 @@ public class Login extends AppCompatActivity {
                                             AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                                             // Start service every hour
                                             alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                                    300000, pintent);*/
+                                                    300000, pintent);
 
                                     //transfer the parent to the his/her home
                                     startActivity(intent);
