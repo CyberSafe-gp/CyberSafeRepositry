@@ -37,52 +37,52 @@ public class  SchoolHome extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_home);
+        //bring the current user loged-in
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             userID = user.getUid();
             userType1=getIntent().getStringExtra("userType");
+            //get current user type
 
         } else {
-            System.out.println("userID out");
+
             // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
             Intent in = new Intent(SchoolHome.this, Interface.class);
+            //to force the user log in
             startActivity(in);
         }
 
 
 
         btn11 =  findViewById(R.id.btn1);
-        //edit
+        //edit button
         btn12 = findViewById(R.id.button7);
-        //incoming reports
+        //incoming reports button
         logO2= findViewById(R.id.button10);
-        // log-out
+        // log-out button
         SN=(TextView)findViewById(R.id.textView24);
+
         SID=(TextView)findViewById(R.id.textView16);
 
 
 
 
-        /*fauth=FirebaseAuth.getInstance();
-        userID=fauth.getCurrentUser().getUid();*/
-        //userID="-MTz4FV6I8eik51jwoJ1";
-
         schoolManagerRef = FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
         schoolManagerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+//loop over the school manager database to find the current loged in school manager
                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
 
                     SchoolManager sch = messageSnapshot.getValue(SchoolManager.class);
 
                     if (sch.getSchoolManager_id().equals(userID)){
 
-                        // the info that we can reach from the school manager
+                        // the info that we can reach from the school manager database
                         firstName = sch.getFirstName();
                         lastName = sch.getLastName();
                         schoolID=sch.getSchool_id();
-                        System.out.println("schoolID"+schoolID);
+
 
                         //Write the school manager name on the text view
                         TextView schoolManagerName = (TextView)findViewById(R.id.textView24);
@@ -96,11 +96,9 @@ public class  SchoolHome extends AppCompatActivity {
                                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
 
                                     School sch = messageSnapshot.getValue(School.class);
-                                    System.out.println("out"+schoolID);
-                                    System.out.println("from"+sch.getSchool_id());
 
                                     if (sch.getSchool_id().equals(schoolID)){
-                                        System.out.println("getSchool_id().equals(schoo");
+
 
                                         // the info that we can reach from the school
                                         schoolName = sch.getSchoolName();
@@ -127,15 +125,16 @@ public class  SchoolHome extends AppCompatActivity {
 
 
 
-
+            //edit button
         btn11 = (Button) findViewById(R.id.btn1);
-
+            //if clicked transfer to edit page
         btn11.setOnClickListener(v -> {
             Intent intent = new Intent(SchoolHome.this,EditSchoolFragment.class);
+            //send intent to every page with user type
             intent.putExtra("userType",userType1);
             startActivity(intent);
         });
-
+     //transfer to incoming report page
         btn12.setOnClickListener(v -> {
             Intent intent = new Intent(SchoolHome.this,IncomingReportsMain.class);
             intent.putExtra("userType",userType1);
@@ -150,7 +149,7 @@ public class  SchoolHome extends AppCompatActivity {
 
               startActivities();
           }
-
+      //  if loged-out transfer to the interface
            private void startActivities() {
 
                 Intent intent = new Intent(SchoolHome.this,Interface.class);

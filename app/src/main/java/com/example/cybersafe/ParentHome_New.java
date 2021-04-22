@@ -94,13 +94,13 @@ ParentHome_New extends AppCompatActivity {
                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                if (snapshot.exists()) {
                                                    parentChildren.clear();
-                                                   System.out.println("there is children");
+
                                                    for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                                        Child checkChild = messageSnapshot.getValue(Child.class);
                                                        //Add children id that belong to the parent
                                                        if (checkChild.getParent_id().equals(Parent_ID)) {
                                                            parentChildren.add(checkChild);
-                                                           System.out.println("childes added");
+
                                                        }
                                                    }
                                                    if (!(parentChildren.isEmpty())) {
@@ -187,7 +187,7 @@ ParentHome_New extends AppCompatActivity {
                         Report rep = messageSnapshot.getValue(Report.class);
                         //If there new incoming report notify the school manager
                         if (rep.getReceiver_id().equals(Parent_ID) && !(rep.getStatus().equals("Confirm"))){
-                            System.out.println("RRPPPOOOTTYY");
+
                             existReport[0] = true;
 
                         }

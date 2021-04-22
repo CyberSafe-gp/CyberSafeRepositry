@@ -6,7 +6,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,15 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class Edit_Parent_Profile extends AppCompatActivity {
-    //EditText firstName;
-    // String fName;
-    // EditText lastName;
-    //EditText email;
-    // public Button chngeP;
-    //public Button editB;
-    // public static final String TAG = "TAG";
+
     private String userId;
-    //for storing the current user id
+
 
 
     private FirebaseUser Cuser;
@@ -51,24 +44,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit__parent__profile);
 
-/*        //Toolbar
-        ImageView back = (ImageView) findViewById(R.id.arrowIncomP6);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
 
-            }
-        });
-
-        ImageView home = (ImageView) findViewById(R.id.homeIncomP5);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-
-            }
-        });*/
 
         editTextfName = findViewById(R.id.firstNameB);
         editTextlName = findViewById(R.id.lastNameB);
@@ -84,10 +60,11 @@ public class Edit_Parent_Profile extends AppCompatActivity {
             startActivity(intentt);
         });
 
-        Cuser = FirebaseAuth.getInstance().getCurrentUser();
-        System.out.println("############################################");
-        System.out.println(Cuser.getEmail());
 
+        //bring current user
+        Cuser = FirebaseAuth.getInstance().getCurrentUser();
+
+//if
         g.addValueEventListener(new ValueEventListener() {
             @Override
             //bringing all the current user information in the data base and view it in the edit page
@@ -100,6 +77,7 @@ public class Edit_Parent_Profile extends AppCompatActivity {
                         Fname=us.getFirstName();
                         lName = us.getLastName();
                         userId = us.getParent_id();
+                        //write the parent information in the edit page
                         editTextfName.setText(Fname);
                         editTextlName .setText(lName);
                         editTextEmail.setText(userEmail);
@@ -128,12 +106,12 @@ public class Edit_Parent_Profile extends AppCompatActivity {
 
 
                 DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Parents").child(userId);
-
+//the user input
                 final String fname = editTextfName.getText().toString().trim();
                 final String lastname = editTextlName.getText().toString().trim();
                 final String email = editTextEmail.getText().toString().trim();
 
-
+//input validation
                 if (fname.isEmpty()) {
                     editTextfName.setError("first name is required");
                     editTextfName.requestFocus();

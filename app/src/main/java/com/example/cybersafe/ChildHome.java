@@ -23,11 +23,11 @@ public class ChildHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_home);
-
+//get current user loged-in
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //get the current loged-in user
         if (user != null) {
-
+//get log-in user email
             userID = user.getUid();
             //bring user id
             ChildID = getIntent().getStringExtra("Child_id");
