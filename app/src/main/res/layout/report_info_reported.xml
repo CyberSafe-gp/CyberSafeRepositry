@@ -32,7 +32,6 @@
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textAlignment="center"
             android:textColor="@color/white"
-
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="21dp"
             app:theme="@style/Theme.MaterialComponents"/>
@@ -83,7 +82,7 @@
             android:maxWidth="320dp"
             android:minWidth="200dp"
             android:padding="10dp"
-            android:text="'I love you'"
+            android:text=""
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             />
 
@@ -105,7 +104,7 @@
             android:maxWidth="150dp"
             android:layout_below="@id/ChildName"
             android:layout_marginTop="10dp"
-            android:text="Write Child Name"
+            android:text=""
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
 
         <TextView
@@ -130,7 +129,7 @@
             android:layout_marginStart="208dp"
             android:layout_marginLeft="215dp"
             android:layout_marginTop="10dp"
-            android:text="Write Child Account"
+            android:text=""
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
         <TextView
@@ -148,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Write Bully Account"
+            android:text=""
             android:layout_below="@id/BullyAccount"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
 

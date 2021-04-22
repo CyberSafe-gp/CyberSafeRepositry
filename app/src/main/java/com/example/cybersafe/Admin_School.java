@@ -1,15 +1,13 @@
 package com.example.cybersafe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cybersafe.Objects.Child;
-import com.example.cybersafe.Objects.Report;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cybersafe.Objects.SchoolManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Admin_School extends AppCompatActivity {
-    DatabaseReference SchoolM = FirebaseDatabase.getInstance().getReference().child("SchoolManager");
+    DatabaseReference SchoolM = FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String userID = user.getUid();
     private TextView text;
@@ -39,11 +37,16 @@ SchoolM.addValueEventListener(new ValueEventListener() {
         for (DataSnapshot childrf : snapshot.getChildren()) {
             SchoolManager SchoolM = childrf.getValue(SchoolManager.class);
             String user_id = SchoolM.getSchoolManager_id();
+            System.out.println("1111111");
             if (user_id.equals(userID)) {
+                System.out.println("22222222");
                 if(SchoolM.getAdmin().equals("Confirm")){
+                    System.out.println("333333333");
+
                     Toast.makeText(Admin_School.this, "School Manager registered has been confirmed Successfully", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(Admin_School.this,SchoolHomeFragment.class);
-                    startActivity(intent);}
+                    Intent intent = new Intent(Admin_School.this,SchoolHome_new.class);
+                    startActivity(intent);
+                }
                     else{
                     text.setText(" ");
                 }

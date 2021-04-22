@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
         android:orientation="horizontal"
@@ -26,7 +26,8 @@
             android:gravity="center_horizontal"
             android:text=" Get Help "
             android:textAlignment="center"
-            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/white"
             app:theme="@style/Theme.MaterialComponents"
             tools:ignore="MissingConstraints"
@@ -37,14 +38,16 @@
     <TextView
         android:id="@+id/link"
         android:layout_width="346dp"
-        android:layout_height="210dp"
+        android:layout_height="wrap_content"
         android:text="@string/link"
         android:textColor="#E68A2D"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.136" />
 
     <ImageView
         android:id="@+id/imageView2"

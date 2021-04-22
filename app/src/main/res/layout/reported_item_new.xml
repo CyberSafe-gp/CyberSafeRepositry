@@ -52,7 +52,7 @@
         android:paddingTop="10dp"
         android:paddingEnd="10dp"
         android:paddingRight="10dp"
-        android:text="WriteChildName"
+        android:text=""
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/blue"
         android:textStyle="bold" />
@@ -63,11 +63,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/WriteChildName"
         android:layout_marginTop="1dp"
-
         android:maxLines="2"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
-        android:text="WriteDate"
+        android:text=""
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textColor="@color/black"
         android:textDirection="ltr"
@@ -89,7 +88,7 @@
         android:layout_marginLeft="326dp"
         android:layout_marginTop="30dp"
         android:maxWidth="200dp"
-        android:text="WriteStatus"
+        android:text=""
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textColor="@color/black"
         android:textStyle="bold" />

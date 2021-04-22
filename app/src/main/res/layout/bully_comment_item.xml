@@ -26,7 +26,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="10dp"
             android:paddingRight="10dp"
-            android:text="WriteBullyName"
+            android:text=""
             android:layout_toRightOf="@id/TikTok"
             android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/blue"
@@ -43,7 +43,7 @@
             android:paddingLeft="10dp"
             android:maxLines="2"
             android:textStyle="normal"
-            android:text="WriteBullyComment"
+            android:text=""
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/black"
             />

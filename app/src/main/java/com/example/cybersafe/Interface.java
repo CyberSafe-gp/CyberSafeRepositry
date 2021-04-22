@@ -52,9 +52,6 @@ public class Interface extends AppCompatActivity {
             intent.putExtra("userType","SchoolManager");
             startActivity(intent);
 
-            finish();
-
-
         });
 
     }

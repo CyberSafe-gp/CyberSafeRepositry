@@ -29,6 +29,7 @@
         android:id="@+id/botBully2"
         android:layout_width="45dp"
         android:layout_height="45dp"
+        android:layout_marginTop="5dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -53,7 +54,7 @@
         android:paddingTop="10dp"
         android:paddingEnd="10dp"
         android:paddingRight="10dp"
-        android:text="keyword"
+        android:text=""
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/blue"
         android:textStyle="bold" />

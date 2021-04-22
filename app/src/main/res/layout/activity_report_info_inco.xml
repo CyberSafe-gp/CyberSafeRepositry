@@ -13,7 +13,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,8 @@
             android:gravity="center_horizontal"
             android:layout_weight="100"
             android:text="Incoming Report Info"
-            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceHeadline5"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:theme="@style/Theme.MaterialComponents"
@@ -85,7 +86,7 @@
             android:maxWidth="320dp"
             android:minWidth="200dp"
             android:padding="10dp"
-            android:text="'I love you'"
+            android:text=""
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
            />
 
@@ -107,7 +108,7 @@
             android:maxWidth="150dp"
             android:layout_below="@id/ChildName"
             android:layout_marginTop="10dp"
-            android:text="Write Child Name"
+            android:text=""
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
 
         <TextView
@@ -126,15 +127,13 @@
             android:id="@+id/WriteChildAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_below="@id/ChildAccount"
             android:layout_alignParentStart="true"
-
             android:layout_alignParentLeft="true"
             android:layout_marginStart="208dp"
             android:layout_marginLeft="215dp"
             android:layout_marginTop="10dp"
-            android:text="Write Child Account"
+            android:text=""
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
         <TextView
@@ -152,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Write Bully Account"
+            android:text=""
             android:layout_below="@id/BullyAccount"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
 

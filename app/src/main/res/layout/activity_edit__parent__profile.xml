@@ -38,7 +38,7 @@
             android:layout_height="48dp"
             android:layout_marginLeft="180dp"
             android:text="Log Out"
-            android:textColor="#EE9B39"
+            android:textColor="#ee9a38"
             android:textSize="18dp"
             android:textStyle="bold"
             app:backgroundTint="@color/blue"
@@ -149,8 +149,8 @@
             android:layout_marginTop="35dp"
             android:text="Save"
             android:textAppearance="?attr/textAppearanceHeadline5"
-            android:textColor="@color/blue"
-            app:backgroundTint="@android:color/holo_orange_dark"
+            android:textColor="@color/white"
+            app:backgroundTint="#ee9a38"
             app:theme="@style/Theme.MaterialComponents" />
 
     </LinearLayout>

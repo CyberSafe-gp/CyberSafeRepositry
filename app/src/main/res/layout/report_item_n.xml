@@ -54,7 +54,7 @@
         android:paddingTop="10dp"
         android:paddingEnd="10dp"
         android:paddingRight="10dp"
-        android:text="WriteChildName"
+        android:text=""
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/blue"
         android:textStyle="bold" />
@@ -69,7 +69,7 @@
         android:paddingLeft="15dp"
         android:maxLines="2"
         android:textStyle="normal"
-        android:text="WriteDate"
+        android:text=""
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textColor="@color/black"
         />
