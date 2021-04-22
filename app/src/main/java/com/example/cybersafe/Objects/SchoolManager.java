@@ -30,8 +30,9 @@ public class SchoolManager {
         return admin;
     }
 
-    public void setAdmin(String schoolManager_id) {
-        this.admin = admin; }
+    public void setAdmin(String admin) {
+        this.admin = admin;
+    }
 
     public String getSchoolManager_id() {
         return schoolManager_id;
