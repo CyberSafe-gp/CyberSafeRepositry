@@ -1,6 +1,7 @@
 package com.example.cybersafe;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -67,6 +68,8 @@ public class Add_Detection_KeywordFragment extends Fragment {
         }
 
         TextView textView = (TextView) getActivity().findViewById(R.id.noKeyword);
+        textView.setTextColor(Color.parseColor("#D7DBDD"));
+
 
         keywordsRef = FirebaseDatabase.getInstance().getReference().child("Keywords");
         keywordRef = FirebaseDatabase.getInstance().getReference().child("Keywords");
@@ -125,7 +128,7 @@ public class Add_Detection_KeywordFragment extends Fragment {
                         textView.setText("");
                         break;
                     } else {
-                        textView.setText("no existing Keyword");
+                        textView.setText("No existing keywords");
 
                     }
                 }

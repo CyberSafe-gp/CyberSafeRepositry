@@ -1,5 +1,6 @@
 package com.example.cybersafe;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -55,6 +56,8 @@ public class BullyCommentMainFragment extends Fragment {
 
 
         textView = (TextView) getActivity().findViewById(R.id.noComments);
+        textView.setTextColor(Color.parseColor("#D7DBDD"));
+
         SMAccountCredentialRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
         commentsRef = FirebaseDatabase.getInstance().getReference().child("Comments");
         commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
@@ -125,7 +128,7 @@ public class BullyCommentMainFragment extends Fragment {
                                         textView.setText("");
                                         break;
                                     } else {
-                                        textView.setText("no existing bully comments");
+                                        textView.setText("No existing bully comments");
 
                                     }
                                 }

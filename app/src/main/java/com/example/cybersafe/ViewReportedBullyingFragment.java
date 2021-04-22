@@ -1,6 +1,7 @@
 package com.example.cybersafe;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,6 +67,8 @@ public class ViewReportedBullyingFragment extends Fragment {
 
 
         textView = (TextView) getActivity().findViewById(R.id.noReported);
+        textView.setTextColor(Color.parseColor("#D7DBDD"));
+
 
         reportsRef = FirebaseDatabase.getInstance().getReference().child("Reports");
         reportRef = FirebaseDatabase.getInstance().getReference().child("Reports");
@@ -147,7 +150,7 @@ public class ViewReportedBullyingFragment extends Fragment {
                         textView.setText("");
                         break;
                     } else {
-                        textView.setText("no reported comment");
+                        textView.setText("No reported comment");
 
                     }
                 }

@@ -2,6 +2,7 @@ package com.example.cybersafe;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -84,8 +85,10 @@ public class IncomingFragment extends Fragment {
 
 
             textView = (TextView) getView().findViewById(R.id.noReport);
+            textView.setTextColor(Color.parseColor("#D7DBDD"));
 
-            reportsRef = FirebaseDatabase.getInstance().getReference().child("Reports");
+
+        reportsRef = FirebaseDatabase.getInstance().getReference().child("Reports");
             reportRef = FirebaseDatabase.getInstance().getReference().child("Reports");
             reportRef.keepSynced(true);
 

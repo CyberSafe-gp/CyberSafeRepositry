@@ -1,5 +1,6 @@
 package com.example.cybersafe;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,6 +54,8 @@ public class FlagMainFragment extends Fragment {
 
 
         textView = (TextView) getActivity().findViewById(R.id.noComments);
+        textView.setTextColor(Color.parseColor("#D7DBDD"));
+
         SMAccountCredentialRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
         commentsRef = FirebaseDatabase.getInstance().getReference().child("Comments");
         commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
@@ -114,7 +117,7 @@ public class FlagMainFragment extends Fragment {
                                         textView.setText("");
                                         break;
                                     } else {
-                                        textView.setText("no existing comments");
+                                        textView.setText("No existing comments");
 
                                     }
                                 }
