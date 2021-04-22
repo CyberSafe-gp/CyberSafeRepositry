@@ -235,7 +235,7 @@ ParentHome_New extends AppCompatActivity {
             case R.id.navigation_school:
                 fragment = new ViewReportedBullyingFragment();
                 break;
-            case R.id.navigation_Edit:
+            case R.id.navigation_profile:
                 fragment = new Edit_Parent_ProfileFragment();
                 break;
             case R.id.navigation_Keywords:

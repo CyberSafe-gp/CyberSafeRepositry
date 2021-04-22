@@ -22,9 +22,9 @@
         app:theme="@style/Theme.MaterialComponents"/>
 
     <item
-        android:id="@+id/navigation_Edit"
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_baseline_edit_24"
-        android:title="Edit" />
+        android:title="Profile" />
 
     <item
         android:id="@+id/navigation_Keywords"
