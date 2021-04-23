@@ -38,18 +38,15 @@ import com.google.firebase.database.ValueEventListener;
 public class Edit_Parent_ProfileFragment extends Fragment {
 
     private String userId;
-ImageView dots;
+    ImageView dots;
     private Button logO;
-
-    private FirebaseUser Cuser;
     private Button btEdit , changeP;
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Parents");
-
+    FirebaseUser Cuser = FirebaseAuth.getInstance().getCurrentUser();
     private EditText editTextfName;
     private EditText editTextlName;
     private EditText editTextEmail;
     String userEmail,Fname,lName,parent_id;
-
 
 
     public Edit_Parent_ProfileFragment() {
@@ -215,7 +212,6 @@ ImageView dots;
             startActivity(intentt);
         });
 
-        Cuser = FirebaseAuth.getInstance().getCurrentUser();
 
         g.addValueEventListener(new ValueEventListener() {
 
@@ -303,7 +299,6 @@ ImageView dots;
             editTextEmail.requestFocus();
             return;
         }
-
         Cuser.updateEmail(email);
 
         //store it in the database for the current user
