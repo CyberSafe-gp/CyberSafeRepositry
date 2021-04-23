@@ -23,9 +23,7 @@
         android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="368dp"
         android:textColor="#000000"
-
         android:textIsSelectable="false"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -33,8 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.594"
         app:layout_constraintStart_toStartOf="@+id/recyclerViewAddDe"
-        app:layout_constraintTop_toTopOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.358"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
         tools:ignore="MissingConstraints" />
 
 
