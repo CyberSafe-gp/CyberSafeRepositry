@@ -244,7 +244,7 @@ public class ReportToFragment extends Fragment {
                                               public void onComplete(@NonNull Task<Void> task) {
 
                                                   if (task.isSuccessful()) {
-                                                      Toast.makeText(getActivity(), "Report send successfully", Toast.LENGTH_LONG).show();
+                                                      Toast.makeText(getActivity(), "Report sent successfully", Toast.LENGTH_LONG).show();
 
 
                                                   } else {

@@ -76,6 +76,7 @@
         <activity android:name=".Forgetpassword" />
 
         <activity android:name=".Gethelp" />
+        <activity android:name=".Report_info_reported" />
         <activity android:name=".Interface">
             <intent-filter>
 

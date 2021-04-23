@@ -68,18 +68,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Comment:"
+            android:text=" "
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/WriteChildComment"
-            android:layout_width="wrap_content"
+            android:layout_width="241dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/ChildComment"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="69dp"
+            android:layout_marginLeft="69dp"
+            android:layout_marginTop="59dp"
+            android:layout_marginEnd="52dp"
+            android:layout_marginRight="52dp"
             android:background="@color/lightGray"
             android:elevation="10dp"
             android:gravity="center"
@@ -87,19 +93,7 @@
             android:minWidth="200dp"
             android:padding="10dp"
             android:text=" "
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-           />
-
-
-        <TextView
-            android:id="@+id/ChildName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/WriteChildComment"
-            android:layout_marginTop="40dp"
-            android:text="Child Name:"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textStyle="bold" />
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
         <TextView
             android:id="@+id/WriteChildName"
@@ -110,18 +104,6 @@
             android:layout_marginTop="10dp"
             android:text=" "
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
-
-        <TextView
-            android:id="@+id/ChildAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/WriteChildComment"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="40dp"
-            android:layout_toRightOf="@id/ChildName"
-            android:text="Child Account:"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/WriteChildAccount"
@@ -141,8 +123,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/WriteChildAccount"
-            android:layout_marginTop="42dp"
-            android:text="bullied child account:"
+            android:layout_marginTop="158dp"
+            android:text="bullied username:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:textStyle="bold" />
 
@@ -162,8 +144,8 @@
             android:layout_height="wrap_content"
 
             android:layout_below="@id/WriteChildAccount"
-            android:layout_marginLeft="74dp"
-            android:layout_marginTop="43dp"
+            android:layout_marginLeft="97dp"
+            android:layout_marginTop="159dp"
             android:layout_toRightOf="@id/BullyAccount"
             android:text="Application:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -171,14 +153,14 @@
 
         <ImageView
             android:id="@+id/appIcon"
-            android:layout_width="75dp"
-            android:layout_height="25dp"
+            android:layout_width="115dp"
+            android:layout_height="24dp"
             android:layout_below="@+id/Application"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginStart="225dp"
-            android:layout_marginLeft="230dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginStart="246dp"
+            android:layout_marginLeft="246dp"
+            android:layout_marginTop="24dp"
             android:layout_marginRight="200dp"
             android:background="@drawable/tiktoklogo" />
 

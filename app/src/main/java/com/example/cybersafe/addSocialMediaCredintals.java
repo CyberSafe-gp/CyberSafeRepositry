@@ -62,7 +62,6 @@ public class addSocialMediaCredintals extends AppCompatActivity {
         //To get the access token for the login TikTok
         if(data != null){
              access_token = data.getQueryParameter("access_token");
-            Toast.makeText(addSocialMediaCredintals.this, "access_token  "+access_token, Toast.LENGTH_LONG).show();
 
 
             //Get Author id and child Account
@@ -122,7 +121,7 @@ public class addSocialMediaCredintals extends AppCompatActivity {
 
         }
         else {
-            Toast.makeText(addSocialMediaCredintals.this, "log in your child TikTok", Toast.LENGTH_LONG).show();
+            //the child is not yet loged-in with Tik Tok
 
         }
 
