@@ -1,6 +1,10 @@
 package com.example.cybersafe;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cybersafe.Objects.Parent;
@@ -25,6 +30,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.onesignal.OneSignal;
+
+import java.util.Calendar;
 
 public class Login extends AppCompatActivity {
 
@@ -118,8 +125,9 @@ public class Login extends AppCompatActivity {
                 final boolean[] isParent = {false};
                 if(task.isSuccessful()) {
                     //chick if the user has entered an email belong to an parent user and if not tell him to change the user type
-                    if(userTypee.equals("Parent")) {
+                    if(userTypee.equalsIgnoreCase("Parent")) {
                         ParentRef.addValueEventListener( new ValueEventListener() {
+                            @RequiresApi(api = Build.VERSION_CODES.M)
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if (snapshot.exists()) {
@@ -135,20 +143,19 @@ public class Login extends AppCompatActivity {
                                 }
                                 //in here if the isParent true then the parent clicked the right user type so we will transfer him to his page and begin the background service that will chick the bully comments for the parents user if exist
                                 if (isParent[0]) {
-                                    System.out.println("userTypee Parent"+userTypee);
                                     Intent intent = new Intent(Login.this,ParentHome_New.class);
                                     intent.putExtra("userType", userTypee);
-                                    //start the service for ever hour
-                                /*            startService(new Intent(Login.this, MyService.class));
+                                   // start the service for ever hour
+                                            startService(new Intent(Login.this, MyService.class));
                                             Calendar cal = Calendar.getInstance();
                                             Intent intent2 = new Intent(Login.this, MyService.class);
                                             PendingIntent pintent = PendingIntent
                                                     .getService(Login.this, 0, intent2, 0);
 
-                                            AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                            AlarmManager alarm = (AlarmManager) getSystemService( Context.ALARM_SERVICE);
                                             // Start service every hour
                                             alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                                    100000, pintent);*/
+                                                    100000, pintent);
 
                                     //transfer the parent to the his/her home
                                     startActivity(intent);
@@ -198,7 +205,7 @@ public class Login extends AppCompatActivity {
                                                                            }
                                                                            if (isSchoolManager[0]){
 
-                                                                               System.out.println("userTypee SM "+userTypee);
+
                                                                                if(admin.equals("Confirm")){
                                                                                    //transfer to the school manger home
                                                                                    Intent intent = new Intent(Login.this, SchoolHome_new.class);

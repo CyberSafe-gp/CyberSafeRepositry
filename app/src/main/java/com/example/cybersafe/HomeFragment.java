@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     private TextView textView;
-    //
+
     private RecyclerView recyclerView;
     //for the adapter
     private ArrayList<Child> childrenList = new ArrayList();
@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
             userType1 = getActivity().getIntent().getExtras().getString("userType");
             //get and store userType1 is for storing  what is the type of the current user
         } else {
-            System.out.println("EEEEELLLLLSSSEEEE");
+
 
             Intent in = new Intent(getActivity(), Login.class);
             startActivity(in);
@@ -106,9 +106,6 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
-        //userID="rTTwi9dfa9W425lPa2A6MiU93yz1";// بدال هذا قيت اوث عشان الاي دي حقت البارنت
-        //userID="rTTwi9dfa9MiU93yz1";
-
         childRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -118,7 +115,7 @@ public class HomeFragment extends Fragment {
                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                         Child ch = messageSnapshot.getValue(Child.class);
                         //The sent report
-                        if (ch.getParent_id().equals(userID)) { //if (rep.getUser_id().equals(userID))
+                        if (ch.getParent_id().equals(userID)) {
                             childrenList.add(ch);
                         }
                     }
@@ -141,7 +138,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot childrf : snapshot.getChildren()) {
                     Child findCh = childrf.getValue(Child.class);
-                    String user_id = findCh.getParent_id(); //String user_id = findRep.getUser_id();
+                    String user_id = findCh.getParent_id();
                     if (user_id.equals(userID)) {
                         textView.setText("");
                         break;
@@ -157,20 +154,12 @@ public class HomeFragment extends Fragment {
 
             }
         });
-        //actionButton.findViewById(R.id.floating_action_button);
 
         FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.floating_action_button);
 
         //floating_action_button for add child
         fab.setOnClickListener(v -> {
-
-//            Fragment fragment = new AddNewChildFragment();
-
             FragmentManager fragmentManager = getFragmentManager();
-//            fragmentManager.beginTransaction().addToBackStack(null);
-
-//            fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
-
             Intent intent = new Intent(getActivity(), addSocialMediaCredintals.class);
             startActivity(intent);
         });

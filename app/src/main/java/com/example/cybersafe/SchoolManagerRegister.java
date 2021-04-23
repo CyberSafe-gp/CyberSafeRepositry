@@ -320,7 +320,6 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
             Toast.makeText(SchoolManagerRegister.this, "Please select school", Toast.LENGTH_LONG).show();
             return;
         }
-        //To
         mAuth.createUserWithEmailAndPassword(email1, password1)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                            @Override

@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +43,7 @@ public class IncomingFragment extends Fragment {
     private IncomingReportAdapter adapter;
     private FirebaseUser user;
     private String userID, userType;
-    ImageView back, home;
+
 
 
     public IncomingFragment() {
@@ -66,14 +65,12 @@ public class IncomingFragment extends Fragment {
             //To get the user id and type if user exist
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userID = user.getUid();
-        System.out.println(userID);
 
-            //ارجعها
            if (user != null) {
                 userID = user.getUid();
-//                userType = getIntent().getStringExtra("userType");
+
                 userType=getActivity().getIntent().getExtras().getString("userType");
-                System.out.println("userType "+userType);
+
             } else {
                 // if user not log in go to Interface page
                 Intent in = new Intent(getActivity(), Interface.class);
@@ -131,7 +128,7 @@ public class IncomingFragment extends Fragment {
             reportRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    System.out.println("onDataChange");
+
                     if (snapshot.exists()) {
                         reportList.clear();
 
@@ -140,7 +137,7 @@ public class IncomingFragment extends Fragment {
                             //The income report
                             if (rep.getReceiver_id().equals(userID)){
                                 reportList.add(rep);
-                                System.out.println("REEport");
+
                             }
                         }
                         adapter.notifyDataSetChanged();
@@ -164,7 +161,7 @@ public class IncomingFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot childrf : snapshot.getChildren()) {
                         Report findRep = childrf.getValue(Report.class);
-                        String user_id = findRep.getReceiver_id(); //String user_id = findRep.getUser_id();
+                        String user_id = findRep.getReceiver_id();
                         if (user_id.equals(userID)) {
                             textView.setText("");
                             break;
@@ -198,7 +195,7 @@ public class IncomingFragment extends Fragment {
         String receiver_id = report.getReceiver_id();
         String sta = report.getStatus();
 
-        if(userType.equals("Parent")){
+        if(userType.equalsIgnoreCase("Parent")){
 
             //Go to Report info page
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

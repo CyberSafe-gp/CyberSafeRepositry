@@ -62,9 +62,6 @@ ParentHome_New extends AppCompatActivity {
 
         }
 
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //getSupportActionBar().hide();
-        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_parent_home__new);
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

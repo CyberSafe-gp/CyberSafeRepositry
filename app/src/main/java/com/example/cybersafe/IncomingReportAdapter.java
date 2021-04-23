@@ -2,26 +2,20 @@ package com.example.cybersafe;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Comment;
 import com.example.cybersafe.Objects.Report;
 import com.example.cybersafe.Objects.SMAccountCredentials;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +30,7 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
     private Context context;
     private List<Report> reportsList;
     private OnItemClickListener listener;
-    private DatabaseReference reportsRef, userRef, SMAccountCredentialsRef;
+    private DatabaseReference reportsRef;
     View view;
 
 
@@ -88,9 +82,6 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                // set the text for the item يمكن يتغير
-//                holder.WriteRepNo.setText("Report("+(position+1)+")");
-
                 DatabaseReference commentsRef = FirebaseDatabase.getInstance().getReference().child("Comments");
 
 
@@ -98,7 +89,7 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
                 commentsRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        System.out.println("onDataChange1");
+
 
                         for (DataSnapshot ch : snapshot.getChildren()) {
 
@@ -106,7 +97,7 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
                             String comID = findComment.getComment_id();
 
                             if(comID.equals(comment_id)){
-                                System.out.println("o3333");
+
                                 String CommentSender=findComment.getSender();
 
                                 DatabaseReference smRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
@@ -118,10 +109,9 @@ public class IncomingReportAdapter extends RecyclerView.Adapter<IncomingReportAd
 
                                             SMAccountCredentials findSM =  ch.getValue(SMAccountCredentials.class);
                                             String acc = findSM.getAccount();
-                                            System.out.println("CommentSender "+CommentSender);
-                                            System.out.println("acc "+acc);
+
                                             if(CommentSender.equals(acc)){
-                                                System.out.println("4444");
+
                                                 String child_id=findSM.getChild_id();
 
                                                 DatabaseReference childRef = FirebaseDatabase.getInstance().getReference().child("Children");

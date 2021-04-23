@@ -23,13 +23,16 @@ public class Forgetpassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgetpassword);
+
         //bring the id's of the button,edit text
         emailEditText = (EditText) findViewById(R.id.editTextTextEmailAddress2);
+
         //bring the id's of the button
         resetPasswordB =(Button) findViewById(R.id.button10);
-//bring the current user loged-in
+
+       //bring the current user loged-in
         Auth= FirebaseAuth.getInstance();
-// if the user clicked the button call the resetpassword method
+        // if the user clicked the button call the resetpassword method
         resetPasswordB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,10 +40,12 @@ public class Forgetpassword extends AppCompatActivity {
             }
         });
     }
+
+
     private void resetpassword(){
         //bring the email that the user written
         String email= emailEditText.getText().toString().trim();
-//chick pattern
+        //chick pattern
         if(email.isEmpty()){
             emailEditText.setError("Enter a valid email");
             emailEditText.requestFocus();

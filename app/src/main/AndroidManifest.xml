@@ -73,14 +73,9 @@
 
         </activity>
         <activity android:name=".Edit_Child_Profile" />
-        <activity android:name=".Edit_Parent_Profile" />
-        <activity android:name=".FlagMain" />
         <activity android:name=".Forgetpassword" />
-        <activity android:name=".sa">
-
-        </activity>
+        
         <activity android:name=".Gethelp" />
-        <activity android:name=".IncomingReportsMain" />
         <activity android:name=".Interface">
             <intent-filter>
 
@@ -91,7 +86,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ParentHome" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="OPEN_ACTIVITY_1" />
@@ -100,7 +94,6 @@
         </activity>
         <activity android:name=".ParentRegister" />
         <activity android:name=".Admin_School" />
-        <activity android:name=".Report_info_reported" />
         <activity android:name=".resetpassword" />
         <activity android:name=".SchoolHomeFragment"
             tools:ignore="Instantiatable" />
@@ -111,14 +104,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ViewReportedBullyingMain" />
-        <activity android:name=".ReportTo" />
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".MainActivity2">
-
         </activity>
 
         <meta-data

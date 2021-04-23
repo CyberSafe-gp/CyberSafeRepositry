@@ -84,15 +84,6 @@ public class Report_info_reportedFragment extends Fragment {
 
             }
         });
-
-        // the info that we can reach from the comment
-/*        System.out.println("Report comment.getBody()"+comment.getBody());
-        commentText = comment.getBody();
-        bullyAccount = comment.getSender();
-        SMAccountCredentials_id = comment.getSMAccountCredentials_id();*/
-
-
-
         // get the smAccountCredentials to retrieve the info
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
         SMARef.addValueEventListener(new ValueEventListener() {
@@ -110,7 +101,6 @@ public class Report_info_reportedFragment extends Fragment {
                         application = sma.getSocialMediaPlatform();
                         childAccount=sma.getAccount();
                         childID= sma.getChild_id();
-                        System.out.println("childID "+childID);
 
                         //Write the platform and child account
 
@@ -128,12 +118,8 @@ public class Report_info_reportedFragment extends Fragment {
                                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                     Child ch = messageSnapshot.getValue(Child.class);
                                     //The comment not bully and same as the child email
-                                    System.out.println("ch.getChild_id() "+ch.getChild_id());
                                     if (ch.getChild_id().equals(childID)){
                                         childName = ch.getFirstName() +" "+ ch.getLastName();
-                                        System.out.println("childName "+childName);
-                                        System.out.println("ch.getFirstName() "+ch.getFirstName());
-                                        System.out.println("ch.getLastName() "+ch.getLastName());
                                         TextView WriteChildName = (TextView)getActivity().findViewById(R.id.WriteChildName);
                                         WriteChildName.setText(childName);
 

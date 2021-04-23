@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,22 +30,16 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class ReportToFragment extends Fragment {
 
-    String Comment_id,senderID, SMA_id, sender,ChildID, body, childFName, childLName, childName,childAccount,parentID, schoolMID,school_Token;
-    ImageView back, home;
+    String Comment_id,senderID, SMA_id, sender,ChildID, body, childFName, childLName, childName,childAccount,parentID, schoolMID;
     Child child, senderObj;
     private FirebaseUser user;
     boolean findSchoolManager=false;
     Button gethelp;
-    //For today date
-    private TextView dateTimeDisplay;
-    private Calendar calendar;
-    private SimpleDateFormat dateFormat;
-    private String date;
+
     String childSchoolId, senderSchoolId;
 
     public ReportToFragment() {
@@ -103,9 +96,6 @@ public class ReportToFragment extends Fragment {
 
         TextView WriteBullyAccount = (TextView)getActivity().findViewById(R.id.WriteBullyAccount);
         WriteBullyAccount.setText(sender);
-
-//        TextView WriteApplication = (TextView)findViewById(R.id.WriteApplication);
-//        WriteApplication.setText("TikTok");
 
 
         DatabaseReference childRef = FirebaseDatabase.getInstance().getReference().child("Children");
@@ -228,7 +218,6 @@ public class ReportToFragment extends Fragment {
                     report.setBackgroundColor(getResources().getColor(R.color.gray));
                     report.setEnabled(false);
 
-                    System.out.println("##################");
                 }
 
             }
@@ -267,12 +256,6 @@ public class ReportToFragment extends Fragment {
                                       }
                                   }
         );
-
-
-
-
-
-
     }
 
     private String getDateTime() {

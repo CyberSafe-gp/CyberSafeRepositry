@@ -79,10 +79,6 @@ public class ChildHomeFragment extends Fragment {
 
 
         });
-
-
-
-
         flagComments.setOnClickListener(v -> {
 
             //Go to Flag page

@@ -1,13 +1,11 @@
 package com.example.cybersafe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Comment;
@@ -38,35 +36,6 @@ public class Report_info_reported extends AppCompatActivity {
         Status =getIntent().getStringExtra("Status");
         userType =getIntent().getStringExtra("userType");
 
-        //Toolbar
-/*
-        back = (ImageView) findViewById(R.id.arrowIncomP);
-        home = (ImageView) findViewById(R.id.homeIncomP);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                */
-/*Intent mIntent = new Intent(FlagMain.this, ChildHome.class);
-                mIntent.putExtra("Child_id", childID);
-                startActivity(mIntent);*//*
-
-
-            }
-        });
-
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent mIntent = new Intent(Report_info_reported.this, ChildHome.class);
-                mIntent.putExtra("userType", userType);
-                startActivity(mIntent);
-
-            }
-        });
-*/
 
 
         // get the comment to retrieve the info
@@ -76,27 +45,27 @@ public class Report_info_reported extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
 
-                        Comment com = messageSnapshot.getValue(Comment.class);
+                    Comment com = messageSnapshot.getValue(Comment.class);
 
-                        if (com.getComment_id().equals(Comment_id)){
+                    if (com.getComment_id().equals(Comment_id)){
 
-                            // the info that we can reach from the comment
-                            commentText = com.getBody();
-                            bullyAccount = com.getSender();
-                            SMAccountCredentials_id = com.getSMAccountCredentials_id();
+                        // the info that we can reach from the comment
+                        commentText = com.getBody();
+                        bullyAccount = com.getSender();
+                        SMAccountCredentials_id = com.getSMAccountCredentials_id();
 
-                            //Write the bully comment and the bully(sender) account and child account on the text view
-                            TextView BullyCommentText = (TextView)findViewById(R.id.BullyCommentText);
-                            BullyCommentText.setText(commentText);
+                        //Write the bully comment and the bully(sender) account and child account on the text view
+                        TextView BullyCommentText = (TextView)findViewById(R.id.BullyCommentText);
+                        BullyCommentText.setText(commentText);
 
-                            TextView WriteBullyAccount = (TextView)findViewById(R.id.WriteBullyAccount);
-                            WriteBullyAccount.setText(bullyAccount);
+                        TextView WriteBullyAccount = (TextView)findViewById(R.id.WriteBullyAccount);
+                        WriteBullyAccount.setText(bullyAccount);
 
 
-                            break;}
-                    }
+                        break;}
+                }
             }
 
             @Override
@@ -105,11 +74,6 @@ public class Report_info_reported extends AppCompatActivity {
             }
         });
 
-        // the info that we can reach from the comment
-/*        System.out.println("Report comment.getBody()"+comment.getBody());
-        commentText = comment.getBody();
-        bullyAccount = comment.getSender();
-        SMAccountCredentials_id = comment.getSMAccountCredentials_id();*/
 
 
 
@@ -130,11 +94,6 @@ public class Report_info_reported extends AppCompatActivity {
                         application = sma.getSocialMediaPlatform();
                         childAccount=sma.getAccount();
                         childID= sma.getChild_id();
-                        System.out.println("childID "+childID);
-
-                        //Write the platform and child account
-/*                        TextView WriteApplication = (TextView)findViewById(R.id.WriteApplication);
-                        WriteApplication.setText(application);*/
 
                         TextView WriteChildAccount = (TextView)findViewById(R.id.WriteChildAccount);
                         WriteChildAccount.setText(childAccount);
@@ -149,12 +108,8 @@ public class Report_info_reported extends AppCompatActivity {
                                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                     Child ch = messageSnapshot.getValue(Child.class);
                                     //The comment not bully and same as the child email
-                                    System.out.println("ch.getChild_id() "+ch.getChild_id());
                                     if (ch.getChild_id().equals(childID)){
                                         childName = ch.getFirstName() +" "+ ch.getLastName();
-                                        System.out.println("childName "+childName);
-                                        System.out.println("ch.getFirstName() "+ch.getFirstName());
-                                        System.out.println("ch.getLastName() "+ch.getLastName());
                                         TextView WriteChildName = (TextView)findViewById(R.id.WriteChildName);
                                         WriteChildName.setText(childName);
 
@@ -167,18 +122,6 @@ public class Report_info_reported extends AppCompatActivity {
 
                             }
                         });
-/*
-                        home.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                Intent mIntent = new Intent(Report_info_reported.this, ChildHome.class);
-                                mIntent.putExtra("userType", userType);
-                                mIntent.putExtra("Child_id", childID);
-                                startActivity(mIntent);
-
-                            }
-                        });*/
 
 
                         break;}

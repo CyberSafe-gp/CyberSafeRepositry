@@ -27,9 +27,7 @@ public class SchoolHome_new extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //getSupportActionBar().hide();
-        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_school_home_new);
         bottomNavigationView = findViewById(R.id.bottom_nav2);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -93,7 +91,6 @@ public class SchoolHome_new extends AppCompatActivity {
             case R.id.navigation_home2:
                 fragment = new SchoolHomeFragment();
                 break;
-
 
         }
         FragmentManager fragmentManager = getSupportFragmentManager();

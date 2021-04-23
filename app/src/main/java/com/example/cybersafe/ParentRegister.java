@@ -1,12 +1,14 @@
 package com.example.cybersafe;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +22,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class ParentRegister extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
    // modifiers
     private FirebaseAuth mAuth;
     private EditText firstname,lastname,email,password,ConfirmPass;
-    private String number;
-    Spinner spinner1;
+
     //Button Next;
     TextView Next;
 
@@ -64,7 +67,7 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
         final String confirmPass= ConfirmPass.getText().toString().trim();
 
 
-        System.out.print(firstname1);
+
 // if loops to check that the user fill every text field .
 
         // check first name  is not empty
@@ -140,17 +143,17 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
                                                                    Intent intent = new Intent(ParentRegister.this, ParentHome_New.class);
                                                                    intent.putExtra("userType", "Parent");
 
-                                                             /*      //Start the service every one hour
+                                                                //Start the service every one hour
                                                                    startService(new Intent(ParentRegister.this, MyService.class));
                                                                    Calendar cal = Calendar.getInstance();
                                                                    Intent intent2 = new Intent(ParentRegister.this, MyService.class);
                                                                    PendingIntent pintent = PendingIntent
                                                                            .getService(ParentRegister.this, 0, intent2, 0);
 
-                                                                   AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                                                   AlarmManager alarm = (AlarmManager) getSystemService( Context.ALARM_SERVICE);
                                                                    // Start service every hour
                                                                    alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                                                           3600*1000, pintent);*/
+                                                                           3600*1000, pintent);
 
                                                                    startActivity(intent);
 

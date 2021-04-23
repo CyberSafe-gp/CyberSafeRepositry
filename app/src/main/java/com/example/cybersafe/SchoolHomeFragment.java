@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import com.example.cybersafe.Objects.School;
 import com.example.cybersafe.Objects.SchoolManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -71,11 +71,9 @@ public class SchoolHomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     SchoolManager us = postSnapshot.getValue(SchoolManager.class);
-                   /* System.out.println("us.getSchoolManager_id() "+us.getSchoolManager_id());
-                    System.out.println("us.userID() "+userID);*/
+
                     if (us.getSchoolManager_id().equals(schoolManagerID)) {
                         userEmail = us.getEmail();
-                       // userId = us.getSchoolManager_id();
                         Fname=us.getFirstName();
                         lName = us.getLastName();
                         SchoolID=us.getSchool_id();

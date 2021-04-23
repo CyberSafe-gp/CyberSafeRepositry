@@ -36,7 +36,6 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class EditSchoolFragment extends Fragment {
     private String userId,userEmail,Fname,lName,Sid,userType1,City;
-    private FirebaseUser SchoolUser;
     private Button btEdit,btreset;
     String userID;
     ImageView dots;
@@ -195,8 +194,6 @@ public class EditSchoolFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     SchoolManager us = postSnapshot.getValue(SchoolManager.class);
-                    System.out.println("us.getSchoolManager_id() "+us.getSchoolManager_id());
-                    System.out.println("us.userID() "+userID);
                     if (us.getSchoolManager_id().equals(userID)) {
                         userEmail = us.getEmail();
                         userId = us.getSchoolManager_id();

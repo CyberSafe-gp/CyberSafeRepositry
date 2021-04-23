@@ -29,8 +29,7 @@ public class FlagMainFragment extends Fragment {
     ArrayList<Comment> commentList = new ArrayList();
     flagBullyCommentAdapter adapter;
     DatabaseReference commentRef, commentsRef, SMAccountCredentialRef;
-    //OnItemClickListener listener;
-    String childAccount, childId,SMAccountCredentialID;
+    String SMAccountCredentialID;
     private TextView textView;
     String childID;
 

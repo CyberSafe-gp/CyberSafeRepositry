@@ -39,7 +39,6 @@ public class Edit_Parent_ProfileFragment extends Fragment {
 
     private String userId;
     ImageView dots;
-    private Button logO;
     private Button btEdit , changeP;
     private DatabaseReference g =  FirebaseDatabase.getInstance().getReference("Parents");
     FirebaseUser Cuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -89,7 +88,6 @@ public class Edit_Parent_ProfileFragment extends Fragment {
                                     case R.id.logg:
                                         //log-out from the user account+transfer him/her to the interface page+stop my service from working in the background
                                         Intent intent = new Intent(getActivity(),Interface.class);
-                                        intent.putExtra("IntentName", "hi");
                                         FirebaseAuth.getInstance().signOut();
                                         getActivity().stopService(new Intent(getActivity(), MyService.class));
 

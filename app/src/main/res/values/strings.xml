@@ -1,54 +1,12 @@
 <resources>
     <string name="app_name">CyberSafe</string>
-    <string name="left_arrow">left arrow</string>
-    <string name="home">Home</string>
-    <string name="incoming_reports">Incoming Reports</string>
     <string name="todo">TODO</string>
-    <string name="school_manager">School Manager</string>
-    <string name="parent">Parent</string>
-    <string name="register">Register</string>
-    <string name="log_in">Log-in</string>
-    <string name="add_a_new_child">Add a new child</string>
-    <string name="child_information">Child Information</string>
-    <string name="school">School</string>
-    <string name="application">Application</string>
-    <string name="no_connection">No internet connection!</string>
-    <string name="city">City</string>
-    <string name="date_of_birth">Date of Birth</string>
-    <string name="first_name">First name:</string>
-    <string name="last_name">Last name:</string>
-    <string name="gender">Gender</string>
-    <string name="grade">Grade</string>
-    <string name="change_password">Change Password</string>
-    <string name="edit">Edit</string>
     <string name="email">Email:</string>
     <string name="keyword_list">Keyword List</string>
-    <string name="add_detection_keyword">Add Detection Keyword</string>
     <string name="words_separated_by_commas">Words,separated by commas..</string>
-    <string-array name="Children">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-    </string-array>
-
-    <string-array name="application">
-        <item>TikTok</item>
-    </string-array>
 
     <string name="link">
     <a href="https://support.tiktok.com/en/using-tiktok/followers-and-following/blocking-the-users">How to block users on TikTok</a>
         </string>
-    <string name="flag_bully_comment">Flag Bully Comment</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="ViewReported" />
-    <string name="text_label_2" />
-    <string name="incoming" />
-    <string name="keyword" />
-    <string name="children">Children</string>
 </resources>

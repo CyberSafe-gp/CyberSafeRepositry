@@ -1,9 +1,6 @@
 package com.example.cybersafe;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,8 +20,8 @@ public class Report_info_inco extends AppCompatActivity {
 
     String Comment_id, Report_id, sender_id, Status,receiver_id, childID, userType;
     DatabaseReference commentRef, SMARef, childRef;
-    String childAccount, childName, application, commentText, bulliedAccount,SMAccountCredentials_id;
-    ImageView back, home;
+    String childAccount, childName, commentText, bulliedAccount,SMAccountCredentials_id;
+
 
 
     @Override
@@ -38,9 +35,7 @@ public class Report_info_inco extends AppCompatActivity {
         sender_id =getIntent().getStringExtra("sender_id");
         receiver_id =getIntent().getStringExtra("receiver_id");
         Status =getIntent().getStringExtra("Status");
-        userType =getIntent().getStringExtra("userType");
-
-        //Toolbar
+        userType=getIntent().getStringExtra("userType");
 
 
         // get the comment to retrieve the info
@@ -79,14 +74,6 @@ public class Report_info_inco extends AppCompatActivity {
             }
         });
 
-        // the info that we can reach from the comment
-/*        System.out.println("Report comment.getBody()"+comment.getBody());
-        commentText = comment.getBody();
-        bullyAccount = comment.getSender();
-        SMAccountCredentials_id = comment.getSMAccountCredentials_id();*/
-
-
-
         // get the smAccountCredentials to retrieve the info
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
         SMARef.addValueEventListener(new ValueEventListener() {
@@ -103,11 +90,7 @@ public class Report_info_inco extends AppCompatActivity {
 
                        // application = sma.getSocialMediaPlatform();
                         bulliedAccount=sma.getAccount();
-                        //childID= sma.getChild_id();
 
-/*                        //Write the platform and child account
-                        TextView WriteApplication = (TextView)findViewById(R.id.WriteApplication);
-                        WriteApplication.setText(application);*/
 
                         TextView WriteChildAccount = (TextView)findViewById(R.id.WriteBullyAccount);
                         WriteChildAccount.setText(bulliedAccount);}

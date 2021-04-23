@@ -96,7 +96,6 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        System.out.println( "OONNN SSTTAARRT" );
 
         //make references and bring information we need it in calling API
         ChildRef = FirebaseDatabase.getInstance().getReference().child( "Children" );
@@ -112,25 +111,21 @@ public class MyService extends Service {
         FirebaseUser currentParent = FirebaseAuth.getInstance().getCurrentUser();
         if (currentParent != null) {
             Parent_ID = currentParent.getUid();
-            System.out.println( "there is a Parent and the Uid Is " + Parent_ID );
+
 
         }
 
-        // URL to retrieve comment list  from child TikTok post
-        //first we make a API request to bring the number of child's video
-
-        //Get parent children
-        System.out.println( "111111" );
 
 
-        //        //Get the Social Media Account Credentials and the comment and add it to the database
+
+          //Get the Social Media Account Credentials and the comment and add it to the database
 
         ChildRef.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     parentChildren.clear();
-                    System.out.println( "there is children" );
+
                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                         Child checkChild = messageSnapshot.getValue( Child.class );
                         //Add children id that belong to the parent
@@ -139,7 +134,7 @@ public class MyService extends Service {
                             System.out.println( "childes added" );
                         }
                     }
-                    System.out.println( "parentChildren ########## " + parentChildren.isEmpty() );
+
                     if (!(parentChildren.isEmpty())) {
                         for (int i = 0; parentChildren.size() > i; i++) {
 
@@ -170,7 +165,6 @@ public class MyService extends Service {
                                                             JSONObject jsonObj3 = response.getJSONObject( "userInfo" );
                                                             JSONObject jsonArray3 = jsonObj3.getJSONObject( "stats" );
                                                             video_Count = jsonArray3.getInt( "videoCount" );
-                                                            System.out.println( video_Count );
 
 
                                                         } catch (JSONException e) {
@@ -186,7 +180,7 @@ public class MyService extends Service {
                                                             @Override
                                                             public void onErrorResponse(VolleyError error) {
                                                                 // TODO Auto-generated method stub
-                                                                System.out.println( "errrrroorrrrrrrrrrrr" );
+
                                                                 Log.d( "ERROR", "error => " + error.toString() );
                                                             }
                                                         }
@@ -204,12 +198,11 @@ public class MyService extends Service {
                                                 };
                                                 //store the requests
                                                 queue.add( getRequest );
-                                                System.out.println( "444444" );
+
 
                                                 //make a request for the media id but first we make sure that we request for all the videos the child post because each request bring only 20 videos
                                                 numberOfVideoRequest = (float) video_Count / video;
 
-                                                System.out.println( numberOfVideoRequest );
 
                                                 getVideo( numberOfVideoRequest, child_id );
 
@@ -224,9 +217,6 @@ public class MyService extends Service {
 
                                 }
                             } );
-                            System.out.println( author_id + accessToken + account );
-                            System.out.println( "33333" );
-
 
                         }
 
@@ -284,13 +274,13 @@ public class MyService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        System.out.println( "onDestroy" );
+
     }
 
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
-        System.out.println("onTaskRemoved");
+
         Intent intent = new Intent("com.android.ServiceStopped");
         sendBroadcast(intent);
 
@@ -314,14 +304,9 @@ public class MyService extends Service {
                             // specify what type of response we want from the URL. we are making a JsonObjectRequest
                             JSONObject jsonObject = jsonArray.getJSONObject( i );
                             media_id = jsonObject.getString( "id" );
-                            System.out.println( "Media id:" + media_id );
                             JSONObject userObj = jsonObject.getJSONObject( "stats" );
                             int commentCount = userObj.getInt( "commentCount" );
-                            System.out.println( "total comment recived for this post is " + commentCount );
                             numberOfCommentRequest = commentCount / comment;
-                            System.out.println( numberOfCommentRequest );
-                            System.out.println( "55555" );
-
                             getComments( numberOfCommentRequest, media_id, child_id );
 
                         }
@@ -338,7 +323,6 @@ public class MyService extends Service {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             // TODO Auto-generated method stub
-                            System.out.println( "errrrroorrrrrrrrrrrr" );
                             Log.d( "ERROR", "error => " + error.toString() );
                         }
                     }
@@ -393,14 +377,13 @@ public class MyService extends Service {
                                     JSONObject jsonObject = jsonArray.getJSONObject( j );
                                     //get the comment body
                                     String comment = jsonObject.getString( "text" );
-                                    System.out.println( "comment:" + comment );
+
                                     //get comment id
                                     String commentID = jsonObject.getString( "cid" );
-                                    System.out.println( "commentID:" + commentID );
+
                                     //Get the sender name
                                     JSONObject userObj = jsonObject.getJSONObject( "user" );
                                     String senderName = userObj.getString( "unique_id" );
-                                    System.out.println( "the sender is " + senderName );
 
                                     addComment( child_id,comment,senderName,commentID );
 
@@ -424,14 +407,13 @@ public class MyService extends Service {
 
 
             },
-//
-//
+
 
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-////                                                            // TODO Auto-generated method stub
-////
+                                                           // TODO Auto-generated method stub
+
                             Log.d( "ERROR", "error => " + error.toString() );
                         }
                     }
@@ -454,15 +436,12 @@ public class MyService extends Service {
 
     //detect if the comment contain any keyword the parent enter
     public boolean filter(String comment, String child_id) {
-        System.out.println("filter");
+
 
 
         keywordsRef = FirebaseDatabase.getInstance().getReference().child( "Keywords" );
         keywordRef = FirebaseDatabase.getInstance().getReference().child( "Keywords" );
         keywordRef.keepSynced( true );
-
-        // SMAccountCredentialRef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
-
 
         //Get the Keyword List
         keywordRef.addValueEventListener( new ValueEventListener() {
@@ -490,11 +469,11 @@ public class MyService extends Service {
             }
         } );
 
-        System.out.println("keywordRef");
+
         //Filter
         for (int i=0; keywordArrayList.size() > i ;i++) {
             String word = keywordArrayList.get(i).getKeyword().toLowerCase();
-            System.out.println("keywordArrayList");
+
 
             if (comment.toLowerCase().contains( word )) {
                 //update the Flag and send notification
@@ -538,11 +517,11 @@ public class MyService extends Service {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                System.out.println( t.getMessage() );
+
 
             }
         } );
-        System.out.println( "onResponse onResponse Reetuuurrnnn" );
+
         return bully[0];
     }
 
@@ -571,15 +550,13 @@ public class MyService extends Service {
             if (sentiment == null) {
                 return false;
             } else {
-//                System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
-//                System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
+
                 sentimentScore = sentiment.getScore();
                 language.close();
             }
 
-            // System.out.println("SSS");
         } catch (IOException e) {
-            // System.out.println("####### catch");
+
             throw new IllegalStateException( "Unable to create a language client", e );
         }
 
@@ -590,18 +567,13 @@ public class MyService extends Service {
         } else if ((-0.25) > sentimentScore && sentimentScore >= (-1.0)) {
             sentimentPNN = true;
         }
-        // System.out.println("sentimentPNN "+sentimentPNN);
+
 
         return sentimentPNN;
     }
 
 
     private void chickIfCommentExist(String child_id,String comment,String senderName,String commentID) {
-
-
-
-
-        System.out.println( "hello from chick method" );
 
 
         commentsRef.orderByChild("c_ID").equalTo(commentID).addValueEventListener(new ValueEventListener() {
@@ -627,19 +599,14 @@ public class MyService extends Service {
 
     private void addComment(String child_id,String comment,String senderName,String commentID){
 
-        System.out.println( "hello from add method" );
-
-
-
         commentsRef.orderByChild("c_ID").equalTo(commentID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    System.out.println("Yeess exists");
-                    //bus number exists in Database
+            //comment exist no need to store it again
+
                 }
-                else {
-                    System.out.println("Nooo  exists");
+                else{
                     boolean filter = filter( comment, child_id );
                     boolean ourModel = ourModel( comment );
                     boolean sentimentAnalysisAPI = sentimentAnalysisAPI( comment );
@@ -666,7 +633,6 @@ public class MyService extends Service {
 
                             if (task.isSuccessful()) {
 
-                                System.out.println("isSuccessful isSuccessful isSuccessful");
 
                            if (bully) {
                                showNotificationBullyComment( child_id );

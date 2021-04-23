@@ -56,7 +56,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
     //shahad
     private EditText firstnameCH,lastnameCH;
-    private Button editInfo,deletB ;
+    private Button editInfo ;
     private String userIdP,userIdS,Fname,lName,DOB,Cityy,Genderr,childID;
     private  int Gradee;
     private FirebaseUser Cuser;
@@ -92,55 +92,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
         setSchoolManager1 =findViewById((R.id.setSchoolManager1));
         date_picker = findViewById(R.id.date_picker1);
 
-
-     /*   //delete-child-button
-        deletB=  findViewById(R.id.buttonx);
-        deletB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //code for deleting the child
-            public void onClick(View v) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Edit_Child_Profile.this);
-                // Setting Alert Dialog Title
-                alertDialogBuilder.setTitle("Delete Child");
-                // Setting Alert Dialog Message
-                alertDialogBuilder.setMessage("Are you sure you want to Delete this child?");
-                //Confirm the delete
-                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        DatabaseReference mFirebaseInstance = FirebaseDatabase.getInstance().getReference().child("Children");
-                        DatabaseReference mFirebaseInstance2 = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
-                        mFirebaseInstance2.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                for (DataSnapshot childrf : snapshot.getChildren()) {
-                                    SMAccountCredentials findSMA = childrf.getValue(SMAccountCredentials.class);
-                                    if(findSMA.getChild_id().equals(childID)){
-                                        Toast.makeText(Edit_Child_Profile.this, "Deleted successfully", Toast.LENGTH_LONG).show();
-                                        String SMAId=findSMA.getId();
-                                        mFirebaseInstance2.child(SMAId).removeValue();
-                                        mFirebaseInstance.child(childID).removeValue();
-                                        finish();
-                                    }
-
-
-                                }
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-                    }
-                });
-                // not confirm
-                alertDialogBuilder.setNegativeButton("Cancel", null).show();
-
-            }
-        });*/
-
         
 
 
@@ -166,7 +117,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
                         lastnameCH .setText(lName);
 
                        String[] ddatte = DOB.split("/");
-                       System.out.println("ddatte length "+ddatte.length+ " date "+ddatte[0]+ " ee "+ddatte[1]+" " +ddatte[2]);
                         date_picker.setText(makeDateString(Integer.parseInt(ddatte[1]), getMonthFormat(ddatte[0]),Integer.parseInt(ddatte[2])));
 
                         gradeSpinner = (Spinner)findViewById(R.id.Grade1);
@@ -349,7 +299,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                         if (dataSnapshot.exists()) {
                                             //Check if user select city
                                             if(!userCity.equals("Select")){
-                                                System.out.println("EEEEMMMMYYYY");
                                                 schoolList.clear();
                                                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                                                     School findSchool = postSnapshot.getValue(School.class);
@@ -360,12 +309,10 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
                                                 }
 
-                                                System.out.println("schoolName" +schoolName);
+
                                                 //Set child school
                                                 for (int i = 0; i < schoolList.size(); i++) {
-                                                    System.out.println("schoolList.get(i) "+schoolList.get(i));
                                                     if (schoolList.get(i).equals(schoolName)) {
-                                                        System.out.println("schoolName "+schoolName);
                                                         schoolSpinner.setSelection(i);
                                                     }
                                                 }
@@ -379,9 +326,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                     public void onCancelled(DatabaseError databaseError) {
                                     }
                                 });
-
-
-
 
                                 //Get the user select for School
                                 schoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -448,11 +392,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                     }
                                 });
 
-
-
-
-
-
                             }
                             @Override
                             public void onNothingSelected(AdapterView<?> arg1)
@@ -460,9 +399,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
                             }
                         });
-
-
-
 
                     }
                 }
@@ -508,10 +444,10 @@ public class Edit_Child_Profile extends AppCompatActivity {
      }
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void savechild() {
-        System.out.println("childID "+childID);
+
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Children").child(childID);
 
-        System.out.println("add savechild");
+
 
         // check First name not empty
         if(firstnameCH.getText().toString().isEmpty()){
@@ -571,8 +507,6 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     finish();
-                } else {
-                   // Toast.makeText(Edit_Child_Profile.this, "Child doesn't updated", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -596,7 +530,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
     private String makeDateString(int day, int month, int year) {
         if (day == 0 && month == 0 && year == 0 )
             return getMonthFormat(0) + "" + "" ;
-        System.out.println("month "+month);
+
 
         return getMonthFormat(month) + " " + day + " " + year;
 
@@ -704,7 +638,4 @@ public class Edit_Child_Profile extends AppCompatActivity {
             return 0;
         }
     }
-
-
-
 }

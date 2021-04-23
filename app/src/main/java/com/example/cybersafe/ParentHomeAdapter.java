@@ -33,7 +33,7 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
     private Context context;
     private List<Child> childList;
     private OnItemClickListener listener;
-    DatabaseReference commentsRef, ChildRef,SMARef;
+    DatabaseReference commentsRef,SMARef;
     String SMA_id;
 
 

@@ -23,7 +23,7 @@ public class Report_info_incomingFragment extends Fragment {
 
     String Comment_id, Report_id, sender_id, Status,receiver_id, childID, userType;
     DatabaseReference commentRef, SMARef, childRef;
-    String childAccount, childName, application, commentText, bulliedAccount,SMAccountCredentials_id;
+    String childAccount, childName,commentText, bulliedAccount,SMAccountCredentials_id;
 
 
 
@@ -51,18 +51,16 @@ public class Report_info_incomingFragment extends Fragment {
         sender_id =bundle.getString("sender_id");
         receiver_id =bundle.getString("receiver_id");
         Status =bundle.getString("Status");
-        userType =bundle.getString("userType");
+        userType=bundle.getString("userType");
 
-        //Toolbar
 
-        System.out.println("333333");
         // get the comment to retrieve the info
         commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
 
         commentRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                System.out.println("########");
+
 
                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
 
@@ -72,8 +70,6 @@ public class Report_info_incomingFragment extends Fragment {
 
                         // the info that we can reach from the comment
                         commentText = com.getBody();
-                        System.out.println("commentText " +commentText);
-                        System.out.println("Comment_id " +Comment_id);
                         childAccount = com.getSender(); //Child
                         SMAccountCredentials_id = com.getSMAccountCredentials_id();//bulied
 
@@ -95,14 +91,6 @@ public class Report_info_incomingFragment extends Fragment {
             }
         });
 
-        // the info that we can reach from the comment
-/*        System.out.println("Report comment.getBody()"+comment.getBody());
-        commentText = comment.getBody();
-        bullyAccount = comment.getSender();
-        SMAccountCredentials_id = comment.getSMAccountCredentials_id();*/
-
-
-
         // get the smAccountCredentials to retrieve the info
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
         SMARef.addValueEventListener(new ValueEventListener() {
@@ -117,13 +105,7 @@ public class Report_info_incomingFragment extends Fragment {
 
                         // the info that we can reach from the SMAccountCredentials
 
-                        // application = sma.getSocialMediaPlatform();
                         bulliedAccount=sma.getAccount();
-                        //childID= sma.getChild_id();
-
-/*                        //Write the platform and child account
-                        TextView WriteApplication = (TextView)findViewById(R.id.WriteApplication);
-                        WriteApplication.setText(application);*/
 
                         TextView WriteChildAccount = (TextView)getActivity().findViewById(R.id.WriteBullyAccount);
                         WriteChildAccount.setText(bulliedAccount);}
@@ -166,11 +148,6 @@ public class Report_info_incomingFragment extends Fragment {
 
             }
         });
-
-
-
-
-
 
     }
 }

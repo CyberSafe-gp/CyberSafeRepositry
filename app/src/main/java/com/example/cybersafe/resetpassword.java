@@ -25,13 +25,15 @@ public class resetpassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpassword);
-//bring the id's of the button,and the editText
+     //bring the id's of the button,and the editText
+
         emailEditText = (EditText) findViewById(R.id.editTextTextEmailAddress22);
         resetPasswordB =(Button) findViewById(R.id.button15);
-//bring the current user loged-in
+
+     //bring the current user loged-in
         Auth= FirebaseAuth.getInstance();
 
-// if the user clicked the button call the resetpassword method
+        // if the user clicked the button call the resetpassword method
         resetPasswordB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

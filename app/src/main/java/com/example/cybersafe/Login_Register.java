@@ -26,9 +26,9 @@ public class Login_Register extends AppCompatActivity {
 
         TextView setUserType = findViewById(R.id.userType);
         //userType
-        if(user.equals("Parent")){
+        if(user.equalsIgnoreCase("Parent")){
             setUserType.setText("Parent");
-        }else if(user.equals("SchoolManager")){
+        }else if(user.equalsIgnoreCase("SchoolManager")){
             setUserType.setText("School Manager");
         }
 
@@ -75,21 +75,6 @@ public class Login_Register extends AppCompatActivity {
 
             }
         });
-
-        //Back-Button -image
-//
-//       bk =(ImageButton)findViewById(R.id.imageButton);
-//       bk.setOnClickListener(v -> {
-//           Intent intentt = new Intent(Login_Register.this,Interface.class);
-//           startActivity(intentt);
-//       });
-
-
-
-
-
-
-
 
 
     }

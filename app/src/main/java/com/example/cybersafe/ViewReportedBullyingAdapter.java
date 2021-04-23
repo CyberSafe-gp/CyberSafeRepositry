@@ -71,7 +71,6 @@ public class ViewReportedBullyingAdapter extends RecyclerView.Adapter<ViewReport
         String stat = reportsList.get(position).getStatus();
         String comment_id=reportsList.get(position).getComment_id();
         // set the text for the item يمكن يتغير
-        //holder.WriteRepNo.setText("Report("+(position+1)+")");
 
         DatabaseReference commentsRef = FirebaseDatabase.getInstance().getReference().child("Comments");
 
