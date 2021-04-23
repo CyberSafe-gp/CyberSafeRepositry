@@ -1,16 +1,21 @@
 package com.example.cybersafe;
 
-        import android.content.Intent;
+        import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -34,9 +39,10 @@ public class EditSchoolFragment extends Fragment {
     private FirebaseUser SchoolUser;
     private Button btEdit,btreset;
     String userID;
+    ImageView dots;
     private DatabaseReference SMRef =  FirebaseDatabase.getInstance().getReference("SchoolManagers");
     private EditText editTextfName,editTextlName,editTextEmail;
-    private Button logOut;
+
     public EditSchoolFragment() {
         // Required empty public constructor
     }
@@ -61,8 +67,7 @@ public class EditSchoolFragment extends Fragment {
         if (user != null)
             userID = user.getUid();
         else {
-            System.out.println("userID out");
-            // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
+        // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
             Intent in = new Intent(getActivity(), Interface.class);
             startActivity(in);
             //go back
@@ -73,7 +78,7 @@ public class EditSchoolFragment extends Fragment {
         editTextEmail = getActivity().findViewById(R.id.email2);
         btreset=(Button)getActivity().findViewById(R.id.button21);
         btEdit=(Button)getActivity().findViewById(R.id.editb);
-        logOut=(Button)getActivity().findViewById(R.id.Logg2);
+
         userType1= getActivity().getIntent().getStringExtra("userType");
 
         //to go for the reset password page
@@ -83,25 +88,105 @@ public class EditSchoolFragment extends Fragment {
             //bring the type of loged-in user
             startActivity(intent);
         });
+        //for the 3 dots icon
+        dots=getActivity().findViewById( R.id.dotEdit );
 
-
-        //log-out
-        logOut.setOnClickListener(new View.OnClickListener() {
+        dots.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.dotEdit:
 
-                startActivities();
+                        PopupMenu popup = new PopupMenu(getActivity(),v);
+                        popup.getMenuInflater().inflate(R.menu.editmenue,
+                                popup.getMenu());
+                        popup.show();
+                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+
+                                switch (item.getItemId()) {
+                                    case R.id.logg:
+                                        //log-out from the user account+transfer him/her to the interface page+stop my service from working in the background
+                                                Intent intent = new Intent(getActivity(),Interface.class);
+                                                intent.putExtra("IntentName", "hi");
+                                                FirebaseAuth.getInstance().signOut();
+                                                getActivity().stopService(new Intent(getActivity(), ServiceSM.class));
+                                                startActivity(intent);
+
+                                        break;
+                                    case R.id.delete:
+                                        //Show confirm message
+
+                                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                                        // Setting Alert Dialog Title
+                                        alertDialogBuilder.setTitle("Delete account");
+                                        // Setting Alert Dialog Message
+                                        alertDialogBuilder.setMessage("Are you sure you want to delete your account?");
+                                        //Confirm the delete
+                                        alertDialogBuilder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                DatabaseReference schoolReference = FirebaseDatabase.getInstance().getReference().child( "SchoolManagers" );
+                                                schoolReference.addValueEventListener( new ValueEventListener() {
+
+
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                        for (DataSnapshot schoolrf : snapshot.getChildren()) {
+                                                            SchoolManager SchoolOBJ = schoolrf.getValue( SchoolManager.class );
+                                                            if (SchoolOBJ.getSchoolManager_id().equals( userID )) {
+                                                                //delete the reference
+
+                                                                schoolReference.child( userID).removeValue();
+                                                                FirebaseAuth.getInstance().getCurrentUser().delete();
+                                                                Intent intent = new Intent(getActivity(),Interface.class);
+
+                                                                startActivity(intent);
+
+
+
+                                                                                                }
+
+                                                                                            }
+                                                                                        }
+
+                                                                                    @Override
+                                                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                                    }
+                                                                                } );
+                                                                            }
+
+                                                                        });
+
+
+
+                                        // not confirm
+                                        alertDialogBuilder.setNegativeButton("Cancel", null).show();
+
+
+
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+
+                                return true;
+                            }
+                        });
+
+                        break;
+
+                    default:
+                        break;
+                }
             }
-
-            private void startActivities() {
-                Intent intent = new Intent(getActivity(),Interface.class);
-                intent.putExtra("IntentName", "hi");
-                FirebaseAuth.getInstance().signOut();
-                getActivity().stopService(new Intent(getActivity(), ServiceSM.class));
-                startActivity(intent);
-            }
-
         });
+
+
 
 
         SMRef.addValueEventListener(new ValueEventListener() {

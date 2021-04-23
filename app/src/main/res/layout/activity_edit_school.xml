@@ -33,21 +33,7 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="21dp" />
 
-        <Button
-            android:id="@+id/Logg2"
-            android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="189dp"
-            android:text="Log Out"
-            android:textColor="#ee9a38"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.625"
-            app:layout_constraintVertical_bias="0.0"
-            app:strokeColor="#FFFFFF" />
+
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -153,6 +139,19 @@
             app:backgroundTint="#ee9a38"
             app:theme="@style/Theme.MaterialComponents" />
 
+
     </LinearLayout>
+    <ImageView
+        android:id="@+id/dotEdit"
+        android:layout_width="100dp"
+        android:layout_height="96dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:src="@drawable/dot"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

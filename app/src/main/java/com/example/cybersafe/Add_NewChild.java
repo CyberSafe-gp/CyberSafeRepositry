@@ -642,7 +642,7 @@ public class Add_NewChild extends AppCompatActivity {
         if (day == 0 && month == 0 && year == 0 )
         return getMonthFormat(0) + "" + "" ;
 
-        return getMonthFormat(month) + " " + day + " " + year;
+        return getMonthFormat(month) + "/" + day + "/" + year;
 
     }
 
