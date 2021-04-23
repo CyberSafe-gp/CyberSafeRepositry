@@ -64,6 +64,7 @@ ImageView dots;
         return inflater.inflate(R.layout.activity_edit__parent__profile, container, false);
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         editTextfName = getActivity().findViewById(R.id.firstNameB);
