@@ -68,7 +68,7 @@ public class Report_info_reportedFragment extends Fragment {
                         SMAccountCredentials_id = com.getSMAccountCredentials_id();
 
                         //Write the bully comment and the bully(sender) account and child account on the text view
-                        TextView BullyCommentText = (TextView)getActivity().findViewById(R.id.BullyCommentText);
+                        TextView BullyCommentText = (TextView)getActivity().findViewById(R.id.WriteChildComment);
                         BullyCommentText.setText(commentText);
 
                         TextView WriteBullyAccount = (TextView)getActivity().findViewById(R.id.WriteBullyAccount);
