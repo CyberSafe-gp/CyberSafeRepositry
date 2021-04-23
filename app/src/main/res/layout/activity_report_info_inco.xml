@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/WriteChildAccount"
             android:layout_marginTop="42dp"
-            android:text="Bully Child Account:"
+            android:text="bullied child account:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:textStyle="bold" />
 
