@@ -492,10 +492,9 @@ public class Add_NewChild extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(Add_NewChild.this, "SMAccountCredentials added successfully", Toast.LENGTH_LONG).show();
-
+                                //SMAccountCredentials added successfully
                             } else {
-                                Toast.makeText(Add_NewChild.this, "SMAccountCredentials doesn't added", Toast.LENGTH_LONG).show();
+                                //SMAccountCredentials doesn't added
                             }
 
                         }
@@ -506,7 +505,6 @@ public class Add_NewChild extends AppCompatActivity {
                     Intent intent = new Intent(Add_NewChild.this,ParentHome_New.class);
                     setResult(RESULT_OK);
                     startActivity(intent);
-                    finish();
                 } else {
                     Toast.makeText(Add_NewChild.this, "Child doesn't added", Toast.LENGTH_LONG).show();
                 }

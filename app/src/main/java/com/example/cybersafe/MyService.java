@@ -667,7 +667,7 @@ public class MyService extends Service {
                                                                        ReportRef = FirebaseDatabase.getInstance().getReference().child( "Reports" );
 
                                                                        String Report_id = ReportRef.push().getKey();
-                                                                       Report incomingReport = new Report( Report_id, "Admin", ParentID, Comment_ID, "Not confirm", getDateTime());
+                                                                       Report incomingReport = new Report( Report_id, "Admin", ParentID, Comment_ID, "Pending", getDateTime());
                                                                        ReportRef.child(Report_id).setValue(incomingReport).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                            @Override
                                                                            public void onComplete(@NonNull Task<Void> task) {
@@ -727,7 +727,7 @@ public class MyService extends Service {
     //For the current parent if detected a bully comment for one of his/her children notify the parent
     void showNotificationBullyComment(String child_id) {
         String title="CyberSafe";
-        String message="Bully comment detected! your child receive a bully comment";
+        String message="Bully comment detected! your child received a bullying comment";
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {

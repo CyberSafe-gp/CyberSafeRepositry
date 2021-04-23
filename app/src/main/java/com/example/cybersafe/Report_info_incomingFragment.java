@@ -46,6 +46,7 @@ public class Report_info_incomingFragment extends Fragment {
         Bundle bundle = this.getArguments();
 
 
+        //Report information
         Comment_id =bundle.getString("Comment_id");
         Report_id =bundle.getString("Report_id");
         sender_id =bundle.getString("sender_id");
@@ -68,17 +69,15 @@ public class Report_info_incomingFragment extends Fragment {
 
                     if (com.getComment_id().equals(Comment_id)){
 
-                        // the info that we can reach from the comment
+                        //The info that we can reach from the comment
                         commentText = com.getBody();
-                        childAccount = com.getSender(); //Child
                         SMAccountCredentials_id = com.getSMAccountCredentials_id();//bulied
+                        childAccount= com.getSender();//child
 
                         //Write the bully comment and the bully(sender) account and child account on the text view
                         TextView BullyCommentText = (TextView)getActivity().findViewById(R.id.WriteChildComment);
                         BullyCommentText.setText(commentText);
 
-                        TextView WriteBullyAccount = (TextView)getActivity().findViewById(R.id.WriteChildAccount);
-                        WriteBullyAccount.setText(childAccount);
 
 
                         break;}
@@ -124,8 +123,8 @@ public class Report_info_incomingFragment extends Fragment {
                                     Child ch = messageSnapshot.getValue(Child.class);
                                     if (ch.getChild_id().equals(childID)){
                                         childName = ch.getFirstName() +" "+ ch.getLastName();
-                                        TextView WriteChildName = (TextView)getActivity().findViewById(R.id.WriteChildName);
-                                        WriteChildName.setText(childName);
+                                        TextView WriteChildName = (TextView)getActivity().findViewById(R.id.cyberbully);
+                                        WriteChildName.setText("Your child "+childName+" is being cyberbullying");
 
                                         break;}
                                 }

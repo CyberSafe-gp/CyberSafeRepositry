@@ -31,7 +31,7 @@ public class Report_info_reportedFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_report_info_inco, container, false);
+        return inflater.inflate(R.layout.report_info_reported, container, false);
     }
 
     @Override
@@ -67,10 +67,11 @@ public class Report_info_reportedFragment extends Fragment {
                         bullyAccount = com.getSender();
                         SMAccountCredentials_id = com.getSMAccountCredentials_id();
 
-                        //Write the bully comment and the bully(sender) account and child account on the text view
-                        TextView BullyCommentText = (TextView)getActivity().findViewById(R.id.WriteChildComment);
+                        //Write the bully comment
+                        TextView BullyCommentText = (TextView)getActivity().findViewById(R.id.BullyCommentText);
                         BullyCommentText.setText(commentText);
 
+                        //Write the bully(sender) username
                         TextView WriteBullyAccount = (TextView)getActivity().findViewById(R.id.WriteBullyAccount);
                         WriteBullyAccount.setText(bullyAccount);
 
@@ -102,9 +103,8 @@ public class Report_info_reportedFragment extends Fragment {
                         childAccount=sma.getAccount();
                         childID= sma.getChild_id();
 
-                        //Write the platform and child account
 
-
+                        //Write the child username
                         TextView WriteChildAccount = (TextView)getActivity().findViewById(R.id.WriteChildAccount);
                         WriteChildAccount.setText(childAccount);
 
@@ -117,7 +117,7 @@ public class Report_info_reportedFragment extends Fragment {
 
                                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                     Child ch = messageSnapshot.getValue(Child.class);
-                                    //The comment not bully and same as the child email
+                                    //The comment not bully and same as the child id
                                     if (ch.getChild_id().equals(childID)){
                                         childName = ch.getFirstName() +" "+ ch.getLastName();
                                         TextView WriteChildName = (TextView)getActivity().findViewById(R.id.WriteChildName);

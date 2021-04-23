@@ -143,7 +143,7 @@ public class ViewReportedBullyingAdapter extends RecyclerView.Adapter<ViewReport
 
         // اخليها اخضر واحمر
         if(stat.equals("Confirm")){
-            holder.WriteStatus.setText(stat);
+            holder.WriteStatus.setText("Confirmed");
             holder.dot.setTextColor(Color.parseColor("#ff669900")); //Green
         }
         else{

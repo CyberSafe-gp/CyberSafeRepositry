@@ -185,14 +185,13 @@ public class IncomingFragment extends Fragment {
     public void reportInfo(Report report){
         String status = report.getStatus();
         String report_id = report.getReport_id();
-        if (status.equals("Pending"))
-            reportRef.child(report_id).child("status").setValue("Confirm");
+        if (status.equalsIgnoreCase("Pending"))//If School Manager or Parent ans the status is Pending(Not confirm)
+            reportRef.child(report_id).child("status").setValue("Confirm");//Update the status to Confirm
 
-
-        String com_id = report.getComment_id();
-        String rep_id = report.getReport_id();
-        String sender_id = report.getSender_id();
-        String receiver_id = report.getReceiver_id();
+        String com_id = report.getComment_id();//The report comment id
+        String rep_id = report.getReport_id();//The report report id
+        String sender_id = report.getSender_id();//The report sender id
+        String receiver_id = report.getReceiver_id();//The report receiver id
         String sta = report.getStatus();
 
         if(userType.equalsIgnoreCase("Parent")){

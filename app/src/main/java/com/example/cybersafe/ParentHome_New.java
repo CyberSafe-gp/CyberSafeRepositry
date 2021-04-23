@@ -45,6 +45,7 @@ ParentHome_New extends AppCompatActivity {
 
         openNotification = getIntent().getStringExtra("openNotification");
 
+        //If user click the notification
         if (openNotification != null){
 
             if(openNotification.equals("BullyComment")){

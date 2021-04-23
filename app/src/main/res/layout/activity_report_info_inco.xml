@@ -64,15 +64,6 @@
 
 
         <TextView
-            android:id="@+id/ChildComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text=" "
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/WriteChildComment"
             android:layout_width="241dp"
             android:layout_height="wrap_content"
@@ -83,7 +74,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginStart="69dp"
             android:layout_marginLeft="69dp"
-            android:layout_marginTop="59dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="52dp"
             android:layout_marginRight="52dp"
             android:background="@color/lightGray"
@@ -96,35 +87,35 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
         <TextView
-            android:id="@+id/WriteChildName"
+            android:id="@+id/cyberbully"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="150dp"
             android:layout_below="@id/ChildName"
             android:layout_marginTop="10dp"
-            android:text=" "
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+            android:text="Your child is being cyberbullying"
+            android:textColor="#ee9a38"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
         <TextView
-            android:id="@+id/WriteChildAccount"
+            android:id="@+id/ChildComment"
+            android:layout_below="@+id/cyberbully"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ChildAccount"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="208dp"
-            android:layout_marginLeft="215dp"
-            android:layout_marginTop="10dp"
-            android:text=" "
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+            android:layout_marginTop="15dp"
+            android:textColor="@color/blue"
+            android:text="Comment:"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/BullyAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/WriteChildAccount"
-            android:layout_marginTop="158dp"
-            android:text="bullied username:"
+            android:layout_below="@id/WriteChildComment"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/blue"
+            android:text="Bullied Username:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:textStyle="bold" />
 
@@ -142,10 +133,9 @@
             android:id="@+id/Application"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_below="@id/WriteChildAccount"
+            android:layout_below="@id/WriteChildComment"
             android:layout_marginLeft="97dp"
-            android:layout_marginTop="159dp"
+            android:layout_marginTop="50dp"
             android:layout_toRightOf="@id/BullyAccount"
             android:text="Application:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -153,17 +143,16 @@
 
         <ImageView
             android:id="@+id/appIcon"
-            android:layout_width="115dp"
-            android:layout_height="24dp"
+            android:layout_width="75dp"
+            android:layout_height="25dp"
             android:layout_below="@+id/Application"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginStart="246dp"
-            android:layout_marginLeft="246dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="235dp"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="6dp"
             android:layout_marginRight="200dp"
             android:background="@drawable/tiktoklogo" />
-
     </RelativeLayout>
 
 
