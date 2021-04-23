@@ -55,13 +55,14 @@ public class Report_info_incomingFragment extends Fragment {
 
         //Toolbar
 
-
+        System.out.println("333333");
         // get the comment to retrieve the info
         commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
 
         commentRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("########");
 
                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
 
@@ -71,11 +72,13 @@ public class Report_info_incomingFragment extends Fragment {
 
                         // the info that we can reach from the comment
                         commentText = com.getBody();
+                        System.out.println("commentText " +commentText);
+                        System.out.println("Comment_id " +Comment_id);
                         childAccount = com.getSender(); //Child
                         SMAccountCredentials_id = com.getSMAccountCredentials_id();//bulied
 
                         //Write the bully comment and the bully(sender) account and child account on the text view
-                        TextView BullyCommentText = (TextView)getActivity().findViewById(R.id.WriteChildAccount);
+                        TextView BullyCommentText = (TextView)getActivity().findViewById(R.id.WriteChildComment);
                         BullyCommentText.setText(commentText);
 
                         TextView WriteBullyAccount = (TextView)getActivity().findViewById(R.id.WriteChildAccount);

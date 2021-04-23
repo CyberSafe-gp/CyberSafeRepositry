@@ -86,7 +86,7 @@
             android:maxWidth="320dp"
             android:minWidth="200dp"
             android:padding="10dp"
-            android:text=""
+            android:text=" "
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
            />
 
@@ -108,7 +108,7 @@
             android:maxWidth="150dp"
             android:layout_below="@id/ChildName"
             android:layout_marginTop="10dp"
-            android:text=""
+            android:text=" "
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
 
         <TextView
@@ -133,7 +133,7 @@
             android:layout_marginStart="208dp"
             android:layout_marginLeft="215dp"
             android:layout_marginTop="10dp"
-            android:text=""
+            android:text=" "
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
 
         <TextView
@@ -151,24 +151,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text=""
+            android:text=" "
             android:layout_below="@id/BullyAccount"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
 
-        <!--
-        <TextView
-            android:id="@+id/WriteApplication"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Application"
-            android:layout_toRightOf="@id/appIcon"
-
-            android:layout_marginStart="3dp"
-            android:layout_marginLeft="215dp"
-            android:layout_marginTop="10dp"
-            android:text="Tiktok"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
--->
 
         <TextView
             android:id="@+id/Application"

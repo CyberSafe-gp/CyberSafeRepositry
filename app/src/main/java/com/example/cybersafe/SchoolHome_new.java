@@ -35,6 +35,8 @@ public class SchoolHome_new extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.BLACK));
         BadgeDrawable badge = bottomNavigationView.getOrCreateBadge(R.id.navigation_incoming2);
+        badge.setVisible(false);
+
 
         if (savedInstanceState == null) {
 
