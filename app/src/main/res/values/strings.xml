@@ -8,5 +8,6 @@
     <string name="link">
     <a href="https://support.tiktok.com/en/using-tiktok/followers-and-following/blocking-the-users">How to block users on TikTok</a>
         </string>
+    <string name="TikApiNote"><b>Note:</b>\n\n*In this step you need to let your child\'s TikTok account public if it\'s private.\n\n*If this is <b>not your first child</b> to add please  <a href="https://tikapi.io/account/authorize?client_id=c_8PGS0I4EY9&amp;redirect_uri=https://tikapi.io/success ">visit this link</a> and make sure that you log out from the previous account. After you log to please come back and click the TikTok image.</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
