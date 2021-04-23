@@ -24,9 +24,13 @@ import java.util.regex.Pattern;
 
 
 public class Add_Detection_Keyword2 extends AppCompatActivity {
+
+    //Modifiers
     private TextInputEditText keywords;
     public Button add;
     String id, userType;
+
+
     FirebaseDatabase mDatabase =FirebaseDatabase.getInstance();
     DatabaseReference mDbRef = mDatabase.getReference("Keywords");
 
@@ -46,30 +50,24 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
 
         } else {
             System.out.println("userID out");
-            // ابي احط الصفحة الاولى حقت البارنت او السكول مانجر بس ما عرفت وش اسمها
             Intent in = new Intent(Add_Detection_Keyword2.this, Interface.class);
             startActivity(in);
         }
 
 
-
+        //Add Keywords Button.
         add = findViewById(R.id.adD);
-
-
-
         add.setOnClickListener((View v) -> {
 
                 addDetectionKeywords();
 
         });
 
-
-
-
     }
 
     private void addDetectionKeywords() {
 
+        //Get the keywords if the field is not empty.
         String keyWords = keywords.getText().toString().trim();
         if (keyWords.isEmpty()) {
             keywords.setError("Field can not be empty");
@@ -78,29 +76,35 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
         } else
             keywords.getText().clear();
 
-        //String[] KEYWORDS = keyWords.split(",");
+        //Split the keywords and store them in the array.
         String[] KEYWORDS = keyWords.split("،|,");
-       // Pattern p = Pattern.compile("[a-z]+|[A-Z]+|[0-9]+|\\s+");
-       // Pattern EnglishPattern = Pattern.compile("^[\\s\\w\\d\\?><;,\\{\\}\\[\\]\\-_\\+=!@\\#\\$%^&\\*\\|\\']*$");
-      //regular Exprission to detect arabic lamguage
+
+       //Regular Expression to detect the Arabic language.
         Pattern ArabicPattern = Pattern.compile("^[\\u0621-\\u064A]+$");
 
-
+        //KEYWORDS array length.
         int len = KEYWORDS.length;
 
-
+        //Detect the language for each keyword in the array By using For Loop.
         for (int i = 0; i < len; i++) {
-            //Matcher m = EnglishPattern.matcher(KEYWORDS[i]);
+
+
+            //Check if the keyword language match of Arabic language.
             Matcher m2 = ArabicPattern.matcher(KEYWORDS[i]);
 
 
-            //Arabic-Keywords
+            //Arabic language - Keywords.
              if (m2.matches()) {
-               // String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
                  String keyId=mDbRef.push().getKey();
+
+                 //Create the object of Keyword.
                 Keyword k= new Keyword(keyId,KEYWORDS[i], "Arabic",id);
+
+                //The keywords added successfully to the list
                 String successfully = KEYWORDS[i]+ " added successfully";
                 String notSuccessfully = KEYWORDS[i]+ " not added successfully";
+
                 mDbRef.child(keyId).setValue(k).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -117,11 +121,10 @@ public class Add_Detection_Keyword2 extends AppCompatActivity {
             }
 
 
-            //Other languages
+            //Other languages - Keywords.
             else  {
 
-                // String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                 String keyId=mDbRef.push().getKey();
+                String keyId=mDbRef.push().getKey();
                 Keyword k= new Keyword(keyId,KEYWORDS[i], "Not Arabic",id);
                 String successfully = KEYWORDS[i]+ " added successfully";
                 String notSuccessfully = KEYWORDS[i]+ " not added successfully";
