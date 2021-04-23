@@ -45,18 +45,14 @@ public class Add_NewChild extends AppCompatActivity {
 
 
     DatabaseReference schoolRef , ChildRef , SMARef,schoolManagerRef;
-    private Spinner genderSpinner, citySpinner,schoolSpinner,gradeSpinner,Applications;
+    private Spinner genderSpinner, citySpinner,schoolSpinner,gradeSpinner;
     private String gender[],city[],Grade[];
     private String userCity, userGender,userGrade,userschool,parentid,school_id,date ;
-    private String apps;
     private TextView oom;
     private Button date_picker;
     private DatePickerDialog datePickerDialog;
-    private FirebaseAuth mAuth;
     //start for social media
     private EditText firstnameCH,lastnameCH;
-    private EditText username;
-    private EditText password ;
     private FirebaseUser user;
     private Button add ;
     //TextView setSchoolManager;
@@ -503,6 +499,7 @@ public class Add_NewChild extends AppCompatActivity {
                     Toast.makeText(Add_NewChild.this, "Child added successfully", Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(Add_NewChild.this,ParentHome_New.class);
+                    intent.putExtra("userType","Parent");
                     setResult(RESULT_OK);
                     startActivity(intent);
                 } else {
