@@ -454,6 +454,7 @@ public class MyService extends Service {
 
     //detect if the comment contain any keyword the parent enter
     public boolean filter(String comment, String child_id) {
+        System.out.println("filter");
 
 
         keywordsRef = FirebaseDatabase.getInstance().getReference().child( "Keywords" );
@@ -489,12 +490,13 @@ public class MyService extends Service {
             }
         } );
 
-
+        System.out.println("keywordRef");
         //Filter
-        for (Keyword keyword : keywordArrayList) {
-            String word = keyword.getKeyword().toLowerCase();
+        for (int i=0; keywordArrayList.size() > i ;i++) {
+            String word = keywordArrayList.get(i).getKeyword().toLowerCase();
+            System.out.println("keywordArrayList");
 
-            if (comment.contains( word )) {
+            if (comment.toLowerCase().contains( word )) {
                 //update the Flag and send notification
                 return true;
             }

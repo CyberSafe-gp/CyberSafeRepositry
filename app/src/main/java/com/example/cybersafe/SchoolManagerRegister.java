@@ -48,7 +48,7 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
     private String city[],userCity;
     public boolean find=false;
     ImageView setManager;
-    Boolean checkSchool;
+    Boolean checkSchool=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -315,7 +315,11 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
                 confirmPass.requestFocus();
                 return;
             }}
-
+        // check school  is not empty
+        if (schoolname.equals("Select")){
+            Toast.makeText(SchoolManagerRegister.this, "Please select school", Toast.LENGTH_LONG).show();
+            return;
+        }
         //To
         mAuth.createUserWithEmailAndPassword(email1, password1)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

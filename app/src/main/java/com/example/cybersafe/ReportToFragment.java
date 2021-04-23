@@ -213,7 +213,7 @@ public class ReportToFragment extends Fragment {
                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                     SchoolManager SM = messageSnapshot.getValue(SchoolManager.class);
                     if(SM.getSchool_id().equals(childSchoolId)){//check if School Manager exist and get the School Manager ID
-                        schoolMID=SM.getSchool_id();
+                        schoolMID=SM.getSchoolManager_id();
                         findSchoolManager=true;
                     }
                 }
@@ -256,8 +256,6 @@ public class ReportToFragment extends Fragment {
                                                   if (task.isSuccessful()) {
                                                       Toast.makeText(getActivity(), "Report send successfully", Toast.LENGTH_LONG).show();
 
-
-                                                      getActivity().finish();
 
                                                   } else {
                                                       Toast.makeText(getActivity(), "Report doesn't send successfully", Toast.LENGTH_LONG).show();

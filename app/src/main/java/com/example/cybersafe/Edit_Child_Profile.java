@@ -166,7 +166,8 @@ public class Edit_Child_Profile extends AppCompatActivity {
                         lastnameCH .setText(lName);
 
                        String[] ddatte = DOB.split("/");
-                        date_picker.setText(makeDateString(getMonthFormat(ddatte[0]),Integer.parseInt(ddatte[1]),Integer.parseInt(ddatte[2])));
+                       System.out.println("ddatte length "+ddatte.length+ " date "+ddatte[0]+ " ee "+ddatte[1]+" " +ddatte[2]);
+                        date_picker.setText(makeDateString(Integer.parseInt(ddatte[1]), getMonthFormat(ddatte[0]),Integer.parseInt(ddatte[2])));
 
                         gradeSpinner = (Spinner)findViewById(R.id.Grade1);
                         Grade = new String[] {"1", "2","3", "4","5", "6","7", "8","9"};
@@ -348,6 +349,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                         if (dataSnapshot.exists()) {
                                             //Check if user select city
                                             if(!userCity.equals("Select")){
+                                                System.out.println("EEEEMMMMYYYY");
                                                 schoolList.clear();
                                                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                                                     School findSchool = postSnapshot.getValue(School.class);
@@ -356,7 +358,19 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                                     if(findSchool.getSchool_id().equals(userIdS))
                                                         schoolName=findSchool.getSchoolName();
 
-                                                }}
+                                                }
+
+                                                System.out.println("schoolName" +schoolName);
+                                                //Set child school
+                                                for (int i = 0; i < schoolList.size(); i++) {
+                                                    System.out.println("schoolList.get(i) "+schoolList.get(i));
+                                                    if (schoolList.get(i).equals(schoolName)) {
+                                                        System.out.println("schoolName "+schoolName);
+                                                        schoolSpinner.setSelection(i);
+                                                    }
+                                                }
+
+                                            }
                                             schooladapter.notifyDataSetChanged();
                                         }
                                     }
@@ -366,12 +380,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
                                     }
                                 });
 
-                                //Set child School
-                                for (int i = 0; i < schoolList.size(); i++) {
-                                    if (schoolList.get(i).equals(schoolName)) {
-                                        schoolSpinner.setSelection(i);
-                                    }
-                                }
+
 
 
                                 //Get the user select for School
@@ -438,6 +447,9 @@ public class Edit_Child_Profile extends AppCompatActivity {
 
                                     }
                                 });
+
+
+
 
 
 
@@ -584,6 +596,7 @@ public class Edit_Child_Profile extends AppCompatActivity {
     private String makeDateString(int day, int month, int year) {
         if (day == 0 && month == 0 && year == 0 )
             return getMonthFormat(0) + "" + "" ;
+        System.out.println("month "+month);
 
         return getMonthFormat(month) + " " + day + " " + year;
 

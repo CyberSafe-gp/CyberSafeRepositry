@@ -99,7 +99,7 @@ public class IncomingFragment extends Fragment {
                     Report lr = reportList.get(pos);
                     String status = lr.getStatus();
                     //If the user type is School manager and the status of the report not confirm he should confirm the receiving first
-                    if(userType.equals("Schoolmanager") && status.equals("Not confirm")){
+                    if(userType.equalsIgnoreCase("Schoolmanager") && status.equals("Pending")){
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
                         // Setting Alert Dialog Title
                         alertDialogBuilder.setTitle("View report");
@@ -188,7 +188,7 @@ public class IncomingFragment extends Fragment {
     public void reportInfo(Report report){
         String status = report.getStatus();
         String report_id = report.getReport_id();
-        if (status.equals("Not confirm"))
+        if (status.equals("Pending"))
             reportRef.child(report_id).child("status").setValue("Confirm");
 
 

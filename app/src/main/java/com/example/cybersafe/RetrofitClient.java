@@ -23,7 +23,7 @@ public class RetrofitClient {
                 .create();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://cyberdetector.herokuapp.com") //our hosting model
+                .baseUrl("https://cyberdetectorml.herokuapp.com") //our hosting model
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
