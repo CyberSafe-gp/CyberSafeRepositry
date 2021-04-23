@@ -11,62 +11,41 @@
         android:id="@+id/keyword"
         android:layout_width="339dp"
         android:layout_height="91dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="239dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginBottom="401dp"
-        android:hint="@string/words_separated_by_commas"
+        android:layout_marginTop="8dp"
+        android:hint="Words separated by commas"
         android:textColor="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="312dp"
         android:layout_height="48dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="191dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="470dp"
-        android:text="Enter The Keywords:"
+        android:layout_marginTop="152dp"
+        android:text="Enter the Keywords:"
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="#04406E"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:theme="@style/Theme.MaterialComponents" />
 
     <Button
         android:id="@+id/adD"
         android:layout_width="246dp"
         android:layout_height="94dp"
-        android:layout_marginStart="93dp"
-        android:layout_marginLeft="93dp"
-        android:layout_marginEnd="93dp"
-        android:layout_marginRight="93dp"
-        android:layout_marginBottom="40dp"
         android:text="Add"
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/white"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834"
+        app:layout_constraintTop_toBottomOf="@+id/keyword"
         app:rippleColor="@color/blue"
         app:strokeColor="#FFFFFF"
         app:theme="@style/Theme.MaterialComponents" />
@@ -77,9 +56,9 @@
         android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:background="@color/blue"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -87,21 +66,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:gravity="center_horizontal"
             android:layout_weight="100"
-            android:textStyle="bold"
+            android:gravity="center_horizontal"
             android:text="Add Detection Keyword"
-            android:textAppearance="?attr/textAppearanceHeadline5"
-            app:theme="@style/Theme.MaterialComponents"
             android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceHeadline5"
             android:textColor="@color/white"
+            android:textStyle="bold"
+            app:theme="@style/Theme.MaterialComponents"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="21dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
-
-
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="341dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="8dp"
+        android:text="Enter bullying keywords that you want  to be automatically
+                    detected."
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textColor="#696969"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:theme="@style/Theme.MaterialComponents" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
