@@ -63,15 +63,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="36dp"
-        android:text="To log-in please press the TikTok image bellow and follow these steps:\n\n
-1- Click TikTok button.\n\n
-2- Enter your child username and password.\n\n
-3- When you click log-in do the validation process then click allow.\n\n
-4- In the authintecation page please make sure that you log out (hint:from the :icon)before go back cyber safe"
+        android:text="To log-in please press the TikTok button bellow and follow these steps:\n\n
+1- Enter your child username and password.\n\n
+2- When you click log-in do the validation process then click allow.\n\n
+3- In the authintecation page please make sure that you log out (hint:from the :icon)before go back cyber safe"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
         android:textColor="@color/black"
-        android:textStyle="bold
-"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"

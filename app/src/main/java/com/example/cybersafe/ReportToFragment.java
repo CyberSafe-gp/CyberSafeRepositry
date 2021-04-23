@@ -42,6 +42,7 @@ public class ReportToFragment extends Fragment {
 
     String childSchoolId, senderSchoolId;
 
+
     public ReportToFragment() {
     }
 
