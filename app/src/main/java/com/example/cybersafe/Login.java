@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity {
         }
         //get and store the type of user loged-in
         Auth = FirebaseAuth.getInstance();
-        log = (Button) findViewById(R.id.button9);
+        log = (Button) findViewById(R.id.log);
         editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
         editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
         forgetPass  = (TextView) findViewById(R.id.buttonForget);
@@ -178,70 +178,76 @@ public class Login extends AppCompatActivity {
 
                     } else{
                         //in here the user type chosen  is school manger but we will make sure that he is a school manger
+
                         SchoolMangerRef.addValueEventListener( new ValueEventListener() {
 
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                String admin = "Not confirm";
-                                boolean isSchoolManager = false;
-                                if (snapshot.exists()) {
-                                    for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-                                        SchoolManager schoolManager = messageSnapshot.getValue( SchoolManager.class );
-                                        //Add children id that belong to the parent
-                                        if (schoolManager.getEmail().equalsIgnoreCase( Email )) {
-                                            isSchoolManager = true;
-                                            admin= schoolManager.getAdmin();
+                                                                   @Override
+                                                                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                       String admin = "Not confirm";
+                                                                       final boolean[] isSchoolManager = {false};
+                                                                       if (snapshot.exists()) {
+                                                                           for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                                                               SchoolManager schoolManager = messageSnapshot.getValue( SchoolManager.class );
+                                                                               //Add children id that belong to the parent
+                                                                               if (schoolManager.getEmail().equalsIgnoreCase( Email )) {
+                                                                                   isSchoolManager[0] = true;
+                                                                                   admin = schoolManager.getAdmin();
+                                                                                   break;
 
-                                        }
-                                    }
+                                                                               }
+                                                                           }
+                                                                           if (isSchoolManager[0]){
+
+                                                                               System.out.println("userTypee SM "+userTypee);
+                                                                               if(admin.equals("Confirm")){
+                                                                                   //transfer to the school manger home
+                                                                                   Intent intent = new Intent(Login.this, SchoolHome_new.class);
+                                                                                   intent.putExtra("userType", userTypee);
+                                                                                   startService(new Intent(Login.this, ServiceSM.class));
+                                                                                   startActivity(intent);
+                                                                                   //empty the log in page
+                                                                                   editTextEmail.getText().clear();
+                                                                                   editTextPassword.getText().clear();
+                                                                               }else{
+                                                                                   //transfer to the school manger home
+                                                                                   Intent intent = new Intent(Login.this, Admin_School.class);
+                                                                                   intent.putExtra("userType", userTypee);
+                                                                                   startActivity(intent);
+                                                                                   //empty the log in page
+                                                                                   editTextEmail.getText().clear();
+                                                                                   editTextPassword.getText().clear();
+                                                                               }
+
+
+                                                                           }else {
+                                                                               // in here the email and password is exist in our database but the user type is wrong
+                                                                               Toast.makeText(Login.this, "Please make sure you choose the correct user type", Toast.LENGTH_LONG).show();
+                                                                               Intent intent = new Intent(Login.this, Login.class);
+                                                                               intent.putExtra("userType", userTypee);
+                                                                               startActivity(intent);
+                                                                               editTextEmail.getText().clear();
+                                                                               editTextPassword.getText().clear();
+                                                                           }
+                                                                       }
+                                                                       }
+
+
+                                                                   @Override
+                                                                   public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                   }
+                                                               });
                                     //if the email is exist in school mangers database.
-                                    if (isSchoolManager){
 
-                                        System.out.println("userTypee SM "+userTypee);
-                                        if(admin.equals("Confirm")){
-                                            //transfer to the school manger home
-                                            Intent intent = new Intent(Login.this, SchoolHome_new.class);
-                                            intent.putExtra("userType", userTypee);
-                                            startService(new Intent(Login.this, ServiceSM.class));
-                                            startActivity(intent);
-                                            //empty the log in page
-                                            editTextEmail.getText().clear();
-                                            editTextPassword.getText().clear();
-                                        }else{
-                                            //transfer to the school manger home
-                                            Intent intent = new Intent(Login.this, Admin_School.class);
-                                            intent.putExtra("userType", userTypee);
-                                            startActivity(intent);
-                                            //empty the log in page
-                                            editTextEmail.getText().clear();
-                                            editTextPassword.getText().clear();
-                                        }
-
-
-                                    }else {
-                                        // in here the email and password is exist in our database but the user type is wrong
-                                        Toast.makeText(Login.this, "Please make sure you choose the correct user type", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(Login.this, Login.class);
-                                        intent.putExtra("userType", userTypee);
-                                        startActivity(intent);
-                                        editTextEmail.getText().clear();
-                                        editTextPassword.getText().clear();
-                                    }
-                                }
-
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
 
 
 
 
                     }}
                 else//the email is not exist in our system or the user entered a wrong input
-                    Toast.makeText(Login.this, "The email or password entered is invalid.Pleas try again", Toast.LENGTH_LONG).show();
+                {
+                    Toast.makeText( Login.this, "The email or password entered is invalid.Pleas try again", Toast.LENGTH_LONG ).show();
+                }
             }
         });
     }

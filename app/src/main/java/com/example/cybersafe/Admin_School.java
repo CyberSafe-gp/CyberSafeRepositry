@@ -2,7 +2,6 @@ package com.example.cybersafe;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,7 +18,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Admin_School extends AppCompatActivity {
 
-    private TextView text;
     String userID;
 
 

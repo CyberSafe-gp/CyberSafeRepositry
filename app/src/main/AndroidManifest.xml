@@ -72,7 +72,6 @@
         <activity android:name=".Add_NewChild" >
 
         </activity>
-        <activity android:name=".ChildHome" />
         <activity android:name=".Edit_Child_Profile" />
         <activity android:name=".Edit_Parent_Profile" />
         <activity android:name=".FlagMain" />

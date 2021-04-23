@@ -13,7 +13,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Comment;
-import com.example.cybersafe.Objects.Report;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +26,7 @@ public class BullyCommentsAdapter extends RecyclerView.Adapter<BullyCommentsAdap
     private Context context;
     private List<Comment> commentsList;
     private OnItemClickListener listener;
-    //private DatabaseReference commentRef;
+
     View view;
 
 
@@ -60,10 +59,10 @@ public class BullyCommentsAdapter extends RecyclerView.Adapter<BullyCommentsAdap
 
     @Override
     public void onBindViewHolder(@NonNull CommentHolder holder, int position) {
-        //commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
+
 
         String id = commentsList.get(position).getComment_id();
-//        final Boolean flag = commentsList.get(position).getFlag();
+
 
         String sender = commentsList.get(position).getSender();
         String body = commentsList.get(position).getBody();
@@ -94,7 +93,6 @@ public class BullyCommentsAdapter extends RecyclerView.Adapter<BullyCommentsAdap
                                 alertDialogBuilder.setTitle("Not a bully comment?");
                                 // Setting Alert Dialog Message
                                 alertDialogBuilder.setMessage("Are you sure this comment not bully?");
-                                //alertDialogBuilder.setCancelable(false);
                                 // confirm flagging
                                 alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                                     @Override
@@ -104,7 +102,6 @@ public class BullyCommentsAdapter extends RecyclerView.Adapter<BullyCommentsAdap
                                         //feedback for flagging
                                         Snackbar.make(view, "The comment has been updated Successfully", Snackbar.LENGTH_LONG).setDuration(30000)
                                                 .show();
-
                                     }
                                 }).setNegativeButton("No", null).show();
                             }

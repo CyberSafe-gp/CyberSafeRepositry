@@ -2,21 +2,17 @@ package com.example.cybersafe;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cybersafe.Objects.Comment;
 import com.example.cybersafe.Objects.Keyword;
-import com.example.cybersafe.Objects.Report;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,12 +46,7 @@ public class Add_Detection_KeywordAdapter extends RecyclerView.Adapter<Add_Detec
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.keyword_item, parent, false);
         Add_Detection_KeywordAdapter.KeywordHolder holder = new Add_Detection_KeywordAdapter.KeywordHolder(view);
 
-/*        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.OnItemClick(view, holder.getAdapterPosition());
-            }
-        });*/
+
 
         return holder;
     }
@@ -99,7 +90,7 @@ public class Add_Detection_KeywordAdapter extends RecyclerView.Adapter<Add_Detec
                                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                                 // Setting Alert Dialog Message
                                 alertDialogBuilder.setMessage("Are you want to Delete this Keyword?");
-                                // alertDialogBuilder.setCancelable(false);
+
                                 // confirm delete
                                 alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                                     @Override
@@ -125,17 +116,7 @@ public class Add_Detection_KeywordAdapter extends RecyclerView.Adapter<Add_Detec
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-    }
+           }
 
     @Override
     public int getItemCount() {
@@ -144,13 +125,11 @@ public class Add_Detection_KeywordAdapter extends RecyclerView.Adapter<Add_Detec
 
     public class KeywordHolder extends RecyclerView.ViewHolder{
         TextView writeChildP;
-        LinearLayout reportRe ;
         ImageView botBully2;
 
         public KeywordHolder(@NonNull View itemView) {
             super(itemView);
             writeChildP = (TextView) itemView.findViewById(R.id.writeKeyword);
-//            reportRe = (LinearLayout) itemView.findViewById(R.id.reportRe);
             botBully2 = itemView.findViewById(R.id.botBully2);
 
 

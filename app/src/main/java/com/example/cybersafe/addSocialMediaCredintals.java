@@ -50,17 +50,7 @@ public class addSocialMediaCredintals extends AppCompatActivity {
 
 
 
-      /*  //Get the child information to add it to the data base
 
-        String parent_id = getIntent().getStringExtra("parentid");
-        String school_id = getIntent().getStringExtra("school_id");
-        String firstName = getIntent().getStringExtra("firstName");
-        String lastName = getIntent().getStringExtra("lastName");
-        String date = getIntent().getStringExtra("date");
-        String userCity = getIntent().getStringExtra("userCity");
-        String userGender = getIntent().getStringExtra("userGender");
-        String userGrade = getIntent().getStringExtra("userGrade");
-*/
         ChildRef = FirebaseDatabase.getInstance().getReference().child("Children");
         SMARef = FirebaseDatabase.getInstance().getReference().child("SMAccountCredentials");
 
@@ -91,8 +81,7 @@ public class addSocialMediaCredintals extends AppCompatActivity {
                         JSONObject jsonArray3= jsonObj3.getJSONObject("user");
                         Author_id=jsonArray3.getString( "id" );
                         childAccount=jsonArray3.getString("uniqueId");
-                        System.out.println(childAccount+"jjjjjj"+Author_id);
-                        System.out.println("ddddddddddddddddddddddooooooooooone");
+
 
 
 

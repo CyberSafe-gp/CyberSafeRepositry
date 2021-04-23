@@ -63,11 +63,7 @@ public class Add_NewChild extends AppCompatActivity {
     ImageView setSchoolManager;
     LocalDate birthDate;
     public boolean find=false;
-    final SMAccountCredentials SMAobj=new SMAccountCredentials();
-//    public Add_NewChild() {}
-//current user id
-    // فالديت للعمر والقريد
-    //genderSpinner.setPrompt("Pick One");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,11 +84,7 @@ public class Add_NewChild extends AppCompatActivity {
         schoolManagerRef= FirebaseDatabase.getInstance().getReference().child("SchoolManagers");
         firstnameCH = (EditText) findViewById((R.id.firstnameCH));
         lastnameCH = (EditText) findViewById((R.id.lastnameCH));
-//        username = (EditText) findViewById((R.id.username));
-//        password = (EditText) findViewById((R.id.password));
 
-        //image
-//        setSchoolManager = (TextView) findViewById((R.id.setSchoolManager));
         setSchoolManager =findViewById((R.id.setSchoolManager));
 
         date_picker = findViewById(R.id.date_picker);
@@ -173,7 +165,7 @@ public class Add_NewChild extends AppCompatActivity {
             }
         });
 
-        System.out.println("onCreate 3333");
+
 
 //        //Gender dropdown menu
         genderSpinner = (Spinner)findViewById(R.id.gender);
@@ -229,8 +221,7 @@ public class Add_NewChild extends AppCompatActivity {
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(Add_NewChild.this, android.R.layout.simple_spinner_item, city);
         cityAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         citySpinner.setAdapter(cityAdapter);
-//        //Log.i("AAA","spinner0");
-//
+
         schoolRef = FirebaseDatabase.getInstance().getReference().child("Schools");
 
         //Get the user input for the city and set the School dropdown menu
@@ -328,14 +319,12 @@ public class Add_NewChild extends AppCompatActivity {
                                                         }
                                                     }
                                                     if (find == true) {
-//                                                    setSchoolManager.setTextColor(Color.GREEN);
-//                                                    setSchoolManager.setText("School Manager is registered");
+
                                                         //
                                                         setSchoolManager.setVisibility(View.VISIBLE);
-//                                                        setSchoolManager.setBackgroundResource(R.drawable.mark);
+
                                                     }else{
-//                                                        setSchoolManager.setBackgroundResource(0);
-//                                                        setSchoolManager.setTextColor(Color.RED);
+
                                                         setSchoolManager.setVisibility(View.INVISIBLE);
                                                         oom.setText("School Manager is not registered");
                                                     }
@@ -381,34 +370,13 @@ public class Add_NewChild extends AppCompatActivity {
 
 
 
-//   // from here for social media credentials
-//        username = (EditText) findViewById((R.id.username));
-//        password = (EditText) findViewById((R.id.password));
-
-//        Applications = findViewById(R.id.Applications);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.application, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        Applications.setAdapter(adapter);
-//
-//        Applications.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                apps = parent.getItemAtPosition(position).toString();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//       });
 
 
              add = (Button) findViewById(R.id.add1);
 
              add.setOnClickListener(new View.OnClickListener() {
 
-//                    final String username1= username.getText().toString().trim();
-//                    final String password2= password.getText().toString().trim();
+
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
@@ -427,7 +395,6 @@ public class Add_NewChild extends AppCompatActivity {
     private void saveChild() {
         //FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        System.out.println("add savechild");
 
         // check First name not empty
         if(firstnameCH.getText().toString().isEmpty()){
@@ -476,64 +443,6 @@ public class Add_NewChild extends AppCompatActivity {
         int actual = calculateAge(birthDate, getTodaysDate());
         if(6<= actual && actual <= 14){
             int grade = Integer.parseInt(userGrade);
-//            //Check the age and the grade match
-//            switch (actual){
-//                case 6:
-//                    if( !(grade == 1 || grade == 2)){
-//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//                    break;
-//                case 7:
-//                    if( !(grade == 1 || grade == 2 || grade == 3)){
-//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//                    break;
-//                case 8:
-//                    if( !(grade == 2 || grade == 3 || grade == 4)){
-//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//                    break;
-//                case 9:
-//                    if( !(grade == 3 || grade == 4 || grade == 5)){
-//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//                    break;
-//                case 10:
-//                    if( !(grade == 4 || grade == 5 || grade == 6)){
-//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//                    break;
-//                case 11:
-//                    if( !(grade == 5 || grade == 6 || grade == 7)){
-//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//                    break;
-//                case 12:
-//                    if( !(grade == 6 || grade == 7 || grade == 8)){
-//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//                    break;
-//                case 13:
-//                    if( !(grade == 7 || grade == 8 || grade == 9)){
-//                        Toast.makeText(Add_NewChild.this, "Please ", Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//                    break;
-//                case 14:
-//                    if( !(grade == 8 || grade == 9 || grade == 10)){
-//                        Toast.makeText(Add_NewChild.this, "Please l", Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//                    break;
-//
-//            }
 
         }else {
             Toast.makeText(Add_NewChild.this, "The child you add his/her age must be between 6 - 14", Toast.LENGTH_LONG).show();
@@ -547,17 +456,7 @@ public class Add_NewChild extends AppCompatActivity {
         String firstName=firstnameCH.getText().toString();
         String lastName=lastnameCH.getText().toString();
 
-      /*  Intent in = new Intent(Add_NewChild.this, addSocialMediaCredintals.class);
 
-        in.putExtra("parentid",parentid);
-        in.putExtra("school_id",school_id);
-        in.putExtra("firstName",firstName);
-        in.putExtra("lastName",lastName);
-        in.putExtra("date",date);
-        in.putExtra("userCity",userCity);
-        in.putExtra("userGender",userGender);
-        in.putExtra("userGrade",userGrade);
-        startActivity(in);*/
 
           //Get the social media credintals information to add it to the data base
 
@@ -574,15 +473,7 @@ public class Add_NewChild extends AppCompatActivity {
 
 
 
-       /* Childobj.setDate_of_birth(date );
-        Childobj.setGender(userGender);
-        Childobj.setCity(userCity);
-        Childobj.setGrade(userGrade);
-        Childobj.setSchool_id(school_id);
-        Childobj.setParent_id(parentid);
-        Childobj.setFirstName(firstnameCH.getText().toString());
-        Childobj.setLastName(lastnameCH.getText().toString());
-        Childobj.setChild_id(id2);*/
+
 
         //Add child to database
         ChildRef.child(child_id).setValue(Childobj).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -611,10 +502,10 @@ public class Add_NewChild extends AppCompatActivity {
                     });
 
                     Toast.makeText(Add_NewChild.this, "Child added successfully", Toast.LENGTH_LONG).show();
-                    // startActivity(new Intent(creatnotepopup.this, ExplorerNote.class));
-                    Intent intent = new Intent();
-                    setResult(RESULT_OK, intent);
 
+                    Intent intent = new Intent(Add_NewChild.this,ParentHome_New.class);
+                    setResult(RESULT_OK);
+                    startActivity(intent);
                     finish();
                 } else {
                     Toast.makeText(Add_NewChild.this, "Child doesn't added", Toast.LENGTH_LONG).show();
