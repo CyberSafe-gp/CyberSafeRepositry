@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Keyword;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -98,8 +98,7 @@ public class Add_Detection_KeywordAdapter extends RecyclerView.Adapter<Add_Detec
                                         //remove the keyword
                                         keywordsReff.child(KeyId).removeValue();
                                         //feedback for flagging
-                                        Snackbar.make(view, "The keyword has been deleted Successfully", Snackbar.LENGTH_LONG).setDuration(30000)
-                                                .show();
+                                        Toast.makeText(context, "The keyword has been deleted Successfully", Toast.LENGTH_LONG).show();
 
                                     }
                                 }).setNegativeButton("No", null).show();

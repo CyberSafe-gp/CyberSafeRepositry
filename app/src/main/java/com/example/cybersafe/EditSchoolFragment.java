@@ -1,6 +1,6 @@
 package com.example.cybersafe;
 
-        import android.content.DialogInterface;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +22,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.cybersafe.Objects.SchoolManager;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -281,8 +281,7 @@ public class EditSchoolFragment extends Fragment {
         //store it in the database for the current user
         SchoolManager Smanger = new SchoolManager(userId,Sid,fname, lastname,email,City,"Confirm" );
         userRef.setValue(Smanger);
-        Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(30000).show();
-
+        Toast.makeText(getActivity(), "Information has been updated successfully", Toast.LENGTH_LONG).show();
 
     }
 }

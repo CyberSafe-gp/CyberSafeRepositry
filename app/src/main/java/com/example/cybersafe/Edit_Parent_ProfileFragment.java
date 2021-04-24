@@ -22,7 +22,6 @@ import androidx.fragment.app.Fragment;
 import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.Parent;
 import com.example.cybersafe.Objects.SMAccountCredentials;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -302,7 +301,8 @@ public class Edit_Parent_ProfileFragment extends Fragment {
         //store it in the database for the current user
         Parent p = new Parent(fname, lastname, email, userId);
         userRef.setValue(p);
-        Snackbar.make(view, "Information has been updated successfully", Snackbar.LENGTH_LONG).setDuration(20000).show();
+        Toast.makeText(getActivity(), "Information has been updated successfully", Toast.LENGTH_LONG).show();
+
 
 
     }

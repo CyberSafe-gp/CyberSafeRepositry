@@ -34,7 +34,7 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
     private List<Child> childList;
     private OnItemClickListener listener;
     DatabaseReference commentsRef,SMARef;
-    String SMA_id;
+
 
 
 
@@ -206,7 +206,8 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
                         SMAccountCredentials checkSMA = messageSnapshot.getValue(SMAccountCredentials.class);
 
                         if (checkSMA.getChild_id().equals(child_id)) {
-                            SMA_id = checkSMA.getId();
+
+                            String SMA_id = checkSMA.getId();
 
 
 
@@ -222,11 +223,15 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
                                             String notification = lastComment.getNotification();
 
                                             if (SMA_id.equals(commentSMA)) {
+
                                                 if (lastComment.getFlag().equals(true) && notification.equals("new")) {
+
                                                     exist[0] = true;
+
                                                 }
                                             }
                                         }
+
                                         //if there is a new comment and bully show notification
                                         if (exist[0]){
                                             holder.red.setVisibility(View.VISIBLE);
@@ -241,8 +246,7 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
 
                                 }
                             });
-
-                            break;
+break;
                         }
                     }
                 }

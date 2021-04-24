@@ -61,10 +61,6 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //get the current user
-        System.out.println("HomeFragment");
-
-        System.out.println("222222");
-
 
         if (user != null) {
 

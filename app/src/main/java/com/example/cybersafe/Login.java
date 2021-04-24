@@ -141,7 +141,7 @@ public class Login extends AppCompatActivity {
                                     Intent intent = new Intent(Login.this,ParentHome_New.class);
                                     intent.putExtra("userType", userTypee);
                                    // start the service for ever hour
-                                    /*    startService(new Intent(Login.this, MyService.class));
+                                   /*     startService(new Intent(Login.this, MyService.class));
                                             Calendar cal = Calendar.getInstance();
                                             Intent intent2 = new Intent(Login.this, MyService.class);
                                             PendingIntent pintent = PendingIntent

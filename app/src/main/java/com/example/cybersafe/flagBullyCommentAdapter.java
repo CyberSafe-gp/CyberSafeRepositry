@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -17,7 +18,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Comment;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -114,8 +114,7 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
                                         //update the notification so the parent not receive an alert
                                         commentsRef.child(comID).child("notification").setValue("old");
                                         //feedback for flagging
-                                        Snackbar.make(view, "Bullying comment has been flagged Successfully", Snackbar.LENGTH_LONG).setDuration(30000)
-                                                .show();
+                                        Toast.makeText(context, "Bullying comment has been flagged Successfully", Toast.LENGTH_LONG).show();
 
                                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                                         // Setting Alert Dialog Title

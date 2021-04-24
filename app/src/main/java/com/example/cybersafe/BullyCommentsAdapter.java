@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Comment;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -100,8 +100,7 @@ public class BullyCommentsAdapter extends RecyclerView.Adapter<BullyCommentsAdap
                                         //update the flag to true (bully)
                                         commentsRef.child(comID).child("flag").setValue(false);
                                         //feedback for flagging
-                                        Snackbar.make(view, "The comment has been updated Successfully", Snackbar.LENGTH_LONG).setDuration(30000)
-                                                .show();
+                                        Toast.makeText(context, "The comment has been updated Successfully", Toast.LENGTH_LONG).show();
                                     }
                                 }).setNegativeButton("No", null).show();
                             }

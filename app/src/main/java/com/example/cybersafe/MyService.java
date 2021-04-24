@@ -89,6 +89,8 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        System.out.println("ON start");
+
 
         //make references and bring information we need it in calling API
         ChildRef = FirebaseDatabase.getInstance().getReference().child( "Children" );
