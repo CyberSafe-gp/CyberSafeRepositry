@@ -35,6 +35,9 @@ public class SchoolHome_new extends AppCompatActivity {
         BadgeDrawable badge = bottomNavigationView.getOrCreateBadge(R.id.navigation_incoming2);
         badge.setVisible(false);
 
+        String open= getIntent().getStringExtra("open");
+
+
 
         if (savedInstanceState == null) {
 
@@ -76,6 +79,19 @@ public class SchoolHome_new extends AppCompatActivity {
 
             }
         });
+
+
+        //If user open from notification
+        if (open != null){
+            if(open.equals("IncomingReport")){
+
+                Fragment fragment  = new IncomingFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout2, fragment).commit();
+
+            }
+
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

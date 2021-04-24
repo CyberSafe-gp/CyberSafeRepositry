@@ -16,6 +16,9 @@
             android:label="My Service"
             >
         </service>
+        <service
+            android:name=".ServiceSM">
+        </service>
 
         <activity android:name=".addSocialMediaCredintals">
 

@@ -45,27 +45,7 @@ ParentHome_New extends AppCompatActivity {
 
         open= getIntent().getStringExtra("open");
 
-        //If user open from notification or activity
-        if (open != null){
 
-            if(open.equals("BullyComment")){
-                Fragment fragment  = new HomeFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
-
-            } else if(open.equals("IncomingReport")){
-                Fragment fragment  = new IncomingFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
-
-            } else if(open.equals("Home")){
-                Fragment fragment  = new HomeFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
-            }
-
-
-        }
 
         setContentView(R.layout.activity_parent_home__new);
         bottomNavigationView = findViewById(R.id.bottom_nav);
@@ -221,6 +201,29 @@ ParentHome_New extends AppCompatActivity {
             fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, new HomeFragment()).commit();
 
         }
+
+        //If user open from notification or activity
+        if (open != null){
+
+            if(open.equals("BullyComment")){
+                Fragment fragment  = new HomeFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
+
+            } else if(open.equals("IncomingReport")){
+                Fragment fragment  = new IncomingFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
+
+            } else if(open.equals("Home")){
+                Fragment fragment  = new HomeFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
+            }
+
+
+        }
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

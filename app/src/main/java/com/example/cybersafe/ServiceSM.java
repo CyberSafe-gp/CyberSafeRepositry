@@ -73,6 +73,15 @@ public class ServiceSM extends Service {
         super.onDestroy();
     }
 
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        super.onTaskRemoved(rootIntent);
+
+        Intent intent = new Intent("com.android.ServiceStopped");
+        sendBroadcast(intent);
+
+    }
+
     //For the current user if there a new incoming report notify the school manager
     void showNotification() {
         String title="Report";
@@ -95,8 +104,9 @@ public class ServiceSM extends Service {
                 .setAutoCancel(true); // clear notification after click
 
 
-        Intent intent = new Intent(getApplicationContext(), IncomingFragment.class);
+        Intent intent = new Intent(getApplicationContext(), SchoolHome_new.class);
         intent.putExtra( "userType", "SchoolManager" );
+        intent.putExtra( "open", "IncomingReport" );
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());

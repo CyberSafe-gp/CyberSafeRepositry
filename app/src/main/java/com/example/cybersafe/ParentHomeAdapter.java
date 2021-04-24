@@ -33,7 +33,6 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
     private Context context;
     private List<Child> childList;
     private OnItemClickListener listener;
-    DatabaseReference commentsRef,SMARef;
 
 
 
@@ -71,6 +70,12 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
         String child_id=childList.get(position).getChild_id();
         holder.writeChildP.setText(name);
         holder.red.setVisibility(View.INVISIBLE);
+
+        DatabaseReference SMARef = FirebaseDatabase.getInstance().getReference().child( "SMAccountCredentials" );
+        DatabaseReference commentsRef = FirebaseDatabase.getInstance().getReference().child( "Comments" );
+        DatabaseReference reportRef = FirebaseDatabase.getInstance().getReference().child("Reports");
+
+
 
         holder.dots.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +133,9 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
                                                                                 SMAReference.child( SMAId ).removeValue();
                                                                                 //Delete the child
                                                                                 childrenReference.child( child_id ).removeValue();
+
+
+
                                                                                 Toast.makeText( context, "Deleted successfully", Toast.LENGTH_LONG ).show();
 
                                                                             }
@@ -187,9 +195,6 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
         else{
             holder.icon.setBackground(ContextCompat.getDrawable(context, R.drawable.avatar_woman_female_girl_people_icon_131282));//Girl Avatar
         }
-
-        SMARef = FirebaseDatabase.getInstance().getReference().child( "SMAccountCredentials" );
-        commentsRef = FirebaseDatabase.getInstance().getReference().child( "Comments" );
 
 ////Notification
 

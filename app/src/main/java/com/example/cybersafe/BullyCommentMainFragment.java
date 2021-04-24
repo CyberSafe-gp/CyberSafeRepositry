@@ -66,7 +66,6 @@ public class BullyCommentMainFragment extends Fragment {
             @Override
             public void OnItemClick(View v, int pos) {
                 Comment com = commentList.get(pos);
-                System.out.println("OnItemClick");
                 reportInfo(com, childID);
 
             }
@@ -153,7 +152,7 @@ public class BullyCommentMainFragment extends Fragment {
     }
 
     public void reportInfo(Comment comment, String child_ID){
-        System.out.println("reportInfo");
+
         String comment_id=comment.getComment_id();
         String SMA_id = comment.getSMAccountCredentials_id();
         String sender = comment.getSender();
