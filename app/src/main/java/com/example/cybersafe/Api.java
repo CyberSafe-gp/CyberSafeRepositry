@@ -9,6 +9,7 @@ import retrofit2.http.Part;
 
 //For ourModel
 public interface Api {
+    //The information we need for the request
     @Multipart
     @Headers("Accept: text/html")
     @POST("/predict")

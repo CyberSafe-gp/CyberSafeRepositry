@@ -72,6 +72,7 @@ public class ReportToFragment extends Fragment {
         body = bundle.getString("body");
         ChildID = bundle.getString("Child_id");
 
+        //gethelp button
         gethelp= (Button) getActivity().findViewById(R.id.getthelp);
 
         gethelp.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +139,7 @@ public class ReportToFragment extends Fragment {
             }
         });
 
-        //Button Report to School Manager
+
         smaRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -192,7 +193,7 @@ public class ReportToFragment extends Fragment {
 
 
 
-
+        //Button Report to School Manager
         Button report = (Button)getActivity().findViewById(R.id.report);
 
 
@@ -209,13 +210,17 @@ public class ReportToFragment extends Fragment {
                     }
                 }
 
-                //Enable or enable the button
+                //Enable or disable the button
+                //
                 if (childSchoolId.equals(senderSchoolId) && !(ChildID.equals(senderID)) && findSchoolManager){
-
+                    //Same school
+                    //school manager register
+                    //Enable
                     report.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
                     report.setEnabled(true);
 
                 } else {
+                    //disable
                     report.setBackgroundColor(getResources().getColor(R.color.gray));
                     report.setEnabled(false);
 
@@ -230,12 +235,12 @@ public class ReportToFragment extends Fragment {
         });
 
 
-
+        //If click the button
         report.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
                                           String reportID = reportRef.push().getKey();
-
+                                          //Create the report object
                                           Report reportObj=new Report(reportID,parentID,schoolMID,Comment_id,"Pending",getDateTime());
 
                                           //Add "send" Report to database
@@ -256,6 +261,8 @@ public class ReportToFragment extends Fragment {
 
                                       }
                                   }
+
+
         );
     }
 

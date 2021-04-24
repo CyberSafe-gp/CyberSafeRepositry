@@ -5,9 +5,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/logocy"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
+        android:roundIcon="@drawable/logocy"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -19,7 +19,7 @@
 
         <activity android:name=".addSocialMediaCredintals">
 
-            <!--            Deep link to redirect the user to our app-->
+            <!--Deep link to redirect the user to our app-->
             <intent-filter tools:ignore="AppLinkUrlError">
                 <category android:name="android.intent.category.LAUNCHER" />
 

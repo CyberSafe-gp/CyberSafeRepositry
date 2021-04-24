@@ -13,7 +13,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RetrofitClient {
     private Retrofit retrofit;
     public void generateClient(){
-
+        //create Http client
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(6000, TimeUnit.SECONDS)
                 .connectTimeout(6000, TimeUnit.SECONDS)
@@ -31,6 +31,7 @@ public class RetrofitClient {
     }
 
 
+    //return the Api
     public Api getApi(){
         return retrofit.create(Api.class);
     }

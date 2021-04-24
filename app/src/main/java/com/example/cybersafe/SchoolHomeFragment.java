@@ -32,6 +32,7 @@ public class SchoolHomeFragment extends Fragment {
     TextView WritheSchoolManagerName,WritheSchoolManagerEmail, WriteSchoolName, WriteSchoolCity;
     private FirebaseUser user;
     String schoolManagerID, userEmail, Fname, lName,SchoolID;
+    TextView WritheSchoolManagerFName, WritheSchoolManagerLName;
 
     public SchoolHomeFragment() {
         // Required empty public constructor
@@ -60,7 +61,8 @@ public class SchoolHomeFragment extends Fragment {
         SchoolRef = FirebaseDatabase.getInstance().getReference().child("Schools");
 
 
-        WritheSchoolManagerName =  getActivity().findViewById((R.id.WritheSchoolManagerName));
+        WritheSchoolManagerFName =  getActivity().findViewById((R.id.WritheSchoolManagerFName));
+        WritheSchoolManagerLName =  getActivity().findViewById((R.id.WritheSchoolManagerLName));
         WritheSchoolManagerEmail =  getActivity().findViewById((R.id.WritheSchoolManagerEmail));
         WriteSchoolName =  getActivity().findViewById((R.id.WriteSchoolName));
         WriteSchoolCity =  getActivity().findViewById((R.id.WriteSchoolCity));
@@ -80,9 +82,10 @@ public class SchoolHomeFragment extends Fragment {
                         char ca=Character.toUpperCase(Fname.charAt(0));
                         String sub=Fname.substring(1,Fname.length());
 
-                        String name=ca+sub+" "+lName;
+                        String name=ca+sub;
 
-                        WritheSchoolManagerName.setText(name);
+                        WritheSchoolManagerFName.setText(name);
+                        WritheSchoolManagerLName.setText(lName);
                         WritheSchoolManagerEmail.setText(userEmail);
 
                         //Get the school info

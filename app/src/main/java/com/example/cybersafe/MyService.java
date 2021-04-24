@@ -7,6 +7,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -61,8 +62,6 @@ import retrofit2.Call;
 //اتوقع نناديها باللوق ان واللوق اوت
 public class MyService extends Service {
 
-    private final String SERVER_KEY = "AAAAj3DgA1s:APA91bEmIDGuXxzcBT40HIf5oPYk6YDXrsCK2GBuHH_g74G9w30v-famyQwSFuQ9U2qi_iEC8jXcKv83zJUcDhqPmqa7uWwV8d38jvy1AsPRTV_ZNz79FCPOZnUNmR-xyIMqy5nmNZZe";
-
 
     DatabaseReference keywordsRef, keywordRef, commentsRef, SMARef, ChildRef ,ReportRef, ParentRef;
     ArrayList<Keyword> keywordArrayList = new ArrayList();
@@ -104,6 +103,8 @@ public class MyService extends Service {
         ReportRef = FirebaseDatabase.getInstance().getReference().child( "Reports" );
         ParentRef = FirebaseDatabase.getInstance().getReference().child( "Parents" );
 
+        System.out.println("OONNN SSTTAARRRTT");
+
         //store requests
 
         RequestQueue queue = Volley.newRequestQueue( this );
@@ -130,17 +131,7 @@ public class MyService extends Service {
                         Child checkChild = messageSnapshot.getValue( Child.class );
                         //Add children id that belong to the parent
                         if (checkChild.getParent_id().equals( Parent_ID )) {
-                            parentChildren.add( checkChild.getChild_id() );
-                            System.out.println( "childes added" );
-                        }
-                    }
-
-                    if (!(parentChildren.isEmpty())) {
-                        for (int i = 0; parentChildren.size() > i; i++) {
-
-                            String child_id = parentChildren.get( i );
-
-
+                            String child_id =checkChild.getChild_id();
                             SMARef.addValueEventListener( new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -150,11 +141,14 @@ public class MyService extends Service {
                                             SMAccountCredentials checkSMA = messageSnapshot.getValue( SMAccountCredentials.class );
 
                                             if (checkSMA.getChild_id().equals( child_id )) {
+
                                                 //Get the Social Media Account Credentials information we need
                                                 SMA_ID = checkSMA.getId();
                                                 accessToken = checkSMA.getAccess_token();
                                                 author_id = checkSMA.getAuthor_id();
                                                 account = checkSMA.getAccount();
+                                                System.out.println("USER info");
+                                                System.out.println("child_id "+child_id);
 
                                                 JsonObjectRequest getRequest = new JsonObjectRequest( Request.Method.GET
                                                         , "https://api.tikapi.io/user/info", null, new Response.Listener<JSONObject>() {
@@ -202,12 +196,17 @@ public class MyService extends Service {
 
                                                 //make a request for the media id but first we make sure that we request for all the videos the child post because each request bring only 20 videos
                                                 numberOfVideoRequest = (float) video_Count / video;
+                                                System.out.println(" video "+video);
+                                                System.out.println(" video_Count "+video_Count);
+                                                System.out.println(" numberOfVideoRequest "+numberOfVideoRequest);
+
+                                                getVideo(numberOfVideoRequest, child_id,SMA_ID );
 
 
-                                                getVideo( numberOfVideoRequest, child_id );
-
+                                                SystemClock.sleep(20000);
                                                 break;
                                             }
+
                                         }
                                     }
                                 }
@@ -217,10 +216,12 @@ public class MyService extends Service {
 
                                 }
                             } );
+                            parentChildren.add( checkChild.getChild_id() );
 
                         }
 
                     }
+
                 }
             }
 
@@ -286,7 +287,9 @@ public class MyService extends Service {
 
     }
 
-    public void getVideo(float numberOfVideoRequest1, String child_id) {
+    public void getVideo(float numberOfVideoRequest1, String child_id, String SMA_ID) {
+
+        System.out.println("getVideo");
 
         RequestQueue queue1 = Volley.newRequestQueue( this );
 
@@ -298,6 +301,7 @@ public class MyService extends Service {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
+                        System.out.println("getVideo onRespone");
                         //all the comments from the child account until it reaches the count that is specified in url
                         JSONArray jsonArray = response.getJSONArray( "itemList" );
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -307,7 +311,7 @@ public class MyService extends Service {
                             JSONObject userObj = jsonObject.getJSONObject( "stats" );
                             int commentCount = userObj.getInt( "commentCount" );
                             numberOfCommentRequest = commentCount / comment;
-                            getComments( numberOfCommentRequest, media_id, child_id );
+                            getComments( numberOfCommentRequest, media_id, child_id , SMA_ID);
 
                         }
 
@@ -343,7 +347,8 @@ public class MyService extends Service {
         }
     }
 
-    public void getComments(float numberOfCommentRequest, String media_id, String child_id) {
+    public void getComments(float numberOfCommentRequest, String media_id, String child_id, String SMA_ID) {
+        System.out.println("getComments");
 
         RequestQueue queue2 = Volley.newRequestQueue( this );
 
@@ -362,7 +367,7 @@ public class MyService extends Service {
 
 
                     //chick if the comment already exist
-
+                    System.out.println("getComments onResponse");
                     commentsRef = FirebaseDatabase.getInstance().getReference().child( "Comments" );
                     commentsRef.addValueEventListener( new ValueEventListener() {
 
@@ -384,8 +389,9 @@ public class MyService extends Service {
                                     //Get the sender name
                                     JSONObject userObj = jsonObject.getJSONObject( "user" );
                                     String senderName = userObj.getString( "unique_id" );
+                                    System.out.println("getComments onResponse JOSN");
 
-                                    addComment( child_id,comment,senderName,commentID );
+                                    addComment( child_id,comment,senderName,commentID , SMA_ID);
 
 
 
@@ -451,17 +457,13 @@ public class MyService extends Service {
                     keywordArrayList.clear();
                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                         Keyword key = messageSnapshot.getValue( Keyword.class );
-                        //The comment not bully and same as the child's SMAccountCredential ID add it to the comment list
+                        //The parent who wrote the keyword is the current parent
                         if (key.getParent_id().equals( Parent_ID )) {
                             keywordArrayList.add( key );
                         }
                     }
-                } else {
-                    Log.d( "===", "No Data Was Found" );
-
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -469,19 +471,17 @@ public class MyService extends Service {
             }
         } );
 
-
-        //Filter
+        //Loop for each keyword
         for (int i=0; keywordArrayList.size() > i ;i++) {
             String word = keywordArrayList.get(i).getKeyword().toLowerCase();
 
-
             if (comment.toLowerCase().contains( word )) {
-                //update the Flag and send notification
+                //The comment bully
                 return true;
             }
 
         }
-
+        //The comment not bully
         return false;
     }
 
@@ -491,33 +491,35 @@ public class MyService extends Service {
 
         RequestBody com = RequestBody.create( MediaType.parse( "multipart/form-data" ), comment );
 
+        //Create object of retrofitClient class
         RetrofitClient retrofitClient = new RetrofitClient();
         retrofitClient.generateClient();
+        //sent request to our hosting model to predict the comment
+        //getApi() will bring all the information fo the request (Post, Headers, Query...)
         Call<String> call = retrofitClient.getApi().process(
                 com
         );
 
+        //enqueue the request
         call.enqueue( new retrofit2.Callback<String>() {
 
             @Override
             public void onResponse(Call<String> call, retrofit2.Response<String> response) {
                 if (response.isSuccessful()) {
-
+                    //If the request sent successfully take the response which is HTML page and search for Not a Bully
                     if (response.body().contains( "Not a Bully" )) {
+                        //Not a bully comment
                         bully[0] = true;
 
                     } else {
+                        //Not bully comment
                         bully[0] = false;
                     }
-                } else {
-
                 }
-
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-
 
             }
         } );
@@ -528,12 +530,11 @@ public class MyService extends Service {
     //sentiment Analysis API from google cloud
     public boolean sentimentAnalysisAPI(String comment) {
         boolean sentimentPNN = false;
-        float sentimentScore;
+        float sentimentScore = 0;
 
         try {
             // NOTE: The line below uses an embedded credential (res/raw/credential.json).
-            //       You should not package a credential with real application.
-            //       Instead, you should get a credential securely from a server.
+            //Connect to Google Cloud NLP API with our credential file
             LanguageServiceClient language = LanguageServiceClient.create(
                     LanguageServiceSettings.newBuilder()
                             .setCredentialsProvider( () ->
@@ -541,30 +542,29 @@ public class MyService extends Service {
                                             .getResources()
                                             .openRawResource( R.raw.credentials ) ) )
                             .build() );
-
-
-            // Instantiate the Language client com.google.cloud.language.v1.LanguageServiceClient
+            //Create document with the comment
             Document doc = Document.newBuilder().setContent( comment ).setType( Document.Type.PLAIN_TEXT ).build();
-            AnalyzeSentimentResponse response = language.analyzeSentiment( doc );
+            //apply the sentiment analysis to the document
+            AnalyzeSentimentResponse response = language.analyzeSentiment(doc);
+            //The document sentiment
             Sentiment sentiment = response.getDocumentSentiment();
             if (sentiment == null) {
                 return false;
             } else {
 
-                sentimentScore = sentiment.getScore();
-                language.close();
+                sentimentScore = sentiment.getScore();//The score range (-0.25) - (0.25)
+                language.close();//close the connect
             }
 
         } catch (IOException e) {
 
-            throw new IllegalStateException( "Unable to create a language client", e );
         }
 
-        if (1.0 >= sentimentScore && sentimentScore >= 0.25) {
+        if (1.0 >= sentimentScore && sentimentScore >= 0.25) {//Positive (not bully)
             sentimentPNN = false;
-        } else if (0.25 > sentimentScore && sentimentScore >= (-0.25)) {
+        } else if (0.25 > sentimentScore && sentimentScore >= (-0.25)) {//Neutral (not bully)
             sentimentPNN = false;
-        } else if ((-0.25) > sentimentScore && sentimentScore >= (-1.0)) {
+        } else if ((-0.25) > sentimentScore && sentimentScore >= (-1.0)) {//negative  (bully)
             sentimentPNN = true;
         }
 
@@ -573,32 +573,10 @@ public class MyService extends Service {
     }
 
 
-    private void chickIfCommentExist(String child_id,String comment,String senderName,String commentID) {
+    private void addComment(String child_id,String comment,String senderName,String commentID, String SMA_ID){
 
-
-        commentsRef.orderByChild("c_ID").equalTo(commentID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    //bus number exists in Database
-                } else {
-                    //bus number doesn't exists.
-                    addComment(child_id,comment,senderName,commentID) ;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-
-    }
-
-    private void addComment(String child_id,String comment,String senderName,String commentID){
-
+        System.out.println("addComment");
+        //check if the comment exist
         commentsRef.orderByChild("c_ID").equalTo(commentID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -607,24 +585,35 @@ public class MyService extends Service {
 
                 }
                 else{
-                    boolean filter = filter( comment, child_id );
-                    boolean ourModel = ourModel( comment );
-                    boolean sentimentAnalysisAPI = sentimentAnalysisAPI( comment );
+                    //comment not exist need to store it
 
-                    String Comment_ID = commentsRef.push().getKey();
+                    boolean filter = filter( comment, child_id );  //Detect if the comment contain any keyword the parent enter
+                    boolean ourModel = ourModel( comment ); //Our trained model
+                    boolean sentimentAnalysisAPI = sentimentAnalysisAPI(comment); //sentiment Analysis API from google cloud
+
+                    String Comment_ID = commentsRef.push().getKey();//create id for the comment
                     Comment commentObj;
                     boolean bully;
+                    System.out.println("addComment bully");
 
+                    System.out.println("Comment_ID "+Comment_ID);
+                    System.out.println("child_id "+child_id);
+                    System.out.println("comment "+comment);
+                    System.out.println("SMA_ID "+SMA_ID);
+
+                    // check if one of them true
                     if (filter || ourModel || sentimentAnalysisAPI) {
+                        //If true the comment bully
                         //create comment object to store it in database
                         commentObj = new Comment( Comment_ID, SMA_ID, senderName, comment, commentID, true );
                         bully = true;
                     } else {
+                        //Not bully
                         //create comment object to store it in database
                         commentObj = new Comment( Comment_ID, SMA_ID, senderName, comment, commentID, false );
                         bully = false;
                     }
-                    //bus number doesn't exists.
+                    System.out.println("add comment 111111");
                     //Add the comment to the database
                     commentsRef.child(Comment_ID).setValue(commentObj).addOnCompleteListener( new OnCompleteListener<Void>() {
                         @Override
@@ -632,13 +621,15 @@ public class MyService extends Service {
 
 
                             if (task.isSuccessful()) {
+                                System.out.println("add comment isSuccessful ");
 
 
                            if (bully) {
-                               showNotificationBullyComment( child_id );
+                               //Show notification to the current parent if detected a bully comment for one of his/her children.
+                               showNotificationBullyComment(child_id);
 
 
-                               //check if the sender exixt
+                               //check if the sender exist
                                SMARef.addValueEventListener( new ValueEventListener() {
                                    @Override
                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -646,24 +637,22 @@ public class MyService extends Service {
 
                                            for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                                SMAccountCredentials SMA = messageSnapshot.getValue( SMAccountCredentials.class );
-                                               //Add children id that belong to the parent
+                                               //check if the sender exist
                                                if (SMA.getAccount().equals( senderName )) {
+                                                   //Sender exist
                                                    String childID = SMA.getChild_id();
 
+                                                   //Get the child information to reach his/her parent
                                                    ChildRef.addValueEventListener( new ValueEventListener() {
                                                        @Override
                                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                            if (snapshot.exists()) {
                                                                for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                                                    Child child = messageSnapshot.getValue( Child.class );
-                                                                   //Add children id that belong to the parent
                                                                    if (child.getChild_id().equals( childID )) {
-                                                                       String ParentID = child.getParent_id();
+                                                                       String ParentID = child.getParent_id();//Find the sender's parent (bully's parent)
 
-
-
-
-
+                                                                       //Send report the sender's parent (bully's parent) from the admin
                                                                        ReportRef = FirebaseDatabase.getInstance().getReference().child( "Reports" );
 
                                                                        String Report_id = ReportRef.push().getKey();
