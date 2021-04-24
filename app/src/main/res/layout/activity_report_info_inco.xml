@@ -137,6 +137,7 @@
             android:layout_marginLeft="97dp"
             android:layout_marginTop="50dp"
             android:layout_toRightOf="@id/BullyAccount"
+            android:textColor="@color/blue"
             android:text="Application:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:textStyle="bold" />

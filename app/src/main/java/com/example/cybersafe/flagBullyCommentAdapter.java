@@ -2,7 +2,7 @@ package com.example.cybersafe;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cybersafe.Objects.Comment;
@@ -173,14 +176,20 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
         String sender = comment.getSender();
         String body = comment.getBody();
 
-        Intent in = new Intent(context, ReportToFragment.class);
-        in.putExtra("Comment_id", comment_id);
-        in.putExtra("SMA_id", SMA_id);
-        in.putExtra("sender", sender);
-        in.putExtra("body", body);
-        in.putExtra("Child_id", ChildID);
 
-        context.startActivity(in);
+        //Go to Report to  home
+        FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
+        Fragment fragment = new ReportToFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("Comment_id", comment_id);
+        bundle.putString("SMA_id", SMA_id);
+        bundle.putString("sender", sender);
+        bundle.putString("body", body);
+        bundle.putString("Child_id", ChildID);
+
+        fragment.setArguments(bundle);
+        fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).addToBackStack(null).commit();
+
 
 
     }

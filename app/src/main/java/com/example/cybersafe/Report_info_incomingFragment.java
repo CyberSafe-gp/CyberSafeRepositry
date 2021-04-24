@@ -68,7 +68,6 @@ public class Report_info_incomingFragment extends Fragment {
                     Comment com = messageSnapshot.getValue(Comment.class);
 
                     if (com.getComment_id().equals(Comment_id)){
-
                         //The info that we can reach from the comment
                         commentText = com.getBody();
                         SMAccountCredentials_id = com.getSMAccountCredentials_id();//bulied
@@ -78,9 +77,7 @@ public class Report_info_incomingFragment extends Fragment {
                         TextView BullyCommentText = (TextView)getActivity().findViewById(R.id.WriteChildComment);
                         BullyCommentText.setText(commentText);
 
-
-
-                        break;}
+                        }
                 }
             }
 
@@ -103,9 +100,7 @@ public class Report_info_incomingFragment extends Fragment {
                     if (sma.getId().equals(SMAccountCredentials_id)){
 
                         // the info that we can reach from the SMAccountCredentials
-
                         bulliedAccount=sma.getAccount();
-
                         TextView WriteChildAccount = (TextView)getActivity().findViewById(R.id.WriteBullyAccount);
                         WriteChildAccount.setText(bulliedAccount);}
 
@@ -137,7 +132,7 @@ public class Report_info_incomingFragment extends Fragment {
                         });
 
 
-                        break;}
+                        }
 
                 }
             }

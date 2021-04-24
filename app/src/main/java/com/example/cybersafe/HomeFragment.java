@@ -100,7 +100,6 @@ public class HomeFragment extends Fragment {
 
                 fragment.setArguments(bundle);
                 fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).addToBackStack(null).commit();
-
             }
         });
 
