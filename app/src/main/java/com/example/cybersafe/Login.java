@@ -110,12 +110,12 @@ public class Login extends AppCompatActivity {
             editTextPassword.requestFocus();
             return;
         }
-        //validation
-        if(password.length() < 8){
-            editTextPassword.setError(" The password must be at least 8 characters.");
-            editTextPassword.requestFocus();
-            return;
-        }
+//        //validation
+//        if(password.length() < 8){
+//            editTextPassword.setError(" The password must be at least 8 characters.");
+//            editTextPassword.requestFocus();
+//            return;
+//        }
 
 
         //log in with auth so we can bring the current user from any page

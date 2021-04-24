@@ -100,18 +100,18 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
             password.requestFocus();
             return;
         }
-        // check if Password contain more than 7 characters
-        if(password1.length()<8){
-            password.setError("The password must be at least 8 characters");
+        // check if Password contain more than 7 characters and check if the  Password is strong
+        if(password1.length()<8 || !passwordValidation(password1)){
+            password.setError("The password must be at least 8 characters. Also,the password should contain at least one capital letter, one small letter, and one number.");
             password.requestFocus();
             return;
         }
         // check if the  Password is strong
-        if(!passwordValidation(password1)){
-            password.setError("Password should contains at least one capital letter, one small letter and one number");
-            password.requestFocus();
-            return;
-        }
+//        if(!passwordValidation(password1)){
+//            password.setError("Password should contains at least one capital letter, one small letter and one number");
+//            password.requestFocus();
+//            return;
+//        }
         // check Confirm Password is not empty
         if (confirmPass.isEmpty()){
             ConfirmPass.setError("Confirm Password is required");
@@ -164,8 +164,9 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
                                                            }
                                                        });
                                                    } else {
-                                                       Toast.makeText(ParentRegister.this, "this email is Already taken", Toast.LENGTH_LONG).show();
-
+//                                                       Toast.makeText(ParentRegister.this, "this email is Already taken", Toast.LENGTH_LONG).show();
+                                                          email.setError("This email is already taken");
+                                                          email.requestFocus();
                                                    }
 
                                                }

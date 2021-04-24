@@ -1,6 +1,7 @@
 package com.example.cybersafe;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -76,6 +77,8 @@ public class HomeFragment extends Fragment {
 
         //adapter
         textView = (TextView) getActivity().findViewById(R.id.noChild);
+        textView.setTextColor(Color.parseColor("#D7DBDD"));
+
 //adapter
         childrenRef = FirebaseDatabase.getInstance().getReference().child("Children");
         childRef = FirebaseDatabase.getInstance().getReference().child("Children");
@@ -143,7 +146,7 @@ public class HomeFragment extends Fragment {
                         textView.setText("");
                         break;
                     } else {
-                        textView.setText("No Existing Children");
+                        textView.setText("No existing children");
                     }
                 }
 
