@@ -199,6 +199,7 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
         SMARef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                exist[0] = false;
                 if (snapshot.exists()) {
 
                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {

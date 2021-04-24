@@ -2,6 +2,7 @@ package com.example.cybersafe;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,8 +20,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.example.cybersafe.Objects.Child;
 import com.example.cybersafe.Objects.SMAccountCredentials;
@@ -436,15 +435,9 @@ public class Add_NewChild extends AppCompatActivity {
             return;
         }
 
-        // Check the age of the child between 6 and 14
-        int actual = calculateAge(birthDate, getTodaysDate());
-        if(6<= actual && actual <= 14){
-            int grade = Integer.parseInt(userGrade);
 
-        }else {
-            Toast.makeText(Add_NewChild.this, "The child you add his/her age must be between 6 - 14", Toast.LENGTH_LONG).show();
+        int grade = Integer.parseInt(userGrade);
 
-        }
 
 
         //Go to social media credential
@@ -499,14 +492,22 @@ public class Add_NewChild extends AppCompatActivity {
 
                     Toast.makeText(Add_NewChild.this, "Child added successfully", Toast.LENGTH_LONG).show();
 
+                    System.out.println("#######");
+/*
                     Fragment fragment = new HomeFragment();
                     FragmentManager fragmentManager = getSupportFragmentManager();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("userType", "Parent");
+                    fragment.setArguments(bundle);
+                    System.out.println("111111");
                     fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
+*/
 
-                /*    Intent intent = new Intent(Add_NewChild.this,ParentHome_New.class);
+                    Intent intent = new Intent(Add_NewChild.this,ParentHome_New.class);
+                    intent.putExtra( "open", "Home");
                     intent.putExtra("userType","Parent");
-                    setResult(RESULT_OK);
-                    startActivity(intent);*/
+                    System.out.println("111111");
+                    startActivity(intent);
                 } else {
                     Toast.makeText(Add_NewChild.this, "Child doesn't added", Toast.LENGTH_LONG).show();
                 }

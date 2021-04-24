@@ -61,6 +61,11 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //get the current user
+        System.out.println("HomeFragment");
+
+        System.out.println("222222");
+
+
         if (user != null) {
 
             userID = user.getUid();
@@ -87,6 +92,7 @@ public class HomeFragment extends Fragment {
         adapter = new ParentHomeAdapter(getActivity(), childrenList, new OnItemClickListener() {
             @Override
             public void OnItemClick(View v, int pos) {
+
 
                 Child lr = childrenList.get(pos);
                 String Child_id = lr.getChild_id();

@@ -111,6 +111,8 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
                                     public void onClick(DialogInterface arg0, int arg1) {
                                         //update the flag to true (bully)
                                         commentsRef.child(comID).child("flag").setValue(true);
+                                        //update the notification so the parent not receive an alert
+                                        commentsRef.child(comID).child("notification").setValue("old");
                                         //feedback for flagging
                                         Snackbar.make(view, "Bullying comment has been flagged Successfully", Snackbar.LENGTH_LONG).setDuration(30000)
                                                 .show();

@@ -83,8 +83,7 @@ public class addSocialMediaCredintals extends AppCompatActivity {
                         Author_id=jsonArray3.getString( "id" );
                         childAccount=jsonArray3.getString("uniqueId");
 
-
-
+                        Toast.makeText(addSocialMediaCredintals.this, "TikTok Log in successfully", Toast.LENGTH_LONG).show();
 
 
                     } catch (JSONException e) {

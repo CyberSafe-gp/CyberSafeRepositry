@@ -7,7 +7,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -65,17 +64,12 @@ public class MyService extends Service {
 
     DatabaseReference keywordsRef, keywordRef, commentsRef, SMARef, ChildRef ,ReportRef, ParentRef;
     ArrayList<Keyword> keywordArrayList = new ArrayList();
-    ArrayList<Comment> commentList = new ArrayList();
-    // private String userID, childID;
-    String SMAccountCredentialID;
 
-    //create an ArrayList to store our retrieved data in.
-
-    //ArrayList parentChildren=new ArrayList();
     ArrayList<String> parentChildren = new ArrayList();
     ArrayList<SMAccountCredentials> ChildrenSMA = new ArrayList();
     String accessToken, author_id, account, media_id, SMA_ID, Parent_ID;
     float video_Count, numberOfVideoRequest, numberOfCommentRequest;
+    RequestQueue queue;
 
     //in each request the is the minmmum number of videos and comments
     float video = 20;
@@ -103,35 +97,28 @@ public class MyService extends Service {
         ReportRef = FirebaseDatabase.getInstance().getReference().child( "Reports" );
         ParentRef = FirebaseDatabase.getInstance().getReference().child( "Parents" );
 
-        System.out.println("OONNN SSTTAARRRTT");
-
         //store requests
+        queue = Volley.newRequestQueue(this);
 
-        RequestQueue queue = Volley.newRequestQueue( this );
 
         FirebaseUser currentParent = FirebaseAuth.getInstance().getCurrentUser();
         if (currentParent != null) {
             Parent_ID = currentParent.getUid();
-
-
         }
 
-
-
-
-          //Get the Social Media Account Credentials and the comment and add it to the database
-
+        //Get the Social Media Account Credentials and the comment and add it to the database
         ChildRef.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     parentChildren.clear();
-
                     for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                         Child checkChild = messageSnapshot.getValue( Child.class );
-                        //Add children id that belong to the parent
+
+                        //loop for children id that belong to the parent
                         if (checkChild.getParent_id().equals( Parent_ID )) {
                             String child_id =checkChild.getChild_id();
+
                             SMARef.addValueEventListener( new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -147,64 +134,9 @@ public class MyService extends Service {
                                                 accessToken = checkSMA.getAccess_token();
                                                 author_id = checkSMA.getAuthor_id();
                                                 account = checkSMA.getAccount();
-                                                System.out.println("USER info");
-                                                System.out.println("child_id "+child_id);
 
-                                                JsonObjectRequest getRequest = new JsonObjectRequest( Request.Method.GET
-                                                        , "https://api.tikapi.io/user/info", null, new Response.Listener<JSONObject>() {
-                                                    @Override
-                                                    public void onResponse(JSONObject response) {
-                                                        try {
-                                                            //the number of  child videos ?
-                                                            JSONObject jsonObj3 = response.getJSONObject( "userInfo" );
-                                                            JSONObject jsonArray3 = jsonObj3.getJSONObject( "stats" );
-                                                            video_Count = jsonArray3.getInt( "videoCount" );
+                                                userInfo(child_id, SMA_ID, accessToken, author_id, account);
 
-
-                                                        } catch (JSONException e) {
-                                                            e.printStackTrace();
-                                                        }
-
-
-                                                    }
-
-
-                                                },
-                                                        new Response.ErrorListener() {
-                                                            @Override
-                                                            public void onErrorResponse(VolleyError error) {
-                                                                // TODO Auto-generated method stub
-
-                                                                Log.d( "ERROR", "error => " + error.toString() );
-                                                            }
-                                                        }
-                                                ) {
-                                                    @Override
-                                                    //we nee extra headers for our api url
-                                                    public Map<String, String> getHeaders() throws AuthFailureError {
-                                                        Map<String, String> params = new HashMap<String, String>();
-
-                                                        params.put( "X-ACCOUNT-KEY", accessToken ); //but accessToken insted
-                                                        params.put( "X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS" );//always the same
-                                                        params.put( "Accept", "application/json" );
-                                                        return params;
-                                                    }
-                                                };
-                                                //store the requests
-                                                queue.add( getRequest );
-
-
-                                                //make a request for the media id but first we make sure that we request for all the videos the child post because each request bring only 20 videos
-                                                numberOfVideoRequest = (float) video_Count / video;
-                                                System.out.println(" video "+video);
-                                                System.out.println(" video_Count "+video_Count);
-                                                System.out.println(" numberOfVideoRequest "+numberOfVideoRequest);
-
-                                                getVideo(numberOfVideoRequest, child_id,SMA_ID );
-
-
-                                                SystemClock.sleep(20000);
-                                                break;
                                             }
 
                                         }
@@ -259,10 +191,6 @@ public class MyService extends Service {
             }
         });
 
-
-        ////
-
-
         return START_STICKY;
     }
 
@@ -287,11 +215,58 @@ public class MyService extends Service {
 
     }
 
-    public void getVideo(float numberOfVideoRequest1, String child_id, String SMA_ID) {
+    //Request the user info from TikApi for the this child
+    public void userInfo(String child_id , String SMA_ID, String accessToken, String author_id,String account){
 
-        System.out.println("getVideo");
+        JsonObjectRequest getRequest = new JsonObjectRequest( Request.Method.GET
+                , "https://api.tikapi.io/user/info", null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    //the number of  child videos ?
+                    JSONObject jsonObj3 = response.getJSONObject( "userInfo" );
+                    JSONObject jsonArray3 = jsonObj3.getJSONObject( "stats" );
+                    video_Count = jsonArray3.getInt( "videoCount" );
 
-        RequestQueue queue1 = Volley.newRequestQueue( this );
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+
+                        Log.d( "ERROR", "error => " + error.toString() );
+                    }
+                }
+        ) {
+            @Override
+            //we nee extra headers for our api url
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put( "X-ACCOUNT-KEY", accessToken ); //but accessToken insted
+                params.put( "X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS" );//always the same
+                params.put( "Accept", "application/json" );
+                return params;
+            }
+        };
+        //store the requests
+        queue.add(getRequest);
+
+        //make a request for the media id but first we make sure that we request for all the videos the child post because each request bring only 20 videos
+        numberOfVideoRequest = (float) video_Count / video;
+
+        getVideo(numberOfVideoRequest, child_id,SMA_ID, accessToken, author_id, account);
+    }
+
+    //Request the videos information from TikApi for the this child to know number of the videos
+    public void getVideo(float numberOfVideoRequest1, String child_id, String SMA_ID, String accessToken, String author_id,String account) {
+
+       // RequestQueue queue1 = Volley.newRequestQueue( this );
 
         for (int x = 0; x < numberOfVideoRequest1; x++) {
 
@@ -301,7 +276,6 @@ public class MyService extends Service {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        System.out.println("getVideo onRespone");
                         //all the comments from the child account until it reaches the count that is specified in url
                         JSONArray jsonArray = response.getJSONArray( "itemList" );
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -311,7 +285,7 @@ public class MyService extends Service {
                             JSONObject userObj = jsonObject.getJSONObject( "stats" );
                             int commentCount = userObj.getInt( "commentCount" );
                             numberOfCommentRequest = commentCount / comment;
-                            getComments( numberOfCommentRequest, media_id, child_id , SMA_ID);
+                            getComments(numberOfCommentRequest, media_id, child_id, SMA_ID, accessToken, author_id, account);
 
                         }
 
@@ -334,6 +308,7 @@ public class MyService extends Service {
                 @Override
                 //we nee extra headers for our api url
                 public Map<String, String> getHeaders() throws AuthFailureError {
+
                     Map<String, String> params = new HashMap<String, String>();
                     params.put( "X-ACCOUNT-KEY", accessToken );
                     params.put( "X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS" );
@@ -343,14 +318,14 @@ public class MyService extends Service {
             };
 
             //store the requests
-            queue1.add( getRequest1 );
+            queue.add( getRequest1 );
         }
     }
 
-    public void getComments(float numberOfCommentRequest, String media_id, String child_id, String SMA_ID) {
-        System.out.println("getComments");
+    //Request the comments from TikApi for the this child for each media
+    public void getComments(float numberOfCommentRequest, String media_id, String child_id, String SMA_ID, String accessToken, String author_id,String account) {
 
-        RequestQueue queue2 = Volley.newRequestQueue( this );
+       // RequestQueue queue2 = Volley.newRequestQueue( this );
 
 
         //bring for this media id"video"the comment list
@@ -367,7 +342,6 @@ public class MyService extends Service {
 
 
                     //chick if the comment already exist
-                    System.out.println("getComments onResponse");
                     commentsRef = FirebaseDatabase.getInstance().getReference().child( "Comments" );
                     commentsRef.addValueEventListener( new ValueEventListener() {
 
@@ -389,7 +363,6 @@ public class MyService extends Service {
                                     //Get the sender name
                                     JSONObject userObj = jsonObject.getJSONObject( "user" );
                                     String senderName = userObj.getString( "unique_id" );
-                                    System.out.println("getComments onResponse JOSN");
 
                                     addComment( child_id,comment,senderName,commentID , SMA_ID);
 
@@ -427,6 +400,7 @@ public class MyService extends Service {
                 @Override
                 //we nee extra headers for our api url
                 public Map<String, String> getHeaders() throws AuthFailureError {
+
                     Map<String, String> params = new HashMap<String, String>();
                     params.put( "X-ACCOUNT-KEY", accessToken );
                     params.put( "X-API-KEY", "CYR2NAj0JjJbE09iFoe8jzr3gH6rBymS" );
@@ -435,9 +409,133 @@ public class MyService extends Service {
                 }
             };
             //store the requests
-            queue2.add( getRequest2 );
+            queue.add( getRequest2 );
 
         }
+    }
+
+    //Add the comment to the database if is not exist before, and apply filter, ourModel and sentimentAnalysisAPI
+    private void addComment(String child_id,String comment,String senderName,String commentID, String SMA_ID){
+
+        //check if the comment exist
+        commentsRef.orderByChild("c_ID").equalTo(commentID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    //comment exist no need to store it again
+
+                }
+                else{
+                    //comment not exist need to store it
+
+                    boolean filter = filter( comment, child_id );  //Detect if the comment contain any keyword the parent enter
+                    boolean ourModel = ourModel( comment ); //Our trained model
+                    boolean sentimentAnalysisAPI = sentimentAnalysisAPI(comment); //sentiment Analysis API from google cloud
+
+                    String Comment_ID = commentsRef.push().getKey();//create id for the comment
+                    Comment commentObj;
+                    boolean bully;
+
+                    // check if one of them true
+                    if (filter || ourModel || sentimentAnalysisAPI) {
+                        //If true the comment bully
+                        //create comment object to store it in database
+                        commentObj = new Comment( Comment_ID, SMA_ID, senderName, comment, commentID, true );
+                        bully = true;
+                    } else {
+                        //Not bully
+                        //create comment object to store it in database
+                        commentObj = new Comment( Comment_ID, SMA_ID, senderName, comment, commentID, false );
+                        bully = false;
+                    }
+
+                    //Add the comment to the database
+                    commentsRef.child(Comment_ID).setValue(commentObj).addOnCompleteListener( new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+
+                            if (task.isSuccessful()) {
+
+                                if (bully) {
+                                    //Show notification to the current parent if detected a bully comment for one of his/her children.
+                                    showNotificationBullyComment(child_id);
+
+
+                                    //check if the sender exist
+                                    SMARef.addValueEventListener( new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.exists()) {
+
+                                                for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                                    SMAccountCredentials SMA = messageSnapshot.getValue( SMAccountCredentials.class );
+                                                    //check if the sender exist
+                                                    if (SMA.getAccount().equals( senderName )) {
+                                                        //Sender exist
+                                                        String childID = SMA.getChild_id();
+
+                                                        //Get the child information to reach his/her parent
+                                                        ChildRef.addValueEventListener( new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                if (snapshot.exists()) {
+                                                                    for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                                                        Child child = messageSnapshot.getValue( Child.class );
+                                                                        if (child.getChild_id().equals( childID )) {
+                                                                            String ParentID = child.getParent_id();//Find the sender's parent (bully's parent)
+
+                                                                            //Send report the sender's parent (bully's parent) from the admin
+                                                                            ReportRef = FirebaseDatabase.getInstance().getReference().child( "Reports" );
+
+                                                                            String Report_id = ReportRef.push().getKey();
+                                                                            Report incomingReport = new Report( Report_id, "Admin", ParentID, Comment_ID, "Pending", getDateTime());
+                                                                            ReportRef.child(Report_id).setValue(incomingReport).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                @Override
+                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                    if (task.isSuccessful()){
+
+                                                                                    }
+                                                                                }
+                                                                            });
+
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                            }
+                                                        } );
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    } );
+                                }
+
+                            }
+                        }
+                    } );
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
     //detect if the comment contain any keyword the parent enter
@@ -573,138 +671,6 @@ public class MyService extends Service {
     }
 
 
-    private void addComment(String child_id,String comment,String senderName,String commentID, String SMA_ID){
-
-        System.out.println("addComment");
-        //check if the comment exist
-        commentsRef.orderByChild("c_ID").equalTo(commentID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-            //comment exist no need to store it again
-
-                }
-                else{
-                    //comment not exist need to store it
-
-                    boolean filter = filter( comment, child_id );  //Detect if the comment contain any keyword the parent enter
-                    boolean ourModel = ourModel( comment ); //Our trained model
-                    boolean sentimentAnalysisAPI = sentimentAnalysisAPI(comment); //sentiment Analysis API from google cloud
-
-                    String Comment_ID = commentsRef.push().getKey();//create id for the comment
-                    Comment commentObj;
-                    boolean bully;
-                    System.out.println("addComment bully");
-
-                    System.out.println("Comment_ID "+Comment_ID);
-                    System.out.println("child_id "+child_id);
-                    System.out.println("comment "+comment);
-                    System.out.println("SMA_ID "+SMA_ID);
-
-                    // check if one of them true
-                    if (filter || ourModel || sentimentAnalysisAPI) {
-                        //If true the comment bully
-                        //create comment object to store it in database
-                        commentObj = new Comment( Comment_ID, SMA_ID, senderName, comment, commentID, true );
-                        bully = true;
-                    } else {
-                        //Not bully
-                        //create comment object to store it in database
-                        commentObj = new Comment( Comment_ID, SMA_ID, senderName, comment, commentID, false );
-                        bully = false;
-                    }
-                    System.out.println("add comment 111111");
-                    //Add the comment to the database
-                    commentsRef.child(Comment_ID).setValue(commentObj).addOnCompleteListener( new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-
-
-                            if (task.isSuccessful()) {
-                                System.out.println("add comment isSuccessful ");
-
-
-                           if (bully) {
-                               //Show notification to the current parent if detected a bully comment for one of his/her children.
-                               showNotificationBullyComment(child_id);
-
-
-                               //check if the sender exist
-                               SMARef.addValueEventListener( new ValueEventListener() {
-                                   @Override
-                                   public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                       if (snapshot.exists()) {
-
-                                           for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-                                               SMAccountCredentials SMA = messageSnapshot.getValue( SMAccountCredentials.class );
-                                               //check if the sender exist
-                                               if (SMA.getAccount().equals( senderName )) {
-                                                   //Sender exist
-                                                   String childID = SMA.getChild_id();
-
-                                                   //Get the child information to reach his/her parent
-                                                   ChildRef.addValueEventListener( new ValueEventListener() {
-                                                       @Override
-                                                       public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                           if (snapshot.exists()) {
-                                                               for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-                                                                   Child child = messageSnapshot.getValue( Child.class );
-                                                                   if (child.getChild_id().equals( childID )) {
-                                                                       String ParentID = child.getParent_id();//Find the sender's parent (bully's parent)
-
-                                                                       //Send report the sender's parent (bully's parent) from the admin
-                                                                       ReportRef = FirebaseDatabase.getInstance().getReference().child( "Reports" );
-
-                                                                       String Report_id = ReportRef.push().getKey();
-                                                                       Report incomingReport = new Report( Report_id, "Admin", ParentID, Comment_ID, "Pending", getDateTime());
-                                                                       ReportRef.child(Report_id).setValue(incomingReport).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                           @Override
-                                                                           public void onComplete(@NonNull Task<Void> task) {
-                                                                               if (task.isSuccessful()){
-
-                                                                               }
-                                                                           }
-                                                                       });
-
-                                                                       break;
-                                                                   }
-                                                               }
-                                                           }
-                                                       }
-
-                                                       @Override
-                                                       public void onCancelled(@NonNull DatabaseError error) {
-
-                                                       }
-                                                   } );
-                                                   break;
-                                               }
-                                           }
-                                       }
-                                   }
-
-                                   @Override
-                                   public void onCancelled(@NonNull DatabaseError error) {
-
-                                   }
-                               } );
-                            }
-
-                            }
-                        }
-                    } );
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-    }
-
     //get today date for the report day
     private String getDateTime() {
         DateFormat dateFormat = new SimpleDateFormat( "yyyy/MM/dd" );
@@ -736,7 +702,8 @@ public class MyService extends Service {
 
         //When click notification open children page
         Intent intent = new Intent(getApplicationContext(), ParentHome_New.class);
-        intent.putExtra( "openNotification", "BullyComment" );
+        intent.putExtra( "open", "BullyComment" );
+        intent.putExtra("userType","Parent");
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());
@@ -767,7 +734,8 @@ public class MyService extends Service {
 
 
         Intent intent = new Intent(getApplicationContext(), ParentHome_New.class);
-        intent.putExtra( "openNotification", "IncomingReport" );
+        intent.putExtra( "open", "IncomingReport" );
+        intent.putExtra("userType","Parent");
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());

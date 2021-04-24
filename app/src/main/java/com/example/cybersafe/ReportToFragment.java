@@ -139,27 +139,27 @@ public class ReportToFragment extends Fragment {
             }
         });
 
+        //Button Report to School Manager
+        Button report = (Button)getActivity().findViewById(R.id.report);
 
+
+
+        //Get the sender information
         smaRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
 
                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                     SMAccountCredentials sma = messageSnapshot.getValue(SMAccountCredentials.class);
 
                     if (sma.getAccount().equals(sender)){
 
-                        // the info that we can reach from the SMAccountCredentials
                         senderID= sma.getChild_id();
 
-
-                        // get the smAccountCredentials to retrieve the info
                         DatabaseReference childRef = FirebaseDatabase.getInstance().getReference().child("Children");
                         childRef.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
 
                                 for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                                     Child ch = messageSnapshot.getValue(Child.class);
@@ -169,8 +169,47 @@ public class ReportToFragment extends Fragment {
 
 
 
-                                        break;}
+                                    }
                                 }
+
+
+                                //check if School Manager exist and get the School Manager ID also enable or enable the button
+                                schoolRef.addValueEventListener(new ValueEventListener() {
+                                    @SuppressLint("ResourceAsColor")
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
+                                            SchoolManager SM = messageSnapshot.getValue(SchoolManager.class);
+                                            if(SM.getSchool_id().equals(childSchoolId)){//check if School Manager exist and get the School Manager ID
+                                                schoolMID=SM.getSchoolManager_id();
+                                                findSchoolManager=true;
+                                            }
+                                        }
+
+                                        //Enable or disable the button
+                                        //
+
+                                        if (childSchoolId.equals(senderSchoolId) && !(ChildID.equals(senderID)) && findSchoolManager){
+                                            //Same school
+                                            //school manager register
+                                            //Enable
+                                            report.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
+                                            report.setEnabled(true);
+
+                                        } else {
+                                            //Disable
+                                            report.setBackgroundColor(getResources().getColor(R.color.gray));
+                                            report.setEnabled(false);
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -180,7 +219,7 @@ public class ReportToFragment extends Fragment {
                         });
 
 
-                        break;}
+                     }
 
                 }
             }
@@ -192,47 +231,6 @@ public class ReportToFragment extends Fragment {
         });
 
 
-
-        //Button Report to School Manager
-        Button report = (Button)getActivity().findViewById(R.id.report);
-
-
-        //check if School Manager exist and get the School Manager ID also enable or enable the button
-        schoolRef.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-                    SchoolManager SM = messageSnapshot.getValue(SchoolManager.class);
-                    if(SM.getSchool_id().equals(childSchoolId)){//check if School Manager exist and get the School Manager ID
-                        schoolMID=SM.getSchoolManager_id();
-                        findSchoolManager=true;
-                    }
-                }
-
-                //Enable or disable the button
-                //
-                if (childSchoolId.equals(senderSchoolId) && !(ChildID.equals(senderID)) && findSchoolManager){
-                    //Same school
-                    //school manager register
-                    //Enable
-                    report.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_dark));
-                    report.setEnabled(true);
-
-                } else {
-                    //disable
-                    report.setBackgroundColor(getResources().getColor(R.color.gray));
-                    report.setEnabled(false);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
 
         //If click the button

@@ -32,7 +32,7 @@ ParentHome_New extends AppCompatActivity {
     DatabaseReference commentsRef, ChildRef,SMARef,reportRef;
     ArrayList<Child> parentChildren = new ArrayList();
     ArrayList<String> SMA_IDS = new ArrayList();
-    String  Parent_ID, openNotification;
+    String  Parent_ID, open;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +43,23 @@ ParentHome_New extends AppCompatActivity {
             Parent_ID = currentParent.getUid();
         }
 
-        openNotification = getIntent().getStringExtra("openNotification");
+        open= getIntent().getStringExtra("open");
 
-        //If user click the notification
-        if (openNotification != null){
+        //If user open from notification or activity
+        if (open != null){
 
-            if(openNotification.equals("BullyComment")){
+            if(open.equals("BullyComment")){
                 Fragment fragment  = new HomeFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
 
-
-            } else if(openNotification.equals("IncomingReport")){
+            } else if(open.equals("IncomingReport")){
                 Fragment fragment  = new IncomingFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
+
+            } else if(open.equals("Home")){
+                Fragment fragment  = new HomeFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.addFragmentLayout, fragment).commit();
             }
