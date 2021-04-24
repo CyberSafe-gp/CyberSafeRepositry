@@ -75,7 +75,7 @@
         app:theme="@style/Theme.MaterialComponents"
         android:foregroundGravity="center_vertical"
         android:gravity="center_vertical"
-        android:text="@string/keyword_list"
+        android:text="Keywords List"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#04406E"
