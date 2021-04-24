@@ -106,12 +106,6 @@ public class ParentRegister extends AppCompatActivity implements AdapterView.OnI
             password.requestFocus();
             return;
         }
-        // check if the  Password is strong
-//        if(!passwordValidation(password1)){
-//            password.setError("Password should contains at least one capital letter, one small letter and one number");
-//            password.requestFocus();
-//            return;
-//        }
         // check Confirm Password is not empty
         if (confirmPass.isEmpty()){
             ConfirmPass.setError("Confirm Password is required");

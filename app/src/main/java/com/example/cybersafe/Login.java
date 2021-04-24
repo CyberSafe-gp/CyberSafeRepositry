@@ -95,7 +95,7 @@ public class Login extends AppCompatActivity {
         }
         //validation
         if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
-            editTextEmail.setError("Enter a valid email");
+            editTextEmail.setError("Please enter your email address in format: yourname@example.com");
             editTextEmail.requestFocus();
             return;
         }

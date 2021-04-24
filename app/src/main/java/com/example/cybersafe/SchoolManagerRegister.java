@@ -290,18 +290,13 @@ public class SchoolManagerRegister extends AppCompatActivity  implements Adapter
             password.requestFocus();
             return;
         }
-        // check if Password contain more than 7 characters
-        if (password1.length() < 8) {
-            password.setError("The password must be at least 8 characters");
+        // check if Password contain more than 7 characters and check if the  Password is strong
+        if (password1.length() < 8||!passwordValidation(password1)) {
+            password.setError("The password must be at least 8 characters. Also,the password should contain at least one capital letter, one small letter, and one number.");
             password.requestFocus();
             return;
         }
-        // check if the  Password is strong
-        if (!passwordValidation(password1)) {
-            password.setError("Password should contains at least one capital letter, one small letter and one number");
-            password.requestFocus();
-            return;
-        }
+
         // check Confirm Password is not empty
         if (confirmPass1.isEmpty()){
             confirmPass.setError("Confirm Password is required");
