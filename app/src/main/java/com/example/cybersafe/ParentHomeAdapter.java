@@ -160,7 +160,7 @@ public class ParentHomeAdapter extends RecyclerView.Adapter<ParentHomeAdapter.Ch
 
 
 
-                                        Toast.makeText(context.getApplicationContext(), "Delete " + " : " + position, Toast.LENGTH_LONG).show();
+
 
                                         break;
 
