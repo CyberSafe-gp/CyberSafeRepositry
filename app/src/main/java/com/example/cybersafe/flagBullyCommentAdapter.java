@@ -127,14 +127,19 @@ public class flagBullyCommentAdapter extends RecyclerView.Adapter<flagBullyComme
                                             public void onClick(DialogInterface arg0, int arg1) {
                                                 //go to report page
                                                 reportInfo(findComment);
+
                                             }
                                         });
                                         // no need for report
                                         alertDialogBuilder.setNegativeButton("No", null).show();
+
                                     }
                                 }).setNegativeButton("No", null).show();
+
                             }
+
                         }
+                        commentsRef.removeEventListener(this);
                     }
 
                     @Override

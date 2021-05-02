@@ -99,12 +99,16 @@ public class BullyCommentsAdapter extends RecyclerView.Adapter<BullyCommentsAdap
                                     public void onClick(DialogInterface arg0, int arg1) {
                                         //update the flag to true (bully)
                                         commentsRef.child(comID).child("flag").setValue(false);
-                                        //feedback for flagging
-                                        Toast.makeText(context, "The comment has been updated Successfully", Toast.LENGTH_LONG).show();
+//                                        //feedback for flagging
+                                       Toast.makeText(context, "The comment has been updated Successfully", Toast.LENGTH_LONG).show();
+
                                     }
                                 }).setNegativeButton("No", null).show();
+
                             }
+
                         }
+                        commentsRef.removeEventListener(this);
                     }
 
                     @Override
