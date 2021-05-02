@@ -155,7 +155,7 @@ public class Login extends AppCompatActivity {
                                             AlarmManager alarm = (AlarmManager) getSystemService( Context.ALARM_SERVICE);
                                             // Start service every hour
                                             alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                                    200000, pintent);
+                                                    100000, pintent);
 
                                     //transfer the parent to the his/her home
                                     startActivity(intent);
